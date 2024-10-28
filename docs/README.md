@@ -75,8 +75,8 @@ The `/tests` directory contains all test cases with documentation on running the
 3. The application will be accessible on `http://localhost:<Port>`. Adjust configuration in `docker-compose.yml` as needed.
 
 ## Contributors
-- [@username1](https://github.com/username1)
-- [@username2](https://github.com/username2)
-- [@username3](https://github.com/username3)
-- [@username4](https://github.com/username4)
+- [@Daskyy](https://github.com/Daskyy)
+- [@SebasN12](https://github.com/SebasN12)
+- [@mvx-320](https://github.com/mvx-320)
+- [@MaxCods](https://github.com/MaxCods)
 
