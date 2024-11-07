@@ -1,9 +1,7 @@
 package com.thws.eventmanager;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,12 +20,12 @@ public class UserController {
         return userService.getUsers();
     }
 
-    @GetMapping(path = "/add")
+    @PostMapping(path = "/add")
     public void addUser(User user) {
         userService.addUser(user);
     }
 
-    @GetMapping(path = "/delete")
+    @DeleteMapping(path = "/delete")
     public void deleteUser(Long userId) {
         userService.deleteUser(userId);
     }

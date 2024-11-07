@@ -3,7 +3,7 @@ package com.thws.eventmanager;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name = "users")
 public class User {
     @Id
     @SequenceGenerator(
