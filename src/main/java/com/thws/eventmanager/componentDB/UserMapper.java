@@ -1,10 +1,10 @@
-package com.thws.eventmanager;
+package com.thws.eventmanager.componentDB;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserMapper {
     @Id
     @SequenceGenerator(
             name = "user_sequence",
@@ -20,10 +20,10 @@ public class User {
     private String email;
     private String password;
 
-    public User() {
+    public UserMapper() {
     }
 
-    public User(String name, String email, String password) {
+    public UserMapper(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
