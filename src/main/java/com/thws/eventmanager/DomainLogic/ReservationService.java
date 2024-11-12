@@ -2,7 +2,7 @@ package com.thws.eventmanager.DomainLogic;
 
 import com.thws.eventmanager.componentDB.DBHandler;
 
-public class ReservationService {
+public class ReservationService implements I_ReservationService {
     DBHandler dbHandler = new DBHandler();
 
     public boolean eventAvailable(long eventId) {
