@@ -4,7 +4,7 @@ import com.thws.eventmanager.componentDB.DBHandler;
 
 public class ReservationService implements I_ReservationService {
     DBHandler dbHandler = new DBHandler();
-
+    //change
     public boolean eventAvailable(long eventId) {
         // creates Event object
         // get number Reservations done for Event
