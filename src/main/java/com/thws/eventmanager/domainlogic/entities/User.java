@@ -1,15 +1,15 @@
-package com.thws.eventmanager.DomainLogic.Entities;
+package com.thws.eventmanager.domainlogic.entities;
 
-public class UserEntity {
+public class User {
     private Long id;
     private String name;
     private String email;
     private String password;
 
-    public UserEntity() {
+    public User() {
     }
 
-    public UserEntity(String name, String email, String password) {
+    public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;

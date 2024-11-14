@@ -1,12 +1,12 @@
-package com.thws.eventmanager.componentDB;
+package com.thws.eventmanager.componentdb;
 
-import com.thws.eventmanager.DomainLogic.Entities.Permission;
-import com.thws.eventmanager.DomainLogic.Entities.UserEntity;
-import com.thws.eventmanager.DomainLogic.portDB;
+import com.thws.eventmanager.domainlogic.entities.Permission;
+import com.thws.eventmanager.domainlogic.entities.User;
+import com.thws.eventmanager.domainlogic.PortDB;
 
-public class DBHandler implements portDB {
+public class DBHandler implements PortDB {
     @Override
-    public void addUser(UserEntity user) {
+    public void addUser(User user) {
 
     }
 
@@ -16,7 +16,7 @@ public class DBHandler implements portDB {
     }
 
     @Override
-    public UserEntity findByEmail(String email) {
+    public User findByEmail(String email) {
         return null;
     }
 

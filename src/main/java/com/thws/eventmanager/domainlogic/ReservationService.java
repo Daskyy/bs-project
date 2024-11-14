@@ -1,6 +1,6 @@
-package com.thws.eventmanager.DomainLogic;
+package com.thws.eventmanager.domainlogic;
 
-import com.thws.eventmanager.componentDB.DBHandler;
+import com.thws.eventmanager.componentdb.DBHandler;
 
 public class ReservationService implements I_ReservationService {
     DBHandler dbHandler = new DBHandler();

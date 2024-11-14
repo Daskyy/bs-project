@@ -1,4 +1,4 @@
-package com.thws.eventmanager.DomainLogic;
+package com.thws.eventmanager.domainlogic;
 
 public interface I_ReservationService {
     public boolean eventAvailable(long eventId);
