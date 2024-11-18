@@ -2,6 +2,7 @@ package com.thws.eventmanager.application;
 
 import com.thws.eventmanager.domain.PaymentService;
 import com.thws.eventmanager.domain.entities.Payment;
+import com.thws.eventmanager.domain.entities.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +16,20 @@ public class PaymentUseCase {
     }
 
     public boolean executePayment(Payment payment) {
-        return paymentService.processPayment(payment);
+        boolean result = paymentService.processPayment(payment);
+        payment.setStatus(result ? Status.COMPLETED : Status.FAILED);
+        return result;
     }
 
     public boolean createOpenPayment(Payment payment) {
-        return paymentService.createOpenPayment(payment);
+        boolean result = paymentService.createOpenPayment(payment);
+        payment.setStatus(result ? Status.OPEN : Status.FAILED);
+        return result;
     }
 
     public boolean createFailedPayment(Payment payment) {
-        return paymentService.createFailedPayment(payment);
+        boolean result = paymentService.createFailedPayment(payment);
+        payment.setStatus(Status.FAILED);
+        return result;
     }
 }

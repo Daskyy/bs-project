@@ -1,9 +1,11 @@
 package com.thws.eventmanager.payments;
 
+import com.stripe.param.treasury.DebitReversalListParams;
 import com.thws.eventmanager.application.PaymentUseCase;
 import com.thws.eventmanager.configuration.StripeConfiguration;
 import com.thws.eventmanager.domain.entities.Payment;
 import com.thws.eventmanager.adapter.StripePaymentService;
+import com.thws.eventmanager.domain.entities.Status;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -42,6 +44,7 @@ public class PaymentIntegrationTest {
         Payment payment = new Payment("pm_card_visa", 2000L); // 20.00 EUR
         boolean result = paymentUseCase.executePayment(payment);
         assertTrue(result);
+        assertEquals(Status.COMPLETED, payment.getStatus());
     }
 
     @Test
@@ -49,6 +52,7 @@ public class PaymentIntegrationTest {
         Payment payment = new Payment(null, 1500L); // 15.00 EUR
         boolean result = paymentUseCase.createOpenPayment(payment);
         assertTrue(result);
+        assertEquals(Status.OPEN, payment.getStatus());
     }
 
     @Test
@@ -56,6 +60,7 @@ public class PaymentIntegrationTest {
         Payment payment = new Payment("pm_card_chargeDeclined", 2000L);
         boolean result = paymentUseCase.executePayment(payment);
         assertFalse(result);
+        assertEquals(Status.FAILED, payment.getStatus());
     }
 
     @Test
@@ -63,5 +68,6 @@ public class PaymentIntegrationTest {
         Payment payment = new Payment("pm_card_visa", 999999999L); // Very large amount to trigger failure
         boolean result = paymentUseCase.createFailedPayment(payment);
         assertFalse(result);
+        assertEquals(Status.FAILED, payment.getStatus());
     }
 }
