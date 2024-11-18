@@ -4,6 +4,8 @@ import com.thws.eventmanager.application.PaymentUseCase;
 import com.thws.eventmanager.configuration.StripeConfiguration;
 import com.thws.eventmanager.domain.entities.Payment;
 import com.thws.eventmanager.adapter.StripePaymentService;
+import io.github.cdimascio.dotenv.Dotenv;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,6 +30,12 @@ public class PaymentIntegrationTest {
 
     @Autowired
     private PaymentUseCase paymentUseCase;
+
+    @BeforeAll
+    static void loadDotenv() {
+        Dotenv dotenv = Dotenv.load();
+        System.setProperty("STRIPE_API_KEY_TEST", dotenv.get("STRIPE_API_KEY_TEST"));
+    }
 
     @Test
     void testProcessPaymentWithTestCard() {
