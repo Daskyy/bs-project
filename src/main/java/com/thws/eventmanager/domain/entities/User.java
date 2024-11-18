@@ -1,4 +1,4 @@
-package com.thws.eventmanager.domainlogic.entities;
+package com.thws.eventmanager.domain.entities;
 
 public class User {
     private Long id;

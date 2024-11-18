@@ -1,8 +1,8 @@
 package com.thws.eventmanager.componentdb;
 
-import com.thws.eventmanager.domainlogic.entities.Permission;
-import com.thws.eventmanager.domainlogic.entities.User;
-import com.thws.eventmanager.domainlogic.PortDB;
+import com.thws.eventmanager.domain.entities.Permission;
+import com.thws.eventmanager.domain.entities.User;
+import com.thws.eventmanager.domain.PortDB;
 
 public class DBHandler implements PortDB {
     @Override
