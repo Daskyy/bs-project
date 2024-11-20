@@ -1,4 +1,4 @@
-package com.thws.eventmanager.domainlogic;
+package com.thws.eventmanager.domain;
 
 import com.thws.eventmanager.componentdb.DBHandler;
 
