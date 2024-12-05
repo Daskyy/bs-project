@@ -6,15 +6,19 @@ public class Event {
     private String description;
     private long ticketCount;
     private long ticketsSold;
+    private int maxTicketsPerUser;
     private User[] artists;
+    private Address location;
 
-    public Event(long id, String name, String description, long ticketCount, long ticketsSold, User[] artists) {
+
+    public Event(long id, String name, String description, long ticketCount, long ticketsSold, User[] artists, int maxTicketsPerUser) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.ticketCount = ticketCount;
         this.ticketsSold = ticketsSold;
         this.artists = artists;
+        this.maxTicketsPerUser = maxTicketsPerUser;
     }
 
     public long getId() {
@@ -39,6 +43,10 @@ public class Event {
 
     public User[] getArtists() {
         return artists;
+    }
+
+    public int getMaxTicketsPerUser() {
+        return maxTicketsPerUser;
     }
 
     public boolean isSoldOut() {
@@ -71,5 +79,9 @@ public class Event {
 
     public void setArtists(User[] artists) {
         this.artists = artists;
+    }
+
+    public void setMaxTicketsPerUser(int maxTicketsPerUser) {
+        this.maxTicketsPerUser = maxTicketsPerUser;
     }
 }

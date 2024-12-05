@@ -5,6 +5,7 @@ public class User {
     private String name;
     private String email;
     private String password;
+    private Permission permission;
 
     public User() {
     }
