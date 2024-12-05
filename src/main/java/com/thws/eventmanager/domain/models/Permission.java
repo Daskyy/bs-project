@@ -1,4 +1,4 @@
-package com.thws.eventmanager.domain.entities;
+package com.thws.eventmanager.domain.models;
 
 public enum Permission {
     STAFF, ARTIST, CUSTOMER

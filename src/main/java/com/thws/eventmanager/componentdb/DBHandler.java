@@ -1,7 +1,7 @@
 package com.thws.eventmanager.componentdb;
 
-import com.thws.eventmanager.domain.entities.Permission;
-import com.thws.eventmanager.domain.entities.User;
+import com.thws.eventmanager.domain.models.Permission;
+import com.thws.eventmanager.domain.models.User;
 import com.thws.eventmanager.domain.PortDB;
 
 public class DBHandler implements PortDB {

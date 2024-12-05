@@ -1,8 +1,8 @@
 package com.thws.eventmanager.application;
 
 import com.thws.eventmanager.domain.PaymentService;
-import com.thws.eventmanager.domain.entities.Payment;
-import com.thws.eventmanager.domain.entities.Status;
+import com.thws.eventmanager.domain.models.Payment;
+import com.thws.eventmanager.domain.models.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

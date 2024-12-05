@@ -1,6 +1,6 @@
 package com.thws.eventmanager.domain;
 
-public interface I_ReservationService {
+public interface TicketServiceInterface {
     public boolean eventAvailable(long eventId);
     public boolean ticketAvailable(long eventId);
     public void addReservation(String userEmail, long eventId, int amount);

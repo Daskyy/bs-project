@@ -2,9 +2,9 @@ package com.thws.eventmanager.payments;
 
 import com.thws.eventmanager.application.PaymentUseCase;
 import com.thws.eventmanager.configuration.StripeConfiguration;
-import com.thws.eventmanager.domain.entities.Payment;
+import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.adapter.StripePaymentService;
-import com.thws.eventmanager.domain.entities.Status;
+import com.thws.eventmanager.domain.models.Status;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

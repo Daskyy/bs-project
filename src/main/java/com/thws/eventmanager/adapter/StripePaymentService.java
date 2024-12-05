@@ -4,7 +4,7 @@ import com.stripe.exception.*;
 import com.stripe.model.PaymentIntent;
 import com.stripe.param.PaymentIntentCreateParams;
 import com.thws.eventmanager.domain.PaymentService;
-import com.thws.eventmanager.domain.entities.Payment;
+import com.thws.eventmanager.domain.models.Payment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

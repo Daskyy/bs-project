@@ -1,6 +1,6 @@
 package com.thws.eventmanager.domain;
 
-import com.thws.eventmanager.domain.entities.Payment;
+import com.thws.eventmanager.domain.models.Payment;
 
 public interface PaymentService {
     boolean processPayment(Payment payment);

@@ -1,7 +1,7 @@
 package com.thws.eventmanager.domain;
 
-import com.thws.eventmanager.domain.entities.Permission;
-import com.thws.eventmanager.domain.entities.User;
+import com.thws.eventmanager.domain.models.Permission;
+import com.thws.eventmanager.domain.models.User;
 
 public interface PortDB {
 

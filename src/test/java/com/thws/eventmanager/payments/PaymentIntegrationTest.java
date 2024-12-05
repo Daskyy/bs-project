@@ -1,11 +1,10 @@
 package com.thws.eventmanager.payments;
 
-import com.stripe.param.treasury.DebitReversalListParams;
 import com.thws.eventmanager.application.PaymentUseCase;
 import com.thws.eventmanager.configuration.StripeConfiguration;
-import com.thws.eventmanager.domain.entities.Payment;
+import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.adapter.StripePaymentService;
-import com.thws.eventmanager.domain.entities.Status;
+import com.thws.eventmanager.domain.models.Status;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

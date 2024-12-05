@@ -1,4 +1,4 @@
-package com.thws.eventmanager.domain.entities;
+package com.thws.eventmanager.domain.models;
 
 public class Payment {
     private final String paymentMethodId;
