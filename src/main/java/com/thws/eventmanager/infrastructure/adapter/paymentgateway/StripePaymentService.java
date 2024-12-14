@@ -1,9 +1,9 @@
-package com.thws.eventmanager.adapter;
+package com.thws.eventmanager.infrastructure.adapter.paymentgateway;
 
 import com.stripe.exception.*;
 import com.stripe.model.PaymentIntent;
 import com.stripe.param.PaymentIntentCreateParams;
-import com.thws.eventmanager.domain.PaymentService;
+import com.thws.eventmanager.domain.service.PaymentService;
 import com.thws.eventmanager.domain.models.Payment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

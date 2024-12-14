@@ -1,4 +1,4 @@
-package com.thws.eventmanager.configuration;
+package com.thws.eventmanager.infrastructure.configuration;
 
 import com.stripe.Stripe;
 import jakarta.annotation.PostConstruct;
