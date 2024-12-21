@@ -15,7 +15,7 @@ public class EventService implements EventServiceInterface {
             }
            Event newEvent= new Event();
            newEvent.setLocation(location);
-           newEvent.addArtists(artist);
+           //newEvent.addArtists(artist);
            return true;
         }
     }

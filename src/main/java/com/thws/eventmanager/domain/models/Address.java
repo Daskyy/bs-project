@@ -1,10 +1,22 @@
 package com.thws.eventmanager.domain.models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "addresses")
 public class Address {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
+    @Column(name = "street", nullable = false)
     String street;
+    @Column(name = "no", nullable = false)
     int no;
+    @Column(name = "city", nullable = false)
     String city;
+    @Column(name = "zipCode", nullable = false)
     int zipCode;
+    @Column(name = "country", nullable = false)
     String country;
 
     public Address(String city, String country, int no, String street, int zipCode) {
@@ -13,6 +25,10 @@ public class Address {
         this.no = no;
         this.street = street;
         this.zipCode = zipCode;
+    }
+
+    public Address() {
+
     }
 
     public String getCity() {

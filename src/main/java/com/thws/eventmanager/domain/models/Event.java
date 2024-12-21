@@ -1,18 +1,32 @@
 package com.thws.eventmanager.domain.models;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+@Table(name = "events")
 public class Event {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "name", nullable = false)
     private String name;
+    @Column(name = "description", nullable = false)
     private String description;
+    @Column(name = "ticketCount", nullable = false)
     private long ticketCount;
+    @Column(name = "ticketsSold", nullable = false)
     private long ticketsSold;
+    @Column(name = "maxTicketsPerUser", nullable = false)
     private int maxTicketsPerUser;
-    private User[] artists;
+    @OneToMany
+    private List<User> artists;
+    @OneToOne
     private EventLocation location;
 
 
-    public Event(long id,String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, User[] artists, EventLocation location) {
-        this.id=id;
+    public Event(String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, List<User> artists, EventLocation location) {
         this.name = name;
         this.description = description;
         this.ticketCount = ticketCount;
@@ -54,9 +68,9 @@ public class Event {
         return ticketsSold;
     }
 
-    public User[] getArtists() {
+    /*public User[] getArtists() {
         return artists;
-    }
+    }*/
 
     public int getMaxTicketsPerUser() {
         return maxTicketsPerUser;
@@ -90,11 +104,11 @@ public class Event {
         this.ticketsSold = ticketsSold;
     }
 
-    public void setArtists(User[] artists) {
+    /*public void setArtists(User[] artists) {
         this.artists = artists;
-    }
+    }*/
 
-    public void addArtists(User artist){
+    /*public void addArtists(User artist){
         //if artist is not an artist, throw exception
         if(artist.getPermission()!=Permission.ARTIST){
             throw new RuntimeException("Only artists can be added to an event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
@@ -115,8 +129,8 @@ public class Event {
                 artists = newArtists;
             }
         }
-    }
-    public void removeArtists(User artist){
+    }*/
+  /*  public void removeArtists(User artist){
         if(artist.getPermission()!=Permission.ARTIST){
             throw new RuntimeException("Only artists can be removed from an event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
         }
@@ -134,9 +148,13 @@ public class Event {
             if(!found) throw new RuntimeException("Artist not found in event");
             artists = newArtists;
         }
-    }
+    }*/
 
     public void setMaxTicketsPerUser(int maxTicketsPerUser) {
         this.maxTicketsPerUser = maxTicketsPerUser;
+    }
+
+    public EventLocation getEventLocation() {
+        return location;
     }
 }
