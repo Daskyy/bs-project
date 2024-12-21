@@ -4,9 +4,7 @@ import com.thws.eventmanager.domain.models.Ticket;
 import com.thws.eventmanager.domain.models.Event;
 import com.thws.eventmanager.domain.models.Status;
 import com.thws.eventmanager.infrastructure.adapter.persistence.dbHandler;
-import org.springframework.stereotype.Service;
 
-@Service
 public class TicketService {
 
     private final dbHandler dbHandler;  // Direct interaction with dbHandler

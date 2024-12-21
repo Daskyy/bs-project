@@ -4,14 +4,10 @@ import com.thws.eventmanager.application.port.in.PaymentUseCase;
 import com.thws.eventmanager.domain.service.PaymentService;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.domain.models.Status;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
 public class PaymentUseCaseService implements PaymentUseCase {
     private final PaymentService paymentService;
 
-    @Autowired
     public PaymentUseCaseService(PaymentService paymentService) {
         this.paymentService = paymentService;
     }

@@ -6,9 +6,7 @@ import com.thws.eventmanager.domain.service.TicketService;
 import com.thws.eventmanager.domain.models.Ticket;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.domain.models.Status;
-import org.springframework.stereotype.Service;
 
-@Service
 public class TicketPurchaseService implements TicketPurchaseUseCase {
 
     private final TicketService ticketService;  // Service for ticket-related domain logic

@@ -4,39 +4,29 @@ import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.thws.eventmanager.application.service.TicketPurchaseService;
-import com.thws.eventmanager.domain.models.Event;
-import com.thws.eventmanager.domain.models.Payment;
-import com.thws.eventmanager.domain.models.Ticket;
+import com.thws.eventmanager.domain.models.*;
 import com.thws.eventmanager.application.port.in.PaymentUseCase;
 import com.thws.eventmanager.infrastructure.adapter.persistence.dbHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.mockito.Mock;
 
 
-@SpringBootTest(classes = {
-        TicketPurchaseService.class,
-        dbHandler.class
-})
+    // TODO: FIX THIS GARBAGE THAT DOESNT WORK
+
 public class TicketServiceTest {
 
-    @Autowired
-    private TicketPurchaseService ticketService;
-
-    @MockBean
-    private dbHandler dbHandler;
-
-    @MockBean
-    private PaymentUseCase paymentUseCase;
+    private TicketPurchaseService ticketService = mock(TicketPurchaseService.class);
+    private dbHandler dbHandler = mock(dbHandler.class);
+    private PaymentUseCase paymentUseCase = mock(PaymentUseCase.class);
 
     private Event event;
     private Ticket ticket;
 
     @BeforeEach
     public void setup() {
-        event = new Event(1L, "Event A", "Description", 100, 0, null, 5);
+        // long id,String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, User[] artists, EventLocation location
+        //event = new Event(1L, "Sample Event", "Description", 100, 50, new User[]{}, new EventLocation());  // Example event
         ticket = new Ticket("1", "user@example.com", "TICKET_123", 5000);  // Example ticket
 
         // Mock the dbHandler methods

@@ -1,19 +1,33 @@
 package com.thws.eventmanager.infrastructure.adapter.paymentgateway;
 
+import com.stripe.Stripe;
 import com.stripe.exception.*;
 import com.stripe.model.PaymentIntent;
 import com.stripe.param.PaymentIntentCreateParams;
 import com.thws.eventmanager.domain.service.PaymentService;
 import com.thws.eventmanager.domain.models.Payment;
+import com.thws.eventmanager.infrastructure.configuration.ConfigurationLoader;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 
-@Service
 public class StripePaymentService implements PaymentService {
 
     private static final Logger log = LoggerFactory.getLogger(StripePaymentService.class);
     private static final String EUR_CURRENCY = "eur";
+
+    static {
+        try {
+            String stripeMode = ConfigurationLoader.getProperty("stripe.mode");
+            Stripe.apiKey = "test".equalsIgnoreCase(stripeMode)
+                    ? ConfigurationLoader.getProperty("stripe.api-key-test")
+                    : ConfigurationLoader.getProperty("stripe.api-key-live");
+
+            log.info("Stripe initialized in {} mode", stripeMode);
+        } catch (Exception ex) {
+            log.error("Error initializing Stripe", ex);
+        }
+    }
 
     @Override
     public boolean processPayment(Payment payment) {
@@ -57,7 +71,8 @@ public class StripePaymentService implements PaymentService {
 
             PaymentIntent paymentIntent = PaymentIntent.create(params);
             log.info("Open payment created successfully. PaymentIntent ID: {}", paymentIntent.getId());
-            return paymentIntent.getStatus() != null;
+            log.info("PaymentIntent status: {}", paymentIntent.getStatus());
+            return "requires_payment_method".equals(paymentIntent.getStatus());
         });
     }
 
