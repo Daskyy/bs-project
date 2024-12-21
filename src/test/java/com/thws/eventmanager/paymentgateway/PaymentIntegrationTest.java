@@ -1,9 +1,9 @@
-package com.thws.eventmanager.payments;
+package com.thws.eventmanager.paymentgateway;
 
-import com.thws.eventmanager.application.PaymentUseCase;
-import com.thws.eventmanager.configuration.StripeConfiguration;
+import com.thws.eventmanager.application.service.PaymentUseCaseService;
+import com.thws.eventmanager.infrastructure.adapter.paymentgateway.StripePaymentService;
+import com.thws.eventmanager.infrastructure.configuration.StripeConfiguration;
 import com.thws.eventmanager.domain.models.Payment;
-import com.thws.eventmanager.adapter.StripePaymentService;
 import com.thws.eventmanager.domain.models.Status;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.BeforeAll;
@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest(classes = {
-        PaymentUseCase.class,
+        PaymentUseCaseService.class,
         StripePaymentService.class,
         StripeConfiguration.class
 })
@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PaymentIntegrationTest {
 
     @Autowired
-    private PaymentUseCase paymentUseCase;
+    private PaymentUseCaseService paymentUseCaseService;
 
     @BeforeAll
     static void loadDotenv() {
@@ -41,7 +41,7 @@ public class PaymentIntegrationTest {
     @Test
     void testProcessPaymentWithTestCard() {
         Payment payment = new Payment("pm_card_visa", 2000L); // 20.00 EUR
-        boolean result = paymentUseCase.executePayment(payment);
+        boolean result = paymentUseCaseService.processPayment(payment);
         assertTrue(result);
         assertEquals(Status.COMPLETED, payment.getStatus());
     }
@@ -49,7 +49,7 @@ public class PaymentIntegrationTest {
     @Test
     void testOpenPaymentCreation() {
         Payment payment = new Payment(null, 1500L); // 15.00 EUR
-        boolean result = paymentUseCase.createOpenPayment(payment);
+        boolean result = paymentUseCaseService.createOpenPayment(payment);
         assertTrue(result);
         assertEquals(Status.OPEN, payment.getStatus());
     }
@@ -57,7 +57,7 @@ public class PaymentIntegrationTest {
     @Test
     void testFailedPaymentWithDeclinedCard() {
         Payment payment = new Payment("pm_card_chargeDeclined", 2000L);
-        boolean result = paymentUseCase.executePayment(payment);
+        boolean result = paymentUseCaseService.processPayment(payment);
         assertFalse(result);
         assertEquals(Status.FAILED, payment.getStatus());
     }
@@ -65,7 +65,7 @@ public class PaymentIntegrationTest {
     @Test
     void testCreateFailedPaymentFlow() {
         Payment payment = new Payment("pm_card_visa", 999999999L); // Very large amount to trigger failure
-        boolean result = paymentUseCase.createFailedPayment(payment);
+        boolean result = paymentUseCaseService.createFailedPayment(payment);
         assertFalse(result);
         assertEquals(Status.FAILED, payment.getStatus());
     }

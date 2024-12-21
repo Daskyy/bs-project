@@ -1,4 +1,4 @@
-package com.thws.eventmanager.componentdb;
+package com.thws.eventmanager.infrastructure.adapter.persistence;
 //
 //import jakarta.persistence.*;
 //

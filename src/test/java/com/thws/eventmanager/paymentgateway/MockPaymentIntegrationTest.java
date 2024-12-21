@@ -1,9 +1,9 @@
-package com.thws.eventmanager.payments;
+package com.thws.eventmanager.paymentgateway;
 
-import com.thws.eventmanager.application.PaymentUseCase;
-import com.thws.eventmanager.configuration.StripeConfiguration;
+import com.thws.eventmanager.application.service.PaymentUseCaseService;
+import com.thws.eventmanager.infrastructure.configuration.StripeConfiguration;
 import com.thws.eventmanager.domain.models.Payment;
-import com.thws.eventmanager.adapter.StripePaymentService;
+import com.thws.eventmanager.infrastructure.adapter.paymentgateway.StripePaymentService;
 import com.thws.eventmanager.domain.models.Status;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +20,14 @@ import static org.junit.jupiter.api.Assertions.*;
 */
 
 @SpringBootTest(classes = {
-        PaymentUseCase.class,
+        PaymentUseCaseService.class,
         StripeConfiguration.class
 })
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class MockPaymentIntegrationTest {
 
     @Autowired
-    private PaymentUseCase paymentUseCase;
+    private PaymentUseCaseService paymentUseCaseService;
 
     @MockBean
     private StripePaymentService stripePaymentService; // Mocking StripePaymentService
@@ -38,7 +38,7 @@ public class MockPaymentIntegrationTest {
 
         when(stripePaymentService.processPayment(payment)).thenReturn(true);
 
-        boolean result = paymentUseCase.executePayment(payment);
+        boolean result = paymentUseCaseService.processPayment(payment);
         assertTrue(result);
         assertEquals(Status.COMPLETED, payment.getStatus());
 
@@ -51,7 +51,7 @@ public class MockPaymentIntegrationTest {
 
         when(stripePaymentService.createOpenPayment(payment)).thenReturn(true);
 
-        boolean result = paymentUseCase.createOpenPayment(payment);
+        boolean result = paymentUseCaseService.createOpenPayment(payment);
         assertTrue(result);
         assertEquals(Status.OPEN, payment.getStatus());
 
@@ -64,7 +64,7 @@ public class MockPaymentIntegrationTest {
 
         when(stripePaymentService.processPayment(payment)).thenReturn(false);
 
-        boolean result = paymentUseCase.executePayment(payment);
+        boolean result = paymentUseCaseService.processPayment(payment);
         assertFalse(result);
         assertEquals(Status.FAILED, payment.getStatus());
 
@@ -77,7 +77,7 @@ public class MockPaymentIntegrationTest {
 
         when(stripePaymentService.createFailedPayment(payment)).thenReturn(false);
 
-        boolean result = paymentUseCase.createFailedPayment(payment);
+        boolean result = paymentUseCaseService.createFailedPayment(payment);
         assertFalse(result);
         assertEquals(Status.FAILED, payment.getStatus());
 
