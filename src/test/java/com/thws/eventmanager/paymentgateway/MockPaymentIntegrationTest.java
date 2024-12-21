@@ -1,15 +1,10 @@
 package com.thws.eventmanager.paymentgateway;
 
 import com.thws.eventmanager.application.service.PaymentUseCaseService;
-import com.thws.eventmanager.infrastructure.configuration.StripeConfiguration;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.infrastructure.adapter.paymentgateway.StripePaymentService;
 import com.thws.eventmanager.domain.models.Status;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,18 +14,9 @@ import static org.junit.jupiter.api.Assertions.*;
     IT USES MOCKS TO SIMULATE STRIPE PAYMENT INTERACTIONS.
 */
 
-@SpringBootTest(classes = {
-        PaymentUseCaseService.class,
-        StripeConfiguration.class
-})
-@TestPropertySource(locations = "classpath:application-test.properties")
 public class MockPaymentIntegrationTest {
-
-    @Autowired
-    private PaymentUseCaseService paymentUseCaseService;
-
-    @MockBean
-    private StripePaymentService stripePaymentService; // Mocking StripePaymentService
+    private StripePaymentService stripePaymentService = mock(StripePaymentService.class); // Mocking StripePaymentService
+    private PaymentUseCaseService paymentUseCaseService = new PaymentUseCaseService(stripePaymentService);
 
     @Test
     void testProcessPaymentWithTestCard() {

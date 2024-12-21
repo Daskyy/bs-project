@@ -1,16 +1,13 @@
 package com.thws.eventmanager.paymentgateway;
 
+import com.stripe.Stripe;
 import com.thws.eventmanager.application.service.PaymentUseCaseService;
 import com.thws.eventmanager.infrastructure.adapter.paymentgateway.StripePaymentService;
-import com.thws.eventmanager.infrastructure.configuration.StripeConfiguration;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.domain.models.Status;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,23 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
     FOR JUST TESTING PURPOSES, PLEASE USE THE MOCK TESTS INSTEAD.
 */
 
-
-@SpringBootTest(classes = {
-        PaymentUseCaseService.class,
-        StripePaymentService.class,
-        StripeConfiguration.class
-})
-@TestPropertySource(locations = "classpath:application-test.properties")
 public class PaymentIntegrationTest {
-
-    @Autowired
-    private PaymentUseCaseService paymentUseCaseService;
-
-    @BeforeAll
-    static void loadDotenv() {
-        Dotenv dotenv = Dotenv.load();
-        System.setProperty("STRIPE_API_KEY_TEST", dotenv.get("STRIPE_API_KEY_TEST"));
-    }
+    private final PaymentUseCaseService paymentUseCaseService = new PaymentUseCaseService(new StripePaymentService());
 
     @Test
     void testProcessPaymentWithTestCard() {
