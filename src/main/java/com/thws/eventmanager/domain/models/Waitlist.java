@@ -1,14 +1,17 @@
 package com.thws.eventmanager.domain.models;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Waitlist {
     private final String eventId;
-    private final List<User> users = null;
+    private final List<User> users;
 
 
     public Waitlist(String eventId) {
         this.eventId = eventId;
+        this.users = new ArrayList<>();
     }
 
     public String getEventId() {
@@ -16,9 +19,21 @@ public class Waitlist {
     }
 
     public List<User> getUsers() {
-        return users;
+        return Collections.unmodifiableList(users);
     }
 
     public void addUser(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null");
+        }
+        users.add(user);
+    }
+
+    public boolean removeUser(User user) {
+        return users.remove(user);
+    }
+
+    public User getFirstUser() {
+        return users.isEmpty() ? null : users.get(0);
     }
 }

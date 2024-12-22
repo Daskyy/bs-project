@@ -3,6 +3,7 @@ package com.thws.eventmanager.infrastructure.adapter.persistence;
 import com.thws.eventmanager.domain.models.Ticket;
 import com.thws.eventmanager.domain.models.Event;
 import com.thws.eventmanager.domain.models.User;
+import com.thws.eventmanager.domain.models.Waitlist;
 
 public class dbHandler {
     private static dbHandler Instance ;
@@ -54,11 +55,21 @@ public class dbHandler {
         return true;
     }
 
+    public void deleteReservation(String userEmail, long eventId) {
+        // TODO: Implement this method
+    }
+    //Waitlist
     public void createReservationOnWaitlist(String userEmail, long eventId, int amount) {
         // TODO: Implement this method
     }
-
-    public void deleteReservation(String userEmail, long eventId) {
+    public Waitlist getWaitlistByEventId(String eventId){
+        // TODO: Implement this method
+        return null;
+    }
+    public void saveWaitlist(Waitlist waitlist){
+        // TODO: Implement this method
+    }
+    public void deleteWaitlistFromEvent(String eventId){
         // TODO: Implement this method
     }
 }
