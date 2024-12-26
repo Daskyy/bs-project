@@ -1,17 +1,20 @@
 package com.thws.eventmanager.domain.models;
 
+import java.time.LocalDateTime;
+
 public class Event {
     private long id;
     private String name;
     private String description;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private long ticketCount;
     private long ticketsSold;
     private int maxTicketsPerUser;
     private User[] artists;
     private EventLocation location;
 
-
-    public Event(long id,String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, User[] artists, EventLocation location) {
+    public Event(long id, String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, User[] artists, EventLocation location) {
         this.id=id;
         this.name = name;
         this.description = description;
@@ -45,6 +48,10 @@ public class Event {
     public String getDescription() {
         return description;
     }
+
+    public LocalDateTime getStartDate() { return startDate; }
+
+    public LocalDateTime getEndDate() { return endDate; }
 
     public long getTicketCount() {
         return ticketCount;
