@@ -1,5 +1,7 @@
 package com.thws.eventmanager.domain.models;
 
+import java.util.List;
+
 public class Event {
     private long id;
     private String name;
@@ -9,6 +11,8 @@ public class Event {
     private int maxTicketsPerUser;
     private User[] artists;
     private EventLocation location;
+    private List<Long> blockList; //List of User IDs that are blocked from buying tickets for this event
+
 
 
     public Event(long id,String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, User[] artists, EventLocation location) {
@@ -21,17 +25,16 @@ public class Event {
         this.artists = artists;
         this.location = location;
     }
+    public Event(){
+
+    }
+
 
     public EventLocation getLocation() {
         return location;
     }
-
     public void setLocation(EventLocation location) {
         this.location = location;
-    }
-
-    public Event(){
-
     }
 
     public long getId() {
@@ -136,6 +139,30 @@ public class Event {
         }
     }
 
+    public void addBlockedUser(User user){
+        if(blockList==null){
+            blockList=List.of(user.getId());
+        }
+        else{
+            blockList.add(user.getId());
+        }
+    }
+    public boolean removeBlockedUser(User user){
+        if(blockList==null){
+            return false;
+        }
+        else{
+            return blockList.remove(user.getId());
+        }
+    }
+    public boolean isBlocked(User user){
+        if(blockList==null){
+            return false;
+        }
+        else{
+            return blockList.contains(user.getId());
+        }
+    }
     public void setMaxTicketsPerUser(int maxTicketsPerUser) {
         this.maxTicketsPerUser = maxTicketsPerUser;
     }
