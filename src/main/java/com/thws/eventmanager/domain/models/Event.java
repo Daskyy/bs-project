@@ -1,5 +1,6 @@
 package com.thws.eventmanager.domain.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Event {
@@ -9,13 +10,13 @@ public class Event {
     private long ticketCount;
     private long ticketsSold;
     private int maxTicketsPerUser;
-    private User[] artists;
+    private List<Long> artists;
     private EventLocation location;
     private List<Long> blockList; //List of User IDs that are blocked from buying tickets for this event
 
 
 
-    public Event(long id,String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, User[] artists, EventLocation location) {
+    public Event(long id,String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, List<Long> artists, EventLocation location,List<Long> blockList) {
         this.id=id;
         this.name = name;
         this.description = description;
@@ -24,9 +25,11 @@ public class Event {
         this.maxTicketsPerUser = maxTicketsPerUser;
         this.artists = artists;
         this.location = location;
+        this.blockList= blockList;
     }
     public Event(){
-
+    this.artists= new ArrayList<>();
+    this.blockList= new ArrayList<>();
     }
 
 
@@ -57,7 +60,7 @@ public class Event {
         return ticketsSold;
     }
 
-    public User[] getArtists() {
+    public List<Long> getArtists() {
         return artists;
     }
 
@@ -93,49 +96,27 @@ public class Event {
         this.ticketsSold = ticketsSold;
     }
 
-    public void setArtists(User[] artists) {
+    public void setArtists(List<Long> artists) {
         this.artists = artists;
     }
 
     public void addArtists(User artist){
-        //if artist is not an artist, throw exception
         if(artist.getPermission()!=Permission.ARTIST){
             throw new RuntimeException("Only artists can be added to an event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
         }
         else {
-            //if Artist Array is empty, create new Array with size 1 and add artist
-            if(artists==null){
-                artists= new User[1];
-                artists[0]=artist;
-            }
-            //if Artist Array is not empty, create new Array with size+1 and add artist
-            else {
-                User[] newArtists = new User[artists.length + 1];
-                for (int i = 0; i < artists.length; i++) {
-                    newArtists[i] = artists[i];
-                }
-                newArtists[artists.length] = artist;
-                artists = newArtists;
-            }
+            artists.add(artist.getId());
         }
     }
     public void removeArtists(User artist){
         if(artist.getPermission()!=Permission.ARTIST){
             throw new RuntimeException("Only artists can be removed from an event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
         }
-
-        else {
-            boolean found=false;
-            User[] newArtists = new User[artists.length - 1];
-            int index = 0;
-            for (User a : artists) {
-                if (a.getId() != artist.getId()) {
-                    newArtists[index++] = a;
-                }
-                else{found=true;}
-            }
-            if(!found) throw new RuntimeException("Artist not found in event");
-            artists = newArtists;
+        else if(artists.contains(artist.getId())){
+            artists.remove(artist.getId());
+        }
+        else{
+            throw new RuntimeException("Artist not found in event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
         }
     }
 
