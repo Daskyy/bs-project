@@ -20,6 +20,7 @@ public class WaitlistService implements WaitlistServiceInterface {
 
     @Override
     public void addUserToWaitlist(String eventId, User user) {
+        //get the actual waitlist from the database
         Waitlist waitlist = dbHandler.getWaitlistByEventId(eventId);
 
         if (waitlist == null) {
