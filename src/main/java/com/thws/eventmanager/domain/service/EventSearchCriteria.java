@@ -7,13 +7,13 @@ import java.time.LocalDateTime;
 public class EventSearchCriteria {
     private final LocalDateTime startDate;
     private final LocalDateTime endDate;
-    private final String category;
+    private final String description;
     private final EventLocation location;
 
-    public EventSearchCriteria(LocalDateTime startDate, LocalDateTime endDate, String category, EventLocation location) {
+    public EventSearchCriteria(LocalDateTime startDate, LocalDateTime endDate, String description, EventLocation location) {
         this.startDate = startDate;
         this.endDate = endDate;
-        this.category = category;
+        this.description = description;
         this.location = location;
     }
 
@@ -25,8 +25,8 @@ public class EventSearchCriteria {
         return endDate;
     }
 
-    public String getCategory() {
-        return category;
+    public String getDescription() {
+        return description;
     }
 
     public EventLocation getLocation() {
