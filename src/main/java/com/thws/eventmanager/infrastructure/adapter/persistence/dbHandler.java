@@ -3,6 +3,10 @@ package com.thws.eventmanager.infrastructure.adapter.persistence;
 import com.thws.eventmanager.domain.models.Ticket;
 import com.thws.eventmanager.domain.models.Event;
 import com.thws.eventmanager.domain.models.User;
+import com.thws.eventmanager.domain.models.Waitlist;
+import com.thws.eventmanager.domain.service.EventSearchCriteria;
+
+import java.util.List;
 
 public class dbHandler {
     private static dbHandler Instance ;
@@ -21,12 +25,22 @@ public class dbHandler {
         return true;
     }
 
-
+    //Events filtering and getting
     public Event getEventById(long eventId) {
         // TODO: Implement this method
 
         // Database call to get event by ID
         //return new Event(eventId, "Sample Event", "Description", 100, 50, new User[]{}, 5); // Sample event
+        return null;
+    }
+    public List<Event> findEventsByCriteria(EventSearchCriteria criteria) {
+        // TODO: Implement this method
+
+        return null;
+    }
+    public List<Event> getAllEvents() {
+        // TODO: Implement this method
+
         return null;
     }
 
@@ -54,11 +68,22 @@ public class dbHandler {
         return true;
     }
 
-    public void createReservationOnWaitlist(String userEmail, long eventId, int amount) {
+    public void deleteReservation(String userEmail, long eventId) {
         // TODO: Implement this method
     }
 
-    public void deleteReservation(String userEmail, long eventId) {
+    //Waitlist
+    public void createReservationOnWaitlist(String userEmail, long eventId, int amount) {
+        // TODO: Implement this method
+    }
+    public Waitlist getWaitlistByEventId(String eventId){
+        // TODO: Implement this method
+        return null;
+    }
+    public void saveWaitlist(Waitlist waitlist){
+        // TODO: Implement this method
+    }
+    public void deleteWaitlistFromEvent(String eventId){
         // TODO: Implement this method
     }
 }

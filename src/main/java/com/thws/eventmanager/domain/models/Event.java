@@ -1,5 +1,7 @@
 package com.thws.eventmanager.domain.models;
 
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,13 +9,14 @@ public class Event {
     private long id;
     private String name;
     private String description;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private long ticketCount;
     private long ticketsSold;
     private int maxTicketsPerUser;
     private List<Long> artists;
     private EventLocation location;
     private List<Long> blockList; //List of User IDs that are blocked from buying tickets for this event
-
 
 
     public Event(long id,String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, List<Long> artists, EventLocation location,List<Long> blockList) {
@@ -51,6 +54,10 @@ public class Event {
     public String getDescription() {
         return description;
     }
+
+    public LocalDateTime getStartDate() { return startDate; }
+
+    public LocalDateTime getEndDate() { return endDate; }
 
     public long getTicketCount() {
         return ticketCount;
