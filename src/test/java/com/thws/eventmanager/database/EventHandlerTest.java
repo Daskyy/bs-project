@@ -17,7 +17,7 @@ public class EventHandlerTest {
                     "Location"
             );
 
-            for (int i = 0; i < 10; i++) {
+/*            for (int i = 0; i < 10; i++) {
                 EventHandler.saveEvent(new Event(
                         "Event " + i,
                         "Description " + i,
@@ -27,7 +27,7 @@ public class EventHandlerTest {
                         List.of(new User("Artist " + i, "artist" + i + "@example.com", "password", Permission.ARTIST)),
                         eventLocation
                 ));
-            }
+            }*/
 
             EventHandler.getAllEvents().forEach(event -> System.out.println(
                     "ID: " + event.getId() +

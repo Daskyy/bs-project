@@ -26,13 +26,13 @@ public class Event {
     @Column(name = "maxTicketsPerUser", nullable = false)
     private int maxTicketsPerUser;
     @OneToMany
-    private List<Long> artists;
+    private List<User> artists;
     @OneToOne
     private EventLocation location;
     @OneToMany
-    private List<Long> blockList; //List of User IDs that are blocked from buying tickets for this event
+    private List<User> blockList; //List of User IDs that are blocked from buying tickets for this event
 
-    public Event(long id,String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, List<Long> artists, EventLocation location,List<Long> blockList) {
+    public Event(long id,String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, List<User> artists, EventLocation location,List<User> blockList) {
         this.id=id;
         this.name = name;
         this.description = description;
@@ -141,10 +141,10 @@ public class Event {
 
     public void addBlockedUser(User user){
         if(blockList==null){
-            blockList=List.of(user.getId());
+            blockList=List.of(user);
         }
         else{
-            blockList.add(user.getId());
+            blockList.add(user);
         }
     }
     public boolean removeBlockedUser(User user){
