@@ -6,7 +6,7 @@ import com.thws.eventmanager.infrastructure.adapter.persistence.dbHandler;
 
 public class EventService implements EventServiceInterface {
     public boolean createEvent(User artist, EventLocation location) {
-        if(artist.getPermission() != Permission.ARTIST) {
+        if(artist.getPermission() == Permission.CUSTOMER) {
             throw new RuntimeException("Only artists can create events"); //hier vielleicht eher eine neue Exception-Klasse erstellen?!
         } else {
             if(!dbHandler.getInstance().checkLocationAvailability(location.getId())) {
