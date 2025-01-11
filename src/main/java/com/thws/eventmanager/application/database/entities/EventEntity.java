@@ -1,26 +1,39 @@
-package com.thws.eventmanager.domain.models;
+package com.thws.eventmanager.application.database.entities;
+
 import jakarta.persistence.*;
-import java.util.List;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Event {
+@Entity
+@Table(name = "events")
+public class EventEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "name", nullable = false)
     private String name;
+    @Column(name = "description", nullable = false)
     private String description;
+    @Column(name = "startDate", nullable = false)
     private LocalDateTime startDate;
+    @Column(name = "endDate", nullable = false)
     private LocalDateTime endDate;
+    @Column(name = "ticketCount", nullable = false)
     private long ticketCount;
+    @Column(name = "ticketsSold", nullable = false)
     private long ticketsSold;
+    @Column(name = "maxTicketsPerUser", nullable = false)
     private int maxTicketsPerUser;
+    @OneToMany
+    private List<UserEntity> artists;
+    @OneToOne
+    private EventLocationEntity location;
+    @OneToMany
+    private List<UserEntity> blockList; //List of User IDs that are blocked from buying tickets for this event
 
-    private List<User> artists;
-    private EventLocation location;
-    private List<User> blockList; //List of User IDs that are blocked from buying tickets for this event
-
-    public Event(long id,String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, List<User> artists, EventLocation location,List<User> blockList) {
+    public EventEntity(long id, String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, List<UserEntity> artists, EventLocationEntity location, List<UserEntity> blockList) {
         this.id=id;
         this.name = name;
         this.description = description;
@@ -31,16 +44,16 @@ public class Event {
         this.location = location;
         this.blockList= blockList;
     }
-    public Event(){
+    public EventEntity(){
     this.artists= new ArrayList<>();
     this.blockList= new ArrayList<>();
     }
 
 
-    public EventLocation getLocation() {
+    public EventLocationEntity getLocation() {
         return location;
     }
-    public void setLocation(EventLocation location) {
+    public void setLocation(EventLocationEntity location) {
         this.location = location;
     }
 
@@ -127,35 +140,35 @@ public class Event {
         }
     }*/
 
-    public void addBlockedUser(User user){
+    public void addBlockedUser(UserEntity userEntity){
         if(blockList==null){
-            blockList=List.of(user);
+            blockList=List.of(userEntity);
         }
         else{
-            blockList.add(user);
+            blockList.add(userEntity);
         }
     }
-    public boolean removeBlockedUser(User user){
+    public boolean removeBlockedUser(UserEntity userEntity){
         if(blockList==null){
             return false;
         }
         else{
-            return blockList.remove(user.getId());
+            return blockList.remove(userEntity.getId());
         }
     }
-    public boolean isBlocked(User user){
+    public boolean isBlocked(UserEntity userEntity){
         if(blockList==null){
             return false;
         }
         else{
-            return blockList.contains(user.getId());
+            return blockList.contains(userEntity.getId());
         }
     }
     public void setMaxTicketsPerUser(int maxTicketsPerUser) {
         this.maxTicketsPerUser = maxTicketsPerUser;
     }
 
-    public EventLocation getEventLocation() {
+    public EventLocationEntity getEventLocation() {
         return location;
     }
 }

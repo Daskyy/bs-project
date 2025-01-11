@@ -28,7 +28,7 @@ public class EventHandler implements EventRepository {
 
     @Override
     public List<Event> getAllEvents() {
-        return entityManager.createQuery("FROM Event", Event.class).getResultList();
+        return entityManager.createQuery("FROM EventEntity", Event.class).getResultList();
     }
 
     public void close() {

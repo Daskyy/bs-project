@@ -27,7 +27,7 @@ public class UserHandler implements UserRepository {
 
     @Override
     public List<User> getAllUsers() {
-        return entityManager.createQuery("FROM User", User.class).getResultList();
+        return entityManager.createQuery("FROM UserEntity", User.class).getResultList();
     }
 
     public void close() {

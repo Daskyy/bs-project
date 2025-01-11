@@ -29,7 +29,7 @@ public class EventLocationHandler implements EventLocationRepository {
 
     @Override
     public List<EventLocation> getAllEventLocations() {
-        return entityManager.createQuery("FROM EventLocation ", EventLocation.class).getResultList();
+        return entityManager.createQuery("FROM EventLocationEntity ", EventLocation.class).getResultList();
     }
 
     public void close() {

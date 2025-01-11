@@ -1,20 +1,18 @@
 package com.thws.eventmanager.domain.service;
 
+import com.thws.eventmanager.application.database.service.EventSearchService;
 import com.thws.eventmanager.application.port.out.EventRepositoryOutputPort;
-import com.thws.eventmanager.domain.models.Address;
 import com.thws.eventmanager.domain.models.Event;
-import com.thws.eventmanager.domain.models.EventLocation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
-class MockEventSearchServiceTest {
+class MockEventEntitySearchServiceTest {
     private EventRepositoryOutputPort mockEventRepository;
     private EventSearchService eventSearchService;
 

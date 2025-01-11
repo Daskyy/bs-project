@@ -6,7 +6,7 @@
         <class>com.thws.eventmanager.domain.models.Address</class>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://db.backend.heppify.de:5432/eventmanager"/>
-            <property name="jakarta.persistence.jdbc.user" value="javabackend"/>
+            <property name="jakarta.persistence.jdbc.userEntity" value="javabackend"/>
             <property name="jakarta.persistence.jdbc.password" value="kc82jdrjos"/>
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>

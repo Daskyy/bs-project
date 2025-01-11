@@ -2,8 +2,9 @@ package com.thws.eventmanager.domain.service;
 
 import static org.mockito.Mockito.*;
 
-import com.thws.eventmanager.domain.models.User;
-import com.thws.eventmanager.domain.models.Waitlist;
+import com.thws.eventmanager.application.database.entities.UserEntity;
+import com.thws.eventmanager.application.database.service.WaitlistService;
+import com.thws.eventmanager.application.database.entities.WaitlistEntity;
 import com.thws.eventmanager.infrastructure.adapter.persistence.dbHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,54 +16,54 @@ public class MockWaitlistServiceTest {
 
     private dbHandler mockDbHandler;
     private WaitlistService waitlistService;
-    private Waitlist mockWaitlist;
-    private User mockUser;
+    private WaitlistEntity mockWaitlistEntity;
+    private UserEntity mockUserEntity;
 
     @BeforeEach
     void setUp() {
         mockDbHandler = mock(dbHandler.class);
         waitlistService = new WaitlistService(mockDbHandler);
-        mockUser = mock(User.class);
+        mockUserEntity = mock(UserEntity.class);
     }
 
     @Test
     void testAddUserToWaitlist() {
-        mockWaitlist = spy(new Waitlist("event123"));
-        when(mockDbHandler.getWaitlistByEventId("event123")).thenReturn(mockWaitlist);
+        mockWaitlistEntity = spy(new WaitlistEntity("event123"));
+        when(mockDbHandler.getWaitlistByEventId("event123")).thenReturn(mockWaitlistEntity);
 
-        waitlistService.addUserToWaitlist("event123", mockUser);
+        waitlistService.addUserToWaitlist("event123", mockUserEntity);
 
-        assertEquals(mockUser, mockWaitlist.getFirstUser());
-        verify(mockWaitlist).addUser(mockUser);
-        verify(mockDbHandler).saveWaitlist(mockWaitlist);
+        assertEquals(mockUserEntity, mockWaitlistEntity.getFirstUser());
+        verify(mockWaitlistEntity).addUser(mockUserEntity);
+        verify(mockDbHandler).saveWaitlist(mockWaitlistEntity);
     }
 
     @Test
     void testProcessNextUser() {
-        mockWaitlist = mock(Waitlist.class);
-        when(mockDbHandler.getWaitlistByEventId("event123")).thenReturn(mockWaitlist);
-        when(mockWaitlist.getUsers()).thenReturn(List.of(mockUser));
-        when(mockWaitlist.getFirstUser()).thenReturn(mockUser);
+        mockWaitlistEntity = mock(WaitlistEntity.class);
+        when(mockDbHandler.getWaitlistByEventId("event123")).thenReturn(mockWaitlistEntity);
+        when(mockWaitlistEntity.getUsers()).thenReturn(List.of(mockUserEntity));
+        when(mockWaitlistEntity.getFirstUser()).thenReturn(mockUserEntity);
 
-        Optional<User> processedUser = waitlistService.processNextUser("event123");
+        Optional<UserEntity> processedUser = waitlistService.processNextUser("event123");
 
         assertTrue(processedUser.isPresent());
-        assertEquals(mockUser, processedUser.get());
-        verify(mockWaitlist).removeUser(mockUser);
-        verify(mockDbHandler).saveWaitlist(mockWaitlist);
+        assertEquals(mockUserEntity, processedUser.get());
+        verify(mockWaitlistEntity).removeUser(mockUserEntity);
+        verify(mockDbHandler).saveWaitlist(mockWaitlistEntity);
     }
 
     @Test
     void testGetUsersInWaitlist() {
-        mockWaitlist = mock(Waitlist.class);
-        when(mockDbHandler.getWaitlistByEventId("event123")).thenReturn(mockWaitlist);
-        when(mockWaitlist.getUsers()).thenReturn(List.of(mockUser));
+        mockWaitlistEntity = mock(WaitlistEntity.class);
+        when(mockDbHandler.getWaitlistByEventId("event123")).thenReturn(mockWaitlistEntity);
+        when(mockWaitlistEntity.getUsers()).thenReturn(List.of(mockUserEntity));
 
-        List<User> users = waitlistService.getUsersInWaitlist("event123");
+        List<UserEntity> userEntities = waitlistService.getUsersInWaitlist("event123");
 
-        assertNotNull(users);
-        assertEquals(1, users.size());
-        assertEquals(mockUser, users.getFirst());
+        assertNotNull(userEntities);
+        assertEquals(1, userEntities.size());
+        assertEquals(mockUserEntity, userEntities.getFirst());
     }
 
     @Test

@@ -1,9 +1,8 @@
 package com.thws.eventmanager.infrastructure.adapter.persistence;
 
-import com.thws.eventmanager.domain.models.Ticket;
-import com.thws.eventmanager.domain.models.Event;
-import com.thws.eventmanager.domain.models.User;
-import com.thws.eventmanager.domain.models.Waitlist;
+import com.thws.eventmanager.application.database.entities.TicketEntity;
+import com.thws.eventmanager.application.database.entities.EventEntity;
+import com.thws.eventmanager.application.database.entities.WaitlistEntity;
 import com.thws.eventmanager.domain.service.EventSearchCriteria;
 
 import java.util.List;
@@ -26,29 +25,29 @@ public class dbHandler {
     }
 
     //Events filtering and getting
-    public Event getEventById(long eventId) {
+    public EventEntity getEventById(String eventId) {
         // TODO: Implement this method
 
         // Database call to get event by ID
         //return new Event(eventId, "Sample Event", "Description", 100, 50, new User[]{}, 5); // Sample event
         return null;
     }
-    public List<Event> findEventsByCriteria(EventSearchCriteria criteria) {
+    public List<EventEntity> findEventsByCriteria(EventSearchCriteria criteria) {
         // TODO: Implement this method
 
         return null;
     }
-    public List<Event> getAllEvents() {
+    public List<EventEntity> getAllEvents() {
         // TODO: Implement this method
 
         return null;
     }
 
-    public Ticket getTicketByUserEmailAndEvent(String userEmail, long eventId) {
+    public TicketEntity getTicketByUserEmailAndEvent(String userEmail, long eventId) {
         // TODO: Implement this method
 
         // Database call to fetch the ticket
-        return new Ticket("event1", userEmail, "ticket123", 1000);
+        return new TicketEntity("event1", userEmail, "ticket123", 1000);
     }
 
     public void createReservation(String userEmail, long eventId, int amount) {
@@ -57,13 +56,13 @@ public class dbHandler {
         // Database call to create a reservation
     }
 
-    public void updateTicket(Ticket ticket) {
+    public void updateTicket(TicketEntity ticketEntity) {
         // TODO: Implement this method
 
         // Update ticket status in database
     }
 
-    public boolean ticketsAvailable(long eventId) {
+    public boolean ticketsAvailable(String eventId, int ticketAmount) {
         // TODO: Implement this method
         return true;
     }
@@ -76,11 +75,11 @@ public class dbHandler {
     public void createReservationOnWaitlist(String userEmail, long eventId, int amount) {
         // TODO: Implement this method
     }
-    public Waitlist getWaitlistByEventId(String eventId){
+    public WaitlistEntity getWaitlistByEventId(String eventId){
         // TODO: Implement this method
         return null;
     }
-    public void saveWaitlist(Waitlist waitlist){
+    public void saveWaitlist(WaitlistEntity waitlistEntity){
         // TODO: Implement this method
     }
     public void deleteWaitlistFromEvent(String eventId){

@@ -28,7 +28,7 @@ public class AddressHandler implements AddressRepository {
 
     @Override
     public List<Address> getAllAddresses() {
-        return entityManager.createQuery("FROM Address", Address.class).getResultList();
+        return entityManager.createQuery("FROM AddressEntity", Address.class).getResultList();
     }
 
     public void close() {

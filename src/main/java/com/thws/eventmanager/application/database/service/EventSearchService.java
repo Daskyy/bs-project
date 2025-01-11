@@ -1,10 +1,10 @@
-package com.thws.eventmanager.domain.service;
+package com.thws.eventmanager.application.database.service;
 
 import com.thws.eventmanager.application.port.in.EventSearchServiceInputPort;
 import com.thws.eventmanager.application.port.out.EventRepositoryOutputPort;
 import com.thws.eventmanager.domain.models.Event;
+import com.thws.eventmanager.domain.service.EventSearchCriteria;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EventSearchService implements EventSearchServiceInputPort {

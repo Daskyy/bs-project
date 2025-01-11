@@ -2,17 +2,10 @@ package com.thws.eventmanager.domain.models;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "eventlocations")
 public class EventLocation {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    @OneToOne
     Address address;
-    @Column(name = "name", nullable = false)
     String name;
-    @Column(name = "capacity", nullable = false)
     int capacity;
 
 
