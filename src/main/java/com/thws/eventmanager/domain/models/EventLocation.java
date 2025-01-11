@@ -1,15 +1,25 @@
 package com.thws.eventmanager.domain.models;
-import com.thws.eventmanager.domain.models.*;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "eventlocations")
 public class EventLocation {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    Address adress;
+    @OneToOne
+    Address address;
+    @Column(name = "name", nullable = false)
     String name;
+    @Column(name = "capacity", nullable = false)
     int capacity;
-    public EventLocation(Address adress, int capacity, String name, int id) {
-        this.adress = adress;
+
+
+    public EventLocation(Address adress, int capacity, String name) {
+        this.address = adress;
         this.capacity = capacity;
         this.name = name;
-        this.id = id;
     }
     public EventLocation(){}; // default constructor
 
@@ -23,11 +33,11 @@ public class EventLocation {
     }
 
     public Address getAdress() {
-        return adress;
+        return address;
     }
 
     public void setAdress(Address adress) {
-        this.adress = adress;
+        this.address = adress;
     }
 
     public String getName() {
@@ -44,5 +54,9 @@ public class EventLocation {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public Address getAddress() {
+        return address;
     }
 }

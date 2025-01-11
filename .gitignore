@@ -41,3 +41,6 @@ build/
 
 ### dotenv ###
 .env
+
+### persistence.xml ###
+src/main/resources/META-INF/persistence.xml
