@@ -27,8 +27,9 @@ public class TicketService implements TicketServiceInterface {
     }
 
     // TODO: sould bring a TicketEntity from the database
-    public TicketEntity getTicket(String ticketId) {
-        return new TicketEntity(null, null, null, 0);
+    @Override
+    public Ticket getTicket(String ticketId) {
+        return new Ticket(null, null, null, 0);
     }
 
     @Override

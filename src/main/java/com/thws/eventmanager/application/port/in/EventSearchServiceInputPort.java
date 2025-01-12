@@ -1,7 +1,7 @@
 package com.thws.eventmanager.application.port.in;
 
 import com.thws.eventmanager.domain.models.Event;
-import com.thws.eventmanager.domain.service.EventSearchCriteria;
+import com.thws.eventmanager.domain.models.EventSearchCriteria;
 
 import java.util.List;
 

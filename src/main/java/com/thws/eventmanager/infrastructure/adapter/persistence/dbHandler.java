@@ -3,7 +3,7 @@ package com.thws.eventmanager.infrastructure.adapter.persistence;
 import com.thws.eventmanager.application.database.entities.TicketEntity;
 import com.thws.eventmanager.application.database.entities.EventEntity;
 import com.thws.eventmanager.application.database.entities.WaitlistEntity;
-import com.thws.eventmanager.domain.service.EventSearchCriteria;
+import com.thws.eventmanager.domain.models.EventSearchCriteria;
 
 import java.util.List;
 
