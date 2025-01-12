@@ -1,6 +1,4 @@
-package com.thws.eventmanager.domain.service;
-
-import com.thws.eventmanager.domain.models.EventLocation;
+package com.thws.eventmanager.domain.models;
 
 import java.time.LocalDateTime;
 

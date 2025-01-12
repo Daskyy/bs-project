@@ -3,7 +3,7 @@ package com.thws.eventmanager.adapter.database.service;
 import com.thws.eventmanager.adapter.port.in.EventSearchServiceInputPort;
 import com.thws.eventmanager.adapter.port.out.EventRepositoryOutputPort;
 import com.thws.eventmanager.domain.models.Event;
-import com.thws.eventmanager.domain.service.EventSearchCriteria;
+import com.thws.eventmanager.domain.models.EventSearchCriteria;
 
 import java.util.List;
 
