@@ -1,12 +1,9 @@
 package com.thws.eventmanager.paymentgateway;
 
-import com.stripe.Stripe;
-import com.thws.eventmanager.application.service.PaymentUseCaseService;
+import com.thws.eventmanager.adapter.service.PaymentUseCaseService;
 import com.thws.eventmanager.infrastructure.adapter.paymentgateway.StripePaymentService;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.domain.models.Status;
-import io.github.cdimascio.dotenv.Dotenv;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

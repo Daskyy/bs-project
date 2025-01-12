@@ -8,7 +8,6 @@ public class EventLocation {
     String name;
     int capacity;
 
-
     public EventLocation(Address adress, int capacity, String name) {
         this.address = adress;
         this.capacity = capacity;

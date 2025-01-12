@@ -2,9 +2,9 @@ package com.thws.eventmanager.domain.service;
 
 import static org.mockito.Mockito.*;
 
-import com.thws.eventmanager.application.database.entities.UserEntity;
-import com.thws.eventmanager.application.database.service.WaitlistService;
-import com.thws.eventmanager.application.database.entities.WaitlistEntity;
+import com.thws.eventmanager.infrastructure.adapter.persistence.entities.UserEntity;
+import com.thws.eventmanager.adapter.database.service.WaitlistService;
+import com.thws.eventmanager.infrastructure.adapter.persistence.entities.WaitlistEntity;
 import com.thws.eventmanager.infrastructure.adapter.persistence.dbHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,9 +1,8 @@
 package com.thws.eventmanager.database;
 
 import com.github.javafaker.Faker;
-import com.thws.eventmanager.application.database.entities.UserEntity;
+import com.thws.eventmanager.infrastructure.adapter.persistence.entities.UserEntity;
 import com.thws.eventmanager.domain.models.Permission;
-import com.thws.eventmanager.domain.models.User;
 import com.thws.eventmanager.infrastructure.adapter.persistence.UserHandler;
 
 import java.util.List;

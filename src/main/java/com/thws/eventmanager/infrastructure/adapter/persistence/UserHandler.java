@@ -1,7 +1,7 @@
 package com.thws.eventmanager.infrastructure.adapter.persistence;
 
-import com.thws.eventmanager.application.port.out.UserRepository;
-import com.thws.eventmanager.application.database.entities.UserEntity;
+import com.thws.eventmanager.adapter.port.out.UserRepository;
+import com.thws.eventmanager.infrastructure.adapter.persistence.entities.UserEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;

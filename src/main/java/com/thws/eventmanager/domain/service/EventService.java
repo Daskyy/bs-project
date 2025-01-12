@@ -10,7 +10,7 @@ public class EventService implements EventServiceInterface {
         if(artist.getPermission() == Permission.CUSTOMER) {
             throw new RuntimeException("Only artists can create events"); //hier vielleicht eher eine neue Exception-Klasse erstellen?!
         } else {
-            if(!dbHandler.getInstance().checkLocationAvailability(location.getId())) {
+            if(true) {
                 System.out.println("Location not available"); //unnötig?
                 return false;
             }
@@ -18,6 +18,7 @@ public class EventService implements EventServiceInterface {
            newEvent.setLocation(location);
            //newEvent.addArtists(artist);
            return true;
+
         }
     }
 }

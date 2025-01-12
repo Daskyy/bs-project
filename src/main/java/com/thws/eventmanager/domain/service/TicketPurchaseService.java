@@ -1,8 +1,8 @@
 package com.thws.eventmanager.domain.service;
 
-import com.thws.eventmanager.application.port.in.TicketPurchaseUseCase;
-import com.thws.eventmanager.application.port.in.PaymentUseCase;
-import com.thws.eventmanager.application.database.service.TicketService;
+import com.thws.eventmanager.adapter.port.in.TicketPurchaseUseCase;
+import com.thws.eventmanager.adapter.port.in.PaymentUseCase;
+import com.thws.eventmanager.adapter.database.service.TicketService;
 import com.thws.eventmanager.domain.models.Ticket;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.domain.models.Status;

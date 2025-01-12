@@ -1,6 +1,6 @@
 package com.thws.eventmanager.paymentgateway;
 
-import com.thws.eventmanager.application.service.PaymentUseCaseService;
+import com.thws.eventmanager.adapter.service.PaymentUseCaseService;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.infrastructure.adapter.paymentgateway.StripePaymentService;
 import com.thws.eventmanager.domain.models.Status;

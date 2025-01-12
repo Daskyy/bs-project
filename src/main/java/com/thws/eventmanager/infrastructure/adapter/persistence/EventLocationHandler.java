@@ -1,8 +1,6 @@
 package com.thws.eventmanager.infrastructure.adapter.persistence;
 
-import com.thws.eventmanager.application.port.out.EventLocationRepository;
-import com.thws.eventmanager.application.port.out.EventRepository;
-import com.thws.eventmanager.domain.models.Event;
+import com.thws.eventmanager.adapter.port.out.EventLocationRepository;
 import com.thws.eventmanager.domain.models.EventLocation;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
