@@ -41,4 +41,11 @@ public class TicketService implements TicketServiceInterface {
     public void createTicket(Ticket ticket) {
         new TicketEntity(ticket);
     }
+
+
+
+    @Override
+    public void addWaitlistReservation(String userEmail, String eventId, int amount) {}
+    @Override
+    public void deleteTicket(String userEmail, String eventId) {}
 }

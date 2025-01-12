@@ -57,15 +57,16 @@ public class TicketPurchaseService implements TicketPurchaseUseCase {
         boolean paymentProcessed = paymentUseCase.processPayment(payment);
 
         // Step 5: Update ticket status to COMPLETED if payment was successful
+        boolean successful = true;
         for (int i = 0; i < ticketAmount; i++) {
             if (paymentProcessed) {
                 ticketService.updateTicketStatus(tickets[i], Status.COMPLETED);
-                return true;
             } else {
                 // Step 6: Update ticket status to FAILED if payment failed
                 ticketService.updateTicketStatus(tickets[i], Status.FAILED);
-                return false;
+                successful = false;
             }
         }
+        return successful;
     }
 }

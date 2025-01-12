@@ -3,6 +3,8 @@ package com.thws.eventmanager;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.thws.eventmanager.application.database.entities.EventEntity;
+import com.thws.eventmanager.application.database.entities.TicketEntity;
 import com.thws.eventmanager.domain.service.TicketPurchaseService;
 import com.thws.eventmanager.domain.models.*;
 import com.thws.eventmanager.application.port.in.PaymentUseCase;
@@ -19,14 +21,14 @@ public class TicketEntityServiceTest {
     private dbHandler dbHandler = mock(dbHandler.class);
     private PaymentUseCase paymentUseCase = mock(PaymentUseCase.class);
 
-    private Event event;
-    private Ticket ticket;
+    private EventEntity event;
+    private TicketEntity ticket;
 
     @BeforeEach
     public void setup() {
         // long id,String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, User[] artists, EventLocation location
         //event = new Event(1L, "Sample Event", "Description", 100, 50, new User[]{}, new EventLocation());  // Example event
-        ticket = new Ticket("1", "user@example.com", "TICKET_123", 5000);  // Example ticket
+        ticket = new TicketEntity("1", "user@example.com", "TICKET_123", 5000);  // Example ticket
 
         // Mock the dbHandler methods
         when(dbHandler.getEventById("1L")).thenReturn(event);
@@ -36,7 +38,7 @@ public class TicketEntityServiceTest {
         doNothing().when(dbHandler).createReservation(anyString(), anyLong(), anyInt());
         doNothing().when(dbHandler).deleteReservation(anyString(), anyLong());
         when(dbHandler.getTicketByUserEmailAndEvent(anyString(), anyLong())).thenReturn(ticket);
-        doNothing().when(dbHandler).updateTicket(any(Ticket.class));
+        doNothing().when(dbHandler).updateTicket(any(TicketEntity.class));
     }
 
     @Test
@@ -50,7 +52,7 @@ public class TicketEntityServiceTest {
         assertTrue(result);
         verify(dbHandler, times(1)).createReservation(anyString(), eq(1L), eq(2));
         verify(paymentUseCase, times(1)).processPayment(any(Payment.class));
-        verify(dbHandler, times(1)).updateTicket(any(Ticket.class));
+        verify(dbHandler, times(1)).updateTicket(any(TicketEntity.class));
     }
 
     @Test

@@ -1,7 +1,7 @@
 package com.thws.eventmanager.infrastructure.adapter.persistence;
 
 import com.thws.eventmanager.application.port.out.UserRepository;
-import com.thws.eventmanager.domain.models.User;
+import com.thws.eventmanager.application.database.entities.UserEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -19,15 +19,15 @@ public class UserHandler implements UserRepository {
     }
 
     @Override
-    public void saveUser(User user) {
+    public void saveUser(UserEntity user) {
         entityManager.getTransaction().begin();
         entityManager.persist(user);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public List<User> getAllUsers() {
-        return entityManager.createQuery("FROM UserEntity", User.class).getResultList();
+    public List<UserEntity> getAllUsers() {
+        return entityManager.createQuery("FROM UserEntity", UserEntity.class).getResultList();
     }
 
     public void close() {
