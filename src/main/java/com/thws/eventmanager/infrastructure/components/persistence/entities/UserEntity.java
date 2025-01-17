@@ -1,18 +1,27 @@
-package com.thws.eventmanager.domain.models;
+package com.thws.eventmanager.infrastructure.components.persistence.entities;
 
+import com.thws.eventmanager.domain.models.Permission;
 import jakarta.persistence.*;
 
-public class User {
+@Entity
+@Table(name = "users")
+public class UserEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "name", nullable = false)
     private String name;
+    @Column(name = "email", nullable = false)
     private String email;
+    @Column(name = "password", nullable = false)
     private String password;
+    @Column(name = "permission", nullable = false)
     private Permission permission;
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(String name, String email, String password, Permission permission) {
+    public UserEntity(String name, String email, String password, Permission permission) {
         this.name = name;
         this.email = email;
         this.password = password;

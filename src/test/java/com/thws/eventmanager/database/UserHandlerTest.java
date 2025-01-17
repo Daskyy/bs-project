@@ -1,9 +1,9 @@
 package com.thws.eventmanager.database;
 
 import com.github.javafaker.Faker;
+import com.thws.eventmanager.infrastructure.components.persistence.entities.UserEntity;
 import com.thws.eventmanager.domain.models.Permission;
-import com.thws.eventmanager.domain.models.User;
-import com.thws.eventmanager.infrastructure.adapter.persistence.UserHandler;
+import com.thws.eventmanager.infrastructure.components.persistence.UserHandler;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class UserHandlerTest {
             Faker faker = new Faker();
 
             for (int i = 0; i < 10; i++) {
-                User user = new User(
+                UserEntity user = new UserEntity(
                         faker.name().fullName(),
                         faker.internet().emailAddress(),
                         faker.internet().password(),
@@ -26,7 +26,7 @@ public class UserHandlerTest {
                 UserHandler.saveUser(user);
             }
             for (int i = 0; i < 10; i++) {
-                User user = new User(
+                UserEntity user = new UserEntity(
                         faker.name().fullName(),
                         faker.internet().emailAddress(),
                         faker.internet().password(),
@@ -35,7 +35,7 @@ public class UserHandlerTest {
                 UserHandler.saveUser(user);
             }
 
-            List<User> users = UserHandler.getAllUsers();
+            List<UserEntity> users = UserHandler.getAllUsers();
             users.forEach(user -> System.out.println(
                     "ID: " + user.getId() +
                             ", Name: " + user.getName() +
