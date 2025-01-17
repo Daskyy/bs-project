@@ -4,7 +4,7 @@ import com.stripe.Stripe;
 import com.stripe.exception.*;
 import com.stripe.model.PaymentIntent;
 import com.stripe.param.PaymentIntentCreateParams;
-import com.thws.eventmanager.domain.usecases.PaymentService;
+import com.thws.eventmanager.domain.port.out.PaymentService;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.infrastructure.configuration.ConfigurationLoader;
 import org.slf4j.Logger;

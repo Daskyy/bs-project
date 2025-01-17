@@ -3,6 +3,7 @@ package com.thws.eventmanager.domain.usecases;
 import com.thws.eventmanager.domain.port.in.PaymentUseCase;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.domain.models.Status;
+import com.thws.eventmanager.domain.port.out.PaymentService;
 
 public class PaymentUseCaseService implements PaymentUseCase {
     private final PaymentService paymentService;

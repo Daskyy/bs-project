@@ -1,4 +1,4 @@
-package com.thws.eventmanager.domain.usecases;
+package com.thws.eventmanager.domain.port.out;
 
 import com.thws.eventmanager.domain.models.Payment;
 

@@ -1,6 +1,6 @@
 package com.thws.eventmanager.domain.usecases;
 
-import com.thws.eventmanager.domain.EventServiceInterface;
+import com.thws.eventmanager.domain.port.out.EventServiceInterface;
 import com.thws.eventmanager.domain.models.*;
 
 public class EventService implements EventServiceInterface {

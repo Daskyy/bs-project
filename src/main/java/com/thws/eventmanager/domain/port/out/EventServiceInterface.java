@@ -1,5 +1,4 @@
-package com.thws.eventmanager.domain;
-import com.thws.eventmanager.domain.models.Address;
+package com.thws.eventmanager.domain.port.out;
 import com.thws.eventmanager.domain.models.EventLocation;
 import com.thws.eventmanager.domain.models.User;
 
