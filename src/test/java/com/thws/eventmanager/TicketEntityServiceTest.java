@@ -3,12 +3,12 @@ package com.thws.eventmanager;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.thws.eventmanager.infrastructure.adapter.persistence.entities.EventEntity;
-import com.thws.eventmanager.infrastructure.adapter.persistence.entities.TicketEntity;
-import com.thws.eventmanager.domain.service.TicketPurchaseService;
+import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
+import com.thws.eventmanager.infrastructure.components.persistence.entities.TicketEntity;
+import com.thws.eventmanager.domain.usecases.TicketPurchaseService;
 import com.thws.eventmanager.domain.models.*;
-import com.thws.eventmanager.adapter.port.in.PaymentUseCase;
-import com.thws.eventmanager.infrastructure.adapter.persistence.dbHandler;
+import com.thws.eventmanager.domain.port.in.PaymentUseCase;
+import com.thws.eventmanager.infrastructure.components.persistence.dbHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

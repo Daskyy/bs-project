@@ -1,6 +1,6 @@
 package com.thws.eventmanager.database;
 
-import com.thws.eventmanager.infrastructure.adapter.persistence.UserHandler;
+import com.thws.eventmanager.infrastructure.components.persistence.UserHandler;
 
 public class GetAllUsers {
     public static void main(String[] args) {
