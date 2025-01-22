@@ -1,6 +1,6 @@
 package com.thws.eventmanager.domain.models;
 
-public class Payment {
+public class Payment implements Model {
     private final String paymentMethodId;
     private final long amount;
     private Status status;

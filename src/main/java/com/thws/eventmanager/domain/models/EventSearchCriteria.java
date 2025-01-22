@@ -2,7 +2,7 @@ package com.thws.eventmanager.domain.models;
 
 import java.time.LocalDateTime;
 
-public class EventSearchCriteria {
+public class EventSearchCriteria implements Model {
     private final LocalDateTime startDate;
     private final LocalDateTime endDate;
     private final String description;

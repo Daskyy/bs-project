@@ -2,7 +2,7 @@ package com.thws.eventmanager.domain.models;
 
 import jakarta.persistence.*;
 
-public class User {
+public class User implements Model {
     private Long id;
     private String name;
     private String email;

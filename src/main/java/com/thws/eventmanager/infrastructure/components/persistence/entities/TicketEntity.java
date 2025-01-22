@@ -4,7 +4,7 @@ import com.thws.eventmanager.domain.models.Status;
 import com.thws.eventmanager.domain.models.Ticket;
 
 // TODO: create a table for this entity
-public class TicketEntity {
+public class TicketEntity implements PersistenceEntity {
     private final String eventId;
     private final String userId;
     private final String ticketId;

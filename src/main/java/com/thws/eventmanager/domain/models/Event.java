@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Event {
+public class Event implements Model {
     private long id;
     private String name;
     private String description;

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "eventlocations")
-public class EventLocationEntity {
+public class EventLocationEntity implements PersistenceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
