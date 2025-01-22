@@ -1,33 +1,33 @@
-package com.thws.eventmanager.infrastructure.components.persistence;
+package com.thws.eventmanager.infrastructure.components.persistence.handler;
 
-import com.thws.eventmanager.domain.port.out.EventRepository;
-import com.thws.eventmanager.domain.models.Event;
+import com.thws.eventmanager.domain.port.out.UserRepository;
+import com.thws.eventmanager.infrastructure.components.persistence.entities.UserEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.util.List;
 
-public class EventHandler implements EventRepository {
+public class UserHandler implements UserRepository {
     private static final String PERSISTENCE_UNIT_NAME = "eventmanager";
     private final EntityManagerFactory entityManagerFactory;
     private final EntityManager entityManager;
 
-    public EventHandler() {
+    public UserHandler() {
         entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         entityManager = entityManagerFactory.createEntityManager();
     }
 
     @Override
-    public void saveEvent(Event event) {
+    public void saveUser(UserEntity user) {
         entityManager.getTransaction().begin();
-        entityManager.persist(event);
+        entityManager.persist(user);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public List<Event> getAllEvents() {
-        return entityManager.createQuery("FROM EventEntity", Event.class).getResultList();
+    public List<UserEntity> getAllUsers() {
+        return entityManager.createQuery("FROM UserEntity", UserEntity.class).getResultList();
     }
 
     public void close() {

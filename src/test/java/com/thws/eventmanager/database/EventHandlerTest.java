@@ -1,7 +1,7 @@
 package com.thws.eventmanager.database;
 
 import com.thws.eventmanager.domain.models.*;
-import com.thws.eventmanager.infrastructure.components.persistence.EventHandler;
+import com.thws.eventmanager.infrastructure.components.persistence.handler.EventHandler;
 
 public class EventHandlerTest {
     public static void main(String[] args) {
