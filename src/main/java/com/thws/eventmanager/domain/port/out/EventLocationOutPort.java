@@ -4,7 +4,7 @@ import com.thws.eventmanager.domain.models.EventLocation;
 
 import java.util.List;
 
-public interface EventLocationRepository {
+public interface EventLocationOutPort {
     void saveEventLocation(EventLocation eventLocation);
     List<EventLocation> getAllEventLocations();
 }

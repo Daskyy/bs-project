@@ -4,7 +4,7 @@ import com.thws.eventmanager.domain.models.Event;
 
 import java.util.List;
 
-public interface EventRepository {
+public interface EventOutPort {
     void saveEvent(Event event);
     List<Event> getAllEvents();
 }

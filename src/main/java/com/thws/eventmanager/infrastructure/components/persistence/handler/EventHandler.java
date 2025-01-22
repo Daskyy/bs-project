@@ -1,6 +1,6 @@
 package com.thws.eventmanager.infrastructure.components.persistence.handler;
 
-import com.thws.eventmanager.domain.port.out.EventRepository;
+import com.thws.eventmanager.domain.port.out.EventOutPort;
 import com.thws.eventmanager.domain.models.Event;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -8,7 +8,7 @@ import jakarta.persistence.Persistence;
 
 import java.util.List;
 
-public class EventHandler implements EventRepository {
+public class EventHandler implements EventOutPort {
     private static final String PERSISTENCE_UNIT_NAME = "eventmanager";
     private final EntityManagerFactory entityManagerFactory;
     private final EntityManager entityManager;
