@@ -4,7 +4,7 @@ import com.thws.eventmanager.domain.models.Address;
 
 import java.util.List;
 
-public interface AddressRepository {
+public interface AddressOutPort {
     void saveAddress(Address address);
     List<Address> getAllAddresses();
 }

@@ -1,6 +1,6 @@
 package com.thws.eventmanager.infrastructure.components.persistence.handler;
 
-import com.thws.eventmanager.domain.port.out.AddressRepository;
+import com.thws.eventmanager.domain.port.out.AddressOutPort;
 import com.thws.eventmanager.domain.models.Address;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -8,7 +8,7 @@ import jakarta.persistence.Persistence;
 
 import java.util.List;
 
-public class AddressHandler implements AddressRepository {
+public class AddressHandler implements AddressOutPort {
     private static final String PERSISTENCE_UNIT_NAME = "eventmanager";
     private final EntityManagerFactory entityManagerFactory;
     private final EntityManager entityManager;
