@@ -4,7 +4,6 @@ import static org.mockito.Mockito.*;
 
 import com.thws.eventmanager.infrastructure.components.persistence.entities.UserEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.WaitlistEntity;
-import com.thws.eventmanager.infrastructure.components.persistence.dbHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Optional;

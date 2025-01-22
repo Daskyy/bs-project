@@ -3,7 +3,6 @@ package com.thws.eventmanager.domain.usecases;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.UserEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.WaitlistEntity;
 import com.thws.eventmanager.domain.port.out.WaitlistServiceInterface;
-import com.thws.eventmanager.infrastructure.components.persistence.dbHandler;
 
 import java.util.List;
 import java.util.Optional;
