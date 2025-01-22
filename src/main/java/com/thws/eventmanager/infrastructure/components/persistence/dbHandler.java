@@ -3,7 +3,6 @@ package com.thws.eventmanager.infrastructure.components.persistence;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.TicketEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.WaitlistEntity;
-import com.thws.eventmanager.domain.usecases.EventSearchCriteria;
 
 import java.util.List;
 
@@ -32,11 +31,7 @@ public class dbHandler {
         //return new Event(eventId, "Sample Event", "Description", 100, 50, new User[]{}, 5); // Sample event
         return null;
     }
-    public List<EventEntity> findEventsByCriteria(EventSearchCriteria criteria) {
-        // TODO: Implement this method
 
-        return null;
-    }
     public List<EventEntity> getAllEvents() {
         // TODO: Implement this method
 

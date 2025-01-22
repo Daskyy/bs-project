@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "events")
-public class EventEntity {
+public class EventEntity implements PersistenceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

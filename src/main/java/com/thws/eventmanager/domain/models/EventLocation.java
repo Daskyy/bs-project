@@ -2,7 +2,7 @@ package com.thws.eventmanager.domain.models;
 
 import jakarta.persistence.*;
 
-public class EventLocation {
+public class EventLocation implements Model {
     int id;
     Address address;
     String name;

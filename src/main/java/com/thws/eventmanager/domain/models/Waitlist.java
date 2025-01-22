@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Waitlist {
+public class Waitlist implements Model {
     private final String eventId;
     private final List<User> users;
 

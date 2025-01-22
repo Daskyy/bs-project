@@ -1,6 +1,6 @@
 package com.thws.eventmanager.domain.models;
 
-public class Ticket {
+public class Ticket implements Model {
     private final String eventId;
     private final String userId;
     private final String ticketId;
