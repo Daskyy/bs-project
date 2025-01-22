@@ -35,7 +35,7 @@ public class TicketService implements TicketServiceInterface {
     @Override
     public void updateTicketStatus(Ticket ticket, Status status) {
         ticket.setStatus(status);
-        dbHandler.updateTicket(getTicket(ticket.getTicketId()));  // Save the ticket with updated status
+        //dbHandler.updateTicket(getTicket(ticket.getTicketId()));  // Save the ticket with updated status
     }
 
     @Override
