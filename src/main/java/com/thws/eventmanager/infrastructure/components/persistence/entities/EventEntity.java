@@ -31,7 +31,7 @@ public class EventEntity implements PersistenceEntity {
     private int maxTicketsPerUser;
     @OneToMany
     private List<UserEntity> artists;
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private EventLocationEntity location;
     @OneToMany
     private List<UserEntity> blockList; //List of User IDs that are blocked from buying tickets for this event

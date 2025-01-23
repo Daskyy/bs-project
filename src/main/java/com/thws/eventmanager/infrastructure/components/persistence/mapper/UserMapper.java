@@ -22,6 +22,4 @@ public class UserMapper extends Mapper<User, UserEntity>{
        entity.setPermission(user.getPermission());
        return entity;
     }
-
-
 }

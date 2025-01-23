@@ -1,4 +1,5 @@
 package com.thws.eventmanager.domain.models;
+import com.thws.eventmanager.domain.exceptions.InvalidEventException;
 import jakarta.persistence.*;
 
 import java.util.Arrays;
@@ -19,7 +20,7 @@ public class Event implements Model {
     private EventLocation location;
     private List<User> blockList; // List of User IDs that are blocked from buying tickets for this event
 
-    public Event(String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, List<User> artists, EventLocation location,List<User> blockList) {
+    public Event(String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, List<User> artists, EventLocation location,List<User> blockList, LocalDateTime startDate, LocalDateTime endDate) {
         this.name = name;
         this.description = description;
         this.ticketCount = ticketCount;
@@ -28,6 +29,8 @@ public class Event implements Model {
         this.artists = artists;
         this.location = location;
         this.blockList= blockList;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
     public Event(){
         this.artists= new ArrayList<>();
@@ -119,50 +122,62 @@ public class Event implements Model {
         this.endDate = endDate;
     }
 
-    /*public void addArtists(User artist){
-        //if artist is not an artist, throw exception
-    public void addArtists(User artist){
-        if(artist.getPermission()!=Permission.ARTIST){
-            throw new RuntimeException("Only artists can be added to an event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
+    public void addArtist(User artist) {
+        if (artist == null) {
+            throw new IllegalArgumentException("Artist cannot be null.");
         }
-        else {
-            artists.add(artist.getId());
-        }
-    }*/
-  /*  public void removeArtists(User artist){
-        if(artist.getPermission()!=Permission.ARTIST){
-            throw new RuntimeException("Only artists can be removed from an event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
-        }
-        else if(artists.contains(artist.getId())){
-            artists.remove(artist.getId());
-        }
-        else{
-            throw new RuntimeException("Artist not found in event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
-        }
-    }*/
 
-/*    public void addBlockedUser(User user){
-        if(blockList==null){
-            blockList=List.of(user);
+        if (artist.getPermission() != Permission.ARTIST) {
+            throw new InvalidEventException("Only users with ARTIST permission can be added as artists.");
         }
-        else{
-            blockList.add(user);
+
+        if (this.artists.contains(artist)) {
+            throw new InvalidEventException("This artist is already part of the event.");
         }
+
+        this.artists.add(artist);
     }
-    public boolean removeBlockedUser(User user){
-        if(blockList==null){
-            return false;
+
+    public void removeArtist(User artist) {
+        if (artist == null) {
+            throw new IllegalArgumentException("Artist cannot be null.");
         }
-        else{
-            return blockList.remove(user.getId());
+
+        if (!this.artists.contains(artist)) {
+            throw new InvalidEventException("The artist is not part of this event.");
         }
+
+        this.artists.remove(artist);
     }
-    public boolean isBlocked(User user){
-        if(blockList==null){
-            return false;
+
+    public void blockUser(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null.");
         }
-        else{
-            return blockList.contains(user.getId());
+
+        if (this.blockList.contains(user)) {
+            throw new InvalidEventException("User is already blocked for this event.");
         }
-    }*/
+
+        this.blockList.add(user);
+    }
+
+    public void unblockUser(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null.");
+        }
+
+        if (!this.blockList.contains(user)) {
+            throw new InvalidEventException("User is not blocked for this event.");
+        }
+
+        this.blockList.remove(user);
+    }
+
+    public boolean isBlocked(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null.");
+        }
+        return this.blockList.contains(user);
+    }
 }

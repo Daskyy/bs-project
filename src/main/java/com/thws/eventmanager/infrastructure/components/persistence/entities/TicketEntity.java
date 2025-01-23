@@ -5,7 +5,6 @@ import com.thws.eventmanager.domain.models.Status;
 import com.thws.eventmanager.domain.models.Ticket;
 import jakarta.persistence.*;
 
-// TODO: create a table for this entity
 @Entity
 @Table
 public class TicketEntity implements PersistenceEntity {
