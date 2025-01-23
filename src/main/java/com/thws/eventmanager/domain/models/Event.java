@@ -1,13 +1,13 @@
 package com.thws.eventmanager.domain.models;
 import jakarta.persistence.*;
+
+import java.util.Arrays;
 import java.util.List;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Event implements Model {
-    private long id;
     private String name;
     private String description;
     private LocalDateTime startDate;
@@ -15,13 +15,11 @@ public class Event implements Model {
     private long ticketCount;
     private long ticketsSold;
     private int maxTicketsPerUser;
-
     private List<User> artists;
     private EventLocation location;
-    private List<User> blockList; //List of User IDs that are blocked from buying tickets for this event
+    private List<User> blockList; // List of User IDs that are blocked from buying tickets for this event
 
-    public Event(long id,String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, List<User> artists, EventLocation location,List<User> blockList) {
-        this.id=id;
+    public Event(String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, List<User> artists, EventLocation location,List<User> blockList) {
         this.name = name;
         this.description = description;
         this.ticketCount = ticketCount;
@@ -32,20 +30,17 @@ public class Event implements Model {
         this.blockList= blockList;
     }
     public Event(){
-    this.artists= new ArrayList<>();
-    this.blockList= new ArrayList<>();
+        this.artists= new ArrayList<>();
+        this.blockList= new ArrayList<>();
     }
 
 
     public EventLocation getLocation() {
         return location;
     }
+
     public void setLocation(EventLocation location) {
         this.location = location;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getName() {
@@ -80,10 +75,6 @@ public class Event implements Model {
         return ticketCount > ticketsSold;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -100,10 +91,30 @@ public class Event implements Model {
         this.ticketsSold = ticketsSold;
     }
 
-    /*public void setArtists(User[] artists) {
-    public void setArtists(List<Long> artists) {
+    public void setArtists(List<User> artists) {
         this.artists = artists;
-    }*/
+    }
+
+    public void setMaxTicketsPerUser(int maxTicketsPerUser) {
+        this.maxTicketsPerUser = maxTicketsPerUser;
+    }
+
+    public EventLocation getEventLocation() {
+        return location;
+    }
+
+    public void setBlockList(List<User> blockList) {
+        this.blockList = blockList;
+    }
+
+    public List<User> getArtists() {
+        return artists;
+    }
+
+    public List<User> getBlockList() {
+        return blockList;
+    }
+
 
     /*public void addArtists(User artist){
         //if artist is not an artist, throw exception
@@ -127,7 +138,7 @@ public class Event implements Model {
         }
     }*/
 
-    public void addBlockedUser(User user){
+/*    public void addBlockedUser(User user){
         if(blockList==null){
             blockList=List.of(user);
         }
@@ -150,12 +161,5 @@ public class Event implements Model {
         else{
             return blockList.contains(user.getId());
         }
-    }
-    public void setMaxTicketsPerUser(int maxTicketsPerUser) {
-        this.maxTicketsPerUser = maxTicketsPerUser;
-    }
-
-    public EventLocation getEventLocation() {
-        return location;
-    }
+    }*/
 }

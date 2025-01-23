@@ -1,4 +1,4 @@
-package com.thws.eventmanager.domain.port.out;
+package com.thws.eventmanager.domain.port.in;
 import com.thws.eventmanager.domain.models.EventLocation;
 import com.thws.eventmanager.domain.models.User;
 

@@ -67,4 +67,15 @@ public class UserEntity implements PersistenceEntity {
     public void setPermission(Permission permission) {
         this.permission = permission;
     }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", permission=" + permission +
+                '}';
+    }
 }

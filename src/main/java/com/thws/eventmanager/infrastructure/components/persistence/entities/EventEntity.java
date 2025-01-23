@@ -1,9 +1,12 @@
 package com.thws.eventmanager.infrastructure.components.persistence.entities;
 
+import com.github.javafaker.Artist;
+import com.thws.eventmanager.domain.models.User;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -45,14 +48,14 @@ public class EventEntity implements PersistenceEntity {
         this.blockList= blockList;
     }
     public EventEntity(){
-    this.artists= new ArrayList<>();
-    this.blockList= new ArrayList<>();
+        this.artists = new ArrayList<>();
+        this.blockList = new ArrayList<>();
     }
-
 
     public EventLocationEntity getLocation() {
         return location;
     }
+
     public void setLocation(EventLocationEntity location) {
         this.location = location;
     }
@@ -113,33 +116,6 @@ public class EventEntity implements PersistenceEntity {
         this.ticketsSold = ticketsSold;
     }
 
-    /*public void setArtists(User[] artists) {
-    public void setArtists(List<Long> artists) {
-        this.artists = artists;
-    }*/
-
-    /*public void addArtists(User artist){
-        //if artist is not an artist, throw exception
-    public void addArtists(User artist){
-        if(artist.getPermission()!=Permission.ARTIST){
-            throw new RuntimeException("Only artists can be added to an event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
-        }
-        else {
-            artists.add(artist.getId());
-        }
-    }*/
-  /*  public void removeArtists(User artist){
-        if(artist.getPermission()!=Permission.ARTIST){
-            throw new RuntimeException("Only artists can be removed from an event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
-        }
-        else if(artists.contains(artist.getId())){
-            artists.remove(artist.getId());
-        }
-        else{
-            throw new RuntimeException("Artist not found in event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
-        }
-    }*/
-
     public void addBlockedUser(UserEntity userEntity){
         if(blockList==null){
             blockList=List.of(userEntity);
@@ -171,4 +147,47 @@ public class EventEntity implements PersistenceEntity {
     public EventLocationEntity getEventLocation() {
         return location;
     }
+
+    public List<UserEntity> getArtists() {
+        return artists;
+    }
+
+    public List<UserEntity> getBlockList() {
+        return blockList;
+    }
+
+    public void setArtists(List<UserEntity> list) {
+        this.artists = list;
+    }
+
+    public void setBlockList(List<UserEntity> list) {
+        this.blockList = list;
+    }
+
+        /*public void setArtists(User[] artists) {
+    public void setArtists(List<Long> artists) {
+        this.artists = artists;
+    }*/
+
+    /*public void addArtists(User artist){
+        //if artist is not an artist, throw exception
+    public void addArtists(User artist){
+        if(artist.getPermission()!=Permission.ARTIST){
+            throw new RuntimeException("Only artists can be added to an event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
+        }
+        else {
+            artists.add(artist.getId());
+        }
+    }*/
+  /*  public void removeArtists(User artist){
+        if(artist.getPermission()!=Permission.ARTIST){
+            throw new RuntimeException("Only artists can be removed from an event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
+        }
+        else if(artists.contains(artist.getId())){
+            artists.remove(artist.getId());
+        }
+        else{
+            throw new RuntimeException("Artist not found in event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
+        }
+    }*/
 }

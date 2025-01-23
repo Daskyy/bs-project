@@ -5,5 +5,5 @@ import com.thws.eventmanager.infrastructure.components.persistence.entities.Pers
 
 public abstract class Mapper <Mod extends Model, Entity extends PersistenceEntity> {
     public abstract Mod toModel(Entity entity);
-    public abstract Entity toEntity(Model model);
+    public abstract Entity toEntity(Mod model);
 }

@@ -3,33 +3,23 @@ package com.thws.eventmanager.domain.models;
 import jakarta.persistence.*;
 
 public class EventLocation implements Model {
-    int id;
     Address address;
     String name;
     int capacity;
 
-    public EventLocation(Address adress, int capacity, String name) {
-        this.address = adress;
+    public EventLocation(Address address, int capacity, String name) {
+        this.address = address;
         this.capacity = capacity;
         this.name = name;
     }
     public EventLocation(){}; // default constructor
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Address getAdress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAdress(Address adress) {
-        this.address = adress;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getName() {
@@ -46,9 +36,5 @@ public class EventLocation implements Model {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 }

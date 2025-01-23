@@ -16,13 +16,13 @@ public class EventLocationEntity implements PersistenceEntity {
     int capacity;
 
 
-    public EventLocationEntity(AddressEntity adress, int capacity, String name) {
-        this.addressEntity = adress;
+    public EventLocationEntity(AddressEntity address, int capacity, String name) {
+        this.addressEntity = address;
         this.capacity = capacity;
         this.name = name;
     }
-    public EventLocationEntity(){}; // default constructor
 
+    public EventLocationEntity(){}; // default constructor
 
     public int getId() {
         return id;
@@ -32,14 +32,9 @@ public class EventLocationEntity implements PersistenceEntity {
         this.id = id;
     }
 
-    public AddressEntity getAdress() {
+    public AddressEntity getAddress() {
         return addressEntity;
     }
-
-    public void setAdress(AddressEntity adress) {
-        this.addressEntity = adress;
-    }
-
     public String getName() {
         return name;
     }
@@ -56,7 +51,7 @@ public class EventLocationEntity implements PersistenceEntity {
         this.capacity = capacity;
     }
 
-    public AddressEntity getAddress() {
-        return addressEntity;
+    public void setAddress(AddressEntity entity) {
+        this.addressEntity = entity;
     }
 }
