@@ -18,15 +18,7 @@ public class UserEntity implements PersistenceEntity {
     @Column(name = "permission", nullable = false)
     private Permission permission;
 
-    public UserEntity() {
-    }
-
-    public UserEntity(String name, String email, String password, Permission permission) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.permission = permission;
-    }
+    public UserEntity() {}
 
     public String getEmail() {
             return email;

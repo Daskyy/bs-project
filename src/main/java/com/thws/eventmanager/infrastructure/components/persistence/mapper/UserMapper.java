@@ -4,23 +4,23 @@ import com.thws.eventmanager.domain.models.*;
 
 public class UserMapper extends Mapper<User, UserEntity>{
     @Override
-    public User toModel(UserEntity userE){
+    public User toModel(UserEntity entity){
         User user= new User();
-        user.setName(userE.getName());
-        user.setPermission(userE.getPermission());
-        user.setEmail(userE.getEmail());
-        user.setPassword(userE.getPassword());
+        user.setName(entity.getName());
+        user.setPermission(entity.getPermission());
+        user.setEmail(entity.getEmail());
+        user.setPassword(entity.getPassword());
         return user;
     }
 
     @Override
     public UserEntity toEntity(User user) {
-       UserEntity  userE = new UserEntity();
-       userE.setName(user.getName());
-       userE.setEmail(user.getEmail());
-       userE.setPassword(user.getPassword());
-       userE.setPermission(user.getPermission());
-       return userE;
+       UserEntity  entity = new UserEntity();
+       entity.setName(user.getName());
+       entity.setEmail(user.getEmail());
+       entity.setPassword(user.getPassword());
+       entity.setPermission(user.getPermission());
+       return entity;
     }
 
 

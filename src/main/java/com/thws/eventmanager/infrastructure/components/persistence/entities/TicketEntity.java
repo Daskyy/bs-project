@@ -1,53 +1,57 @@
 package com.thws.eventmanager.infrastructure.components.persistence.entities;
 
+import com.thws.eventmanager.domain.models.Event;
 import com.thws.eventmanager.domain.models.Status;
 import com.thws.eventmanager.domain.models.Ticket;
+import jakarta.persistence.*;
 
 // TODO: create a table for this entity
+@Entity
+@Table
 public class TicketEntity implements PersistenceEntity {
-    private final String eventId;
-    private final String userId;
-    private final String ticketId;
-    private final long price;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @OneToOne
+    private EventEntity event;
+    @OneToOne
+    private UserEntity user;
+    @Column(name = "price", nullable = false)
+    private double price;
+    @Column(name = "status", nullable = false)
     private Status paymentStatus;
 
-    public TicketEntity(Ticket ticket){
-        this.eventId = ticket.getEventId();
-        this.userId = ticket.getUserId();
-        this.ticketId = ticket.getTicketId();
-        this.price = ticket.getPrice();
+    public TicketEntity() {}
+
+    public EventEntity getEvent() {
+        return event;
     }
 
+    public void setEvent(EventEntity event) {
+        this.event = event;
+    }
 
-    public TicketEntity(String eventId, String userId, String ticketId, long price) {
-        this.eventId = eventId;
-        this.userId = userId;
-        this.ticketId = ticketId;
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
         this.price = price;
-        this.paymentStatus = Status.OPEN;
     }
 
-    public Status getStatus() {
+    public Status getPaymentStatus() {
         return paymentStatus;
     }
 
-    public void setStatus(Status status) {
-        this.paymentStatus = status;
-    }
-
-    public String getEventId() {
-        return eventId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public String getTicketId() {
-        return ticketId;
-    }
-
-    public long getPrice() {
-        return price;
+    public void setPaymentStatus(Status paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 }

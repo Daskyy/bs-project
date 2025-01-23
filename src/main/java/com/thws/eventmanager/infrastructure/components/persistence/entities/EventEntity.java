@@ -36,21 +36,7 @@ public class EventEntity implements PersistenceEntity {
     @OneToMany
     private List<UserEntity> blockList; //List of User IDs that are blocked from buying tickets for this event
 
-    public EventEntity(long id, String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, List<UserEntity> artists, EventLocationEntity location, List<UserEntity> blockList) {
-        this.id=id;
-        this.name = name;
-        this.description = description;
-        this.ticketCount = ticketCount;
-        this.ticketsSold = ticketsSold;
-        this.maxTicketsPerUser = maxTicketsPerUser;
-        this.artists = artists;
-        this.location = location;
-        this.blockList= blockList;
-    }
-    public EventEntity(){
-        this.artists = new ArrayList<>();
-        this.blockList = new ArrayList<>();
-    }
+    public EventEntity(){}
 
     public EventLocationEntity getLocation() {
         return location;
@@ -58,10 +44,6 @@ public class EventEntity implements PersistenceEntity {
 
     public void setLocation(EventLocationEntity location) {
         this.location = location;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getName() {
@@ -96,10 +78,6 @@ public class EventEntity implements PersistenceEntity {
         return ticketCount > ticketsSold;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -116,36 +94,8 @@ public class EventEntity implements PersistenceEntity {
         this.ticketsSold = ticketsSold;
     }
 
-    public void addBlockedUser(UserEntity userEntity){
-        if(blockList==null){
-            blockList=List.of(userEntity);
-        }
-        else{
-            blockList.add(userEntity);
-        }
-    }
-    public boolean removeBlockedUser(UserEntity userEntity){
-        if(blockList==null){
-            return false;
-        }
-        else{
-            return blockList.remove(userEntity.getId());
-        }
-    }
-    public boolean isBlocked(UserEntity userEntity){
-        if(blockList==null){
-            return false;
-        }
-        else{
-            return blockList.contains(userEntity.getId());
-        }
-    }
     public void setMaxTicketsPerUser(int maxTicketsPerUser) {
         this.maxTicketsPerUser = maxTicketsPerUser;
-    }
-
-    public EventLocationEntity getEventLocation() {
-        return location;
     }
 
     public List<UserEntity> getArtists() {
@@ -164,7 +114,14 @@ public class EventEntity implements PersistenceEntity {
         this.blockList = list;
     }
 
-        /*public void setArtists(User[] artists) {
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
+    }
+/*public void setArtists(User[] artists) {
     public void setArtists(List<Long> artists) {
         this.artists = artists;
     }*/
@@ -189,5 +146,30 @@ public class EventEntity implements PersistenceEntity {
         else{
             throw new RuntimeException("Artist not found in event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
         }
+
+            public void addBlockedUser(UserEntity userEntity){
+        if(blockList==null){
+            blockList=List.of(userEntity);
+        }
+        else{
+            blockList.add(userEntity);
+        }
+    }
+    public boolean removeBlockedUser(UserEntity userEntity){
+        if(blockList==null){
+            return false;
+        }
+        else{
+            return blockList.remove(userEntity.getId());
+        }
+    }
+    public boolean isBlocked(UserEntity userEntity){
+        if(blockList==null){
+            return false;
+        }
+        else{
+            return blockList.contains(userEntity.getId());
+        }
+    }
     }*/
 }

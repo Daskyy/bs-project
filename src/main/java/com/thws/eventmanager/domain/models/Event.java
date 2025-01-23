@@ -99,10 +99,6 @@ public class Event implements Model {
         this.maxTicketsPerUser = maxTicketsPerUser;
     }
 
-    public EventLocation getEventLocation() {
-        return location;
-    }
-
     public void setBlockList(List<User> blockList) {
         this.blockList = blockList;
     }
@@ -115,6 +111,13 @@ public class Event implements Model {
         return blockList;
     }
 
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
+    }
 
     /*public void addArtists(User artist){
         //if artist is not an artist, throw exception

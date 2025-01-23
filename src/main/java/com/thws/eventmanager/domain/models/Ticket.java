@@ -1,41 +1,49 @@
 package com.thws.eventmanager.domain.models;
 
 public class Ticket implements Model {
-    private final String eventId;
-    private final String userId;
-    private final String ticketId;
-    private final long price;
+    private Event event;
+    private User user;
+    private double price;
     private Status paymentStatus;
 
-    public Ticket(String eventId, String userId, String ticketId, long price) {
-        this.eventId = eventId;
-        this.userId = userId;
-        this.ticketId = ticketId;
+    public Ticket(Event event, User user, long price) {
+        this.event = event;
+        this.user = user;
         this.price = price;
         this.paymentStatus = Status.OPEN;
     }
 
-    public Status getStatus() {
+    public Ticket() {}
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public Status getPaymentStatus() {
         return paymentStatus;
     }
 
-    public void setStatus(Status status) {
-        this.paymentStatus = status;
-    }
-
-    public String getEventId() {
-        return eventId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public String getTicketId() {
-        return ticketId;
-    }
-
-    public long getPrice() {
-        return price;
+    public void setPaymentStatus(Status paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 }

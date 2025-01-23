@@ -7,34 +7,20 @@ import jakarta.persistence.*;
 public class EventLocationEntity implements PersistenceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private long id;
     @OneToOne
-    AddressEntity addressEntity;
+    private AddressEntity addressEntity;
     @Column(name = "name", nullable = false)
-    String name;
+    private String name;
     @Column(name = "capacity", nullable = false)
-    int capacity;
-
-
-    public EventLocationEntity(AddressEntity address, int capacity, String name) {
-        this.addressEntity = address;
-        this.capacity = capacity;
-        this.name = name;
-    }
+    private int capacity;
 
     public EventLocationEntity(){}; // default constructor
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public AddressEntity getAddress() {
         return addressEntity;
     }
+
     public String getName() {
         return name;
     }
