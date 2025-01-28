@@ -65,4 +65,17 @@ public class AddressEntity implements PersistenceEntity {
     public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
+
+    @Override
+    public String toString() {
+        return "AddressEntity{" +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", no=" + no +
+                ", city='" + city + '\'' +
+                ", zipCode=" + zipCode +
+                ", country='" + country + '\'' +
+                '}';
+    }
+
 }

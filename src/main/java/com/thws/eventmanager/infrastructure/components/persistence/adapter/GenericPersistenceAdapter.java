@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public abstract class GenericPersistenceAdapter<T, ID> implements GenericPersistenceOutport<T, ID> {
-    private final EntityManager entityManager;
+    public final EntityManager entityManager;
     private final Class<T> entityClass;
 
     protected GenericPersistenceAdapter(EntityManager entityManager, Class<T> entityClass) {
