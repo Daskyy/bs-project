@@ -1,3 +1,4 @@
+/*
 package com.thws.eventmanager.domain.usecases;
 
 import com.thws.eventmanager.infrastructure.components.persistence.entities.UserEntity;
@@ -61,3 +62,4 @@ public class WaitlistService implements WaitlistServiceInterface {
         dbHandler.deleteWaitlistFromEvent(eventId);
     }
 }
+*/

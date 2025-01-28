@@ -7,37 +7,18 @@ import jakarta.persistence.*;
 public class EventLocationEntity implements PersistenceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private long id;
     @OneToOne
-    AddressEntity addressEntity;
+    private AddressEntity addressEntity;
     @Column(name = "name", nullable = false)
-    String name;
+    private String name;
     @Column(name = "capacity", nullable = false)
-    int capacity;
+    private int capacity;
 
-
-    public EventLocationEntity(AddressEntity adress, int capacity, String name) {
-        this.addressEntity = adress;
-        this.capacity = capacity;
-        this.name = name;
-    }
     public EventLocationEntity(){}; // default constructor
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public AddressEntity getAdress() {
+    public AddressEntity getAddress() {
         return addressEntity;
-    }
-
-    public void setAdress(AddressEntity adress) {
-        this.addressEntity = adress;
     }
 
     public String getName() {
@@ -56,7 +37,7 @@ public class EventLocationEntity implements PersistenceEntity {
         this.capacity = capacity;
     }
 
-    public AddressEntity getAddress() {
-        return addressEntity;
+    public void setAddress(AddressEntity entity) {
+        this.addressEntity = entity;
     }
 }

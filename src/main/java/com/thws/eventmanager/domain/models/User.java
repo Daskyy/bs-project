@@ -3,7 +3,6 @@ package com.thws.eventmanager.domain.models;
 import jakarta.persistence.*;
 
 public class User implements Model {
-    private Long id;
     private String name;
     private String email;
     private String password;
@@ -22,14 +21,6 @@ public class User implements Model {
     public String getEmail() {
             return email;
         }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

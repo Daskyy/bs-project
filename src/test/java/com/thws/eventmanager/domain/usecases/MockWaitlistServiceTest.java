@@ -1,3 +1,4 @@
+/*
 package com.thws.eventmanager.domain.usecases;
 
 import static org.mockito.Mockito.*;
@@ -70,4 +71,4 @@ public class MockWaitlistServiceTest {
 
         verify(mockDbHandler).deleteWaitlistFromEvent("event123");
     }
-}
+}*/

@@ -1,22 +1,16 @@
 package com.thws.eventmanager.database;
 
-import com.thws.eventmanager.infrastructure.components.persistence.handler.UserHandler;
+import com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager;
+import com.thws.eventmanager.infrastructure.components.persistence.adapter.UserHandler;
 
 public class GetAllUsers {
     public static void main(String[] args) {
-        // Initialize the database handler
-        UserHandler UserHandler = new UserHandler();
-
-        try {
-            UserHandler.getAllUsers().forEach(user -> System.out.println(
-                    "ID: " + user.getId() +
-                            ", Name: " + user.getName() +
-                            ", Email: " + user.getEmail()
-            ));
-
-        } finally {
-            // Close the database connection
-            UserHandler.close();
+        try (PersistenceManager persistenceManager = PersistenceManager.create()) {
+            UserHandler userHandler = new UserHandler(persistenceManager.getEntityManager());
+            userHandler.findAll().forEach(System.out::println);
+    } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 }

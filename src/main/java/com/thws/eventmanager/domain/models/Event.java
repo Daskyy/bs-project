@@ -1,13 +1,14 @@
 package com.thws.eventmanager.domain.models;
+import com.thws.eventmanager.domain.exceptions.InvalidEventException;
 import jakarta.persistence.*;
+
+import java.util.Arrays;
 import java.util.List;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Event implements Model {
-    private long id;
     private String name;
     private String description;
     private LocalDateTime startDate;
@@ -15,13 +16,11 @@ public class Event implements Model {
     private long ticketCount;
     private long ticketsSold;
     private int maxTicketsPerUser;
-
     private List<User> artists;
     private EventLocation location;
-    private List<User> blockList; //List of User IDs that are blocked from buying tickets for this event
+    private List<User> blockList; // List of User IDs that are blocked from buying tickets for this event
 
-    public Event(long id,String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, List<User> artists, EventLocation location,List<User> blockList) {
-        this.id=id;
+    public Event(String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, List<User> artists, EventLocation location,List<User> blockList, LocalDateTime startDate, LocalDateTime endDate) {
         this.name = name;
         this.description = description;
         this.ticketCount = ticketCount;
@@ -30,22 +29,21 @@ public class Event implements Model {
         this.artists = artists;
         this.location = location;
         this.blockList= blockList;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
     public Event(){
-    this.artists= new ArrayList<>();
-    this.blockList= new ArrayList<>();
+        this.artists= new ArrayList<>();
+        this.blockList= new ArrayList<>();
     }
 
 
     public EventLocation getLocation() {
         return location;
     }
+
     public void setLocation(EventLocation location) {
         this.location = location;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getName() {
@@ -80,10 +78,6 @@ public class Event implements Model {
         return ticketCount > ticketsSold;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -100,62 +94,90 @@ public class Event implements Model {
         this.ticketsSold = ticketsSold;
     }
 
-    /*public void setArtists(User[] artists) {
-    public void setArtists(List<Long> artists) {
+    public void setArtists(List<User> artists) {
         this.artists = artists;
-    }*/
+    }
 
-    /*public void addArtists(User artist){
-        //if artist is not an artist, throw exception
-    public void addArtists(User artist){
-        if(artist.getPermission()!=Permission.ARTIST){
-            throw new RuntimeException("Only artists can be added to an event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
-        }
-        else {
-            artists.add(artist.getId());
-        }
-    }*/
-  /*  public void removeArtists(User artist){
-        if(artist.getPermission()!=Permission.ARTIST){
-            throw new RuntimeException("Only artists can be removed from an event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
-        }
-        else if(artists.contains(artist.getId())){
-            artists.remove(artist.getId());
-        }
-        else{
-            throw new RuntimeException("Artist not found in event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
-        }
-    }*/
-
-    public void addBlockedUser(User user){
-        if(blockList==null){
-            blockList=List.of(user);
-        }
-        else{
-            blockList.add(user);
-        }
-    }
-    public boolean removeBlockedUser(User user){
-        if(blockList==null){
-            return false;
-        }
-        else{
-            return blockList.remove(user.getId());
-        }
-    }
-    public boolean isBlocked(User user){
-        if(blockList==null){
-            return false;
-        }
-        else{
-            return blockList.contains(user.getId());
-        }
-    }
     public void setMaxTicketsPerUser(int maxTicketsPerUser) {
         this.maxTicketsPerUser = maxTicketsPerUser;
     }
 
-    public EventLocation getEventLocation() {
-        return location;
+    public void setBlockList(List<User> blockList) {
+        this.blockList = blockList;
+    }
+
+    public List<User> getArtists() {
+        return artists;
+    }
+
+    public List<User> getBlockList() {
+        return blockList;
+    }
+
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
+    }
+
+    public void addArtist(User artist) {
+        if (artist == null) {
+            throw new IllegalArgumentException("Artist cannot be null.");
+        }
+
+        if (artist.getPermission() != Permission.ARTIST) {
+            throw new InvalidEventException("Only users with ARTIST permission can be added as artists.");
+        }
+
+        if (this.artists.contains(artist)) {
+            throw new InvalidEventException("This artist is already part of the event.");
+        }
+
+        this.artists.add(artist);
+    }
+
+    public void removeArtist(User artist) {
+        if (artist == null) {
+            throw new IllegalArgumentException("Artist cannot be null.");
+        }
+
+        if (!this.artists.contains(artist)) {
+            throw new InvalidEventException("The artist is not part of this event.");
+        }
+
+        this.artists.remove(artist);
+    }
+
+    public void blockUser(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null.");
+        }
+
+        if (this.blockList.contains(user)) {
+            throw new InvalidEventException("User is already blocked for this event.");
+        }
+
+        this.blockList.add(user);
+    }
+
+    public void unblockUser(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null.");
+        }
+
+        if (!this.blockList.contains(user)) {
+            throw new InvalidEventException("User is not blocked for this event.");
+        }
+
+        this.blockList.remove(user);
+    }
+
+    public boolean isBlocked(User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null.");
+        }
+        return this.blockList.contains(user);
     }
 }

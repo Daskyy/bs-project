@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 
 public class Address implements Model {
-    int id;
     String street;
     int no;
     String city;

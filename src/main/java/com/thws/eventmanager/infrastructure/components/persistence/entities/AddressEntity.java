@@ -7,29 +7,19 @@ import jakarta.persistence.*;
 public class AddressEntity implements PersistenceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
     @Column(name = "street", nullable = false)
-    String street;
+    private String street;
     @Column(name = "no", nullable = false)
-    int no;
+    private int no;
     @Column(name = "city", nullable = false)
-    String city;
+    private String city;
     @Column(name = "zipCode", nullable = false)
-    int zipCode;
+    private int zipCode;
     @Column(name = "country", nullable = false)
-    String country;
+    private String country;
 
-    public AddressEntity(String city, String country, int no, String street, int zipCode) {
-        this.city = city;
-        this.country = country;
-        this.no = no;
-        this.street = street;
-        this.zipCode = zipCode;
-    }
-
-    public AddressEntity() {
-
-    }
+    public AddressEntity() {}
 
     public String getCity() {
         return city;

@@ -18,15 +18,7 @@ public class UserEntity implements PersistenceEntity {
     @Column(name = "permission", nullable = false)
     private Permission permission;
 
-    public UserEntity() {
-    }
-
-    public UserEntity(String name, String email, String password, Permission permission) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.permission = permission;
-    }
+    public UserEntity() {}
 
     public String getEmail() {
             return email;
@@ -66,5 +58,16 @@ public class UserEntity implements PersistenceEntity {
 
     public void setPermission(Permission permission) {
         this.permission = permission;
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", permission=" + permission +
+                '}';
     }
 }
