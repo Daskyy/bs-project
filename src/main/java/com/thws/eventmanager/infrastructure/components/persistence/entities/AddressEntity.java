@@ -8,15 +8,20 @@ public class AddressEntity implements PersistenceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "street", nullable = false)
+
+    @Column(nullable = false)
     private String street;
-    @Column(name = "no", nullable = false)
+
+    @Column(nullable = false)
     private int no;
-    @Column(name = "city", nullable = false)
+
+    @Column(nullable = false)
     private String city;
-    @Column(name = "zipCode", nullable = false)
+
+    @Column(nullable = false)
     private int zipCode;
-    @Column(name = "country", nullable = false)
+
+    @Column(nullable = false)
     private String country;
 
     public AddressEntity() {}

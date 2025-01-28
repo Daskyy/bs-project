@@ -9,13 +9,17 @@ public class UserEntity implements PersistenceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "name", nullable = false)
+
+    @Column(nullable = false)
     private String name;
-    @Column(name = "email", nullable = false)
+
+    @Column(nullable = false, unique = true)
     private String email;
-    @Column(name = "password", nullable = false)
+
+    @Column(nullable = false)
     private String password;
-    @Column(name = "permission", nullable = false)
+
+    @Column(nullable = false)
     private Permission permission;
 
     public UserEntity() {}

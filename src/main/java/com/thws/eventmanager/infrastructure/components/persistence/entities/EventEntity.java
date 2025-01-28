@@ -1,12 +1,9 @@
 package com.thws.eventmanager.infrastructure.components.persistence.entities;
 
-import com.github.javafaker.Artist;
-import com.thws.eventmanager.domain.models.User;
-import jakarta.persistence.*;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -15,26 +12,47 @@ public class EventEntity implements PersistenceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "name", nullable = false)
+
+    @Column(nullable = false)
     private String name;
-    @Column(name = "description", nullable = false)
+
+    @Column(nullable = false)
     private String description;
-    @Column(name = "startDate", nullable = false)
+
+    @Column(nullable = false)
     private LocalDateTime startDate;
-    @Column(name = "endDate", nullable = false)
+
+    @Column(nullable = false)
     private LocalDateTime endDate;
-    @Column(name = "ticketCount", nullable = false)
+
+    @Column(nullable = false)
     private long ticketCount;
-    @Column(name = "ticketsSold", nullable = false)
+
+    @Column(nullable = false)
     private long ticketsSold;
-    @Column(name = "maxTicketsPerUser", nullable = false)
+
+    @Column(nullable = false)
     private int maxTicketsPerUser;
-    @OneToMany
-    private List<UserEntity> artists;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "location_id", nullable = false)
     private EventLocationEntity location;
-    @OneToMany
-    private List<UserEntity> blockList; //List of User IDs that are blocked from buying tickets for this event
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "event_artists",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<UserEntity> artists = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "event_blocked_users",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<UserEntity> blockList = new ArrayList<>();
 
     public EventEntity(){}
 

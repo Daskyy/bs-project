@@ -8,11 +8,14 @@ public class EventLocationEntity implements PersistenceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.ALL)
     private AddressEntity addressEntity;
-    @Column(name = "name", nullable = false)
+
+    @Column(nullable = false)
     private String name;
-    @Column(name = "capacity", nullable = false)
+
+    @Column(nullable = false)
     private int capacity;
 
     public EventLocationEntity(){}; // default constructor
