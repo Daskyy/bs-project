@@ -9,7 +9,7 @@ public class EventLocationEntity implements PersistenceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     private AddressEntity addressEntity;
 
     @Column(nullable = false)
@@ -43,4 +43,15 @@ public class EventLocationEntity implements PersistenceEntity {
     public void setAddress(AddressEntity entity) {
         this.addressEntity = entity;
     }
+
+    @Override
+    public String toString() {
+        return "EventLocationEntity{" +
+                "id=" + id +
+                ", addressEntity=" + addressEntity +
+                ", name='" + name + '\'' +
+                ", capacity=" + capacity +
+                '}';
+    }
+
 }

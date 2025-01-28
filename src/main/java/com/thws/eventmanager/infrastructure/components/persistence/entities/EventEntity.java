@@ -139,6 +139,24 @@ public class EventEntity implements PersistenceEntity {
     public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
+
+    @Override
+    public String toString() {
+        return "EventEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", ticketCount=" + ticketCount +
+                ", ticketsSold=" + ticketsSold +
+                ", maxTicketsPerUser=" + maxTicketsPerUser +
+                ", location=" + location +
+                ", artists=" + artists +
+                ", blockList=" + blockList +
+                '}';
+    }
+
 /*public void setArtists(User[] artists) {
     public void setArtists(List<Long> artists) {
         this.artists = artists;

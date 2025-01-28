@@ -3,6 +3,7 @@ package com.thws.eventmanager.infrastructure.components.persistence.mapper;
 import com.thws.eventmanager.domain.models.Event;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -50,6 +51,10 @@ public class EventMapper extends Mapper<Event, EventEntity> {
 
     // Generic helper method to map lists (works for both directions)
     private <Mod, Entity> List<Mod> mapList(List<Entity> sourceList, Function<Entity, Mod> mapperFunction) {
+        if (sourceList == null) {
+            return Collections.emptyList();  // Return an empty list if sourceList is null
+        }
+
         return sourceList.stream()
                 .map(mapperFunction)
                 .collect(Collectors.toList());

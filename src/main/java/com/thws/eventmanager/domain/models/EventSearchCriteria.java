@@ -30,5 +30,7 @@ public class EventSearchCriteria implements Model {
     public EventLocation getLocation() {
         return location;
     }
+
+
 }
 
