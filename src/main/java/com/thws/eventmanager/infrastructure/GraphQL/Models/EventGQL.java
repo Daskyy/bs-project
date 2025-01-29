@@ -1,4 +1,89 @@
 package com.thws.eventmanager.infrastructure.GraphQL.Models;
 
+import java.util.List;
+
 public class EventGQL {
+    private String id;
+    private String name;
+    private String description;
+    private int ticketCount;
+    private int ticketsSold;
+    private int maxTicketsPerUser;
+    private List<UserGQL> artists;
+    private EventLocationGQL location;
+    private List<UserGQL> blockList;
+
+    public EventGQL() {}
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getTicketCount() {
+        return ticketCount;
+    }
+
+    public void setTicketCount(int ticketCount) {
+        this.ticketCount = ticketCount;
+    }
+
+    public int getTicketsSold() {
+        return ticketsSold;
+    }
+
+    public void setTicketsSold(int ticketsSold) {
+        this.ticketsSold = ticketsSold;
+    }
+
+    public int getMaxTicketsPerUser() {
+        return maxTicketsPerUser;
+    }
+
+    public void setMaxTicketsPerUser(int maxTicketsPerUser) {
+        this.maxTicketsPerUser = maxTicketsPerUser;
+    }
+
+    public List<UserGQL> getArtists() {
+        return artists;
+    }
+
+    public void setArtists(List<UserGQL> artists) {
+        this.artists = artists;
+    }
+
+    public EventLocationGQL getLocation() {
+        return location;
+    }
+
+    public void setLocation(EventLocationGQL location) {
+        this.location = location;
+    }
+
+    public List<UserGQL> getBlockList() {
+        return blockList;
+    }
+
+    public void setBlockList(List<UserGQL> blockList) {
+        this.blockList = blockList;
+    }
 }

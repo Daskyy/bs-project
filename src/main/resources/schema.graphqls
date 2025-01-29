@@ -25,24 +25,25 @@ type Mutation {
 
   #Event
   # Beispiel: Event anlegen
-  createEvent(input:
-  EventInput): EventGQL!
+  createEvent(input: EventInput): EventGQL!
   # Beispiel: Event löschen
   deleteEvent(id: ID!): Boolean!
   # Beispiel: Event aktualisieren
-  updateEvent(id: ID!, input:
-  EventInput): EventGQL!
+  updateEvent(id: ID!, input: EventInput): EventGQL!
 }
 
 # Models
 type AddressGQL{
+  id: ID!
   street: String!
+  no: Int!
   city: String!
-  zipCode: String!
+  zipCode: Int!
   country: String!
 }
 
 type EventGQL {
+  id: ID!
   name: String!
   description: String
   #todo startdate und enddate
@@ -57,13 +58,15 @@ type EventGQL {
 
 type EventLocationGQL {
   id: ID!
-  address: String!
+  address: AddressGQL!
+  name: String!
   capacity: Int!
 }
 #EventCriteria als type nicht notwendig, da es nur für die Query-Methode verwendet wird
 
 type PaymentGQL{
-    paymentMehtodId: ID!
+    id: ID!
+    paymentMethodId: ID!
     amount: Int!
     status: StatusGQL!
 }
@@ -82,6 +85,7 @@ enum PermissionGQL{
 }
 
 type TicketGQL{
+  id: ID!
   event: EventGQL!
   user: UserGQL!
   price: Float!
@@ -89,6 +93,7 @@ type TicketGQL{
 }
 
 type UserGQL {
+  id: ID!
   name: String!
   email: String!
   password: String!
@@ -110,11 +115,22 @@ input EventInput {
 }
 
 input EventLocationInput {
-  address: String!
+  address: AddressInput!
+  name: String!
+  capacity: Int!
+}
+input AddressInput{
+  street: String!
+  no: Int!
+  city: String!
+  zipCode: Int!
+  country: String!
 }
 
 input EventCriteriaInput {
   # z.B. Filterkriterien
+  description: String
+  location: EventLocationInput
   name: String
-  city: String
+  artists: [UserInput!]
 }
