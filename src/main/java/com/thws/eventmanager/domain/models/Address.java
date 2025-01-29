@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 
 public class Address implements Model {
+    int id;
     String street;
     int no;
     String city;
@@ -21,6 +22,16 @@ public class Address implements Model {
     public Address() {
 
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
 
     public String getCity() {
         return city;

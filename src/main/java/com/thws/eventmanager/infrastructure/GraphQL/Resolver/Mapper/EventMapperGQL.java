@@ -1,4 +1,4 @@
 package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper;
 
-public class EventMapper {
+public class EventMapperGQL {
 }
