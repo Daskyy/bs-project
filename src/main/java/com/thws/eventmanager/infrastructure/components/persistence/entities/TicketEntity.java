@@ -60,4 +60,12 @@ public class TicketEntity implements PersistenceEntity {
     public void setPayment(PaymentEntity payment) {
         this.payment = payment;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }

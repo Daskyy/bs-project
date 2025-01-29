@@ -3,13 +3,13 @@ package com.thws.eventmanager.infrastructure.components.persistence.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "eventlocations")
+@Table(name = "event_locations")
 public class EventLocationEntity implements PersistenceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     private AddressEntity addressEntity;
 
     @Column(nullable = false)
@@ -44,6 +44,7 @@ public class EventLocationEntity implements PersistenceEntity {
         this.addressEntity = entity;
     }
 
+
     @Override
     public String toString() {
         return "EventLocationEntity{" +
@@ -52,6 +53,14 @@ public class EventLocationEntity implements PersistenceEntity {
                 ", name='" + name + '\'' +
                 ", capacity=" + capacity +
                 '}';
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
     }
 
 }

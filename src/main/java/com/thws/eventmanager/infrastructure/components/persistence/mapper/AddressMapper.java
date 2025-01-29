@@ -13,7 +13,7 @@ public class AddressMapper extends Mapper<Address, AddressEntity> {
         address.setNo(entity.getNo());
         address.setZipCode(entity.getZipCode());
         address.setStreet(entity.getStreet());
-
+        address.setId(entity.getId());
         return address;
     }
     @Override
@@ -25,7 +25,9 @@ public class AddressMapper extends Mapper<Address, AddressEntity> {
         entity.setNo(model.getNo());
         entity.setZipCode(model.getZipCode());
         entity.setStreet(model.getStreet());
-
+//        if(model.getId() != -1) {
+//            entity.setId(model.getId());
+//        }
         return entity;
     }
 }

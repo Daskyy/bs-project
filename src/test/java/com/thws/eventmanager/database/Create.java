@@ -5,6 +5,7 @@ import com.thws.eventmanager.domain.models.Address;
 import com.thws.eventmanager.domain.models.Event;
 import com.thws.eventmanager.domain.models.EventLocation;
 import com.thws.eventmanager.domain.models.User;
+import com.thws.eventmanager.domain.usecases.EventService;
 import com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.AddressHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
@@ -22,13 +23,11 @@ import jakarta.persistence.EntityManager;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Date;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 // creating adresses and event locations works, but creating events gives me stupid errors
+// edit: seems to be working now
 // TODO: fix this trashy mess
 
 
@@ -48,23 +47,23 @@ public class Create {
             EventMapper eventMapper = new EventMapper();
             UserMapper userMapper = new UserMapper();
 
-            // Create address
-            Address address = new Address();
-            address.setZipCode(1337);
-            address.setCity(faker.address().city());
-            address.setStreet(faker.address().streetName());
-            address.setNo(Integer.parseInt(faker.address().buildingNumber()));
-            address.setCountry(faker.address().country());
-            AddressEntity addressEntity = addressHandler.save(addressMapper.toEntity(address));
-            System.out.println(addressEntity);
 
-            // Create event location
+/*            // Create event location
             EventLocation eventLocation = new EventLocation();
-            eventLocation.setAddress(address);
+
+            Optional<AddressEntity> optionalAddressEntity = addressHandler.findById(13L);
+            if (optionalAddressEntity.isPresent()) {
+                AddressEntity addressEntity = entityManager.merge(optionalAddressEntity.get());
+                Address address = addressMapper.toModel(addressEntity);
+                eventLocation.setAddress(address);
+            } else {
+                throw new NoSuchElementException("Address with ID 13 not found");
+            }
+
             eventLocation.setName(faker.company().name());
             eventLocation.setCapacity(faker.number().numberBetween(10, 1000));
             EventLocationEntity eventLocationEntity = eventLocationHandler.save(eventLocationMapper.toEntity(eventLocation));
-            System.out.println(eventLocationEntity);
+            System.out.println(eventLocationEntity);*/
 
 
             // Create event
@@ -83,8 +82,15 @@ public class Create {
                 throw new NoSuchElementException("User with ID 121 not found");
             }
 
-
-            event.setBlockList(null);
+            Optional<EventLocationEntity> optionalEventLocationEntity = eventLocationHandler.findById(2L);
+            if (optionalEventLocationEntity.isPresent()) {
+                EventLocationEntity eventLocationEntity1 = optionalEventLocationEntity.get();
+                EventLocation eventLocation1 = eventLocationMapper.toModel(eventLocationEntity1);
+                event.setLocation(eventLocation1);
+            } else {
+                throw new NoSuchElementException("Event location with ID 2 not found");
+            }
+            event.setBlockList(new ArrayList<User>());
             LocalDateTime startDate = LocalDateTime.now().plusYears(1);
             LocalDateTime endDate = startDate.plusHours(2);
             event.setStartDate(startDate);
@@ -94,12 +100,11 @@ public class Create {
             event.setTicketCount(faker.number().numberBetween(10, 1000));
             event.setTicketsSold(faker.number().numberBetween(0, (int) event.getTicketCount()));
 
-            // this is broken
-            EventEntity entity = eventMapper.toEntity(event);
-            entity.setLocation(eventLocationEntity);
-            EventEntity eventEntity = eventHandler.save(entity);
 
-            System.out.println(eventEntity);
+            EventService eventService = new EventService(eventHandler);
+            EventEntity entity = eventService.createEvent(event);
+
+            System.out.println(entity);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -5,6 +5,7 @@ public class Ticket implements Model {
     private User user;
     private double price;
     private Payment payment;
+    private long id = -1;
 
     public Ticket(Event event, User user, long price) {
         this.event = event;
@@ -46,4 +47,17 @@ public class Ticket implements Model {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        if (this.id != -1) {
+            throw new IllegalArgumentException("ID is already set");
+        } else {
+            this.id = id;
+        }
+    }
+
 }

@@ -7,6 +7,7 @@ public class User implements Model {
     private String email;
     private String password;
     private Permission permission;
+    private long id = -1;
 
     public User() {
     }
@@ -48,5 +49,17 @@ public class User implements Model {
 
     public void setPermission(Permission permission) {
         this.permission = permission;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        if (this.id != -1) {
+            throw new IllegalArgumentException("ID is already set");
+        } else {
+            this.id = id;
+        }
     }
 }

@@ -34,7 +34,7 @@ public class EventEntity implements PersistenceEntity {
     @Column(nullable = false)
     private int maxTicketsPerUser;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "location_id", nullable = false)
     private EventLocationEntity location;
 
@@ -70,6 +70,10 @@ public class EventEntity implements PersistenceEntity {
 
     public String getDescription() {
         return description;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public LocalDateTime getStartDate() { return startDate; }
@@ -157,7 +161,11 @@ public class EventEntity implements PersistenceEntity {
                 '}';
     }
 
-/*public void setArtists(User[] artists) {
+    public long getId() {
+        return id;
+    }
+
+    /*public void setArtists(User[] artists) {
     public void setArtists(List<Long> artists) {
         this.artists = artists;
     }*/

@@ -10,16 +10,23 @@ public class UserMapper extends Mapper<User, UserEntity>{
         user.setPermission(entity.getPermission());
         user.setEmail(entity.getEmail());
         user.setPassword(entity.getPassword());
+        user.setId(entity.getId());
         return user;
     }
 
     @Override
     public UserEntity toEntity(User user) {
-       UserEntity  entity = new UserEntity();
+       UserEntity entity = new UserEntity();
+
        entity.setName(user.getName());
        entity.setEmail(user.getEmail());
        entity.setPassword(user.getPassword());
        entity.setPermission(user.getPermission());
+
+//        if(user.getId() != -1) {
+//            entity.setId(user.getId());
+//        }
+
        return entity;
     }
 }

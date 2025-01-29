@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 
 public class Event implements Model {
+    private long id = -1;
     private String name;
     private String description;
     private LocalDateTime startDate;
@@ -179,5 +180,17 @@ public class Event implements Model {
             throw new IllegalArgumentException("User cannot be null.");
         }
         return this.blockList.contains(user);
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        if (this.id != -1) {
+            throw new IllegalArgumentException("ID is already set");
+        } else {
+            this.id = id;
+        }
     }
 }

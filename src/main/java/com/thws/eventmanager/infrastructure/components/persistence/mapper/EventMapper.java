@@ -27,6 +27,7 @@ public class EventMapper extends Mapper<Event, EventEntity> {
         event.setArtists(mapList(entity.getArtists(), userMapper::toModel));
         event.setBlockList(mapList(entity.getBlockList(), userMapper::toModel));
         event.setLocation(eventLocationMapper.toModel(entity.getLocation()));
+        event.setId(entity.getId());
 
         return event;
     }
@@ -45,7 +46,9 @@ public class EventMapper extends Mapper<Event, EventEntity> {
         entity.setLocation(eventLocationMapper.toEntity(event.getLocation()));
         entity.setArtists(mapList(event.getArtists(), userMapper::toEntity));
         entity.setBlockList(mapList(event.getBlockList(), userMapper::toEntity));
-
+//        if(event.getId() != -1) {
+//            entity.setId(event.getId());
+//        }
         return entity;
     }
 

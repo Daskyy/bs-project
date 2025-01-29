@@ -54,6 +54,10 @@ public class AddressEntity implements PersistenceEntity {
         return street;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void setStreet(String street) {
         this.street = street;
     }
@@ -78,4 +82,7 @@ public class AddressEntity implements PersistenceEntity {
                 '}';
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 }
