@@ -2,7 +2,7 @@ package com.thws.eventmanager.infrastructure.GraphQL.Models;
 
 public class EventLocationGQL implements GQLModel{
     private String id;
-    private String address;
+    private AddressGQL address;
     private String name;
     private int capacity;
 
@@ -16,11 +16,11 @@ public class EventLocationGQL implements GQLModel{
         this.id = id;
     }
 
-    public String getAddress() {
+    public AddressGQL getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(AddressGQL address) {
         this.address = address;
     }
 
