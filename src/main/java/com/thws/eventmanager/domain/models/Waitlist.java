@@ -6,17 +6,20 @@ import java.util.List;
 
 // TODO: Waitlist is falsch. eventId muss weg und nur Veweis auf ein Event
 public class Waitlist implements Model {
-    private final String eventId;
+    private final Event event;
     private final List<User> users;
 
 
-    public Waitlist(String eventId) {
-        this.eventId = eventId;
+    public Waitlist(Event event) {
+        if (event == null) {
+            throw new IllegalArgumentException("Event cannot be null");
+        }
+        this.event = event;
         this.users = new ArrayList<>();
     }
 
-    public String getEventId() {
-        return eventId;
+    public Event getEvent() {
+        return event;
     }
 
     public List<User> getUsers() {
