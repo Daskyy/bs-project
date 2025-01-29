@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-// TODO: Waitlist is falsch. eventId muss weg und nur Veweis auf ein Event
+// TODO: Waitlist is falsch. eventId muss weg und nur Verweis auf ein Event
 public class Waitlist implements Model {
     private final String eventId;
     private final List<User> users;

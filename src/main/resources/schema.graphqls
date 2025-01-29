@@ -1,6 +1,136 @@
-type User {
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  # Beispiel: Liste von Events auslesen
+  events(criteria: EventCriteriaInput): [EventGQL!]!
+  # Beispiel: Einzelnen User auslesen
+  user(id: ID!): UserGQL
+    # Beispiel: Einzelnes Event auslesen
+  event(id: ID!): EventGQL
+
+}
+
+# Mutations
+type Mutation {
+  #User
+  # Beispiel: User anlegen
+  createUser(input: UserInput): UserGQL!
+  # Beispiel: User löschen
+  deleteUser(id: ID!): Boolean!
+  # Beispiel: User aktualisieren
+  updateUser(id: ID!, input: UserInput): UserGQL!
+
+  #Event
+  # Beispiel: Event anlegen
+  createEvent(input: EventInput): EventGQL!
+  # Beispiel: Event löschen
+  deleteEvent(id: ID!): Boolean!
+  # Beispiel: Event aktualisieren
+  updateEvent(id: ID!, input: EventInput): EventGQL!
+}
+
+# Models
+type AddressGQL{
+  id: ID!
+  street: String!
+  no: Int!
+  city: String!
+  zipCode: Int!
+  country: String!
+}
+
+type EventGQL {
+  id: ID!
+  name: String!
+  description: String
+  #todo startdate und enddate
+  ticketCount: Int!   #todo ticketcount und sold in event in domain anpassen
+  ticketsSold: Int!  #todo
+  maxTicketsPerUser: Int!
+  artists: [UserGQL!]!
+  location: EventLocationGQL
+  blockList: [UserGQL!]!  #
+  # usw.
+}
+
+type EventLocationGQL {
+  id: ID!
+  address: AddressGQL!
+  name: String!
+  capacity: Int!
+}
+#EventCriteria als type nicht notwendig, da es nur für die Query-Methode verwendet wird
+
+type PaymentGQL{
+    id: ID!
+    paymentMethodId: ID!
+    amount: Int!
+    status: StatusGQL!
+}
+
+enum StatusGQL{
+  OPEN
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+enum PermissionGQL{
+  STAFF
+  ARTIST
+  CUSTOMER
+}
+
+type TicketGQL{
+  id: ID!
+  event: EventGQL!
+  user: UserGQL!
+  price: Float!
+  payment: PaymentGQL!
+}
+
+type UserGQL {
   id: ID!
   name: String!
   email: String!
   password: String!
+  permission: PermissionGQL!
+}
+
+
+# Input-Types
+input UserInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input EventInput {
+  name: String!
+  description: String
+  location: EventLocationInput!
+}
+
+input EventLocationInput {
+  address: AddressInput!
+  name: String!
+  capacity: Int!
+}
+input AddressInput{
+  street: String!
+  no: Int!
+  city: String!
+  zipCode: Int!
+  country: String!
+}
+
+input EventCriteriaInput {
+  # z.B. Filterkriterien
+  description: String
+  location: EventLocationInput
+  name: String
+  artists: [UserInput!]
 }

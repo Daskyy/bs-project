@@ -20,6 +20,16 @@ public class Address implements Model {
     public Address() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+
     public String getCity() {
         return city;
     }
