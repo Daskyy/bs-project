@@ -1,10 +1,8 @@
 package com.thws.eventmanager.domain.models;
 
-import jakarta.persistence.*;
-
 
 public class Address implements Model {
-    int id;
+    int id = -1;
     String street;
     int no;
     String city;
@@ -20,7 +18,6 @@ public class Address implements Model {
     }
 
     public Address() {
-
     }
 
     public int getId() {
@@ -71,5 +68,17 @@ public class Address implements Model {
 
     public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        if (this.id != -1) {
+            throw new IllegalArgumentException("ID is already set");
+        } else {
+            this.id = id;
+        }
     }
 }
