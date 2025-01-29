@@ -2,7 +2,7 @@ package com.thws.eventmanager.infrastructure.GraphQL.Models;
 
 import java.util.List;
 
-public class EventGQL {
+public class EventGQL implements GQLModel {
     private String id;
     private String name;
     private String description;

@@ -1,6 +1,6 @@
 package com.thws.eventmanager.infrastructure.GraphQL.Models;
 
-public class EventLocationGQL {
+public class EventLocationGQL implements GQLModel{
     private String id;
     private String address;
     private String name;

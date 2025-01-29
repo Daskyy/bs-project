@@ -1,6 +1,6 @@
 package com.thws.eventmanager.infrastructure.GraphQL.Models;
 
-public class UserGQL {
+public class UserGQL implements GQLModel{
     private String id;
     private String name;
     private String email;

@@ -1,6 +1,6 @@
 package com.thws.eventmanager.infrastructure.GraphQL.Models;
 
-public class PaymentGQL {
+public class PaymentGQL implements GQLModel{
     private String id;
     private String paymentMethodId;  // Tippfehler im Schema?
     private int amount;

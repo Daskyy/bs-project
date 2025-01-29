@@ -1,6 +1,6 @@
 package com.thws.eventmanager.infrastructure.GraphQL.Models;
 
-public class TicketGQL {
+public class TicketGQL implements GQLModel{
     private String id;
     private EventGQL event;
     private UserGQL user;
