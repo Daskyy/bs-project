@@ -6,8 +6,8 @@ import java.util.List;
 
 // TODO: Waitlist is falsch. eventId muss weg und nur Veweis auf ein Event
 public class Waitlist implements Model {
-    private final Event event;
-    private final List<User> users;
+    private Event event;
+    private List<User> users;
 
 
     public Waitlist(Event event) {
@@ -16,6 +16,10 @@ public class Waitlist implements Model {
         }
         this.event = event;
         this.users = new ArrayList<>();
+    }
+
+    public Waitlist(){
+
     }
 
     public Event getEvent() {
@@ -39,5 +43,13 @@ public class Waitlist implements Model {
 
     public User getFirstUser() {
         return users.isEmpty() ? null : users.getFirst();
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
     }
 }
