@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static java.util.stream.Collectors.toList;
 
-public class EventMutationResolver implements GraphQLMutationResolver {
+public class EventMutationResolver implements GraphQLMutationResolver, GraphQLQueryResolver {
 
     public EventGQL createEvent(EventInput input){
         EventLocationMapperGQL eventLocationMapperGQL = new EventLocationMapperGQL();
@@ -87,14 +87,14 @@ public class EventMutationResolver implements GraphQLMutationResolver {
         }
     }
 
-//    public boolean delete(String id){
-//        try(PersistenceManager persistenceManager = PersistenceManager.create()){
-//            EntityManager entityManager = persistenceManager.getEntityManager();
-//            EventHandler eventHandler = new EventHandler(entityManager);
-//            EventService eventService = new EventService(eventHandler);
-//            eventService.delete(Long.parseLong(id));
-//            return true;
-//        }
-//    }
+    public boolean deleteEvent(String id){
+        try(PersistenceManager persistenceManager = PersistenceManager.create()){
+            EntityManager entityManager = persistenceManager.getEntityManager();
+            EventHandler eventHandler = new EventHandler(entityManager);
+            EventService eventService = new EventService(eventHandler);
+            eventHandler.deleteById(Long.parseLong(id));
+            return true;
+        }
+    }
 
 }

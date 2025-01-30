@@ -15,7 +15,7 @@ import java.util.List;
 
 public class EventQueryResolver implements GraphQLQueryResolver {
 
-    public EventQueryResolver(){}
+
 
     public EventGQL event(String id){
         try(PersistenceManager persistenceManager = PersistenceManager.create())

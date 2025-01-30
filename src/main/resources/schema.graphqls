@@ -1,7 +1,4 @@
-schema {
-  query: Query
-  mutation: Mutation
-}
+
 
 type Query {
   # Beispiel: Liste von Events auslesen
@@ -27,7 +24,7 @@ type Mutation {
   # Beispiel: Event anlegen
   createEvent(input: EventInput): EventGQL!
   # Beispiel: Event löschen
-  #deleteEvent(id: ID!): Boolean!
+  deleteEvent(id: ID!): Boolean!
   # Beispiel: Event aktualisieren
   updateEvent(id: ID!, input: EventInput): EventGQL!
 }
@@ -35,7 +32,7 @@ type Mutation {
 # Models
 type AddressGQL{
   id: ID!
-  street: String!
+street: String!
   no: Int!
   city: String!
   zipCode: Int!
