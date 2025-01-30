@@ -5,8 +5,11 @@ import graphql.kickstart.servlet.GraphQLConfiguration;
 import graphql.kickstart.servlet.GraphQLHttpServlet;
 import graphql.kickstart.tools.SchemaParser;
 import graphql.schema.GraphQLSchema;
+import jakarta.servlet.annotation.WebServlet;
 import org.apache.commons.io.IOUtils;
 
+import java.io.IOException;
+@WebServlet(name= "EventHim", urlPatterns = {"/graphql/*"}, loadOnStartup = 1)
 public class Servlet extends GraphQLHttpServlet{
     public Servlet() {
         System.out.println("GraphQL Servlet starts");
@@ -23,8 +26,7 @@ public class Servlet extends GraphQLHttpServlet{
         try {
             // Lies dein schema.graphqls aus resources
             String schemaString = IOUtils.toString(
-                    this.getClass().getResourceAsStream("/schema.graphqls"),
-                    "UTF-8"
+                    this.getClass().getResourceAsStream("/schema.graphqls")
             );
 
             // Registriere sämtliche Resolver, die du hast

@@ -1,4 +1,4 @@
-package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper;
+package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain;
 
 import com.thws.eventmanager.domain.models.Permission;
 import com.thws.eventmanager.domain.models.Status;

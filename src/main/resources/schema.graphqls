@@ -17,17 +17,17 @@ type Query {
 type Mutation {
   #User
   # Beispiel: User anlegen
-  createUser(input: UserInput): UserGQL!
+ # createUser(input: UserInput): UserGQL!
   # Beispiel: User löschen
-  deleteUser(id: ID!): Boolean!
+ # deleteUser(id: ID!): Boolean!
   # Beispiel: User aktualisieren
-  updateUser(id: ID!, input: UserInput): UserGQL!
+ # updateUser(id: ID!, input: UserInput): UserGQL!
 
   #Event
   # Beispiel: Event anlegen
   createEvent(input: EventInput): EventGQL!
   # Beispiel: Event löschen
-  deleteEvent(id: ID!): Boolean!
+  #deleteEvent(id: ID!): Boolean!
   # Beispiel: Event aktualisieren
   updateEvent(id: ID!, input: EventInput): EventGQL!
 }
@@ -106,12 +106,19 @@ input UserInput {
   name: String!
   email: String!
   password: String!
+  permission: PermissionGQL!
 }
 
 input EventInput {
   name: String!
   description: String
+  ticketCount: Int!
+  ticketsSold: Int!
+  maxTicketsPerUser: Int!
+  artists: [UserInput!]!
   location: EventLocationInput!
+  blockList: [UserInput!]!
+
 }
 
 input EventLocationInput {

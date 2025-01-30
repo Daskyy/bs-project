@@ -1,4 +1,4 @@
-package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper;
+package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain;
 
 import com.thws.eventmanager.domain.models.Address;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.AddressGQL;

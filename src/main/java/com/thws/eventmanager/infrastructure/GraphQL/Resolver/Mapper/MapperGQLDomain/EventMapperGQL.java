@@ -1,4 +1,4 @@
-package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper;
+package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain;
 
 import com.thws.eventmanager.domain.models.Event;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.EventGQL;
@@ -6,7 +6,7 @@ import com.thws.eventmanager.infrastructure.GraphQL.Models.EventGQL;
 
 import java.util.stream.Collectors;
 
-public class EventMapperGQL extends Mapper<Event, EventGQL>{
+public class EventMapperGQL extends Mapper<Event, EventGQL> {
     EventLocationMapperGQL eventLocationMapperGQL = new EventLocationMapperGQL();
     UserMapperGQL userMapperGQL = new UserMapperGQL();
 
