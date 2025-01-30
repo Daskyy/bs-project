@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class WaitlistMapper extends Mapper<Waitlist, WaitlistEntity>{
-//    private final EventRetrievalOutputPort eventRepo;
     private final EventMapper eventMapper = new EventMapper();
     private final UserMapper userMapper = new UserMapper();
 
