@@ -12,6 +12,7 @@ import graphql.kickstart.tools.GraphQLQueryResolver;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
+import java.util.Optional;
 
 public class EventQueryResolver implements GraphQLQueryResolver {
 
@@ -22,7 +23,8 @@ public class EventQueryResolver implements GraphQLQueryResolver {
         {
         EntityManager entityManager = persistenceManager.getEntityManager();
         EventHandler e = new EventHandler(entityManager);
-        if(e.findById(Long.parseLong(id)).isPresent()){
+        Optional<EventEntity> optinoal = e.findById(Long.parseLong(id));
+        if(optinoal.isPresent()){
             EventEntity eventEntity =e.findById(Long.parseLong(id)).get();
             Event E= new EventMapper().toModel(eventEntity);
             EventGQL EGQL= new EventMapperGQL().toModelGQL(E);
@@ -43,6 +45,13 @@ public class EventQueryResolver implements GraphQLQueryResolver {
 //            eventSearchService.searchEvents()
 //        }
     return null;
+    }
+
+    public static void main(String[] args) {
+        EventQueryResolver e = new EventQueryResolver();
+        EventGQL ee= e.event("121");
+        System.out.println(ee.getName());
+
     }
 }
 
