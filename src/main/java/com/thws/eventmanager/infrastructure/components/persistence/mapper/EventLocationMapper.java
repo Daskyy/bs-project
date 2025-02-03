@@ -12,6 +12,7 @@ public class EventLocationMapper extends Mapper<EventLocation, EventLocationEnti
         eventLocation.setAddress(addressMapper.toModel(entity.getAddress()));
         eventLocation.setCapacity(entity.getCapacity());
         eventLocation.setName(entity.getName());
+        eventLocation.setId(entity.getId());
         return eventLocation;
     }
 
@@ -22,6 +23,11 @@ public class EventLocationMapper extends Mapper<EventLocation, EventLocationEnti
         entity.setAddress(addressMapper.toEntity(eventLocation.getAddress()));
         entity.setCapacity(eventLocation.getCapacity());
         entity.setName(eventLocation.getName());
+
+        if(eventLocation.getId() != -1) {
+            entity.setId(eventLocation.getId());
+        }
+
         return entity;
     }
 }

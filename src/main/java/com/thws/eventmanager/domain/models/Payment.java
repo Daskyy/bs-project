@@ -1,14 +1,33 @@
 package com.thws.eventmanager.domain.models;
 
 public class Payment implements Model {
-    private final String paymentMethodId;
-    private final long amount;
+    private String paymentMethodId;
+    private long amount;
     private Status status;
+    private long id = -1;
 
     public Payment(String paymentMethodId, long amount) {
         this.paymentMethodId = paymentMethodId;
         this.amount = amount;
         this.status = Status.OPEN;
+    }
+
+    public Payment() {}
+
+    public String getPaymentMethodId() {
+        return paymentMethodId;
+    }
+
+    public void setPaymentMethodId(String paymentMethodId) {
+        this.paymentMethodId = paymentMethodId;
+    }
+
+    public long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(long amount) {
+        this.amount = amount;
     }
 
     public Status getStatus() {
@@ -19,11 +38,15 @@ public class Payment implements Model {
         this.status = status;
     }
 
-    public String getPaymentMethodId() {
-        return paymentMethodId;
+    public long getId() {
+        return id;
     }
 
-    public long getAmount() {
-        return amount;
+    public void setId(Long id) {
+        if (this.id != -1) {
+            throw new IllegalArgumentException("ID is already set");
+        } else {
+            this.id = id;
+        }
     }
 }

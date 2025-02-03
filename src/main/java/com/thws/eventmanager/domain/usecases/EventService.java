@@ -20,10 +20,9 @@ public class EventService implements EventServiceInterface {
     }
 
     @Override
-    public Event createEvent(Event event) {
+    public EventEntity createEvent(Event event) {
         validateEvent(event);
-        persistenceOutport.save(eventMapper.toEntity(event));
-        return event;
+        return persistenceOutport.save(eventMapper.toEntity(event));
     }
 
     @Override

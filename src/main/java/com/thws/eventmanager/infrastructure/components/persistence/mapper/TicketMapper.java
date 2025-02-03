@@ -6,6 +6,7 @@ import com.thws.eventmanager.infrastructure.components.persistence.entities.Tick
 public class TicketMapper extends Mapper<Ticket, TicketEntity> {
     EventMapper eventMapper = new EventMapper();
     UserMapper userMapper = new UserMapper();
+    PaymentMapper paymentMapper = new PaymentMapper();
 
     @Override
     public Ticket toModel(TicketEntity entity){
@@ -14,7 +15,8 @@ public class TicketMapper extends Mapper<Ticket, TicketEntity> {
         ticket.setEvent(eventMapper.toModel(entity.getEvent()));
         ticket.setUser(userMapper.toModel(entity.getUser()));
         ticket.setPrice(entity.getPrice());
-        ticket.setPaymentStatus(entity.getPaymentStatus());
+        ticket.setPayment(paymentMapper.toModel(entity.getPayment()));
+        ticket.setId(entity.getId());
 
         return ticket;
     }
@@ -26,7 +28,10 @@ public class TicketMapper extends Mapper<Ticket, TicketEntity> {
         entity.setEvent(eventMapper.toEntity(ticket.getEvent()));
         entity.setUser(userMapper.toEntity(ticket.getUser()));
         entity.setPrice(ticket.getPrice());
-        entity.setPaymentStatus(ticket.getPaymentStatus());
+        entity.setPayment(paymentMapper.toEntity(ticket.getPayment()));
+//        if(ticket.getId() != -1) {
+//            entity.setId(ticket.getId());
+//        }
 
         return entity;
     }

@@ -9,13 +9,17 @@ public class UserEntity implements PersistenceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "name", nullable = false)
+
+    @Column(nullable = false)
     private String name;
-    @Column(name = "email", nullable = false)
+
+    @Column(nullable = false, unique = true)
     private String email;
-    @Column(name = "password", nullable = false)
+
+    @Column(nullable = false)
     private String password;
-    @Column(name = "permission", nullable = false)
+
+    @Column(nullable = false)
     private Permission permission;
 
     public UserEntity() {}
@@ -24,13 +28,6 @@ public class UserEntity implements PersistenceEntity {
             return email;
         }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -69,5 +66,14 @@ public class UserEntity implements PersistenceEntity {
                 ", password='" + password + '\'' +
                 ", permission=" + permission +
                 '}';
+    }
+
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
     }
 }

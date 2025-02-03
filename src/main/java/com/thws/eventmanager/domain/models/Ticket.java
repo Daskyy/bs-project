@@ -4,19 +4,28 @@ public class Ticket implements Model {
     private Event event;
     private User user;
     private double price;
-    private Status paymentStatus;
+    private Payment payment;
+    private long id = -1;
 
     public Ticket(Event event, User user, long price) {
         this.event = event;
         this.user = user;
         this.price = price;
-        this.paymentStatus = Status.OPEN;
+        this.payment = null;
     }
 
     public Ticket() {}
 
     public Event getEvent() {
         return event;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
     public void setEvent(Event event) {
@@ -39,11 +48,16 @@ public class Ticket implements Model {
         this.price = price;
     }
 
-    public Status getPaymentStatus() {
-        return paymentStatus;
+    public long getId() {
+        return id;
     }
 
-    public void setPaymentStatus(Status paymentStatus) {
-        this.paymentStatus = paymentStatus;
+    public void setId(Long id) {
+        if (this.id != -1) {
+            throw new IllegalArgumentException("ID is already set");
+        } else {
+            this.id = id;
+        }
     }
+
 }

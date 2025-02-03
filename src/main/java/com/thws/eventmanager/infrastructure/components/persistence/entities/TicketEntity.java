@@ -6,19 +6,26 @@ import com.thws.eventmanager.domain.models.Ticket;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name = "tickets")
 public class TicketEntity implements PersistenceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @OneToOne
+    private long id;
+
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "event_id", nullable = false)
     private EventEntity event;
-    @OneToOne
+
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
-    @Column(name = "price", nullable = false)
+
+    @Column(nullable = false)
     private double price;
-    @Column(name = "status", nullable = false)
-    private Status paymentStatus;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "payment_id")
+    private PaymentEntity payment;
 
     public TicketEntity() {}
 
@@ -46,11 +53,19 @@ public class TicketEntity implements PersistenceEntity {
         this.price = price;
     }
 
-    public Status getPaymentStatus() {
-        return paymentStatus;
+    public PaymentEntity getPayment() {
+        return payment;
     }
 
-    public void setPaymentStatus(Status paymentStatus) {
-        this.paymentStatus = paymentStatus;
+    public void setPayment(PaymentEntity payment) {
+        this.payment = payment;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

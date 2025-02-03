@@ -6,6 +6,7 @@ public class EventLocation implements Model {
     Address address;
     String name;
     int capacity;
+    long id = -1;
 
     public EventLocation(Address address, int capacity, String name) {
         this.address = address;
@@ -36,5 +37,17 @@ public class EventLocation implements Model {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        if (this.id != -1) {
+            throw new IllegalArgumentException("ID is already set");
+        } else {
+            this.id = id;
+        }
     }
 }

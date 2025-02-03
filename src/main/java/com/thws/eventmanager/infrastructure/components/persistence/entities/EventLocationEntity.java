@@ -3,16 +3,19 @@ package com.thws.eventmanager.infrastructure.components.persistence.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "eventlocations")
+@Table(name = "event_locations")
 public class EventLocationEntity implements PersistenceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.ALL)
     private AddressEntity addressEntity;
-    @Column(name = "name", nullable = false)
+
+    @Column(nullable = false)
     private String name;
-    @Column(name = "capacity", nullable = false)
+
+    @Column(nullable = false)
     private int capacity;
 
     public EventLocationEntity(){}; // default constructor
@@ -40,4 +43,24 @@ public class EventLocationEntity implements PersistenceEntity {
     public void setAddress(AddressEntity entity) {
         this.addressEntity = entity;
     }
+
+
+    @Override
+    public String toString() {
+        return "EventLocationEntity{" +
+                "id=" + id +
+                ", addressEntity=" + addressEntity +
+                ", name='" + name + '\'' +
+                ", capacity=" + capacity +
+                '}';
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
+    }
+
 }

@@ -8,15 +8,20 @@ public class AddressEntity implements PersistenceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "street", nullable = false)
+
+    @Column(nullable = false)
     private String street;
-    @Column(name = "no", nullable = false)
+
+    @Column(nullable = false)
     private int no;
-    @Column(name = "city", nullable = false)
+
+    @Column(nullable = false)
     private String city;
-    @Column(name = "zipCode", nullable = false)
+
+    @Column(nullable = false)
     private int zipCode;
-    @Column(name = "country", nullable = false)
+
+    @Column(nullable = false)
     private String country;
 
     public AddressEntity() {}
@@ -49,6 +54,10 @@ public class AddressEntity implements PersistenceEntity {
         return street;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void setStreet(String street) {
         this.street = street;
     }
@@ -59,5 +68,21 @@ public class AddressEntity implements PersistenceEntity {
 
     public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
+    }
+
+    @Override
+    public String toString() {
+        return "AddressEntity{" +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", no=" + no +
+                ", city='" + city + '\'' +
+                ", zipCode=" + zipCode +
+                ", country='" + country + '\'' +
+                '}';
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
