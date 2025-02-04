@@ -1,5 +1,6 @@
-package com.thws.eventmanager.domain.models;
+package com.thws.eventmanager.domain.models.UnitTest;
 
+import com.thws.eventmanager.domain.models.EventLocation;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

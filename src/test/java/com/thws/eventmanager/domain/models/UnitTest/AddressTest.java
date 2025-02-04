@@ -1,7 +1,6 @@
-package com.thws.eventmanager.domain.models;
+package com.thws.eventmanager.domain.models.UnitTest;
 
-import org.checkerframework.checker.units.qual.A;
-import org.junit.jupiter.api.BeforeEach;
+import com.thws.eventmanager.domain.models.Address;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
