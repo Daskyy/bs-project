@@ -1,4 +1,4 @@
-package com.thws.eventmanager.Unit.paymentgateway;
+package com.thws.eventmanager.Integration.Payment.paymentgateway;
 
 import com.thws.eventmanager.domain.usecases.PaymentUseCaseService;
 import com.thws.eventmanager.domain.models.Payment;
