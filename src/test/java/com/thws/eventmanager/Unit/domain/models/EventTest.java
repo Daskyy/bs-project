@@ -17,6 +17,7 @@ class EventTest {
         event = new Event();
     }
 
+    //event id tests
     @Test
     void setEventId() {
         event.setId(100L);
@@ -28,6 +29,7 @@ class EventTest {
         assertThrows(IllegalArgumentException.class, () -> {event.setId(200L);});
     }
 
+    //adding artist tests
     @Test
     void addArtistWithPermission() {
         User artist = new User("a", "", "", Permission.ARTIST);
@@ -51,6 +53,7 @@ class EventTest {
         assertThrows(IllegalArgumentException.class, () -> {event.addArtist(user);});
     }
 
+    //removing artist tests
     @Test
     void removeArtist() {
         User artist = new User("a", "", "", Permission.ARTIST);
@@ -69,6 +72,7 @@ class EventTest {
         assertThrows(IllegalArgumentException.class, () -> {event.removeArtist(artist);});
     }
 
+    //blocking user tests
     @Test
     void blockUser() {
         User user = new User("", "", "", Permission.CUSTOMER);
@@ -87,6 +91,7 @@ class EventTest {
         assertThrows(IllegalArgumentException.class, () -> {event.blockUser(user);});
     }
 
+    //unblocking user tests
     @Test
     void unblockUser() {
         User user = new User("", "", "", Permission.CUSTOMER);
@@ -105,6 +110,7 @@ class EventTest {
         assertThrows(IllegalArgumentException.class, () -> {event.unblockUser(user);});
     }
 
+    //checking if user is blocked tests
     @Test
     void isBlocked() {
         User user = new User("", "", "", Permission.CUSTOMER);

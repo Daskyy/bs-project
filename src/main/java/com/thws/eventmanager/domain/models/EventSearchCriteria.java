@@ -4,12 +4,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class EventSearchCriteria implements Model {
-    private final LocalDateTime startDate;
-    private final LocalDateTime endDate;
-    private final String description;
-    private final EventLocation location;
-    private final String name;
-    private final List<User> artists;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
+    private String description;
+    private EventLocation location;
+    private String name;
+    private List<User> artists;
 
 
 
@@ -20,6 +20,9 @@ public class EventSearchCriteria implements Model {
         this.location = location;
         this.name=name;
         this.artists= artists;
+    }
+    public EventSearchCriteria(){
+
     }
 
     public LocalDateTime getStartDate() {
@@ -42,6 +45,30 @@ public class EventSearchCriteria implements Model {
     }
     public List<User> getArtists(){
         return this.artists;
+    }
+
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setLocation(EventLocation location) {
+        this.location = location;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setArtists(List<User> artists) {
+        this.artists = artists;
     }
 }
 
