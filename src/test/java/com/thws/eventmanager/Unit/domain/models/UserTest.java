@@ -1,4 +1,4 @@
-package com.thws.eventmanager.domain.models.UnitTest;
+package com.thws.eventmanager.Unit.domain.models;
 
 import com.thws.eventmanager.domain.models.User;
 import org.junit.jupiter.api.Test;

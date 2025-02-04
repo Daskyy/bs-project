@@ -1,4 +1,4 @@
-package com.thws.eventmanager.Event;
+package com.thws.eventmanager.Unit.Event;
 
 import com.thws.eventmanager.domain.models.Event;
 import org.junit.jupiter.api.Test;
