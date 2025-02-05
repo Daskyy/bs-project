@@ -16,6 +16,7 @@ class TicketTest {
     void setIdAgain(){
         Ticket ticket = new Ticket();
         ticket.setId(100L);
-        assertThrows(IllegalArgumentException.class, ()->{ticket.setId(200L);});
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()->{ticket.setId(200L);});
+        assertEquals("ID is already set", exception.getMessage());
     }
 }

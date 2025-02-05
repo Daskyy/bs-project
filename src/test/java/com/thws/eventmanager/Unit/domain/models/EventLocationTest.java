@@ -16,6 +16,7 @@ class EventLocationTest {
     void setIdAgain(){
         EventLocation eventLocation = new EventLocation();
         eventLocation.setId(100L);
-        assertThrows(IllegalArgumentException.class, ()->{eventLocation.setId(200L);});
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()->{eventLocation.setId(200L);});
+        assertEquals("ID is already set", exception.getMessage());
     }
 }

@@ -16,6 +16,7 @@ class PaymentTest {
     void setIdAgain(){
         Payment payment = new Payment();
         payment.setId(100L);
-        assertThrows(IllegalArgumentException.class, ()->{payment.setId(200L);});
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()->{payment.setId(200L);});
+        assertEquals("ID is already set", exception.getMessage());
     }
 }

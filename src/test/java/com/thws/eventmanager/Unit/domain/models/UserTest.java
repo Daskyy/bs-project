@@ -16,6 +16,7 @@ class UserTest {
     void setIdAgain(){
         User user = new User();
         user.setId(100L);
-        assertThrows(IllegalArgumentException.class, ()->{user.setId(200L);});
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, ()->{user.setId(200L);});
+        assertEquals("ID is already set", exception.getMessage());
     }
 }

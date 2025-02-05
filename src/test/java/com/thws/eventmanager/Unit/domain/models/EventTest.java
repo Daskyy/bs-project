@@ -26,7 +26,8 @@ class EventTest {
     @Test
     void setEventIdAgain() {
         event.setId(100L);
-        assertThrows(IllegalArgumentException.class, () -> {event.setId(200L);});
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {event.setId(200L);});
+        assertEquals("ID is already set", exception.getMessage());
     }
 
     //adding artist tests
@@ -40,17 +41,20 @@ class EventTest {
     void addArtistAgain() {
         User artist = new User("a", "", "", Permission.ARTIST);
         event.addArtist(artist);
-        assertThrows(InvalidEventException.class, () -> {event.addArtist(artist);});
+        InvalidEventException exception = assertThrows(InvalidEventException.class, () -> {event.addArtist(artist);});
+        assertEquals("This artist is already part of the event.", exception.getMessage());
     }
     @Test
     void addArtistWithoutPermission() {
         User user = new User("a", "", "", Permission.CUSTOMER);
-        assertThrows(InvalidEventException.class, () -> {event.addArtist(user);});
+        InvalidEventException exception = assertThrows(InvalidEventException.class, () -> {event.addArtist(user);});
+        assertEquals("Only users with ARTIST permission can be added as artists.", exception.getMessage());
     }
     @Test
     void addNullArtist() {
         User user = null;
-        assertThrows(IllegalArgumentException.class, () -> {event.addArtist(user);});
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {event.addArtist(user);});
+        assertEquals("Artist cannot be null.", exception.getMessage());
     }
 
     //removing artist tests
@@ -64,12 +68,14 @@ class EventTest {
     @Test
     void removeNonExistentArtist() {
         User artist = new User("a", "", "", Permission.ARTIST);
-        assertThrows(InvalidEventException.class, () -> {event.removeArtist(artist);});
+        InvalidEventException exception = assertThrows(InvalidEventException.class, () -> {event.removeArtist(artist);});
+        assertEquals("The artist is not part of this event.", exception.getMessage());
     }
     @Test
     void removeNullArtist() {
         User artist = null;
-        assertThrows(IllegalArgumentException.class, () -> {event.removeArtist(artist);});
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {event.removeArtist(artist);});
+        assertEquals("Artist cannot be null.", exception.getMessage());
     }
 
     //blocking user tests
@@ -83,12 +89,14 @@ class EventTest {
     void blockUserAgain() {
         User user = new User("", "", "", Permission.CUSTOMER);
         event.blockUser(user);
-        assertThrows(InvalidEventException.class, () -> {event.blockUser(user);});
+        InvalidEventException exception = assertThrows(InvalidEventException.class, () -> {event.blockUser(user);});
+        assertEquals("User is already blocked for this event.", exception.getMessage());
     }
     @Test
     void blockNullUser() {
         User user = null;
-        assertThrows(IllegalArgumentException.class, () -> {event.blockUser(user);});
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {event.blockUser(user);});
+        assertEquals("User cannot be null.", exception.getMessage());
     }
 
     //unblocking user tests
@@ -102,12 +110,14 @@ class EventTest {
     @Test
     void unblockNonBlockedUser() {
         User user = new User("", "", "", Permission.CUSTOMER);
-        assertThrows(InvalidEventException.class, () -> {event.unblockUser(user);});
+        InvalidEventException exception = assertThrows(InvalidEventException.class, () -> {event.unblockUser(user);});
+        assertEquals("User is not blocked for this event.", exception.getMessage());
     }
     @Test
     void unblockNullUser() {
         User user = null;
-        assertThrows(IllegalArgumentException.class, () -> {event.unblockUser(user);});
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {event.unblockUser(user);});
+        assertEquals("User cannot be null.", exception.getMessage());
     }
 
     //checking if user is blocked tests
@@ -120,7 +130,7 @@ class EventTest {
     @Test
     void isBlockedNullUser() {
         User user = null;
-        assertThrows(IllegalArgumentException.class, () -> {event.blockUser(user);});
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {event.blockUser(user);});
+        assertEquals("User cannot be null.", exception.getMessage());
     }
-
 }
