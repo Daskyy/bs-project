@@ -18,7 +18,7 @@ class AddressMapperTest {
         entity.setNo(42);
         entity.setZipCode(10115);
         entity.setStreet("Main Street");
-//        entity.setId(1);
+        entity.setId(1);
 
         Address address = addressMapper.toModel(entity);
 
