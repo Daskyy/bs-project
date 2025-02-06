@@ -22,4 +22,44 @@ class AddressTest {
 
         assertEquals("ID is already set", exception.getMessage());
     }
+
+    @Test
+    void equalsTest() {
+        Address address1 = new Address("Berlin", "Germany", 42, "Main Street", 10115);
+        address1.setId(1);
+        Address address2 = new Address("Berlin", "Germany", 42, "Main Street", 10115);
+        address2.setId(1);
+
+        assertEquals(address1, address2);
+    }
+
+    @Test
+    void notEqualsTest() {
+        Address address1 = new Address("Berlin", "Germany", 42, "Main Street", 10115);
+        address1.setId(1);
+        Address address2 = new Address("Berlin", "Germany", 42, "Main Street", 10115);
+        address2.setId(2); //different id
+
+        assertNotEquals(address1, address2);
+    }
+
+    @Test
+    void equalHashCodeTest() {
+        Address address1 = new Address("Berlin", "Germany", 42, "Main Street", 10115);
+        address1.setId(1);
+        Address address2 = new Address("Berlin", "Germany", 42, "Main Street", 10115);
+        address2.setId(1);
+
+        assertEquals(address1.hashCode(), address2.hashCode());
+    }
+
+    @Test
+    void notEqualsHashCodeTest() {
+        Address address1 = new Address("Berlin", "Germany", 42, "Main Street", 10115);
+        address1.setId(1);
+        Address address2 = new Address("Paris", "France", 23, "Rue de Rivoli", 75001);
+        address2.setId(2); //different id
+
+        assertNotEquals(address1.hashCode(), address2.hashCode());
+    }
 }

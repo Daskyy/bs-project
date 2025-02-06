@@ -1,6 +1,5 @@
-package com.thws.eventmanager.Unit.Event;
+package com.thws.eventmanager.Unit.Infrastructure.persistence.entities;
 
-import com.thws.eventmanager.domain.models.Event;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
