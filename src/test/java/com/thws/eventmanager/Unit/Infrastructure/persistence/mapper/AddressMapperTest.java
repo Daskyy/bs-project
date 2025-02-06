@@ -8,17 +8,19 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AddressMapperTest {
+    private final AddressMapper addressMapper = new AddressMapper();
+
     @Test
-    void toModel_ShouldMapCorrectly() {
+    void toModelTest() {
         AddressEntity entity = new AddressEntity();
         entity.setCity("Berlin");
         entity.setCountry("Germany");
         entity.setNo(42);
         entity.setZipCode(10115);
         entity.setStreet("Main Street");
-        entity.setId(1);
+//        entity.setId(1);
 
-        Address address = new AddressMapper().toModel(entity);
+        Address address = addressMapper.toModel(entity);
 
         assertEquals("Berlin", address.getCity());
         assertEquals("Germany", address.getCountry());
@@ -37,7 +39,7 @@ class AddressMapperTest {
         model.setZipCode(75001);
         model.setStreet("Rue de Rivoli");
 
-        AddressEntity entity = new AddressMapper().toEntity(model);
+        AddressEntity entity = addressMapper.toEntity(model);
 
         assertEquals("Paris", entity.getCity());
         assertEquals("France", entity.getCountry());
