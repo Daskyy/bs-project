@@ -8,15 +8,15 @@ import com.thws.eventmanager.infrastructure.GraphQL.Models.StatusGQL;
 public class EnumMapper {
     //diese Klasse Mappt PermisseGQL<->Permission und StatusGQL<->Status
 
-    //Permission
-    public Permission toModel(PermissionGQL permissionGQL){
-        if(permissionGQL == null) return null;
-        return Permission.valueOf(permissionGQL.name());
-    }
-    public PermissionGQL toModelGQL(Permission permission){
-        if(permission == null) return null;
-        return PermissionGQL.valueOf(permission.name());
-    }
+//    //Permission
+//    public Permission toModel(PermissionGQL permissionGQL){
+//        if(permissionGQL == null) return null;
+//        return Permission.valueOf(permissionGQL.name());
+//    }
+//    public PermissionGQL toModelGQL(Permission permission){
+//        if(permission == null) return null;
+//        return PermissionGQL.valueOf(permission.name());
+//    }
 
     //Status
     public Status toModel(StatusGQL statusGQL){

@@ -13,8 +13,7 @@ type Query {
 # Mutations
 type Mutation {
   #User
-  # Beispiel: User anlegen
- # createUser(input: UserInput): UserGQL!
+  createUser(input: UserInput): UserGQL!
   # Beispiel: User löschen
  # deleteUser(id: ID!): Boolean!
   # Beispiel: User aktualisieren

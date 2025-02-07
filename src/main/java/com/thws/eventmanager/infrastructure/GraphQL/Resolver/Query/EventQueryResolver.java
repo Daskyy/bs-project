@@ -23,8 +23,8 @@ public class EventQueryResolver implements GraphQLQueryResolver {
         {
         EntityManager entityManager = persistenceManager.getEntityManager();
         EventHandler e = new EventHandler(entityManager);
-        Optional<EventEntity> optinoal = e.findById(Long.parseLong(id));
-        if(optinoal.isPresent()){
+        Optional<EventEntity> optional = e.findById(Long.parseLong(id));
+        if(optional.isPresent()){
             EventEntity eventEntity =e.findById(Long.parseLong(id)).get();
             Event E= new EventMapper().toModel(eventEntity);
             EventGQL EGQL= new EventMapperGQL().toModelGQL(E);

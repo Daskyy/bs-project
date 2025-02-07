@@ -1,10 +1,11 @@
 package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain;
 
 import com.thws.eventmanager.domain.models.User;
+import com.thws.eventmanager.infrastructure.GraphQL.Models.PermissionGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.UserGQL;
 
 public class UserMapperGQL extends Mapper<User, UserGQL> {
-    EnumMapper enumMapper = new EnumMapper();
+//    EnumMapper enumMapper = new EnumMapper();
     @Override
     public User toModel(UserGQL userGQL) {
         if(userGQL == null) return null;
@@ -12,7 +13,7 @@ public class UserMapperGQL extends Mapper<User, UserGQL> {
         u.setName(userGQL.getName());
         u.setEmail(userGQL.getEmail());
         u.setPassword(userGQL.getPassword());
-        u.setPermission(enumMapper.toModel(userGQL.getPermission()));
+        u.setPermission(userGQL.getPermission().to());
         return u;
     }
 
@@ -24,7 +25,7 @@ public class UserMapperGQL extends Mapper<User, UserGQL> {
         gql.setName(user.getName());
         gql.setEmail(user.getEmail());
         gql.setPassword(user.getPassword());
-        gql.setPermission(enumMapper.toModelGQL(user.getPermission()));
+        gql.setPermission(PermissionGQL.from(user.getPermission()));
         return gql;
     }
 }
