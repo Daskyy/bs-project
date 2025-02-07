@@ -18,6 +18,7 @@ import com.thws.eventmanager.infrastructure.components.persistence.adapter.Event
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventMapper;
 import graphql.kickstart.tools.GraphQLMutationResolver;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import jakarta.persistence.EntityManager;
 import org.jetbrains.annotations.NotNull;
 
