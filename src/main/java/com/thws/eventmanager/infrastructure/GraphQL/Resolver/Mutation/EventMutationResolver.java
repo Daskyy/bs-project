@@ -34,9 +34,8 @@ public class EventMutationResolver implements GraphQLMutationResolver, GraphQLQu
     UserInputMapper userInputMapper = new UserInputMapper();
     EventLocationInputMapper EventLocationInputMapper = new EventLocationInputMapper();
     EventInputMapper EventInputMapper = new EventInputMapper();
+
     public EventGQL createEvent(EventInput input){
-
-
         Event event= eventMapperGQL.toModel(EventInputMapper.toModelGQL(input));
 
         try(EventHandler eventHandler = new EventHandler()){

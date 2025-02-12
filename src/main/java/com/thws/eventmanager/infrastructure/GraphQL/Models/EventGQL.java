@@ -18,6 +18,7 @@ public class EventGQL implements GQLModel {
 
     public EventGQL() {}
 
+
     public String getId() {
         return id;
     }
