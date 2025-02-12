@@ -39,7 +39,7 @@ public class UserMutationResolver implements GraphQLMutationResolver {
             if (input.getName() != null) user.setName(input.getName());
             if (input.getEmail() != null) user.setEmail(input.getEmail());
             if (input.getPassword() != null) user.setPassword(input.getPassword());
-            user.setPermission(input.getPermission().to());
+            if (input.getPermission() != null) user.setPermission(input.getPermission().to());
 
             UserEntity userEntity = userService.createUser(user);
             user = userMapper.toModel(userEntity);
@@ -47,11 +47,13 @@ public class UserMutationResolver implements GraphQLMutationResolver {
         }
     }
 
-    public boolean deleteUser(String id) {
+    public UserGQL deleteUser(String id) {
         try (UserHandler userHandler = new UserHandler()) {
             UserService userService = new UserService();
+            UserEntity userEntity = userHandler.findById(Long.parseLong(id)).orElseThrow(); // TODO: what to do here
             userHandler.deleteById(Long.parseLong(id));
-            return true;
+
+            return userMapperGQL.toModelGQL(userMapper.toModel(userEntity));
         }
     }
 }
