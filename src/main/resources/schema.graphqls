@@ -12,6 +12,9 @@ type Query {
 
 # Mutations
 type Mutation {
+
+  purchaseTicket(user: UserInput!, event: EventInput!, ticketamount: Int!,paymentmethodId: String!, voucher:String!): TicketGQL!
+
   #User
   # Beispiel: User anlegen
  # createUser(input: UserInput): UserGQL!
@@ -29,10 +32,23 @@ type Mutation {
   updateEvent(id: ID!, input: EventInput): EventGQL!
 }
 
+
 # Models
+type ticketGQL{
+ 
+}
+
+type paymentGQL{
+  paymentMethodID: String!
+  amount: Int!
+  status: StatusGQL!
+  paymentIntentID: String!
+  id:ID!
+}
+
 type AddressGQL{
   id: ID!
-street: String!
+  street: String!
   no: Int!
   city: String!
   zipCode: Int!
@@ -145,3 +161,4 @@ input EventCriteriaInput {
   name: String
   artists: [UserInput!]
 }
+

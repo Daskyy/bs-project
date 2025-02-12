@@ -30,6 +30,7 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCaseInterf
             payment.setStatus(Status.FAILED);
             throw new IllegalArgumentException("Not enough tickets left");
 
+
         }
 
         payment.setPaymentMethodId("pm_card_visa"); // THIS LINE IS ONLY FOR SHOWCASING. THIS SHOULD INSTEAD BE FILLED BY STRIPE UI AUTOMATICALLY
