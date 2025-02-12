@@ -17,7 +17,7 @@ public class EventLocationInputMapperTest {
         AddressInput addressInput = new AddressInput();
         addressInput.setStreet("Main St");
         addressInput.setNo(101);
-        addressInput.setCity("Springfield");
+        addressInput.setCity("Springfield"); // they're eating the dogs!
         addressInput.setZipCode(12345);
         addressInput.setCountry("USA");
 
@@ -29,7 +29,7 @@ public class EventLocationInputMapperTest {
         EventInput eventInput = new EventInput();
         eventInput.setLocation(eventLocationInput);
 
-        EventLocationGQL eventLocationGQL = mapper.toModelGQL(eventInput);
+        EventLocationGQL eventLocationGQL = mapper.toModelGQL(eventLocationInput);
 
         assertNotNull(eventLocationGQL);
         assertEquals("Concert Hall", eventLocationGQL.getName());
