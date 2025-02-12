@@ -1,4 +1,4 @@
-package com.thws.eventmanager.database;
+package com.thws.eventmanager.debug;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

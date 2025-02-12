@@ -39,19 +39,18 @@ public class EventMutationResolver implements GraphQLMutationResolver, GraphQLQu
     public EventGQL createEvent(EventInput input){
         Event event= eventMapperGQL.toModel(EventInputMapper.toModelGQL(input));
 
-        try(EventHandler eventHandler = new EventHandler()){
-            EventService eventService = new EventService(eventHandler);
+        EventService eventService = new EventService();
 
-            EventEntity eventEntity= eventService.createEvent(event);
-            event= eventMapper.toModel(eventEntity);
-            return eventMapperGQL.toModelGQL(event);
-        }
+        EventEntity eventEntity= eventService.createEvent(event);
+        event= eventMapper.toModel(eventEntity);
+        return eventMapperGQL.toModelGQL(event);
+
     }
 
     public EventGQL updateEvent(String id, EventInput input){
 
         try(EventHandler eventHandler = new EventHandler()){
-            EventService eventService = new EventService(eventHandler);
+            EventService eventService = new EventService();
 
             EventEntity loaded= eventHandler.findById(Long.parseLong(id)).orElseThrow(); //todo wie damit umgehen
 
@@ -71,7 +70,7 @@ public class EventMutationResolver implements GraphQLMutationResolver, GraphQLQu
 
     public boolean deleteEvent(String id){
         try(EventHandler eventHandler = new EventHandler()){
-            EventService eventService = new EventService(eventHandler);
+            EventService eventService = new EventService();
             eventHandler.deleteById(Long.parseLong(id));
             return true;
         }

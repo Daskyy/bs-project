@@ -1,7 +1,6 @@
 
-package com.thws.eventmanager.database;
+package com.thws.eventmanager.debug;
 
-import com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.UserHandler;
 
 public class GetAllUsers {

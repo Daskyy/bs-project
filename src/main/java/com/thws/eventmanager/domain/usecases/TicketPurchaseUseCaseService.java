@@ -2,17 +2,15 @@ package com.thws.eventmanager.domain.usecases;
 
 import com.stripe.model.Refund;
 import com.thws.eventmanager.domain.models.*;
-import com.thws.eventmanager.domain.port.in.TicketPurchaseUseCase;
+import com.thws.eventmanager.domain.port.in.TicketPurchaseUseCaseInterface;
 import com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
-import com.thws.eventmanager.infrastructure.components.persistence.adapter.PaymentHandler;
-import com.thws.eventmanager.infrastructure.components.persistence.adapter.TicketHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.PaymentMapper;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.TicketMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TicketPurchaseUseCaseService implements TicketPurchaseUseCase {
+public class TicketPurchaseUseCaseService implements TicketPurchaseUseCaseInterface {
     PaymentUseCaseService stripe = new PaymentUseCaseService(new StripePaymentService());
     private static final Logger log = LoggerFactory.getLogger(TicketPurchaseUseCaseService.class);
     private final TicketService ticketService = new TicketService();
@@ -21,7 +19,7 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCase {
     private final PaymentService paymentService = new PaymentService();
 
     @Override
-    public Payment makePayment(User user, Event event, int ticketAmount, String paymentMethodId) {
+    public Payment makePayment(User user, Event event, int ticketAmount, String paymentMethodId, String voucherCode) {
         Payment payment = new Payment(null, event.getTicketPrice() * ticketAmount);
 
         /*
@@ -36,7 +34,7 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCase {
 
         payment.setPaymentMethodId("pm_card_visa"); // THIS LINE IS ONLY FOR SHOWCASING. THIS SHOULD INSTEAD BE FILLED BY STRIPE UI AUTOMATICALLY
 
-        stripe.processPayment(payment);
+        stripe.processPayment(payment, voucherCode);
 
         //PaymentService paymentService = new PaymentService();
         //paymentService.createPayment(payment);
@@ -44,16 +42,19 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCase {
     }
 
     @Override
+    public Payment makePayment(User user, Event event, int ticketAmount, String paymentMethodId) {
+        return makePayment(user, event, ticketAmount, paymentMethodId, null);
+    }
+
+    @Override
     public Ticket createTicket(User user, Event event, Payment payment) {
         Ticket ticket = new Ticket(event, user, payment);
         ticket.setPayment(payment);
         if(payment.getStatus() == Status.COMPLETED) {
-            try(EventHandler eventHandler = new EventHandler()) {
-                EventService eventService = new EventService(eventHandler);
-                event.setTicketsSold(event.getTicketsSold() + 1);
-                eventService.createEvent(event);
-                ticketService.createTicket(ticket);
-            }
+            EventService eventService = new EventService();
+            event.setTicketsSold(event.getTicketsSold() + 1);
+            eventService.createEvent(event);
+            ticketService.createTicket(ticket);
         }
         return ticket;
     }
@@ -71,12 +72,10 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCase {
             ticket.getEvent().setTicketsSold(ticket.getEvent().getTicketsSold() - 1); // Reduce ticket count
             log.info("Ticket for event {} refunded successfully", ticket.getEvent().getName());
 
-            try(EventHandler eventHandler = new EventHandler()){
-                EventService eventService = new EventService(eventHandler);
-                paymentService.createPayment(payment);
-                ticketService.deleteTicket(ticket);
-                eventService.createEvent(ticket.getEvent());
-            }
+            EventService eventService = new EventService();
+            paymentService.createPayment(payment);
+            ticketService.deleteTicket(ticket);
+            eventService.createEvent(ticket.getEvent());
             return true;
         }
         return false;
