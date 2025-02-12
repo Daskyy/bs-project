@@ -1,3 +1,4 @@
+/*
 package com.thws.eventmanager.database;
 
 import com.github.javafaker.Faker;
@@ -48,6 +49,7 @@ public class Create {
             UserMapper userMapper = new UserMapper();
 
 
+*/
 /*            // Create event location
             EventLocation eventLocation = new EventLocation();
 
@@ -63,7 +65,8 @@ public class Create {
             eventLocation.setName(faker.company().name());
             eventLocation.setCapacity(faker.number().numberBetween(10, 1000));
             EventLocationEntity eventLocationEntity = eventLocationHandler.save(eventLocationMapper.toEntity(eventLocation));
-            System.out.println(eventLocationEntity);*/
+            System.out.println(eventLocationEntity);*//*
+
 
 
             // Create event
@@ -110,3 +113,4 @@ public class Create {
         }
     }
 }
+*/

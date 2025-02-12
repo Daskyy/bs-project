@@ -1,6 +1,8 @@
 package com.thws.eventmanager.domain.models;
 
 
+import java.util.Objects;
+
 public class Address implements Model {
     int id = -1;
     String street;
@@ -72,4 +74,30 @@ public class Address implements Model {
             this.id = id;
         }
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Address other = (Address) obj;
+
+        //if id's have been assigned
+        if (this.id != -1 && other.id != -1) {
+            return this.id == other.id;
+        }
+
+        //If any ID is not assigned, compare the other attributes
+        return id == other.id &&
+               no == other.no &&
+               zipCode == other.zipCode &&
+               Objects.equals(street, other.street) &&
+               Objects.equals(city, other.city) &&
+               Objects.equals(country, other.country);
+    }
+
+    @Override
+    public int hashCode() {
+        // If the id is not -1, include it in the hash
+        return Objects.hash(id == -1 ? 0 : id, street, no, city, zipCode, country);
+    }
+
 }

@@ -8,20 +8,14 @@ import com.thws.eventmanager.infrastructure.GraphQL.Models.EventLocationGQL;
 
 public class EventLocationInputMapper {
 
-    public static  EventLocationGQL toModelGQL(EventInput eventInput) {
-        EventLocationInput eLI = eventInput.getLocation();
-        EventLocationGQL eLGQL = new EventLocationGQL();
-        eLGQL.setName(eLI.getName());
-        eLGQL.setCapacity(eLI.getCapacity());
-        AddressGQL addressGQL = new AddressGQL();
-        addressGQL.setStreet(eLI.getAddress().getStreet());
-        addressGQL.setNo(eLI.getAddress().getNo());
-        addressGQL.setCity(eLI.getAddress().getCity());
-        addressGQL.setZipCode(eLI.getAddress().getZipCode());
-        addressGQL.setCountry(eLI.getAddress().getCountry());
+    public  EventLocationGQL toModelGQL(EventLocationInput input) {
+        AddressInputMapper addressInputMapper = new AddressInputMapper();
+        if(input == null) return null;
+        EventLocationGQL gql = new EventLocationGQL();
+        gql.setAddress(addressInputMapper.toModelGQL(input.getAddress()));
+        gql.setName(input.getName());
+        gql.setCapacity(input.getCapacity());
 
-
-        eLGQL.setAddress(addressGQL);
-        return eLGQL;
+        return gql;
     }
 }

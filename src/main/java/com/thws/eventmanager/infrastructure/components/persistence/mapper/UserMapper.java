@@ -23,9 +23,9 @@ public class UserMapper extends Mapper<User, UserEntity>{
        entity.setPassword(user.getPassword());
        entity.setPermission(user.getPermission());
 
-//        if(user.getId() != -1) {
-//            entity.setId(user.getId());
-//        }
+        if(user.getId() != -1) {
+            entity.setId(user.getId());
+        }
 
        return entity;
     }

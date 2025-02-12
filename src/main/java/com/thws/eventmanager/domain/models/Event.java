@@ -20,8 +20,9 @@ public class Event implements Model {
     private List<User> artists;
     private EventLocation location;
     private List<User> blockList; // List of User IDs that are blocked from buying tickets for this event
+    private long ticketPrice;
 
-    public Event(String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, List<User> artists, EventLocation location,List<User> blockList, LocalDateTime startDate, LocalDateTime endDate) {
+    public Event(String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, List<User> artists, EventLocation location,List<User> blockList, LocalDateTime startDate, LocalDateTime endDate, int ticketPrice) {
         this.name = name;
         this.description = description;
         this.ticketCount = ticketCount;
@@ -32,12 +33,20 @@ public class Event implements Model {
         this.blockList= blockList;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.ticketPrice = ticketPrice;
     }
     public Event(){
         this.artists= new ArrayList<>();
         this.blockList= new ArrayList<>();
     }
 
+    public long getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(long ticketPrice) {
+        this.ticketPrice = ticketPrice;
+    }
 
     public EventLocation getLocation() {
         return location;
@@ -192,5 +201,9 @@ public class Event implements Model {
         } else {
             this.id = id;
         }
+    }
+
+    public int getTicketsLeft() {
+        return (int) (ticketCount - ticketsSold);
     }
 }

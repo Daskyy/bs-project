@@ -1,10 +1,13 @@
 package com.thws.eventmanager.domain.models;
 
+import java.util.concurrent.Future;
+
 public class Payment implements Model {
     private String paymentMethodId;
     private long amount;
     private Status status;
     private long id = -1;
+    private String paymentIntentId;
 
     public Payment(String paymentMethodId, long amount) {
         this.paymentMethodId = paymentMethodId;
@@ -13,6 +16,14 @@ public class Payment implements Model {
     }
 
     public Payment() {}
+
+    public String getPaymentIntentId() {
+        return paymentIntentId;
+    }
+
+    public void setPaymentIntentId(String paymentIntentId) {
+        this.paymentIntentId = paymentIntentId;
+    }
 
     public String getPaymentMethodId() {
         return paymentMethodId;

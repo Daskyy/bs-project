@@ -6,14 +6,18 @@ public class EventGQL implements GQLModel {
     private String id;
     private String name;
     private String description;
+    private String startDate;
+    private String endDate;
     private int ticketCount;
     private int ticketsSold;
     private int maxTicketsPerUser;
     private List<UserGQL> artists;
     private EventLocationGQL location;
     private List<UserGQL> blockList;
+    private long ticketPrice;
 
     public EventGQL() {}
+
 
     public String getId() {
         return id;
@@ -33,6 +37,22 @@ public class EventGQL implements GQLModel {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
     public void setDescription(String description) {
@@ -85,5 +105,13 @@ public class EventGQL implements GQLModel {
 
     public void setBlockList(List<UserGQL> blockList) {
         this.blockList = blockList;
+    }
+
+    public long getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(long ticketPrice) {
+        this.ticketPrice = ticketPrice;
     }
 }

@@ -4,5 +4,6 @@ public enum StatusGQL {
     OPEN,
     COMPLETED,
     FAILED,
-    CANCELLED
+    CANCELLED,
+    REFUNDED
 }

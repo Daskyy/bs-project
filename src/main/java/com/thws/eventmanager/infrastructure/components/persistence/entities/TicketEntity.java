@@ -12,18 +12,15 @@ public class TicketEntity implements PersistenceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @ManyToOne(optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "event_id", nullable = false)
     private EventEntity event;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @ManyToOne(optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
-    @Column(nullable = false)
-    private double price;
-
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(optional = false, cascade = CascadeType.MERGE) // Allow new payments to be saved or updated
     @JoinColumn(name = "payment_id")
     private PaymentEntity payment;
 
@@ -43,14 +40,6 @@ public class TicketEntity implements PersistenceEntity {
 
     public void setUser(UserEntity user) {
         this.user = user;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public PaymentEntity getPayment() {

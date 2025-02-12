@@ -19,6 +19,9 @@ public class PaymentEntity implements PersistenceEntity {
     @Column(nullable = false)
     private Status status;
 
+    @Column(nullable = true)
+    private String paymentIntentId;
+
     public PaymentEntity() {}
 
     public PaymentEntity(String paymentMethodId, long amount) {
@@ -57,5 +60,13 @@ public class PaymentEntity implements PersistenceEntity {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String getPaymentIntentId() {
+        return paymentIntentId;
+    }
+
+    public void setPaymentIntentId(String paymentIntentId) {
+        this.paymentIntentId = paymentIntentId;
     }
 }

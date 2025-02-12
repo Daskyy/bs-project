@@ -46,9 +46,20 @@ class MockEventEntitySearchServiceTest {
         assertNotNull(events);
         assertEquals(1, events.size());
         assertEquals(event, events.get(0));
-    }*//*
+    }*/
+/*
+import com.thws.eventmanager.domain.models.Event;
+import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
+import org.junit.jupiter.api.Test;
 
-    @Test
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+@Test
     void testSearchEventsWithoutCriteria() {
         Event event = mock(Event.class);
         when(mockpersistenceOutport.findAll()).thenReturn(List.of(new EventEntity()));
@@ -58,4 +69,5 @@ class MockEventEntitySearchServiceTest {
         assertNotNull(events);
         assertEquals(1, events.size());
     }
-}*/
+}
+*/

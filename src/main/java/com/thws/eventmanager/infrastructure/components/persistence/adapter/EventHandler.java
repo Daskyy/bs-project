@@ -5,7 +5,7 @@ import jakarta.persistence.EntityManager;
 
 public class EventHandler extends GenericPersistenceAdapter<EventEntity, Long> {
 
-    public EventHandler(EntityManager entityManager) {
-        super(entityManager, EventEntity.class);
+    public EventHandler() {
+        super(EventEntity.class);
     }
 }

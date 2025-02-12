@@ -42,13 +42,15 @@ type EventGQL {
   id: ID!
   name: String!
   description: String
-  #todo startdate und enddate
+  startDate: String!
+  endDate: String!
   ticketCount: Int!   #todo ticketcount und sold in event in domain anpassen
   ticketsSold: Int!  #todo
   maxTicketsPerUser: Int!
   artists: [UserGQL!]!
   location: EventLocationGQL
-  blockList: [UserGQL!]!  #
+  blockList: [UserGQL!]  #
+  ticketPrice: Int!
   # usw.
 }
 
@@ -65,6 +67,7 @@ type PaymentGQL{
     paymentMethodId: ID!
     amount: Int!
     status: StatusGQL!
+    paymentIntentID: String!
 }
 
 enum StatusGQL{
@@ -72,6 +75,7 @@ enum StatusGQL{
   COMPLETED
   FAILED
   CANCELLED
+  REFUNDED
 }
 
 enum PermissionGQL{
@@ -106,14 +110,17 @@ input UserInput {
 }
 
 input EventInput {
-  name: String!
+  name: String
   description: String
-  ticketCount: Int!
-  ticketsSold: Int!
-  maxTicketsPerUser: Int!
-  artists: [UserInput!]!
-  location: EventLocationInput!
-  blockList: [UserInput!]!
+  startDate: String
+  endDate: String
+  ticketCount: Int
+  ticketsSold: Int
+  maxTicketsPerUser: Int
+  artists: [UserInput!]
+  location: EventLocationInput
+  blockList: [UserInput!]
+  ticketPrice: Int
 
 }
 
