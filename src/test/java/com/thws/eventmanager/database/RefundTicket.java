@@ -9,7 +9,7 @@ public class RefundTicket {
     private static final TicketMapper ticketMapper = new TicketMapper();
     public static void main(String[] args) {
         try(TicketHandler th = new TicketHandler()) {
-            TicketEntity ticketEntity = th.findById(4L).get();
+            TicketEntity ticketEntity = th.findById(5L).get();
             TicketPurchaseUseCaseService tpucs = new TicketPurchaseUseCaseService();
             tpucs.refundTicket(ticketMapper.toModel(ticketEntity));
         }

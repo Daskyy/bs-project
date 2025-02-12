@@ -9,15 +9,37 @@ import com.thws.eventmanager.domain.port.out.StripeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Optional;
+
 public class PaymentUseCaseService implements PaymentUseCase {
     private final StripeService paymentService;
     private static final Logger log = LoggerFactory.getLogger(PaymentUseCaseService.class);
+    private final VoucherService voucherService;
 
     public PaymentUseCaseService(StripeService paymentService) {
         this.paymentService = paymentService;
+        this.voucherService = new VoucherService();
     }
 
-    public PaymentIntent processPayment(Payment payment) {
+    @Override
+    public PaymentIntent processPayment(Payment payment, String voucherCode) {
+        log.info("Processing payment with voucher code: {}", voucherCode);
+        if (voucherCode != null) {
+            System.out.println("Applying voucher: " + voucherCode);
+            long discount = voucherService.applyVoucher(voucherCode, payment.getAmount());
+            long finalAmount = payment.getAmount() - discount;
+
+            if (finalAmount <= 0) {
+                payment.setStatus(Status.COMPLETED);
+                return null; // No Stripe charge needed
+            }
+            log.info("Discount applied: {}, final amount: {}", discount, finalAmount);
+
+            payment.setAmount(finalAmount);
+        }
+
+        log.info("Final amount sent to Stripe: {}", payment.getAmount());
+
         PaymentIntent paymentIntent = paymentService.processPayment(payment);
 
         if (paymentIntent != null) {
@@ -42,6 +64,11 @@ public class PaymentUseCaseService implements PaymentUseCase {
         }
 
         return paymentIntent;
+    }
+
+    @Override
+    public PaymentIntent processPayment(Payment payment) {
+        return processPayment(payment, null);
     }
 
     @Override

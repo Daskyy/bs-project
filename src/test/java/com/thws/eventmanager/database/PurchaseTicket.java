@@ -27,7 +27,7 @@ public class PurchaseTicket {
             TicketPurchaseUseCaseService ticketPurchaseUseCaseService = new TicketPurchaseUseCaseService();
 
 
-            Payment payment = ticketPurchaseUseCaseService.makePayment(userMapper.toModel(ue), eventMapper.toModel(ee), 1, null);
+            Payment payment = ticketPurchaseUseCaseService.makePayment(userMapper.toModel(ue), eventMapper.toModel(ee), 1, null, "BRAUN10");
             ticketPurchaseUseCaseService.createTicket(user, event, payment);
         }
     }

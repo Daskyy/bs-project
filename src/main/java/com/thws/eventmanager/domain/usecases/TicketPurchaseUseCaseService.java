@@ -12,6 +12,8 @@ import com.thws.eventmanager.infrastructure.components.persistence.mapper.Ticket
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Optional;
+
 public class TicketPurchaseUseCaseService implements TicketPurchaseUseCase {
     PaymentUseCaseService stripe = new PaymentUseCaseService(new StripePaymentService());
     private static final Logger log = LoggerFactory.getLogger(TicketPurchaseUseCaseService.class);
@@ -21,7 +23,7 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCase {
     private final PaymentService paymentService = new PaymentService();
 
     @Override
-    public Payment makePayment(User user, Event event, int ticketAmount, String paymentMethodId) {
+    public Payment makePayment(User user, Event event, int ticketAmount, String paymentMethodId, String voucherCode) {
         Payment payment = new Payment(null, event.getTicketPrice() * ticketAmount);
 
         /*
@@ -36,11 +38,16 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCase {
 
         payment.setPaymentMethodId("pm_card_visa"); // THIS LINE IS ONLY FOR SHOWCASING. THIS SHOULD INSTEAD BE FILLED BY STRIPE UI AUTOMATICALLY
 
-        stripe.processPayment(payment);
+        stripe.processPayment(payment, voucherCode);
 
         //PaymentService paymentService = new PaymentService();
         //paymentService.createPayment(payment);
         return payment;
+    }
+
+    @Override
+    public Payment makePayment(User user, Event event, int ticketAmount, String paymentMethodId) {
+        return makePayment(user, event, ticketAmount, paymentMethodId, null);
     }
 
     @Override
