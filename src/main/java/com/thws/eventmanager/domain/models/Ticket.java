@@ -6,7 +6,7 @@ public class Ticket implements Model {
     private Payment payment;
     private long id = -1;
 
-    public Ticket(Event event, User user, long price) {
+    public Ticket(Event event, User user, Payment payment) {
         this.event = event;
         this.user = user;
         this.payment = null;

@@ -1,5 +1,7 @@
 package com.thws.eventmanager.domain.models;
 
+import java.util.concurrent.Future;
+
 public class Payment implements Model {
     private String paymentMethodId;
     private long amount;

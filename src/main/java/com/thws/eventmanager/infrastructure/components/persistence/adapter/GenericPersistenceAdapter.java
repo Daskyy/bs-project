@@ -36,7 +36,10 @@ public abstract class GenericPersistenceAdapter<T, ID> implements GenericPersist
         }
     }
 
-
+    @Override
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
 
     @Override
     public Optional<T> findById(ID id) {

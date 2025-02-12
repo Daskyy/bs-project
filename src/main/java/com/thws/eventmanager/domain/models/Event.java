@@ -202,4 +202,8 @@ public class Event implements Model {
             this.id = id;
         }
     }
+
+    public int getTicketsLeft() {
+        return (int) (ticketCount - ticketsSold);
+    }
 }

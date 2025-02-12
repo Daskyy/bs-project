@@ -4,8 +4,12 @@ import com.github.javafaker.Faker;
 import com.thws.eventmanager.domain.models.*;
 import com.thws.eventmanager.domain.usecases.EventService;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
+import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventLocationHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.UserHandler;
+import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
+import com.thws.eventmanager.infrastructure.components.persistence.entities.EventLocationEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.UserEntity;
+import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventLocationMapper;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.UserMapper;
 
 import java.time.LocalDateTime;
@@ -39,6 +43,13 @@ public class CreateEvent {
             eventLocation.setCapacity(1000);
             eventLocation.setName(faker.company().name());
 
+            // Get event location from db
+            EventLocationHandler eventLocationHandler = new EventLocationHandler();
+            EventLocationMapper eventLocationMapper = new EventLocationMapper();
+            EventLocationEntity eventLocationEntity = eventLocationHandler.findById(1L).get();
+            EventLocation eventLocation1 = eventLocationMapper.toModel(eventLocationEntity);
+
+
             // EVENT
             event.setName(faker.company().name());
             LocalDateTime startDate = LocalDateTime.now().plusYears(1);
@@ -50,7 +61,7 @@ public class CreateEvent {
             event.setTicketCount(faker.number().numberBetween(10, eventLocation.getCapacity()));
             event.setTicketsSold(faker.number().numberBetween(0, (int) event.getTicketCount()));
             event.setArtists(List.of(user)); // Set the user in the artists list
-            event.setLocation(eventLocation);
+            event.setLocation(eventLocation1);
             event.setDescription(faker.lorem().paragraph());
             event.setTicketPrice(140);
 

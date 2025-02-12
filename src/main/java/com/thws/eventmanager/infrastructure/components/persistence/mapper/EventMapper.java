@@ -48,9 +48,9 @@ public class EventMapper extends Mapper<Event, EventEntity> {
         entity.setArtists(mapList(event.getArtists(), userMapper::toEntity));
         entity.setBlockList(mapList(event.getBlockList(), userMapper::toEntity));
         entity.setTicketPrice(event.getTicketPrice());
-//        if(event.getId() != -1) {
-//            entity.setId(event.getId());
-//        }
+        if(event.getId() != -1) {
+           entity.setId(event.getId());
+        }
         return entity;
     }
 
