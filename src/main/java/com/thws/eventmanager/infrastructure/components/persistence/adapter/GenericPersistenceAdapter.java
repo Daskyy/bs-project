@@ -3,6 +3,7 @@ package com.thws.eventmanager.infrastructure.components.persistence.adapter;
 import com.thws.eventmanager.domain.port.out.GenericPersistenceOutport;
 import com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager;
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -65,9 +66,25 @@ public abstract class GenericPersistenceAdapter<T, ID> implements GenericPersist
     }
 
     @Override
+    public List<T> searchByCriteria(String fieldName, Object value) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> cq = cb.createQuery(entityClass);
+        Root<T> root = cq.from(entityClass);
+
+        Predicate predicate = cb.equal(root.get(fieldName), value);
+        cq.where(predicate);
+
+        TypedQuery<T> query = entityManager.createQuery(cq);
+        return query.getResultList();
+    }
+
+    @Override
     public void close() {
         if (persistenceManager != null) {
             persistenceManager.close();
         }
     }
+
+
+
 }

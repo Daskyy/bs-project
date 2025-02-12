@@ -11,8 +11,12 @@ public interface GenericPersistenceOutport<T, ID> {
     EntityManager getEntityManager();
 
     Optional<T> findById(ID id);
+
     List<T> findAll();
+
     Optional<T> deleteById(ID id);
 
     void close();
+
+    public List<T> searchByCriteria(String fieldName, Object value);
 }
