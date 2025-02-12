@@ -9,6 +9,7 @@ public class PaymentGQL implements GQLModel{
 
     public PaymentGQL() {}
 
+
     public String getId() {
         return id;
     }

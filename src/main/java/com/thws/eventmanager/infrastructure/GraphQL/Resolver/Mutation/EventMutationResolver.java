@@ -35,6 +35,7 @@ public class EventMutationResolver implements GraphQLMutationResolver, GraphQLQu
     EventLocationInputMapper EventLocationInputMapper = new EventLocationInputMapper();
     EventInputMapper EventInputMapper = new EventInputMapper();
 
+
     public EventGQL createEvent(EventInput input){
         Event event= eventMapperGQL.toModel(EventInputMapper.toModelGQL(input));
 
@@ -48,22 +49,23 @@ public class EventMutationResolver implements GraphQLMutationResolver, GraphQLQu
     }
 
     public EventGQL updateEvent(String id, EventInput input){
-        EventLocationMapperGQL eventLocationMapperGQL = new EventLocationMapperGQL();
-        AdressMapperGQL adressMapperGQL = new AdressMapperGQL();
-        UserMapperGQL userMapperGQL = new UserMapperGQL();
-        EventMapper eventMapper = new EventMapper();
-        EventMapperGQL eventMapperGQL = new EventMapperGQL();
-
-
 
         try(EventHandler eventHandler = new EventHandler()){
             EventService eventService = new EventService(eventHandler);
 
             EventEntity loaded= eventHandler.findById(Long.parseLong(id)).orElseThrow(); //todo wie damit umgehen
 
-           //TODO
+            Event event= eventMapper.toModel(loaded);
+            if(input.getName()!=null) event.setName(input.getName());
+            if(input.getDescription()!=null) event.setDescription(input.getDescription());
+            if(input.getTicketCount()!=-1) event.setTicketCount(input.getTicketCount());
+            if(input.getTicketsSold()!=-1) event.setTicketsSold(input.getTicketsSold());
+            if(input.getMaxTicketsPerUser()!=-1) event.setMaxTicketsPerUser(input.getMaxTicketsPerUser());
+            if(input.getArtists()!=null) event.setArtists(input.getArtists().stream().map(userInputMapper::toModelGQL).map(userMapperGQL::toModel).toList());
 
-            return null;
+            EventEntity eventEnity= eventService.createEvent(event);
+            event= eventMapper.toModel(eventEnity);
+            return eventMapperGQL.toModelGQL(event);
         }
     }
 

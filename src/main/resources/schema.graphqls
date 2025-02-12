@@ -68,6 +68,7 @@ type PaymentGQL{
     paymentMethodId: ID!
     amount: Int!
     status: StatusGQL!
+    paymentIntentID: String!
 }
 
 enum StatusGQL{
@@ -75,6 +76,7 @@ enum StatusGQL{
   COMPLETED
   FAILED
   CANCELLED
+  REFUNDED
 }
 
 enum PermissionGQL{
@@ -109,17 +111,17 @@ input UserInput {
 }
 
 input EventInput {
-  name: String!
+  name: String
   description: String
-  startDate: String!
-  endDate: String!
-  ticketCount: Int!
-  ticketsSold: Int!
-  maxTicketsPerUser: Int!
-  artists: [UserInput!]!
-  location: EventLocationInput!
+  startDate: String
+  endDate: String
+  ticketCount: Int
+  ticketsSold: Int
+  maxTicketsPerUser: Int
+  artists: [UserInput!]
+  location: EventLocationInput
   blockList: [UserInput!]
-  ticketPrice: Int!
+  ticketPrice: Int
 
 }
 

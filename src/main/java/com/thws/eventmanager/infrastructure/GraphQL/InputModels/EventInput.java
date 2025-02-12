@@ -8,13 +8,13 @@ public class EventInput {
     private String description;
     private String startDate;
     private String endDate;
-    private int ticketCount;
-    private int ticketsSold;
-    private int maxTicketsPerUser;
+    private int ticketCount =-1;
+    private int ticketsSold =-1;
+    private int maxTicketsPerUser =-1;
     private List<UserInput> artists;
     private EventLocationInput location;
     private List<UserInput> blockList;
-    private long ticketPrice;
+    private long ticketPrice =-1;
 
     public EventInput() {}
 
