@@ -3,7 +3,9 @@ package com.thws.eventmanager.infrastructure.components.paymentgateway;
 import com.stripe.Stripe;
 import com.stripe.exception.*;
 import com.stripe.model.PaymentIntent;
+import com.stripe.model.Refund;
 import com.stripe.param.PaymentIntentCreateParams;
+import com.stripe.param.RefundCreateParams;
 import com.thws.eventmanager.domain.port.out.PaymentService;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.infrastructure.configuration.ConfigurationLoader;
@@ -29,7 +31,7 @@ public class StripePaymentService implements PaymentService {
     }
 
     @Override
-    public boolean processPayment(Payment payment) {
+    public PaymentIntent processPayment(Payment payment) {
         log.info("Processing payment for amount: {} EUR", payment.getAmount() / 100.0);
 
         return executeStripeOperation(() -> {
@@ -48,12 +50,12 @@ public class StripePaymentService implements PaymentService {
 
             PaymentIntent paymentIntent = PaymentIntent.create(params);
             log.info("Payment processed successfully. PaymentIntent ID: {}", paymentIntent.getId());
-            return "succeeded".equals(paymentIntent.getStatus());
+            return paymentIntent;
         });
     }
 
     @Override
-    public boolean createOpenPayment(Payment payment) {
+    public PaymentIntent createOpenPayment(Payment payment) {
         log.info("Creating open payment for amount: {} EUR", payment.getAmount() / 100.0);
 
         return executeStripeOperation(() -> {
@@ -70,13 +72,13 @@ public class StripePaymentService implements PaymentService {
 
             PaymentIntent paymentIntent = PaymentIntent.create(params);
             log.info("Open payment created successfully. PaymentIntent ID: {}", paymentIntent.getId());
-            log.info("PaymentIntent status: {}", paymentIntent.getStatus());
-            return "requires_payment_method".equals(paymentIntent.getStatus());
+            return paymentIntent;
         });
     }
 
+
     @Override
-    public boolean createFailedPayment(Payment payment) {
+    public PaymentIntent createFailedPayment(Payment payment) {
         log.info("Creating failed payment for amount: {} EUR", payment.getAmount() / 100.0);
         try {
             PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
@@ -93,24 +95,38 @@ public class StripePaymentService implements PaymentService {
                     .build();
 
             PaymentIntent paymentIntent = PaymentIntent.create(params);
-            return "requires_payment_method".equals(paymentIntent.getStatus());
+            return paymentIntent;
         } catch (InvalidRequestException e) {
             log.error("Invalid request to Stripe API: {}", e.getMessage());
-            return false;
+            return null;
         } catch (StripeException e) {
             log.error("Stripe error occurred: {}", e.getMessage());
-            return false;
+            return null;
         }
     }
 
-    private boolean executeStripeOperation(SupplierWithStripeException<Boolean> operation) {
+    @Override
+    public Refund processRefund(String paymentIntentId, long refundAmount) {
+        log.info("Processing refund for PaymentIntent ID: {} with amount: {} EUR", paymentIntentId, refundAmount / 100.0);
+
+        return executeStripeOperation(() -> {
+            RefundCreateParams params = RefundCreateParams.builder()
+                    .setPaymentIntent(paymentIntentId) // Attach the original payment
+                    .setAmount(refundAmount) // Refund full or partial amount
+                    .build();
+
+            Refund refund = Refund.create(params);
+            log.info("Refund successful. Refund ID: {}, Status: {}", refund.getId(), refund.getStatus());
+            return refund;
+        });
+    }
+
+    private <T> T executeStripeOperation(SupplierWithStripeException<T> operation) {
         try {
             return operation.get();
         } catch (CardException e) {
             log.error("Card payment failed. Code: {}, Message: {}, Decline Code: {}",
-                    e.getCode(),
-                    e.getMessage(),
-                    e.getDeclineCode());
+                    e.getCode(), e.getMessage(), e.getDeclineCode());
         } catch (AuthenticationException e) {
             log.error("Authentication with Stripe failed: {}", e.getMessage());
         } catch (ApiConnectionException e) {
@@ -118,8 +134,10 @@ public class StripePaymentService implements PaymentService {
         } catch (Exception e) {
             log.error("Unexpected error during Stripe operation", e);
         }
-        return false;
+        return null;
     }
+
+
 
     @FunctionalInterface
     private interface SupplierWithStripeException<T> {

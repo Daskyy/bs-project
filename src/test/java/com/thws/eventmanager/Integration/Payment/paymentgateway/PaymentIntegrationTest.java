@@ -1,5 +1,6 @@
 package com.thws.eventmanager.Integration.Payment.paymentgateway;
 
+import com.stripe.model.PaymentIntent;
 import com.thws.eventmanager.domain.usecases.PaymentUseCaseService;
 import com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService;
 import com.thws.eventmanager.domain.models.Payment;
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /*
     WARNING:
     THIS TEST CLASS WILL ACTUALLY HIT THE STRIPE API AND CREATE PAYMENTS.
-    FOR JUST TESTING PURPOSES, PLEASE USE THE MOCK TESTS INSTEAD.
+    FOR TESTING PURPOSES, PLEASE USE THE MOCK TESTS INSTEAD.
 */
 
 public class PaymentIntegrationTest {
@@ -20,32 +21,44 @@ public class PaymentIntegrationTest {
     @Test
     void testProcessPaymentWithTestCard() {
         Payment payment = new Payment("pm_card_visa", 2000L); // 20.00 EUR
-        boolean result = paymentUseCaseService.processPayment(payment);
-        assertTrue(result);
+        PaymentIntent paymentIntent = paymentUseCaseService.processPayment(payment);
+
+        assertNotNull(paymentIntent);
+        assertEquals("succeeded", paymentIntent.getStatus());
         assertEquals(Status.COMPLETED, payment.getStatus());
+        assertNotNull(payment.getPaymentIntentId());
     }
 
     @Test
     void testOpenPaymentCreation() {
         Payment payment = new Payment(null, 1500L); // 15.00 EUR
-        boolean result = paymentUseCaseService.createOpenPayment(payment);
-        assertTrue(result);
+        PaymentIntent paymentIntent = paymentUseCaseService.createOpenPayment(payment);
+
+        assertNotNull(paymentIntent);
+        assertEquals("requires_payment_method", paymentIntent.getStatus());
         assertEquals(Status.OPEN, payment.getStatus());
+        assertNotNull(payment.getPaymentIntentId());
     }
 
     @Test
     void testFailedPaymentWithDeclinedCard() {
         Payment payment = new Payment("pm_card_chargeDeclined", 2000L);
-        boolean result = paymentUseCaseService.processPayment(payment);
-        assertFalse(result);
+        PaymentIntent paymentIntent = paymentUseCaseService.processPayment(payment);
+
+        assertNotNull(paymentIntent);
+        assertEquals("failed", paymentIntent.getStatus());
         assertEquals(Status.FAILED, payment.getStatus());
+        assertNotNull(payment.getPaymentIntentId());
     }
 
     @Test
     void testCreateFailedPaymentFlow() {
         Payment payment = new Payment("pm_card_visa", 999999999L); // Very large amount to trigger failure
-        boolean result = paymentUseCaseService.createFailedPayment(payment);
-        assertFalse(result);
+        PaymentIntent paymentIntent = paymentUseCaseService.createFailedPayment(payment);
+
+        assertNotNull(paymentIntent);
+        assertEquals("requires_payment_method", paymentIntent.getStatus());
         assertEquals(Status.FAILED, payment.getStatus());
+        assertNotNull(payment.getPaymentIntentId());
     }
 }

@@ -1,10 +1,13 @@
 package com.thws.eventmanager.Integration.Payment.paymentgateway;
 
+import com.stripe.model.PaymentIntent;
 import com.thws.eventmanager.domain.usecases.PaymentUseCaseService;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService;
 import com.thws.eventmanager.domain.models.Status;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,17 +18,28 @@ import static org.junit.jupiter.api.Assertions.*;
 */
 
 public class MockPaymentIntegrationTest {
-    private StripePaymentService stripePaymentService = mock(StripePaymentService.class); // Mocking StripePaymentService
-    private PaymentUseCaseService paymentUseCaseService = new PaymentUseCaseService(stripePaymentService);
+    private StripePaymentService stripePaymentService;
+    private PaymentUseCaseService paymentUseCaseService;
+
+    @BeforeEach
+    void setUp() {
+        stripePaymentService = mock(StripePaymentService.class);
+        paymentUseCaseService = new PaymentUseCaseService(stripePaymentService);
+    }
 
     @Test
     void testProcessPaymentWithTestCard() {
         Payment payment = new Payment("pm_card_visa", 2000L);
 
-        when(stripePaymentService.processPayment(payment)).thenReturn(true);
+        PaymentIntent mockPaymentIntent = mock(PaymentIntent.class);
+        when(mockPaymentIntent.getId()).thenReturn("pi_test_123");
+        when(mockPaymentIntent.getStatus()).thenReturn("succeeded");
+        when(stripePaymentService.processPayment(payment)).thenReturn(mockPaymentIntent);
 
-        boolean result = paymentUseCaseService.processPayment(payment);
-        assertTrue(result);
+        PaymentIntent result = paymentUseCaseService.processPayment(payment);
+
+        assertNotNull(result);
+        assertEquals("pi_test_123", result.getId());
         assertEquals(Status.COMPLETED, payment.getStatus());
 
         verify(stripePaymentService).processPayment(payment);
@@ -35,10 +49,15 @@ public class MockPaymentIntegrationTest {
     void testOpenPaymentCreation() {
         Payment payment = new Payment(null, 1500L);
 
-        when(stripePaymentService.createOpenPayment(payment)).thenReturn(true);
+        PaymentIntent mockPaymentIntent = mock(PaymentIntent.class);
+        when(mockPaymentIntent.getId()).thenReturn("pi_open_456");
+        when(mockPaymentIntent.getStatus()).thenReturn("requires_payment_method");
+        when(stripePaymentService.createOpenPayment(payment)).thenReturn(mockPaymentIntent);
 
-        boolean result = paymentUseCaseService.createOpenPayment(payment);
-        assertTrue(result);
+        PaymentIntent result = paymentUseCaseService.createOpenPayment(payment);
+
+        assertNotNull(result);
+        assertEquals("pi_open_456", result.getId());
         assertEquals(Status.OPEN, payment.getStatus());
 
         verify(stripePaymentService).createOpenPayment(payment);
@@ -48,10 +67,15 @@ public class MockPaymentIntegrationTest {
     void testFailedPaymentWithDeclinedCard() {
         Payment payment = new Payment("pm_card_chargeDeclined", 2000L);
 
-        when(stripePaymentService.processPayment(payment)).thenReturn(false);
+        PaymentIntent mockPaymentIntent = mock(PaymentIntent.class);
+        when(mockPaymentIntent.getId()).thenReturn("pi_failed_789");
+        when(mockPaymentIntent.getStatus()).thenReturn("failed");
+        when(stripePaymentService.processPayment(payment)).thenReturn(mockPaymentIntent);
 
-        boolean result = paymentUseCaseService.processPayment(payment);
-        assertFalse(result);
+        PaymentIntent result = paymentUseCaseService.processPayment(payment);
+
+        assertNotNull(result);
+        assertEquals("pi_failed_789", result.getId());
         assertEquals(Status.FAILED, payment.getStatus());
 
         verify(stripePaymentService).processPayment(payment);
@@ -61,10 +85,15 @@ public class MockPaymentIntegrationTest {
     void testCreateFailedPaymentFlow() {
         Payment payment = new Payment("pm_card_visa", 999999999L); // Very large amount to trigger failure
 
-        when(stripePaymentService.createFailedPayment(payment)).thenReturn(false);
+        PaymentIntent mockPaymentIntent = mock(PaymentIntent.class);
+        when(mockPaymentIntent.getId()).thenReturn("pi_failed_999");
+        when(mockPaymentIntent.getStatus()).thenReturn("failed");
+        when(stripePaymentService.createFailedPayment(payment)).thenReturn(mockPaymentIntent);
 
-        boolean result = paymentUseCaseService.createFailedPayment(payment);
-        assertFalse(result);
+        PaymentIntent result = paymentUseCaseService.createFailedPayment(payment);
+
+        assertNotNull(result);
+        assertEquals("pi_failed_999", result.getId());
         assertEquals(Status.FAILED, payment.getStatus());
 
         verify(stripePaymentService).createFailedPayment(payment);

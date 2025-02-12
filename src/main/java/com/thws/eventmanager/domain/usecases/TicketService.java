@@ -36,11 +36,27 @@ public class TicketService implements TicketServiceInterface {
         }
     }
 
+    @Override
+    public Ticket deleteTicket(Ticket ticket) {
+        try (TicketHandler ticketHandler = new TicketHandler()) {
+            TicketEntity ticketEntity = ticketMapper.toEntity(ticket);
+            ticketHandler.deleteById(ticketEntity.getId());
+            return ticketMapper.toModel(ticketEntity);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error deleting ticket");
+        }
+    }
+
+
+
 
 
     @Override
     public boolean validateTicket(Ticket ticket) {
         Status status = ticket.getPayment().getStatus();
+
         return status == Status.COMPLETED;
     }
 }
+

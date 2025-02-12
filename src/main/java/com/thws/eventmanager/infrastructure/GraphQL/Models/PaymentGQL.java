@@ -5,6 +5,7 @@ public class PaymentGQL implements GQLModel{
     private String paymentMethodId;  // Tippfehler im Schema?
     private int amount;
     private StatusGQL status;
+    private String paymentIntentId;
 
     public PaymentGQL() {}
 
@@ -38,5 +39,13 @@ public class PaymentGQL implements GQLModel{
 
     public void setStatus(StatusGQL status) {
         this.status = status;
+    }
+
+    public String getPaymentIntentId() {
+        return paymentIntentId;
+    }
+
+    public void setPaymentIntentId(String paymentIntentId) {
+        this.paymentIntentId = paymentIntentId;
     }
 }

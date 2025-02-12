@@ -16,11 +16,11 @@ public class TicketEntity implements PersistenceEntity {
     @JoinColumn(name = "event_id", nullable = false)
     private EventEntity event;
 
-    @ManyToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}) // Allow new payments to be saved or updated
+    @ManyToOne(optional = false, cascade = CascadeType.MERGE) // Allow new payments to be saved or updated
     @JoinColumn(name = "payment_id")
     private PaymentEntity payment;
 
