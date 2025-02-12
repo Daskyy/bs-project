@@ -15,6 +15,11 @@ import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDom
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL.EventInputMapper;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL.UserInputMapper;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
+import com.thws.eventmanager.infrastructure.components.persistence.adapter.UserHandler;
+import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
+import com.thws.eventmanager.infrastructure.components.persistence.entities.UserEntity;
+import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventMapper;
+import com.thws.eventmanager.infrastructure.components.persistence.mapper.UserMapper;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 
 public class PaymentResolver implements GraphQLMutationResolver {
@@ -23,15 +28,21 @@ public class PaymentResolver implements GraphQLMutationResolver {
     EventMapperGQL eventMapperGQL = new EventMapperGQL();
     EventInputMapper eventInputMapper = new EventInputMapper();
     TicketMapperGQL ticketMapperGQL = new TicketMapperGQL();
+    EventMapper eventMapper = new EventMapper();
+    UserMapper userMapper = new UserMapper();
 
 
+    public TicketGQL purchaseTicket(String userId, String eventId, int ticketamount, String paymentmethodId, String voucher){
+        Event e;
+        User u;
+        try(EventHandler eventHandler = new EventHandler(); UserHandler userHandler = new UserHandler()) {
 
-    public TicketGQL purchaseTicket(UserInput user, EventInput event, int ticketamount, String paymentmethodId, String voucher){
-
-
+            EventEntity loaded = eventHandler.findById(Long.parseLong(eventId)).orElseThrow();
+            UserEntity loadedUser = userHandler.findById(Long.parseLong(userId)).orElseThrow();
+            e = eventMapper.toModel(loaded);
+            u = userMapper.toModel(loadedUser);
+        }
         TicketPurchaseUseCaseService ticketPurchaseUseCaseService = new TicketPurchaseUseCaseService();
-        User u= userMapperGQL.toModel(userInputMapper.toModelGQL(user));
-        Event e= eventMapperGQL.toModel(eventInputMapper.toModelGQL(event));
         Payment p= ticketPurchaseUseCaseService.makePayment(u, e, ticketamount, paymentmethodId, voucher);
         Ticket t= ticketPurchaseUseCaseService.createTicket(u, e,p);
 

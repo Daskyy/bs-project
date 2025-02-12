@@ -54,11 +54,6 @@ public class EventQueryResolver implements GraphQLQueryResolver {
     }
 
 
-    public static void main(String[] args) {
-        EventQueryResolver e = new EventQueryResolver();
-        EventGQL ee= e.event("121");
-        System.out.println(ee.getName());
 
-    }
 }
 

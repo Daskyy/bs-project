@@ -7,8 +7,16 @@ public class UserInput {
     private String email;
     private String password;
     private PermissionGQL permission;
+    private String id;
     public UserInput() {}
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public PermissionGQL getPermission() {
         return permission;
