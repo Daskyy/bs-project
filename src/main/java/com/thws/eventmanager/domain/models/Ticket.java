@@ -3,14 +3,12 @@ package com.thws.eventmanager.domain.models;
 public class Ticket implements Model {
     private Event event;
     private User user;
-    private double price;
     private Payment payment;
     private long id = -1;
 
-    public Ticket(Event event, User user, long price) {
+    public Ticket(Event event, User user, Payment payment) {
         this.event = event;
         this.user = user;
-        this.price = price;
         this.payment = null;
     }
 
@@ -38,14 +36,6 @@ public class Ticket implements Model {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public long getId() {

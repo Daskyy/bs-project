@@ -17,7 +17,7 @@ class UserInputMapperTest {
         userInput.setName("John Doe");
         userInput.setEmail("john.doe@example.com");
         userInput.setPassword("securePassword123");
-        userInput.setPermissionGQL(PermissionGQL.STAFF);
+        userInput.setPermission(PermissionGQL.STAFF);
 
         UserGQL userGQL = mapper.toModelGQL(userInput);
 

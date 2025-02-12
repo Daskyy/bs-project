@@ -4,7 +4,7 @@ import com.thws.eventmanager.infrastructure.components.persistence.entities.Even
 import jakarta.persistence.EntityManager;
 
 public class EventLocationHandler extends GenericPersistenceAdapter<EventLocationEntity, Long> {
-    public EventLocationHandler(EntityManager entityManager) {
-        super(entityManager, EventLocationEntity.class);
+    public EventLocationHandler() {
+        super(EventLocationEntity.class);
     }
 }

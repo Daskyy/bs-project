@@ -10,11 +10,11 @@ public class UserInput {
     public UserInput() {}
 
 
-    public PermissionGQL getPermissionGQL() {
+    public PermissionGQL getPermission() {
         return permission;
     }
 
-    public void setPermissionGQL(PermissionGQL permissionGQL) {
+    public void setPermission(PermissionGQL permissionGQL) {
         this.permission = permissionGQL;
     }
 

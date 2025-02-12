@@ -25,9 +25,9 @@ public class AddressMapper extends Mapper<Address, AddressEntity> {
         entity.setNo(model.getNo());
         entity.setZipCode(model.getZipCode());
         entity.setStreet(model.getStreet());
-//        if(model.getId() != -1) {
-//            entity.setId(model.getId());
-//        }
+        if(model.getId() != -1) {
+            entity.setId(model.getId());
+        }
         return entity;
     }
 }

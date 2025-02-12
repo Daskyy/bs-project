@@ -36,7 +36,6 @@ public class TicketMapperTest {
         ticketEntity.setId(5L);
         ticketEntity.setUser(userEntity);
         ticketEntity.setEvent(eventEntity);
-        ticketEntity.setPrice(5000L);
         ticketEntity.setPayment(paymentEntity);
 
         Ticket ticket = mapper.toModel(ticketEntity);
@@ -44,7 +43,6 @@ public class TicketMapperTest {
         assertEquals(5L, ticket.getId());
         assertEquals(1L, ticket.getUser().getId());
         assertEquals(10L, ticket.getEvent().getId());
-        assertEquals(5000L, ticket.getPrice());
         assertEquals(100L, ticket.getPayment().getId());
     }
     @Test
@@ -71,14 +69,12 @@ public class TicketMapperTest {
         ticket.setId(5L);
         ticket.setUser(user);
         ticket.setEvent(event);
-        ticket.setPrice(5000L);
         ticket.setPayment(payment);
 
         TicketEntity entity = mapper.toEntity(ticket);
 
         assertEquals("Concert", entity.getEvent().getName());
         assertEquals("John Doe", entity.getUser().getName());
-        assertEquals(5000L, entity.getPrice());
         assertEquals("PaymentMethod", entity.getPayment().getPaymentMethodId());
     }
 }

@@ -12,6 +12,7 @@ public class PaymentMapper extends Mapper<Payment, PaymentEntity> {
         payment.setAmount(entity.getAmount());
         payment.setPaymentMethodId(entity.getPaymentMethodId());
         payment.setId(entity.getId());
+        payment.setPaymentIntentId(entity.getPaymentIntentId());
         return payment;
     }
 
@@ -21,9 +22,10 @@ public class PaymentMapper extends Mapper<Payment, PaymentEntity> {
         entity.setStatus(model.getStatus());
         entity.setAmount(model.getAmount());
         entity.setPaymentMethodId(model.getPaymentMethodId());
-//        if(model.getId() != -1) {
-//            entity.setId(model.getId());
-//        }
+        entity.setPaymentIntentId(model.getPaymentIntentId());
+        if(model.getId() != -1) {
+            entity.setId(model.getId());
+        }
 
         return entity;
     }

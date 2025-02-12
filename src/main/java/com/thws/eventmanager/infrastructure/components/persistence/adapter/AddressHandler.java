@@ -6,8 +6,8 @@ import jakarta.persistence.EntityManager;
 import java.util.List;
 
 public class AddressHandler extends GenericPersistenceAdapter<AddressEntity, Long> {
-    public AddressHandler(EntityManager entityManager) {
-        super(entityManager, AddressEntity.class);
+    public AddressHandler() {
+        super(AddressEntity.class);
     }
 
     public AddressEntity findByStreetCityZip(String street, String city, int zipCode, String country) {

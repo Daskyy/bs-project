@@ -4,6 +4,7 @@ import com.thws.eventmanager.domain.exceptions.InvalidEventException;
 import com.thws.eventmanager.domain.models.*;
 import com.thws.eventmanager.domain.port.out.GenericPersistenceOutport;
 import com.thws.eventmanager.domain.usecases.EventService;
+import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,8 +20,8 @@ import static org.mockito.Mockito.*;
 
 class EventServiceTest {
 
-    private GenericPersistenceOutport<EventEntity, Long> persistenceOutport = mock(GenericPersistenceOutport.class);
-    private EventService eventService = new EventService(persistenceOutport);
+    private final EventHandler eventHandler = mock(EventHandler.class);
+    private final EventService eventService = new EventService(eventHandler);
 
     private Event createValidEvent() {
         Event event = new Event();
@@ -45,12 +46,12 @@ class EventServiceTest {
         Event event = createValidEvent();
         EventEntity eventEntity = new EventEntity();
 
-        when(persistenceOutport.save(any(EventEntity.class))).thenReturn(eventEntity);
+        when(eventHandler.save(any(EventEntity.class))).thenReturn(eventEntity);
 
         EventEntity result = eventService.createEvent(event);
 
         assertNotNull(result);
-        verify(persistenceOutport, times(1)).save(any(EventEntity.class));
+        verify(eventHandler, times(1)).save(any(EventEntity.class));
     }
 
     @Test
@@ -100,6 +101,6 @@ class EventServiceTest {
 
         assertThrows(InvalidEventException.class, () -> eventService.createEvent(event));
 
-        verify(persistenceOutport, never()).save(any(EventEntity.class));
+        verify(eventHandler, never()).save(any(EventEntity.class));
     }
 }

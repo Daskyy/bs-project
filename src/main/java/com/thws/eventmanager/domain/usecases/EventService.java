@@ -5,24 +5,25 @@ import com.thws.eventmanager.domain.models.Event;
 import com.thws.eventmanager.domain.models.User;
 import com.thws.eventmanager.domain.port.in.EventServiceInterface;
 import com.thws.eventmanager.domain.port.out.GenericPersistenceOutport;
+import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventMapper;
 
 import java.time.LocalDateTime;
 
 public class EventService implements EventServiceInterface {
-    private final GenericPersistenceOutport<EventEntity, Long> persistenceOutport;
+    private final EventHandler eventHandler;
     private final EventMapper eventMapper;
 
-    public EventService(GenericPersistenceOutport<EventEntity, Long> persistenceOutport) {
-        this.persistenceOutport = persistenceOutport;
+    public EventService(EventHandler eventHandler) {
+        this.eventHandler = eventHandler;
         this.eventMapper = new EventMapper();
     }
 
     @Override
     public EventEntity createEvent(Event event) {
         validateEvent(event);
-        return persistenceOutport.save(eventMapper.toEntity(event));
+        return eventHandler.save(eventMapper.toEntity(event));
     }
 
     @Override
