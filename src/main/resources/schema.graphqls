@@ -24,7 +24,7 @@ type Mutation {
   # Beispiel: Event anlegen
   createEvent(input: EventInput): EventGQL!
   # Beispiel: Event löschen
-  deleteEvent(id: ID!): Boolean!
+  deleteEvent(id: ID!): EventGQL!
   # Beispiel: Event aktualisieren
   updateEvent(id: ID!, input: EventInput): EventGQL!
 }
@@ -104,10 +104,10 @@ type UserGQL {
 
 # Input-Types
 input UserInput {
-  name: String!
-  email: String!
-  password: String!
-  permission: PermissionGQL!
+  name: String
+  email: String
+  password: String
+  permission: PermissionGQL
 }
 
 input EventInput {
@@ -118,7 +118,7 @@ input EventInput {
   ticketCount: Int
   ticketsSold: Int
   maxTicketsPerUser: Int
-  artists: [UserInput!]
+  artists: [UserInput!]!
   location: EventLocationInput
   blockList: [UserInput!]
   ticketPrice: Int
