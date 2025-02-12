@@ -5,6 +5,6 @@ import com.thws.eventmanager.infrastructure.components.persistence.entities.User
 public interface UserServiceInterface {
     UserEntity createUser(User user);
     void validateUser(User user);
-    boolean deleteUser(User user);
-    User updateUser(User user);
+//    boolean deleteUser(User user);
+//    User updateUser(User user);
 }

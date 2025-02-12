@@ -50,13 +50,13 @@ public class UserService implements UserServiceInterface {
         }
     }
 
-    @Override
-    public boolean deleteUser(User user) {
-        return false;
-    }
-
-    @Override
-    public User updateUser(User user) {
-        return null;
-    }
+//    @Override
+//    public boolean deleteUser(User user) {
+//        return false;
+//    }
+//
+//    @Override
+//    public User updateUser(User user) {
+//        return null;
+//    }
 }
