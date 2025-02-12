@@ -43,13 +43,14 @@ type EventGQL {
   id: ID!
   name: String!
   description: String
-  #todo startdate und enddate
+  startDate: String!
+  endDate: String!
   ticketCount: Int!   #todo ticketcount und sold in event in domain anpassen
   ticketsSold: Int!  #todo
   maxTicketsPerUser: Int!
   artists: [UserGQL!]!
   location: EventLocationGQL
-  blockList: [UserGQL!]!  #
+  blockList: [UserGQL!]  #
   # usw.
 }
 
@@ -109,12 +110,14 @@ input UserInput {
 input EventInput {
   name: String!
   description: String
+  startDate: String!
+  endDate: String!
   ticketCount: Int!
   ticketsSold: Int!
   maxTicketsPerUser: Int!
   artists: [UserInput!]!
   location: EventLocationInput!
-  blockList: [UserInput!]!
+  blockList: [UserInput!]
 
 }
 

@@ -1,10 +1,13 @@
 package com.thws.eventmanager.infrastructure.GraphQL.InputModels;
 
+import java.util.Collections;
 import java.util.List;
 
 public class EventInput {
     private String name;
     private String description;
+    private String startDate;
+    private String endDate;
     private int ticketCount;
     private int ticketsSold;
     private int maxTicketsPerUser;
@@ -13,6 +16,22 @@ public class EventInput {
     private List<UserInput> blockList;
 
     public EventInput() {}
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
 
     public int getTicketCount() {
         return ticketCount;
@@ -47,7 +66,7 @@ public class EventInput {
     }
 
     public List<UserInput> getBlockList() {
-        return blockList;
+        return blockList != null ? blockList : Collections.emptyList();
     }
 
     public void setBlockList(List<UserInput> blockList) {

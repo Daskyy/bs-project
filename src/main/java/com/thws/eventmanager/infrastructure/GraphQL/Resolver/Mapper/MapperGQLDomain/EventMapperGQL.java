@@ -4,11 +4,14 @@ import com.thws.eventmanager.domain.models.Event;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.EventGQL;
 
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
 
 public class EventMapperGQL extends Mapper<Event, EventGQL> {
     EventLocationMapperGQL eventLocationMapperGQL = new EventLocationMapperGQL();
     UserMapperGQL userMapperGQL = new UserMapperGQL();
+    DateTimeFormatter FORMATTER= DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
     @Override
     public Event toModel(EventGQL eventGQL){
@@ -25,7 +28,11 @@ public class EventMapperGQL extends Mapper<Event, EventGQL> {
         event.setLocation(eventLocationMapperGQL.toModel(eventGQL.getLocation()));
         event.setBlockList((eventGQL.getBlockList()).stream().map(userMapperGQL::toModel).collect(Collectors.toList()));
         event.setTicketPrice(eventGQL.getTicketPrice());
-        //TODO startDate und endDate
+
+        event.setStartDate(LocalDateTime.from(FORMATTER.parse(eventGQL.getStartDate())));
+        event.setEndDate(LocalDateTime.from(FORMATTER.parse(eventGQL.getEndDate())));
+
+
         return event;
     }
 

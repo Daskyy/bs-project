@@ -11,6 +11,7 @@ import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDom
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.EventLocationMapperGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.EventMapperGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.UserMapperGQL;
+import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL.EventInputMapper;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL.EventLocationInputMapper;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL.UserInputMapper;
 import com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager;
@@ -25,26 +26,18 @@ import org.jetbrains.annotations.NotNull;
 import static java.util.stream.Collectors.toList;
 
 public class EventMutationResolver implements GraphQLMutationResolver, GraphQLQueryResolver {
-
+    EventLocationMapperGQL eventLocationMapperGQL = new EventLocationMapperGQL();
+    AdressMapperGQL adressMapperGQL = new AdressMapperGQL();
+    UserMapperGQL userMapperGQL = new UserMapperGQL();
+    EventMapper eventMapper = new EventMapper();
+    EventMapperGQL eventMapperGQL = new EventMapperGQL();
+    UserInputMapper userInputMapper = new UserInputMapper();
+    EventLocationInputMapper EventLocationInputMapper = new EventLocationInputMapper();
+    EventInputMapper EventInputMapper = new EventInputMapper();
     public EventGQL createEvent(EventInput input){
-        EventLocationMapperGQL eventLocationMapperGQL = new EventLocationMapperGQL();
-        AdressMapperGQL adressMapperGQL = new AdressMapperGQL();
-        UserMapperGQL userMapperGQL = new UserMapperGQL();
-        EventMapper eventMapper = new EventMapper();
-        EventMapperGQL eventMapperGQL = new EventMapperGQL();
 
-        Event event= new Event();
-        event.setName(input.getName());
-        event.setDescription(input.getDescription());
-        event.setTicketCount(input.getTicketCount());
-        event.setTicketsSold(input.getTicketsSold());
-        event.setMaxTicketsPerUser(input.getMaxTicketsPerUser());
-        event.setArtists(input.getArtists().stream().map(UserInputMapper::toModelGQL).map(userMapperGQL::toModel).toList());
 
-        EventLocationGQL eLGQL = EventLocationInputMapper.toModelGQL(input);
-
-        event.setLocation(eventLocationMapperGQL.toModel(eLGQL));
-        event.setBlockList(input.getBlockList().stream().map(UserInputMapper::toModelGQL).map(userMapperGQL::toModel).toList());
+        Event event= eventMapperGQL.toModel(EventInputMapper.toModelGQL(input));
 
         try(EventHandler eventHandler = new EventHandler()){
             EventService eventService = new EventService(eventHandler);
@@ -69,18 +62,9 @@ public class EventMutationResolver implements GraphQLMutationResolver, GraphQLQu
 
             EventEntity loaded= eventHandler.findById(Long.parseLong(id)).orElseThrow(); //todo wie damit umgehen
 
-            Event event= eventMapper.toModel(loaded);
-            event.setName(input.getName());
-            event.setDescription(input.getDescription());
-            event.setTicketCount(input.getTicketCount());
-            event.setTicketsSold(input.getTicketsSold());
-            event.setMaxTicketsPerUser(input.getMaxTicketsPerUser());
-            event.setArtists(input.getArtists().stream().map(UserInputMapper::toModelGQL).map(userMapperGQL::toModel).toList());
-            event.setLocation(eventLocationMapperGQL.toModel(EventLocationInputMapper.toModelGQL(input)));
-            event.setBlockList(input.getBlockList().stream().map(UserInputMapper::toModelGQL).map(userMapperGQL::toModel).toList());
+           //TODO
 
-            eventService.createEvent(event);
-            return eventMapperGQL.toModelGQL(event);
+            return null;
         }
     }
 
