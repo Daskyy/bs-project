@@ -12,7 +12,11 @@ type Query {
 
 # Mutations
 type Mutation {
-  #User
+
+  purchaseTicket(user: UserInput!, event: EventInput!, ticketamount: Int!,paymentmethodId: String!, voucher:String!): TicketGQL!
+
+  #Userf
+  # Beispiel: User anlegen
   createUser(input: UserInput): UserGQL!
   # Beispiel: User löschen
   deleteUser(id: ID!): Boolean!
@@ -23,15 +27,31 @@ type Mutation {
   # Beispiel: Event anlegen
   createEvent(input: EventInput): EventGQL!
   # Beispiel: Event löschen
-  deleteEvent(id: ID!): Boolean!
+  deleteEvent(id: ID!): EventGQL!
   # Beispiel: Event aktualisieren
   updateEvent(id: ID!, input: EventInput): EventGQL!
 }
 
 # Models
+type TicketGQL{
+  id: ID!
+  event: EventGQL!
+  user: UserGQL!
+  payment: PaymentGQL!
+}
+
+type PaymentGQL{
+  paymentMethodId: String!
+  amount: Int!
+  status: StatusGQL!
+  paymentIntentId: String!
+  id: ID!
+}
+
+
 type AddressGQL{
   id: ID!
-street: String!
+  street: String!
   no: Int!
   city: String!
   zipCode: Int!
@@ -67,7 +87,7 @@ type PaymentGQL{
     paymentMethodId: ID!
     amount: Int!
     status: StatusGQL!
-    paymentIntentID: String!
+    paymentIntentId: String!
 }
 
 enum StatusGQL{
@@ -84,13 +104,7 @@ enum PermissionGQL{
   CUSTOMER
 }
 
-type TicketGQL{
-  id: ID!
-  event: EventGQL!
-  user: UserGQL!
-  price: Float!
-  payment: PaymentGQL!
-}
+
 
 type UserGQL {
   id: ID!
@@ -103,10 +117,10 @@ type UserGQL {
 
 # Input-Types
 input UserInput {
-  name: String!
-  email: String!
-  password: String!
-  permission: PermissionGQL!
+  name: String
+  email: String
+  password: String
+  permission: PermissionGQL
 }
 
 input EventInput {
@@ -117,9 +131,9 @@ input EventInput {
   ticketCount: Int
   ticketsSold: Int
   maxTicketsPerUser: Int
-  artists: [UserInput!]
+  artists: [UserInput!]!
   location: EventLocationInput
-  blockList: [UserInput!]
+  blockList: [UserInput!]!
   ticketPrice: Int
 
 }

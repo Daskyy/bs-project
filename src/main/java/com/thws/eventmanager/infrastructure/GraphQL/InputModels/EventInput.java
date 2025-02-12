@@ -6,7 +6,7 @@ import java.util.List;
 public class EventInput {
     private String name;
     private String description;
-    private String startDate;
+    private String startDate;                   //muss dieses Format haben: 2031-02-20T10:00:00
     private String endDate;
     private int ticketCount =-1;
     private int ticketsSold =-1;

@@ -1,22 +1,14 @@
 package com.thws.eventmanager.infrastructure.GraphQL.Models;
 
-public class PaymentGQL implements GQLModel{
-    private String id;
-    private String paymentMethodId;  // Tippfehler im Schema?
+public class PaymentGQL implements GQLModel {
+    private String paymentMethodId;
     private int amount;
     private StatusGQL status;
+    private String id;
     private String paymentIntentId;
 
-    public PaymentGQL() {}
 
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    public PaymentGQL(){}
 
     public String getPaymentMethodId() {
         return paymentMethodId;
@@ -48,5 +40,13 @@ public class PaymentGQL implements GQLModel{
 
     public void setPaymentIntentId(String paymentIntentId) {
         this.paymentIntentId = paymentIntentId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
