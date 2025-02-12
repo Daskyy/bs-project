@@ -22,6 +22,7 @@ public class EventInputMapper {
         eventGQL.setArtists(input.getArtists().stream().map(UserInputMapper::toModelGQL).toList());
         eventGQL.setLocation(EventLocationInputMapper.toModelGQL(input.getLocation()));
         eventGQL.setBlockList(input.getBlockList().stream().map(UserInputMapper::toModelGQL).toList());
+        eventGQL.setTicketPrice(input.getTicketPrice());
         return eventGQL;
     }
 }

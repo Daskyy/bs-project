@@ -14,8 +14,17 @@ public class EventInput {
     private List<UserInput> artists;
     private EventLocationInput location;
     private List<UserInput> blockList;
+    private long ticketPrice;
 
     public EventInput() {}
+
+    public long getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(long ticketPrice) {
+        this.ticketPrice = ticketPrice;
+    }
 
     public String getStartDate() {
         return startDate;

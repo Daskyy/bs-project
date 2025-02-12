@@ -51,6 +51,7 @@ type EventGQL {
   artists: [UserGQL!]!
   location: EventLocationGQL
   blockList: [UserGQL!]  #
+  ticketPrice: Int!
   # usw.
 }
 
@@ -118,6 +119,7 @@ input EventInput {
   artists: [UserInput!]!
   location: EventLocationInput!
   blockList: [UserInput!]
+  ticketPrice: Int!
 
 }
 
