@@ -1,3 +1,4 @@
+/*
 package com.thws.eventmanager.database;
 
 import com.github.javafaker.Faker;
@@ -28,3 +29,4 @@ public class CreateUser {
         }
     }
 }
+*/

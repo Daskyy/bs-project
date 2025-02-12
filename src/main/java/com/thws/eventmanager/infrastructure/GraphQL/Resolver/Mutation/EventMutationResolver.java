@@ -46,9 +46,7 @@ public class EventMutationResolver implements GraphQLMutationResolver, GraphQLQu
         event.setLocation(eventLocationMapperGQL.toModel(eLGQL));
         event.setBlockList(input.getBlockList().stream().map(UserInputMapper::toModelGQL).map(userMapperGQL::toModel).toList());
 
-        try(PersistenceManager persistenceManager = PersistenceManager.create()){
-            EntityManager entityManager = persistenceManager.getEntityManager();
-            EventHandler eventHandler = new EventHandler(entityManager);
+        try(EventHandler eventHandler = new EventHandler()){
             EventService eventService = new EventService(eventHandler);
 
             EventEntity eventEntity= eventService.createEvent(event);
@@ -66,9 +64,7 @@ public class EventMutationResolver implements GraphQLMutationResolver, GraphQLQu
 
 
 
-        try(PersistenceManager persistenceManager = PersistenceManager.create()){
-            EntityManager entityManager = persistenceManager.getEntityManager();
-            EventHandler eventHandler = new EventHandler(entityManager);
+        try(EventHandler eventHandler = new EventHandler()){
             EventService eventService = new EventService(eventHandler);
 
             EventEntity loaded= eventHandler.findById(Long.parseLong(id)).orElseThrow(); //todo wie damit umgehen
@@ -89,9 +85,7 @@ public class EventMutationResolver implements GraphQLMutationResolver, GraphQLQu
     }
 
     public boolean deleteEvent(String id){
-        try(PersistenceManager persistenceManager = PersistenceManager.create()){
-            EntityManager entityManager = persistenceManager.getEntityManager();
-            EventHandler eventHandler = new EventHandler(entityManager);
+        try(EventHandler eventHandler = new EventHandler()){
             EventService eventService = new EventService(eventHandler);
             eventHandler.deleteById(Long.parseLong(id));
             return true;

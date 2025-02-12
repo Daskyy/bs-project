@@ -45,6 +45,11 @@
 			<version>1.0.2</version>
 		</dependency>
 		<dependency>
+			<groupId>org.arakhne.afc.slf4j</groupId>
+			<artifactId>slf4j-log4j</artifactId>
+			<version>17.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
