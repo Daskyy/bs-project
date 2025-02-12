@@ -9,7 +9,6 @@
             <property name="jakarta.persistence.jdbc.user" value="javabackend"/>
             <property name="jakarta.persistence.jdbc.password" value="kc82jdrjos"/>
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
     </persistence-unit>

@@ -9,7 +9,7 @@ public class EventLocationEntity implements PersistenceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private AddressEntity addressEntity;
 
     @Column(nullable = false)

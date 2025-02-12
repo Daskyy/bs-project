@@ -34,11 +34,14 @@ public class EventEntity implements PersistenceEntity {
     @Column(nullable = false)
     private int maxTicketsPerUser;
 
-    @ManyToOne(optional = false)
+    @Column(nullable = false)
+    private long ticketPrice;
+
+    @ManyToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "location_id", nullable = false)
     private EventLocationEntity location;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(
             name = "event_artists",
             joinColumns = @JoinColumn(name = "event_id"),
@@ -46,7 +49,7 @@ public class EventEntity implements PersistenceEntity {
     )
     private List<UserEntity> artists = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(
             name = "event_blocked_users",
             joinColumns = @JoinColumn(name = "event_id"),
@@ -114,6 +117,14 @@ public class EventEntity implements PersistenceEntity {
 
     public void setTicketsSold(long ticketsSold) {
         this.ticketsSold = ticketsSold;
+    }
+
+    public long getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(long ticketPrice) {
+        this.ticketPrice = ticketPrice;
     }
 
     public void setMaxTicketsPerUser(int maxTicketsPerUser) {

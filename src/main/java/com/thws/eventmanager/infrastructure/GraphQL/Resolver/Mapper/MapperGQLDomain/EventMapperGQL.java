@@ -24,7 +24,7 @@ public class EventMapperGQL extends Mapper<Event, EventGQL> {
 
         event.setLocation(eventLocationMapperGQL.toModel(eventGQL.getLocation()));
         event.setBlockList((eventGQL.getBlockList()).stream().map(userMapperGQL::toModel).collect(Collectors.toList()));
-
+        event.setTicketPrice(eventGQL.getTicketPrice());
         //TODO startDate und endDate
         return event;
     }
@@ -44,7 +44,7 @@ public class EventMapperGQL extends Mapper<Event, EventGQL> {
 
         gql.setLocation(eventLocationMapperGQL.toModelGQL(event.getLocation()));
         gql.setBlockList((event.getBlockList()).stream().map(userMapperGQL::toModelGQL).collect(Collectors.toList()));
-
+        gql.setTicketPrice(event.getTicketPrice());
         //TODO startDate und endDate
         return gql;
     }

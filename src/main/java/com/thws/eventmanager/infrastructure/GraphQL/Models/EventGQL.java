@@ -12,6 +12,7 @@ public class EventGQL implements GQLModel {
     private List<UserGQL> artists;
     private EventLocationGQL location;
     private List<UserGQL> blockList;
+    private long ticketPrice;
 
     public EventGQL() {}
 
@@ -85,5 +86,13 @@ public class EventGQL implements GQLModel {
 
     public void setBlockList(List<UserGQL> blockList) {
         this.blockList = blockList;
+    }
+
+    public long getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(long ticketPrice) {
+        this.ticketPrice = ticketPrice;
     }
 }

@@ -12,11 +12,11 @@ public class TicketEntity implements PersistenceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @ManyToOne(optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "event_id", nullable = false)
     private EventEntity event;
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @ManyToOne(optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 

@@ -2,7 +2,7 @@ package com.thws.eventmanager.infrastructure.components.persistence.adapter;
 
 import com.thws.eventmanager.domain.port.out.GenericPersistenceOutport;
 import com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager;
-import jakarta.persistence.EntityManager;
+import jakarta.persistence.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,11 +20,23 @@ public abstract class GenericPersistenceAdapter<T, ID> implements GenericPersist
 
     @Override
     public T save(T entity) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(entity);
-        entityManager.getTransaction().commit();
-        return entity;
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            if (!transaction.isActive()) {
+                transaction.begin();
+            }
+            entity = entityManager.merge(entity); // 🔹 Merge ensures new and existing entities are handled properly
+            transaction.commit();
+            return entity;
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw new RuntimeException("Failed to save entity: " + e.getMessage(), e);
+        }
     }
+
+
 
     @Override
     public Optional<T> findById(ID id) {

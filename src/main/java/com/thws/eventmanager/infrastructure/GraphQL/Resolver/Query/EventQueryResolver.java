@@ -31,19 +31,28 @@ public class EventQueryResolver implements GraphQLQueryResolver {
         }//catch ()
         return null; //TODO wie gehen wir mit fehlern um?
     }
-    public List<EventGQL> events(EventCriteriaInput criteria){
-//        EventCrit
-//        try(PersistenceManager persistenceManager = PersistenceManager.create())
-//        {
-//            EntityManager entityManager= persistenceManager.getEntityManager();
-//            EventHandler e= new EventHandler(entityManager);
-//            EventSearchService eventSearchService = new EventSearchService(e);
-//
-//
-//            eventSearchService.searchEvents()
-//        }
-    return null;
+
+    public List<EventGQL> events(EventCriteriaInput criteria) {
+        try (EventHandler e = new EventHandler()) {
+            List<EventEntity> eventEntities = e.findAll(); // Retrieve events from DB
+
+            if (eventEntities.isEmpty()) {
+                return List.of();
+            }
+
+            List<Event> events = eventEntities.stream()
+                    .map(new EventMapper()::toModel)
+                    .toList();
+
+            return events.stream()
+                    .map(new EventMapperGQL()::toModelGQL)
+                    .toList();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return List.of();
+        }
     }
+
 
     public static void main(String[] args) {
         EventQueryResolver e = new EventQueryResolver();

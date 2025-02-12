@@ -14,7 +14,6 @@ public class TicketMapper extends Mapper<Ticket, TicketEntity> {
 
         ticket.setEvent(eventMapper.toModel(entity.getEvent()));
         ticket.setUser(userMapper.toModel(entity.getUser()));
-        ticket.setPrice(entity.getPrice());
         ticket.setPayment(paymentMapper.toModel(entity.getPayment()));
         ticket.setId(entity.getId());
 
@@ -27,7 +26,6 @@ public class TicketMapper extends Mapper<Ticket, TicketEntity> {
 
         entity.setEvent(eventMapper.toEntity(ticket.getEvent()));
         entity.setUser(userMapper.toEntity(ticket.getUser()));
-        entity.setPrice(ticket.getPrice());
         entity.setPayment(paymentMapper.toEntity(ticket.getPayment()));
 //        if(ticket.getId() != -1) {
 //            entity.setId(ticket.getId());

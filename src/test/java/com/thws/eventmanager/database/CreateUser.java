@@ -1,4 +1,3 @@
-/*
 package com.thws.eventmanager.database;
 
 import com.github.javafaker.Faker;
@@ -13,9 +12,8 @@ import java.util.Optional;
 
 public class CreateUser {
     public static void main(String[] args) {
-        try(PersistenceManager persistenceManager = PersistenceManager.create()) {
+        try(UserHandler userHandler = new UserHandler()) {
             Faker faker = new Faker();
-            UserHandler userHandler = new UserHandler(persistenceManager.getEntityManager());
             UserMapper userMapper = new UserMapper();
             User user = new User();
             user.setName(faker.name().fullName());
@@ -29,4 +27,4 @@ public class CreateUser {
         }
     }
 }
-*/
+

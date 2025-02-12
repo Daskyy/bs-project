@@ -22,7 +22,7 @@ public class UserQueryResolver implements GraphQLQueryResolver {
             User u= EntityMapper.toModel(ue);
             return mapperGQl.toModelGQL(u);
         } catch (Exception e) {
-            logger.error("An error occurred: {}", e.getMessage(), e); // ✅ Proper logging
+            logger.error("An error occurred: {}", e.getMessage(), e);
             return null;
         }
     }
