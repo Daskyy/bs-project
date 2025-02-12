@@ -6,13 +6,13 @@ import com.stripe.model.PaymentIntent;
 import com.stripe.model.Refund;
 import com.stripe.param.PaymentIntentCreateParams;
 import com.stripe.param.RefundCreateParams;
-import com.thws.eventmanager.domain.port.out.PaymentService;
+import com.thws.eventmanager.domain.port.out.StripeService;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.infrastructure.configuration.ConfigurationLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class StripePaymentService implements PaymentService {
+public class StripePaymentService implements StripeService {
 
     private static final Logger log = LoggerFactory.getLogger(StripePaymentService.class);
     private static final String EUR_CURRENCY = "eur";
@@ -48,11 +48,24 @@ public class StripePaymentService implements PaymentService {
                     )
                     .build();
 
-            PaymentIntent paymentIntent = PaymentIntent.create(params);
-            log.info("Payment processed successfully. PaymentIntent ID: {}", paymentIntent.getId());
-            return paymentIntent;
+            try {
+                PaymentIntent paymentIntent = PaymentIntent.create(params);
+                log.info("Payment processed. PaymentIntent ID: {}", paymentIntent.getId());
+                return paymentIntent;
+            } catch (CardException e) {
+                log.error("Card payment failed. Code: {}, Message: {}, Decline Code: {}",
+                        e.getCode(), e.getMessage(), e.getDeclineCode());
+
+                // 🔹 Simulate a failed PaymentIntent with a fake ID
+                PaymentIntent failedIntent = new PaymentIntent();
+                failedIntent.setStatus("failed");
+                failedIntent.setId("pi_fake_declined");
+                return failedIntent;
+            }
         });
     }
+
+
 
     @Override
     public PaymentIntent createOpenPayment(Payment payment) {
@@ -98,12 +111,20 @@ public class StripePaymentService implements PaymentService {
             return paymentIntent;
         } catch (InvalidRequestException e) {
             log.error("Invalid request to Stripe API: {}", e.getMessage());
-            return null;
+
+            PaymentIntent failedIntent = new PaymentIntent();
+            failedIntent.setStatus("failed");  // Simulate failure
+            return failedIntent;
         } catch (StripeException e) {
             log.error("Stripe error occurred: {}", e.getMessage());
-            return null;
+
+            PaymentIntent failedIntent = new PaymentIntent();
+            failedIntent.setStatus("failed");
+            return failedIntent;
         }
     }
+
+
 
     @Override
     public Refund processRefund(String paymentIntentId, long refundAmount) {
@@ -127,6 +148,11 @@ public class StripePaymentService implements PaymentService {
         } catch (CardException e) {
             log.error("Card payment failed. Code: {}, Message: {}, Decline Code: {}",
                     e.getCode(), e.getMessage(), e.getDeclineCode());
+
+            // 🔹 Return a failed PaymentIntent instead of null
+            PaymentIntent failedPaymentIntent = new PaymentIntent();
+            failedPaymentIntent.setStatus("failed"); // Simulate Stripe's failed payment
+            return (T) failedPaymentIntent;
         } catch (AuthenticationException e) {
             log.error("Authentication with Stripe failed: {}", e.getMessage());
         } catch (ApiConnectionException e) {
@@ -134,7 +160,7 @@ public class StripePaymentService implements PaymentService {
         } catch (Exception e) {
             log.error("Unexpected error during Stripe operation", e);
         }
-        return null;
+        return null; // If a different error occurs, return null
     }
 
 

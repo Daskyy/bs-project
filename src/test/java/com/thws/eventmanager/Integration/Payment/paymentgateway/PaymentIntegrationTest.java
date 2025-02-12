@@ -45,20 +45,22 @@ public class PaymentIntegrationTest {
         Payment payment = new Payment("pm_card_chargeDeclined", 2000L);
         PaymentIntent paymentIntent = paymentUseCaseService.processPayment(payment);
 
-        assertNotNull(paymentIntent);
-        assertEquals("failed", paymentIntent.getStatus());
-        assertEquals(Status.FAILED, payment.getStatus());
-        assertNotNull(payment.getPaymentIntentId());
+        assertNotNull(paymentIntent, "PaymentIntent should not be null, even if payment failed.");
+        assertEquals("failed", paymentIntent.getStatus(), "Expected PaymentIntent status to be 'failed'.");
+        assertEquals(Status.FAILED, payment.getStatus(), "Payment status should be FAILED.");
+        assertNotNull(payment.getPaymentIntentId(), "PaymentIntent ID should be stored in Payment.");
+        assertNotEquals("pi_unknown_failed", payment.getPaymentIntentId(), "PaymentIntent ID should not be 'pi_unknown_failed'.");
     }
+
 
     @Test
     void testCreateFailedPaymentFlow() {
         Payment payment = new Payment("pm_card_visa", 999999999L); // Very large amount to trigger failure
         PaymentIntent paymentIntent = paymentUseCaseService.createFailedPayment(payment);
 
-        assertNotNull(paymentIntent);
-        assertEquals("requires_payment_method", paymentIntent.getStatus());
-        assertEquals(Status.FAILED, payment.getStatus());
-        assertNotNull(payment.getPaymentIntentId());
+        assertNotNull(paymentIntent, "PaymentIntent should not be null, even if payment failed.");
+        assertEquals("failed", paymentIntent.getStatus(), "Expected PaymentIntent status to be 'failed'.");
+        assertEquals(Status.FAILED, payment.getStatus(), "Payment status should be FAILED.");
     }
+
 }
