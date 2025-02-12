@@ -9,6 +9,7 @@ public class AddressInputMapper {
         if(input == null) return null;
         AddressGQL gql = new AddressGQL();
         gql.setStreet(input.getStreet());
+        gql.setNo(input.getNo());
         gql.setCity(input.getCity());
         gql.setZipCode(input.getZipCode());
         gql.setCountry(input.getCountry());
