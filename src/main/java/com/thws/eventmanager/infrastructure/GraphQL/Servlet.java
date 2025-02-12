@@ -29,6 +29,7 @@ public class Servlet extends GraphQLHttpServlet{
                     this.getClass().getResourceAsStream("/schema.graphqls")
             );
 
+
             // Registriere sämtliche Resolver, die du hast
             return SchemaParser.newParser()
                     .schemaString(schemaString)

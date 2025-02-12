@@ -15,7 +15,7 @@ type Mutation {
 
   purchaseTicket(user: UserInput!, event: EventInput!, ticketamount: Int!,paymentmethodId: String!, voucher:String!): TicketGQL!
 
-  #User
+  #Userf
   # Beispiel: User anlegen
  # createUser(input: UserInput): UserGQL!
   # Beispiel: User löschen
@@ -35,7 +35,10 @@ type Mutation {
 
 # Models
 type ticketGQL{
- 
+ event: EventGQL!
+  user: UserGQL!
+  price: Float!
+  id: ID!
 }
 
 type paymentGQL{
