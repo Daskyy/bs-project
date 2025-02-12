@@ -1,7 +1,6 @@
 package com.thws.eventmanager.domain.usecases;
 
 import com.thws.eventmanager.domain.port.in.EventSearchServiceInputPort;
-import com.thws.eventmanager.domain.port.out.EventRepositoryOutputPort;
 import com.thws.eventmanager.domain.models.Event;
 import com.thws.eventmanager.domain.models.EventSearchCriteria;
 import com.thws.eventmanager.domain.port.out.GenericPersistenceOutport;

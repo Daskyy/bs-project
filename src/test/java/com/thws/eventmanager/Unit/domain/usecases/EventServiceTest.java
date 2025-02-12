@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 class EventServiceTest {
 
     private final EventHandler eventHandler = mock(EventHandler.class);
-    private final EventService eventService = new EventService(eventHandler);
+    private final EventService eventService = new EventService();
 
     private Event createValidEvent() {
         Event event = new Event();

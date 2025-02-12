@@ -1,12 +1,14 @@
 package com.thws.eventmanager.domain.usecases;
 
+import com.thws.eventmanager.domain.port.in.VoucherServiceInterface;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.VoucherHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class VoucherService {
+public class VoucherService implements VoucherServiceInterface {
     private static final Logger log = LoggerFactory.getLogger(VoucherService.class);
 
+    @Override
     public long applyVoucher(String code, long orderTotal) {
         try(VoucherHandler voucherHandler = new VoucherHandler()) {
             return voucherHandler.findByCode(code)

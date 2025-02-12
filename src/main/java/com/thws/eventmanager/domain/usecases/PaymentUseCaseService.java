@@ -2,21 +2,19 @@ package com.thws.eventmanager.domain.usecases;
 
 import com.stripe.model.PaymentIntent;
 import com.stripe.model.Refund;
-import com.thws.eventmanager.domain.port.in.PaymentUseCase;
+import com.thws.eventmanager.domain.port.in.PaymentUseCaseInterface;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.domain.models.Status;
-import com.thws.eventmanager.domain.port.out.StripeService;
+import com.thws.eventmanager.domain.port.out.StripeServiceInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Optional;
-
-public class PaymentUseCaseService implements PaymentUseCase {
-    private final StripeService paymentService;
+public class PaymentUseCaseService implements PaymentUseCaseInterface {
+    private final StripeServiceInterface paymentService;
     private static final Logger log = LoggerFactory.getLogger(PaymentUseCaseService.class);
     private final VoucherService voucherService;
 
-    public PaymentUseCaseService(StripeService paymentService) {
+    public PaymentUseCaseService(StripeServiceInterface paymentService) {
         this.paymentService = paymentService;
         this.voucherService = new VoucherService();
     }

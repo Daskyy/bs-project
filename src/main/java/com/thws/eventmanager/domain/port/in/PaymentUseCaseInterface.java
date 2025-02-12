@@ -4,9 +4,7 @@ import com.stripe.model.PaymentIntent;
 import com.stripe.model.Refund;
 import com.thws.eventmanager.domain.models.Payment;
 
-import java.util.Optional;
-
-public interface PaymentUseCase {
+public interface PaymentUseCaseInterface {
     PaymentIntent processPayment(Payment payment);
     PaymentIntent processPayment(Payment payment, String voucherCode);
     PaymentIntent createOpenPayment(Payment payment);

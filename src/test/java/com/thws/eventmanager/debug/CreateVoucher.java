@@ -1,4 +1,4 @@
-package com.thws.eventmanager.database;
+package com.thws.eventmanager.debug;
 
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.VoucherHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.VoucherEntity;

@@ -12,18 +12,19 @@ import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventM
 import java.time.LocalDateTime;
 
 public class EventService implements EventServiceInterface {
-    private final EventHandler eventHandler;
-    private final EventMapper eventMapper;
+    private final EventMapper eventMapper = new EventMapper();
 
-    public EventService(EventHandler eventHandler) {
-        this.eventHandler = eventHandler;
-        this.eventMapper = new EventMapper();
+    public EventService() {
     }
 
     @Override
     public EventEntity createEvent(Event event) {
         validateEvent(event);
-        return eventHandler.save(eventMapper.toEntity(event));
+        try(EventHandler eventHandler = new EventHandler()) {
+            return eventHandler.save(eventMapper.toEntity(event));
+        } catch (Exception e) {
+            throw new InvalidEventException("Failed to create event.");
+        }
     }
 
     @Override

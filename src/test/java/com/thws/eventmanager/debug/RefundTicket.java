@@ -1,4 +1,4 @@
-package com.thws.eventmanager.database;
+package com.thws.eventmanager.debug;
 
 import com.thws.eventmanager.domain.usecases.TicketPurchaseUseCaseService;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.TicketHandler;
