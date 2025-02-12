@@ -4,8 +4,8 @@ public class TicketGQL implements GQLModel{
     private String id;
     private EventGQL event;
     private UserGQL user;
-    private float price;
     private PaymentGQL payment;
+
 
     public TicketGQL() {}
 
@@ -31,14 +31,6 @@ public class TicketGQL implements GQLModel{
 
     public void setUser(UserGQL user) {
         this.user = user;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
     }
 
     public PaymentGQL getPayment() {

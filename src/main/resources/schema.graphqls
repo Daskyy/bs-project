@@ -34,20 +34,21 @@ type Mutation {
 
 
 # Models
-type ticketGQL{
- event: EventGQL!
+type TicketGQL{
+  id: ID!
+  event: EventGQL!
   user: UserGQL!
-  price: Float!
+  payment: PaymentGQL!
+}
+
+type PaymentGQL{
+  paymentMethodId: String!
+  amount: Int!
+  status: StatusGQL!
+  paymentIntentId: String!
   id: ID!
 }
 
-type paymentGQL{
-  paymentMethodID: String!
-  amount: Int!
-  status: StatusGQL!
-  paymentIntentID: String!
-  id:ID!
-}
 
 type AddressGQL{
   id: ID!
@@ -87,7 +88,7 @@ type PaymentGQL{
     paymentMethodId: ID!
     amount: Int!
     status: StatusGQL!
-    paymentIntentID: String!
+    paymentIntentId: String!
 }
 
 enum StatusGQL{
@@ -104,13 +105,7 @@ enum PermissionGQL{
   CUSTOMER
 }
 
-type TicketGQL{
-  id: ID!
-  event: EventGQL!
-  user: UserGQL!
-  price: Float!
-  payment: PaymentGQL!
-}
+
 
 type UserGQL {
   id: ID!
@@ -139,7 +134,7 @@ input EventInput {
   maxTicketsPerUser: Int
   artists: [UserInput!]!
   location: EventLocationInput
-  blockList: [UserInput!]
+  blockList: [UserInput!]!
   ticketPrice: Int
 
 }
