@@ -1,4 +1,4 @@
-package com.thws.eventmanager.domain.services.db;
+package com.thws.eventmanager.domain.services.models;
 
 import com.thws.eventmanager.domain.port.in.VoucherServiceInterface;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.VoucherHandler;

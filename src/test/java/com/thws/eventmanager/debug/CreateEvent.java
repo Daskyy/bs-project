@@ -2,7 +2,7 @@ package com.thws.eventmanager.debug;
 
 import com.github.javafaker.Faker;
 import com.thws.eventmanager.domain.models.*;
-import com.thws.eventmanager.domain.services.db.EventService;
+import com.thws.eventmanager.domain.services.models.EventService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

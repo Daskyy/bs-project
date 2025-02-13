@@ -1,6 +1,6 @@
 package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Query;
 
-import com.thws.eventmanager.domain.services.db.EventLocationService;
+import com.thws.eventmanager.domain.services.models.EventLocationService;
 import com.thws.eventmanager.infrastructure.GraphQL.InputModels.EventLocationCriteriaInput;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.EventLocationGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.EventLocationMapperGQL;

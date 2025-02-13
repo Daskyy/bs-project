@@ -1,7 +1,7 @@
 package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation;
 
 import com.thws.eventmanager.domain.models.Address;
-import com.thws.eventmanager.domain.services.db.AddressService;
+import com.thws.eventmanager.domain.services.models.AddressService;
 import com.thws.eventmanager.infrastructure.GraphQL.InputModels.AddressInput;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.AddressGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.AdressMapperGQL;
