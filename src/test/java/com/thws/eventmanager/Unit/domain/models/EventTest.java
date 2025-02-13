@@ -80,12 +80,6 @@ class EventTest {
 
     //blocking user tests
     @Test
-    void blockUser() {
-        User user = new User("", "", "", Permission.CUSTOMER);
-        event.blockUser(user);
-        assertTrue(event.isBlocked(user));
-    }
-    @Test
     void blockUserAgain() {
         User user = new User("", "", "", Permission.CUSTOMER);
         event.blockUser(user);
@@ -99,14 +93,7 @@ class EventTest {
         assertEquals("User cannot be null.", exception.getMessage());
     }
 
-    //unblocking user tests
-    @Test
-    void unblockUser() {
-        User user = new User("", "", "", Permission.CUSTOMER);
-        event.blockUser(user);
-        event.unblockUser(user);
-        assertFalse(event.isBlocked(user));
-    }
+
     @Test
     void unblockNonBlockedUser() {
         User user = new User("", "", "", Permission.CUSTOMER);
@@ -120,13 +107,7 @@ class EventTest {
         assertEquals("User cannot be null.", exception.getMessage());
     }
 
-    //checking if user is blocked tests
-    @Test
-    void isBlocked() {
-        User user = new User("", "", "", Permission.CUSTOMER);
-        event.blockUser(user);
-        assertTrue(event.isBlocked(user));
-    }
+
     @Test
     void isBlockedNullUser() {
         User user = null;

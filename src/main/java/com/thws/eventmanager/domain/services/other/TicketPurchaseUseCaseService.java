@@ -22,7 +22,6 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCaseInterf
     private final PaymentMapper paymentMapper = new PaymentMapper();
     private final TicketMapper ticketMapper = new TicketMapper();
     private final PaymentService paymentService = new PaymentService();
-
     @Override
     public Payment makePayment(User user, Event event, int ticketAmount, String paymentMethodId, String voucherCode) {
         Payment payment = new Payment(null, event.getTicketPrice() * ticketAmount);
@@ -35,15 +34,15 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCaseInterf
         List<Object> values= List.of(event.getId(),user.getId());
         if(ticketService.getAllTickets(criteria,values).stream().count()>event.getMaxTicketsPerUser()) {
             payment.setStatus(Status.FAILED);
-            throw new IllegalArgumentException("User has already bought the maximum amount of tickets for this event");
+            throw new PurchaseException("User has already bought the maximum amount of tickets for this event", String.valueOf(user.getId()), String.valueOf(event.getId()));
         }
-        else if(event.isBlocked(user)) {
+        else if(eventService.isBlocked(event, user)) {
             payment.setStatus(Status.FAILED);
-            throw new IllegalArgumentException("User is blocked from buying tickets for this event");
+            throw new PurchaseException("User is blocked from buying tickets for this event", String.valueOf(user.getId()), String.valueOf(event.getId()));
         }
         else if(event.getTicketsSold() + ticketAmount > event.getTicketCount()) {
             payment.setStatus(Status.FAILED);
-            throw new IllegalArgumentException("Not enough tickets left");
+            throw new PurchaseException("Not enough tickets left", String.valueOf(user.getId()), String.valueOf(event.getId()));
 
 
         }

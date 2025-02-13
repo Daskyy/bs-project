@@ -84,7 +84,7 @@ public class EventService implements EventServiceInterface {
 
     @Override
     public boolean isBlocked(Event event, User user) {
-        return event.getBlockList().contains(user);
+        return event.getBlockList().stream().anyMatch(blockedUser -> blockedUser.getId() == user.getId());
     }
 
     @Override

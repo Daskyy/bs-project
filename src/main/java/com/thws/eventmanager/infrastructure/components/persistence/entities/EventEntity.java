@@ -47,7 +47,7 @@ public class EventEntity implements PersistenceEntity {
             joinColumns = @JoinColumn(name = "event_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private List<UserEntity> artists = new ArrayList<>();
+    private List<UserEntity> artists;
 
     @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
@@ -55,7 +55,7 @@ public class EventEntity implements PersistenceEntity {
             joinColumns = @JoinColumn(name = "event_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    private List<UserEntity> blockList = new ArrayList<>();
+    private List<UserEntity> blockList;
 
     public EventEntity(){}
 
