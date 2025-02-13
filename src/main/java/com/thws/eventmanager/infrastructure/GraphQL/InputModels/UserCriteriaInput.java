@@ -1,6 +1,5 @@
 package com.thws.eventmanager.infrastructure.GraphQL.InputModels;
 
-import com.thws.eventmanager.domain.models.Permission;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.PermissionGQL;
 
 import java.util.ArrayList;
