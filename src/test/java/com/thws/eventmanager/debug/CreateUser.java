@@ -1,14 +1,11 @@
-package com.thws.eventmanager.database;
+package com.thws.eventmanager.debug;
 
 import com.github.javafaker.Faker;
 import com.thws.eventmanager.domain.models.User;
-import com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.UserHandler;
 import com.thws.eventmanager.domain.models.Permission;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.UserEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.UserMapper;
-
-import java.util.Optional;
 
 public class CreateUser {
     public static void main(String[] args) {

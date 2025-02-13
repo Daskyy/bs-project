@@ -8,31 +8,60 @@ type Query {
     # Beispiel: Einzelnes Event auslesen
   event(id: ID!): EventGQL
 
+  # Address
+    # Beispiel: Liste von Addressen auslesen
+    addresses(criteria: AddressCriteriaInput): [AddressGQL!]!
+    # Beispiel: Einzelne Address auslesen
+    address(id: ID!): AddressGQL
+
+  # EventLocation
+    # Beispiel: Liste von EventLocations auslesen
+    eventLocations(criteria: EventLocationCriteriaInput): [EventLocationGQL!]!
+    # Beispiel: Einzelne EventLocation auslesen
+    eventLocation(id: ID!): EventLocationGQL
+
 }
 
 # Mutations
 type Mutation {
-  #User
+
+
+  purchaseTicket(userId: ID!, eventId: ID!, ticketamount: Int!,paymentmethodId: String!, voucher:String): TicketGQL!
+
+  #Address
+  # Beispiel: Address anlegen
+  createAddress(input: AddressInput): AddressGQL!
+  # Beispiel: Address löschen
+  deleteAddress(id: ID!): AddressGQL!
+
+  #Userf
   # Beispiel: User anlegen
- # createUser(input: UserInput): UserGQL!
+  createUser(input: UserInput): UserGQL!
   # Beispiel: User löschen
- # deleteUser(id: ID!): Boolean!
+  deleteUser(id: ID!): UserGQL!
   # Beispiel: User aktualisieren
- # updateUser(id: ID!, input: UserInput): UserGQL!
+  updateUser(id: ID!, input: UserInput): UserGQL!
 
   #Event
   # Beispiel: Event anlegen
   createEvent(input: EventInput): EventGQL!
   # Beispiel: Event löschen
-  deleteEvent(id: ID!): Boolean!
+  deleteEvent(id: ID!): EventGQL!
   # Beispiel: Event aktualisieren
   updateEvent(id: ID!, input: EventInput): EventGQL!
 }
 
 # Models
+type TicketGQL{
+  id: ID!
+  event: EventGQL!
+  user: UserGQL!
+  payment: PaymentGQL!
+}
+
 type AddressGQL{
   id: ID!
-street: String!
+  street: String!
   no: Int!
   city: String!
   zipCode: Int!
@@ -68,6 +97,7 @@ type PaymentGQL{
     paymentMethodId: ID!
     amount: Int!
     status: StatusGQL!
+    paymentIntentId: String!
 }
 
 enum StatusGQL{
@@ -75,6 +105,7 @@ enum StatusGQL{
   COMPLETED
   FAILED
   CANCELLED
+  REFUNDED
 }
 
 enum PermissionGQL{
@@ -83,13 +114,7 @@ enum PermissionGQL{
   CUSTOMER
 }
 
-type TicketGQL{
-  id: ID!
-  event: EventGQL!
-  user: UserGQL!
-  price: Float!
-  payment: PaymentGQL!
-}
+
 
 type UserGQL {
   id: ID!
@@ -102,33 +127,51 @@ type UserGQL {
 
 # Input-Types
 input UserInput {
-  name: String!
-  email: String!
-  password: String!
-  permission: PermissionGQL!
+  name: String
+  email: String
+  password: String
+  permission: PermissionGQL
+  id: ID
+}
+
+input AddressCriteriaInput {
+    # z.B. Filterkriterien
+    street: String
+    city: String
+    zipCode: Int
+    country: String
+}
+
+input EventLocationCriteriaInput {
+  # z.B. Filterkriterien
+  addressentity_id: String
+  name: String
+  capacity: Int
 }
 
 input EventInput {
-  name: String!
+  id:ID   #todo unnötig?
+  name: String
   description: String
-  startDate: String!
-  endDate: String!
-  ticketCount: Int!
-  ticketsSold: Int!
-  maxTicketsPerUser: Int!
-  artists: [UserInput!]!
-  location: EventLocationInput!
-  blockList: [UserInput!]
-  ticketPrice: Int!
-
+  startDate: String
+  endDate: String
+  ticketCount: Int
+  ticketsSold: Int
+  maxTicketsPerUser: Int
+  artists: [ID!]!
+  location: ID
+  blockList: [ID!]!
+  ticketPrice: Int
 }
 
 input EventLocationInput {
+  id:ID
   address: AddressInput!
   name: String!
   capacity: Int!
 }
 input AddressInput{
+  id:ID
   street: String!
   no: Int!
   city: String!

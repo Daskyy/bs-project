@@ -14,6 +14,7 @@ public class AdressMapperGQL extends Mapper<Address, AddressGQL> {
         address.setCity(addressgql.getCity());
         address.setZipCode(addressgql.getZipCode());
         address.setCountry(addressgql.getCountry());
+        address.setId(Integer.parseInt(addressgql.getId()));
         // id wird beim Erstellen in DB vergeben
         return address;
     }
@@ -28,6 +29,7 @@ public class AdressMapperGQL extends Mapper<Address, AddressGQL> {
         addressgql.setZipCode(address.getZipCode());
         addressgql.setCountry(address.getCountry());
         addressgql.setId(String.valueOf(address.getId()));
+        if(address.getId()!=-1) addressgql.setId(String.valueOf(address.getId()));
         return addressgql;
     }
 }

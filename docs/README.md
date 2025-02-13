@@ -23,33 +23,24 @@ The project requirements include:
 
 ## Tech Stack
 - **Programming Language**: Java
-- **Framework**: <Framework Choice>
-- **Database**: <Database Choice>
-- **API Technology**: <API Choice>
+- **Database**: PostgreSQL
+- **API Technology**: GraphQL
 - **Containerization**: Docker
-- **Testing Frameworks**: JUnit and <Framework Test Choice>
+- **Testing Frameworks**: JUnit
 
 ## Architecture
 This project follows a hexagonal (or "ports and adapters") architecture. The primary components are:
 1. **Domain Layer**: Contains business logic and core models.
 2. **Application Layer**: Defines the use cases and handles interactions between the domain and API layers.
 3. **Infrastructure Layer**: Manages database interactions using JPA and includes repositories.
-4. **API Layer**: Exposes endpoints to interact with the domain through <API Choice>.
+4. **API Layer**: Exposes endpoints to interact with the domain through GraphQL.
 
 ## Database Design
-The database structure includes entities with a one-to-many relationship. Example relationships could be:
-- <>
-- <>
-
+The database structure includes entities with multiple types of relationships.
 This relationship will be represented using JPA annotations and mapped to tables in the database. Entity details and relationships are documented in `/docs/database-design.md`.
 
 ## API Endpoints
-The API provides endpoints to manage the entities with the following operations:
-- **Create**: Add a new entity.
-- **Read**: Retrieve an entity or list of entities.
-- **Update**: Modify an existing entity.
-- **Delete**: Remove an entity.
-
+The API provides endpoints to manage the entities with basic aswell as more advanced CRUD operations, such as refunding all users in case of a cancellation, discounts and more.
 Endpoint details will be specified in `/docs/api-documentation.md`.
 
 ## Testing

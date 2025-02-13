@@ -32,6 +32,8 @@ public class EventMapperGQL extends Mapper<Event, EventGQL> {
         event.setStartDate(LocalDateTime.from(FORMATTER.parse(eventGQL.getStartDate())));
         event.setEndDate(LocalDateTime.from(FORMATTER.parse(eventGQL.getEndDate())));
 
+         event.setId(Long.parseLong(eventGQL.getId()));
+
 
         return event;
     }
@@ -54,6 +56,7 @@ public class EventMapperGQL extends Mapper<Event, EventGQL> {
         gql.setTicketPrice(event.getTicketPrice());
         gql.setStartDate(event.getStartDate().format(FORMATTER));
         gql.setEndDate(event.getEndDate().format(FORMATTER));
+        if(event.getId()!=-1) gql.setId(String.valueOf(event.getId()));
         return gql;
     }
 

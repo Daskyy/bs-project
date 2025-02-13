@@ -6,13 +6,13 @@ import com.stripe.model.PaymentIntent;
 import com.stripe.model.Refund;
 import com.stripe.param.PaymentIntentCreateParams;
 import com.stripe.param.RefundCreateParams;
-import com.thws.eventmanager.domain.port.out.StripeService;
+import com.thws.eventmanager.domain.port.out.StripeServiceInterface;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.infrastructure.configuration.ConfigurationLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class StripePaymentService implements StripeService {
+public class StripePaymentService implements StripeServiceInterface {
 
     private static final Logger log = LoggerFactory.getLogger(StripePaymentService.class);
     private static final String EUR_CURRENCY = "eur";

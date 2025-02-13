@@ -4,7 +4,7 @@ package com.thws.eventmanager.domain.models;
 import java.util.Objects;
 
 public class Address implements Model {
-    int id = -1;
+    long id = -1;
     String street;
     int no;
     String city;
@@ -63,11 +63,11 @@ public class Address implements Model {
         this.zipCode = zipCode;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         if (this.id != -1) {
             throw new IllegalArgumentException("ID is already set");
         } else {

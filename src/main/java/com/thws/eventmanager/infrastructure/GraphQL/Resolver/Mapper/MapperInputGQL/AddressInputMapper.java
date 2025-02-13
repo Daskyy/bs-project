@@ -13,6 +13,7 @@ public class AddressInputMapper {
         gql.setCity(input.getCity());
         gql.setZipCode(input.getZipCode());
         gql.setCountry(input.getCountry());
+        gql.setId(input.getId());
         return gql;
     }
 

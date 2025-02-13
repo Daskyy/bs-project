@@ -4,19 +4,28 @@ import java.util.Collections;
 import java.util.List;
 
 public class EventInput {
+    private String id="-1";
     private String name;
     private String description;
-    private String startDate;
+    private String startDate;                   //muss dieses Format haben: 2031-02-20T10:00:00
     private String endDate;
-    private int ticketCount;
-    private int ticketsSold;
-    private int maxTicketsPerUser;
-    private List<UserInput> artists;
-    private EventLocationInput location;
-    private List<UserInput> blockList;
-    private long ticketPrice;
+    private int ticketCount =-1;
+    private int ticketsSold =-1;
+    private int maxTicketsPerUser =-1;
+    private List<String> artists;
+    private String location;
+    private List<String> blockList;
+    private long ticketPrice =-1;
 
     public EventInput() {}
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public long getTicketPrice() {
         return ticketPrice;
@@ -66,19 +75,19 @@ public class EventInput {
         this.maxTicketsPerUser = maxTicketsPerUser;
     }
 
-    public List<UserInput> getArtists() {
-        return artists;
+    public List<String> getArtists() {
+        return artists !=null ? artists : Collections.emptyList();
     }
 
-    public void setArtists(List<UserInput> artists) {
+    public void setArtists(List<String> artists) {
         this.artists = artists;
     }
 
-    public List<UserInput> getBlockList() {
+    public List<String> getBlockList() {
         return blockList != null ? blockList : Collections.emptyList();
     }
 
-    public void setBlockList(List<UserInput> blockList) {
+    public void setBlockList(List<String> blockList) {
         this.blockList = blockList;
     }
 
@@ -98,11 +107,11 @@ public class EventInput {
         this.description = description;
     }
 
-    public EventLocationInput getLocation() {
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(EventLocationInput location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 }

@@ -2,14 +2,10 @@ package com.thws.eventmanager.Unit.domain.usecases;
 
 import com.thws.eventmanager.domain.exceptions.InvalidEventException;
 import com.thws.eventmanager.domain.models.*;
-import com.thws.eventmanager.domain.port.out.GenericPersistenceOutport;
-import com.thws.eventmanager.domain.usecases.EventService;
+import com.thws.eventmanager.domain.services.models.EventService;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,7 +17,7 @@ import static org.mockito.Mockito.*;
 class EventServiceTest {
 
     private final EventHandler eventHandler = mock(EventHandler.class);
-    private final EventService eventService = new EventService(eventHandler);
+    private final EventService eventService = new EventService();
 
     private Event createValidEvent() {
         Event event = new Event();

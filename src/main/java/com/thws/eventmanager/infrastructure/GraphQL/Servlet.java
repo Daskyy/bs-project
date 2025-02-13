@@ -29,6 +29,7 @@ public class Servlet extends GraphQLHttpServlet{
                     this.getClass().getResourceAsStream("/schema.graphqls")
             );
 
+
             // Registriere sämtliche Resolver, die du hast
             return SchemaParser.newParser()
                     .schemaString(schemaString)
@@ -36,7 +37,11 @@ public class Servlet extends GraphQLHttpServlet{
                             new EventQueryResolver(),
                             new EventMutationResolver(),
                             new UserQueryResolver(),
-                            new UserMutationResolver()
+                            new UserMutationResolver(),
+                            new PaymentResolver(),
+                            new AddressMutationResolver(),
+                            new AddressQueryResolver(),
+                            new EventLocationQueryResolver()
                             // ggf. weitere
                     )
                     .build()

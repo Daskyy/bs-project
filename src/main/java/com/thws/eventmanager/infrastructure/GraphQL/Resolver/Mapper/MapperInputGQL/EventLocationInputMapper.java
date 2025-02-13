@@ -15,7 +15,7 @@ public class EventLocationInputMapper {
         gql.setAddress(addressInputMapper.toModelGQL(input.getAddress()));
         gql.setName(input.getName());
         gql.setCapacity(input.getCapacity());
-
+        gql.setId(input.getId());
         return gql;
     }
 }
