@@ -2,6 +2,7 @@ package com.thws.eventmanager.domain.services.models;
 
 import com.thws.eventmanager.domain.exceptions.InvalidEventException;
 import com.thws.eventmanager.domain.models.Event;
+import com.thws.eventmanager.domain.models.User;
 import com.thws.eventmanager.domain.port.in.EventServiceInterface;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
@@ -72,6 +73,32 @@ public class EventService implements EventServiceInterface {
             return eventHandler.findAll();
         } catch (Exception e) {
             throw new InvalidEventException("Failed to get all events from database.");
+        }
+    }
+
+    @Override
+    public boolean isBlocked(Event event, User user) {
+        return event.getBlockList().contains(user);
+    }
+
+    @Override
+    public boolean isArtist(Event event, User user) {
+        return event.getArtists().contains(user);
+    }
+
+    @Override
+    public EventEntity blockUser(Event inputevent, User user) {
+        try(EventHandler eventHandler = new EventHandler()) {
+            Event event = eventMapper.toModel(eventHandler.findById(inputevent.getId()).orElseThrow());
+            if (isArtist(event, user)) {
+                throw new InvalidEventException("Artists cannot be blocked.");
+            } else if (isBlocked(event, user)) {
+                throw new InvalidEventException("User is already blocked.");
+            }
+            event.getBlockList().add(user);
+            return eventHandler.save(eventMapper.toEntity(event));
+        } catch (Exception e) {
+            throw new InvalidEventException("Failed to block user.");
         }
     }
 

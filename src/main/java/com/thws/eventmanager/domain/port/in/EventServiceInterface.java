@@ -21,5 +21,11 @@ public interface EventServiceInterface {
 
     List<EventEntity> getAllEvents();
 
+    boolean isBlocked(Event event, User user);
+
+    boolean isArtist(Event event, User user);
+
+    EventEntity blockUser(Event event, User user);
+
     void validateEvent(Event event);
 }

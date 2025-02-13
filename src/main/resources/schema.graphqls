@@ -50,6 +50,8 @@ type Mutation {
   deleteEvent(id: ID!): EventGQL!
   # Beispiel: Event aktualisieren
   updateEvent(id: ID!, input: EventInput): EventGQL!
+  # Blocks a user
+  blockUser(eventId: ID!, userId: ID!): EventGQL!
 }
 
 # Models
