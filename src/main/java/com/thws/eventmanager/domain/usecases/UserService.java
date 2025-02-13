@@ -7,6 +7,7 @@ import com.thws.eventmanager.infrastructure.components.persistence.adapter.UserH
 import com.thws.eventmanager.infrastructure.components.persistence.entities.UserEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.UserMapper;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class UserService implements UserServiceInterface {
@@ -47,6 +48,21 @@ public class UserService implements UserServiceInterface {
         } else {if (!EMAIL_PATTERN.matcher(email).matches()) {
                 throw new InvalidUserException("Email is not a valid email address.");
             }
+        }
+    }
+
+    @Override
+    public List<UserEntity> getAllUsers(List<String> criteria, List<Object> values) {
+        try (UserHandler userHandler = new UserHandler()) {
+            if (criteria.size() != values.size()) {
+                throw new InvalidUserException("Criteria and values lists must have the same size.");
+            } else if (criteria.isEmpty()) {
+                return userHandler.findAll();
+            } else {
+                return userHandler.searchByCriteria(criteria, values);
+            }
+        } catch (Exception e) {
+            throw new InvalidUserException("Failed to get filtered users from database.");
         }
     }
 
