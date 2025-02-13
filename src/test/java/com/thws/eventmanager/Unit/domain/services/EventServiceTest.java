@@ -4,8 +4,6 @@ import com.thws.eventmanager.domain.exceptions.InvalidEventException;
 import com.thws.eventmanager.domain.models.*;
 import com.thws.eventmanager.domain.services.models.EventService;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
-import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
-import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventMapper;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -96,8 +94,11 @@ class EventServiceTest {
         Event event = createValidEvent();
         event.setTicketCount(0); // Invalid ticket count
 
-        assertThrows(InvalidEventException.class, () -> eventService.createEvent(event));
+        InvalidEventException exception = assertThrows(
+                InvalidEventException.class,
+                () -> eventService.createEvent(event)
+        );
 
-        verify(eventHandler, never()).save(any(EventEntity.class));
+        assertEquals("Ticket count must be greater than zero.", exception.getMessage());
     }
 }

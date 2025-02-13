@@ -9,7 +9,6 @@ import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventM
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
