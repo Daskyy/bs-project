@@ -5,9 +5,12 @@ import com.thws.eventmanager.domain.models.Event;
 import com.thws.eventmanager.domain.models.Ticket;
 import com.thws.eventmanager.domain.models.User;
 import com.thws.eventmanager.domain.port.in.EventServiceInterface;
+import com.thws.eventmanager.domain.services.other.TicketPurchaseUseCaseService;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
+import com.thws.eventmanager.infrastructure.components.persistence.entities.TicketEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventMapper;
+import com.thws.eventmanager.infrastructure.components.persistence.mapper.TicketMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +21,9 @@ import java.util.Optional;
 public class EventService implements EventServiceInterface {
     private final EventMapper eventMapper = new EventMapper();
     private static final Logger logger = LoggerFactory.getLogger(EventService.class);
-
+    TicketService ticketService = new TicketService();
+    TicketMapper ticketMapper = new TicketMapper();
+    TicketPurchaseUseCaseService ticketPurchaseUseCaseService = new TicketPurchaseUseCaseService();
     public EventService() {
     }
 
@@ -105,6 +110,11 @@ public class EventService implements EventServiceInterface {
 
     @Override
     public boolean refundEvent(Event event) {
+        List<TicketEntity> ticketEntityList = ticketService.getAllTickets(List.of("event_id"), List.of(event.getId()));
+        List<Ticket> ticketList = ticketEntityList.stream().map(ticketMapper::toModel).toList();
+        for (Ticket ticket : ticketList) {
+            ticketPurchaseUseCaseService.refundTicket(ticket);
+        }
         return true;
     }
 

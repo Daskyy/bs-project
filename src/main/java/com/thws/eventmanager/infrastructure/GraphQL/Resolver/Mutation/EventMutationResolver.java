@@ -71,12 +71,12 @@ public class EventMutationResolver implements GraphQLMutationResolver {
     }
 
     public EventGQL deleteEvent(String id){
-
-        // refund all users first
-
-
         EventService eventService = new EventService();
-        EventEntity ee= eventService.getEventById(Long.parseLong(id)).orElseThrow(); //todo wie damit umgehen
+        EventEntity ee= eventService.getEventById(Long.parseLong(id)).orElseThrow();
+
+        Event event = eventMapper.toModel(ee);
+        eventService.refundEvent(event);
+
         eventService.deleteEvent(eventMapper.toModel(ee));
 
         return eventMapperGQL.toModelGQL(eventMapper.toModel(ee));
