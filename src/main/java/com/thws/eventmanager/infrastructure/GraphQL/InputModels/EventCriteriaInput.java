@@ -11,11 +11,36 @@ public class EventCriteriaInput {
     private Integer ticketcount;
     private Integer ticketprice;
     private Integer ticketssold;
+    private String artists_id;
 
     public EventCriteriaInput() {}
 
     public int getMaxticketsperuser() {
         return maxticketsperuser;
+    }
+
+    public void setMaxticketsperuser(Integer maxticketsperuser) {
+        this.maxticketsperuser = maxticketsperuser;
+    }
+
+    public void setTicketcount(Integer ticketcount) {
+        this.ticketcount = ticketcount;
+    }
+
+    public void setTicketprice(Integer ticketprice) {
+        this.ticketprice = ticketprice;
+    }
+
+    public void setTicketssold(Integer ticketssold) {
+        this.ticketssold = ticketssold;
+    }
+
+    public String getArtists_id() {
+        return artists_id;
+    }
+
+    public void setArtists_id(String artists_id) {
+        this.artists_id = artists_id;
     }
 
     public void setMaxticketsperuser(int maxticketsperuser) {
@@ -93,6 +118,9 @@ public class EventCriteriaInput {
         if (ticketssold != null) {
             values.add(ticketssold);
         }
+        if (artists_id != null && !artists_id.isBlank()) {
+            values.add(artists_id);
+        }
         return values;
     }
 
@@ -118,6 +146,9 @@ public class EventCriteriaInput {
         }
         if (ticketssold != null) {
             criteria.add("ticketssold");
+        }
+        if(artists_id != null && !artists_id.isBlank()) {
+            criteria.add("artists_id");
         }
 
         return criteria;
