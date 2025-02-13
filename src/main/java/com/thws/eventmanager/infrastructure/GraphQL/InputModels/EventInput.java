@@ -12,9 +12,9 @@ public class EventInput {
     private int ticketCount =-1;
     private int ticketsSold =-1;
     private int maxTicketsPerUser =-1;
-    private List<UserInput> artists;
-    private EventLocationInput location;
-    private List<UserInput> blockList;
+    private List<String> artists;
+    private String location;
+    private List<String> blockList;
     private long ticketPrice =-1;
 
     public EventInput() {}
@@ -75,19 +75,19 @@ public class EventInput {
         this.maxTicketsPerUser = maxTicketsPerUser;
     }
 
-    public List<UserInput> getArtists() {
-        return artists;
+    public List<String> getArtists() {
+        return artists !=null ? artists : Collections.emptyList();
     }
 
-    public void setArtists(List<UserInput> artists) {
+    public void setArtists(List<String> artists) {
         this.artists = artists;
     }
 
-    public List<UserInput> getBlockList() {
+    public List<String> getBlockList() {
         return blockList != null ? blockList : Collections.emptyList();
     }
 
-    public void setBlockList(List<UserInput> blockList) {
+    public void setBlockList(List<String> blockList) {
         this.blockList = blockList;
     }
 
@@ -107,11 +107,11 @@ public class EventInput {
         this.description = description;
     }
 
-    public EventLocationInput getLocation() {
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(EventLocationInput location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 }

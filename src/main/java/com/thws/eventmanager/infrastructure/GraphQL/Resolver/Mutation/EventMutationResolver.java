@@ -12,6 +12,7 @@ import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputG
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL.EventLocationInputMapper;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL.UserInputMapper;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
+import com.thws.eventmanager.infrastructure.components.persistence.adapter.UserHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventMapper;
 import graphql.kickstart.tools.GraphQLMutationResolver;
@@ -40,7 +41,7 @@ public class EventMutationResolver implements GraphQLMutationResolver {
 
     public EventGQL updateEvent(String id, EventInput input){
 
-        try(EventHandler eventHandler = new EventHandler()){
+        try(EventHandler eventHandler = new EventHandler(); UserHandler userHandler = new UserHandler()){
             EventService eventService = new EventService();
 
             EventEntity loaded= eventHandler.findById(Long.parseLong(id)).orElseThrow(); //todo wie damit umgehen
@@ -51,7 +52,8 @@ public class EventMutationResolver implements GraphQLMutationResolver {
             if(input.getTicketCount()!=-1) event.setTicketCount(input.getTicketCount());
             if(input.getTicketsSold()!=-1) event.setTicketsSold(input.getTicketsSold());
             if(input.getMaxTicketsPerUser()!=-1) event.setMaxTicketsPerUser(input.getMaxTicketsPerUser());
-            if(input.getArtists()!=null) event.setArtists(input.getArtists().stream().map(userInputMapper::toModelGQL).map(userMapperGQL::toModel).toList());
+
+            if(input.getArtists()!=null) event.setArtists(userMapperGQL.toUserGQLList(input.getArtists()).stream().map(userMapperGQL::toModel).toList());
 
             EventEntity eventEnity= eventService.createEvent(event);
             event= eventMapper.toModel(eventEnity);

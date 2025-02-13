@@ -138,7 +138,7 @@ input AddressCriteriaInput {
 }
 
 input EventInput {
-  id:ID
+  id:ID   #todo unnötig?
   name: String
   description: String
   startDate: String
@@ -146,9 +146,9 @@ input EventInput {
   ticketCount: Int
   ticketsSold: Int
   maxTicketsPerUser: Int
-  artists: [UserInput!]
-  location: EventLocationInput
-  blockList: [UserInput!]
+  artists: [ID!]!
+  location: ID
+  blockList: [ID!]!
   ticketPrice: Int
 }
 
