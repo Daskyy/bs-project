@@ -50,6 +50,12 @@ class TicketMapperGQLTest {
         event.setId(1L);
         User user = new User();
         user.setPermission(Permission.CUSTOMER);
+        User blockedUser = new User();
+        blockedUser.setPermission(Permission.CUSTOMER);
+        User artist = new User();
+        artist.setPermission(Permission.ARTIST);
+        event.setArtists(List.of(artist));
+        event.setBlockList(List.of(blockedUser));
         event.setStartDate(LocalDateTime.parse("2025-02-13T10:00:00"));
         event.setEndDate(LocalDateTime.parse("2025-02-13T12:00:00"));
         Ticket ticket = new Ticket();
