@@ -53,7 +53,6 @@ public class TicketService implements TicketServiceInterface {
         }
     }
 
-
     @Override
     public boolean validateTicket(Ticket ticket) {
         Status status = ticket.getPayment().getStatus();
