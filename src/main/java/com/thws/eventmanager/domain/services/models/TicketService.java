@@ -43,8 +43,15 @@ public class TicketService implements TicketServiceInterface {
         }
     }
 
-
-
+    @Override
+    public TicketEntity getTicketById(long id) {
+        try (TicketHandler ticketHandler = new TicketHandler()) {
+            return ticketHandler.findById(id).orElse(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error getting ticket");
+        }
+    }
 
 
     @Override
