@@ -3,8 +3,13 @@
 type Query {
      # Beispiel: Liste von Events auslesen
      events(criteria: EventCriteriaInput, page: PaginationInput): [EventGQL!]!
+     
      # Beispiel: Einzelnen User auslesen
      user(id: ID!): UserGQL
+     
+     # Beispiel: Liste von Usern auslesen
+     users(criteria: UserCriteriaInput): [UserGQL!]!
+     
      # Beispiel: Einzelnes Event auslesen
      event(id: ID!): EventGQL
 
@@ -187,6 +192,13 @@ input AddressInput{
   city: String
   zipCode: Int
   country: String
+}
+
+input UserCriteriaInput {
+  # z.B. Filterkriterien
+  name: String
+  email: String
+  permissionGQL: PermissionGQL
 }
 
 input EventCriteriaInput {
