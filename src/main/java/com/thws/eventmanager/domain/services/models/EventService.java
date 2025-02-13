@@ -6,11 +6,16 @@ import com.thws.eventmanager.domain.port.in.EventServiceInterface;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 public class EventService implements EventServiceInterface {
     private final EventMapper eventMapper = new EventMapper();
+    private static final Logger logger = LoggerFactory.getLogger(EventService.class);
 
     public EventService() {
     }
@@ -22,6 +27,51 @@ public class EventService implements EventServiceInterface {
             return eventHandler.save(eventMapper.toEntity(event));
         } catch (Exception e) {
             throw new InvalidEventException("Failed to create event.");
+        }
+    }
+
+    @Override
+    public Optional<EventEntity> deleteEvent(Event event) {
+        try(EventHandler eventHandler = new EventHandler()) {
+            return eventHandler.deleteById(event.getId());
+        } catch (Exception e) {
+            throw new InvalidEventException("Failed to delete event.");
+        }
+    }
+
+    @Override
+    public Optional<EventEntity> getEventById(long id) {
+        try(EventHandler eventHandler = new EventHandler()) {
+            return eventHandler.findById(id);
+        } catch (Exception e) {
+            throw new InvalidEventException("Failed to get event.");
+        }
+    }
+
+    @Override
+    public List<EventEntity> getAllEvents(List<String> criteria, List<Object> values) {
+        logger.info("Criteria: " + criteria);
+        logger.info("Values: " + values);
+
+        try (EventHandler eventHandler = new EventHandler()) {
+            if (criteria.size() != values.size()) {
+                throw new InvalidEventException("Criteria and values lists must have the same size.");
+            } else if (criteria.isEmpty()) {
+                return eventHandler.findAll();
+            } else {
+                return eventHandler.searchByCriteria(criteria, values);
+            }
+        } catch (Exception e) {
+            throw new InvalidEventException("Failed to get filtered addresses from database.");
+        }
+    }
+
+    @Override
+    public List<EventEntity> getAllEvents() {
+        try(EventHandler eventHandler = new EventHandler()) {
+            return eventHandler.findAll();
+        } catch (Exception e) {
+            throw new InvalidEventException("Failed to get all events from database.");
         }
     }
 
