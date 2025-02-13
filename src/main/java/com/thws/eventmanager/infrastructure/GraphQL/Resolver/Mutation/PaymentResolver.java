@@ -4,9 +4,12 @@ import com.thws.eventmanager.domain.models.Event;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.domain.models.Ticket;
 import com.thws.eventmanager.domain.models.User;
+import com.thws.eventmanager.domain.services.models.TicketService;
 import com.thws.eventmanager.domain.services.other.TicketPurchaseUseCaseService;
+import com.thws.eventmanager.infrastructure.GraphQL.Models.PaymentGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.TicketGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.EventMapperGQL;
+import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.PaymentMapperGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.TicketMapperGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.UserMapperGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL.EventInputMapper;
@@ -21,6 +24,8 @@ import com.thws.eventmanager.infrastructure.components.persistence.mapper.Ticket
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.UserMapper;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 
+import java.util.List;
+
 public class PaymentResolver implements GraphQLMutationResolver {
     UserMapperGQL userMapperGQL = new UserMapperGQL();
     UserInputMapper userInputMapper = new UserInputMapper();
@@ -30,7 +35,9 @@ public class PaymentResolver implements GraphQLMutationResolver {
     EventMapper eventMapper = new EventMapper();
     UserMapper userMapper = new UserMapper();
     TicketMapper ticketMapper = new TicketMapper();
-
+    TicketService ticketService = new TicketService();
+    PaymentMapperGQL paymentMapperGQL = new PaymentMapperGQL();
+    TicketPurchaseUseCaseService ticketPurchaseUseCaseService = new TicketPurchaseUseCaseService();
 
     public TicketGQL purchaseTicket(String userId, String eventId, int ticketamount, String paymentmethodId, String voucher){
         Event e;
@@ -49,5 +56,9 @@ public class PaymentResolver implements GraphQLMutationResolver {
         Ticket ticket = ticketMapper.toModel(t);
         TicketGQL tgql = ticketMapperGQL.toModelGQL(ticket);
         return tgql;
+    }
+    public PaymentGQL refundTicket(String ticketId) {
+        Ticket t = ticketMapper.toModel(ticketService.getTicketById(Long.parseLong(ticketId)));
+        return paymentMapperGQL.toModelGQL(ticketPurchaseUseCaseService.refundTicket(t));
     }
 }

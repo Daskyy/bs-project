@@ -6,12 +6,15 @@ import com.thws.eventmanager.domain.port.in.TicketPurchaseUseCaseInterface;
 import com.thws.eventmanager.domain.services.models.EventService;
 import com.thws.eventmanager.domain.services.models.PaymentService;
 import com.thws.eventmanager.domain.services.models.TicketService;
+import com.thws.eventmanager.infrastructure.GraphQL.PurchaseException;
 import com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.TicketEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.PaymentMapper;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.TicketMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 public class TicketPurchaseUseCaseService implements TicketPurchaseUseCaseInterface {
     PaymentUseCaseService stripe = new PaymentUseCaseService(new StripePaymentService());
@@ -20,18 +23,27 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCaseInterf
     private final PaymentMapper paymentMapper = new PaymentMapper();
     private final TicketMapper ticketMapper = new TicketMapper();
     private final PaymentService paymentService = new PaymentService();
-
     @Override
     public Payment makePayment(User user, Event event, int ticketAmount, String paymentMethodId, String voucherCode) {
         Payment payment = new Payment(null, event.getTicketPrice() * ticketAmount);
-
+        EventService eventService = new EventService();
         /*
             boolean createdPayment = stripe.createOpenPayment(payment);
             Pass payment to user via frontend or wherever
          */
-        if(event.getTicketsSold() + ticketAmount > event.getTicketCount()) {
+        List<String> criteria =List.of("event_id","user_id");
+        List<Object> values= List.of(event.getId(),user.getId());
+        if(ticketService.getAllTickets(criteria,values).stream().count()+ticketAmount>event.getMaxTicketsPerUser()) {
             payment.setStatus(Status.FAILED);
-            throw new IllegalArgumentException("Not enough tickets left");
+            throw new PurchaseException("User has already bought the maximum amount of tickets for this event", String.valueOf(user.getId()), String.valueOf(event.getId()));
+        }
+        else if(eventService.isBlocked(event, user)) {
+            payment.setStatus(Status.FAILED);
+            throw new PurchaseException("User is blocked from buying tickets for this event", String.valueOf(user.getId()), String.valueOf(event.getId()));
+        }
+        else if(event.getTicketsSold() + ticketAmount > event.getTicketCount()) {
+            payment.setStatus(Status.FAILED);
+            throw new PurchaseException("Not enough tickets left", String.valueOf(user.getId()), String.valueOf(event.getId()));
 
 
         }
@@ -63,7 +75,7 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCaseInterf
         return null;
     }
 
-    public boolean refundTicket(Ticket ticket) {
+    public Payment refundTicket(Ticket ticket) {
         if (ticket.getPayment().getStatus() != Status.COMPLETED) {
             throw new IllegalStateException("Only completed payments can be refunded.");
         }
@@ -80,9 +92,8 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCaseInterf
             paymentService.createPayment(payment);
             ticketService.deleteTicket(ticket);
             eventService.createEvent(ticket.getEvent());
-            return true;
         }
-        return false;
+        return payment;
     }
 
 }

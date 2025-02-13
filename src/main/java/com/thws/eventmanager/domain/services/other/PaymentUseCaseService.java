@@ -28,7 +28,7 @@ public class PaymentUseCaseService implements PaymentUseCaseInterface {
             long discount = voucherService.applyVoucher(voucherCode, payment.getAmount());
             long finalAmount = payment.getAmount() - discount;
 
-            if (finalAmount <= 0) {
+            if (finalAmount <= 50) {
                 payment.setStatus(Status.COMPLETED);
                 return null; // No Stripe charge needed
             }

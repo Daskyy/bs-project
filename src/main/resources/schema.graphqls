@@ -1,24 +1,24 @@
 
 
 type Query {
-  # Beispiel: Liste von Events auslesen
-  events(criteria: EventCriteriaInput): [EventGQL!]!
-  # Beispiel: Einzelnen User auslesen
-  user(id: ID!): UserGQL
-    # Beispiel: Einzelnes Event auslesen
-  event(id: ID!): EventGQL
+     # Beispiel: Liste von Events auslesen
+     events(criteria: EventCriteriaInput): [EventGQL!]!
+     # Beispiel: Einzelnen User auslesen
+     user(id: ID!): UserGQL
+     # Beispiel: Einzelnes Event auslesen
+     event(id: ID!): EventGQL
 
   # Address
     # Beispiel: Liste von Addressen auslesen
-    addresses(criteria: AddressCriteriaInput): [AddressGQL!]!
+     addresses(criteria: AddressCriteriaInput): [AddressGQL!]!
     # Beispiel: Einzelne Address auslesen
-    address(id: ID!): AddressGQL
+     address(id: ID!): AddressGQL
 
   # EventLocation
     # Beispiel: Liste von EventLocations auslesen
-    eventLocations(criteria: EventLocationCriteriaInput): [EventLocationGQL!]!
+     eventLocations(criteria: EventLocationCriteriaInput): [EventLocationGQL!]!
     # Beispiel: Einzelne EventLocation auslesen
-    eventLocation(id: ID!): EventLocationGQL
+     eventLocation(id: ID!): EventLocationGQL
 
 }
 
@@ -28,12 +28,15 @@ type Mutation {
 
   purchaseTicket(userId: ID!, eventId: ID!, ticketamount: Int!,paymentmethodId: String!, voucher:String): TicketGQL!
 
+  refundTicket(ticketId: ID!): PaymentGQL!
+
   #Address
   # Beispiel: Address anlegen
   createAddress(input: AddressInput): AddressGQL!
   # Beispiel: Address löschen
   deleteAddress(id: ID!): AddressGQL!
-
+    # Beispiel: Address aktualisieren
+  updateAddress(id:ID!, input: AddressInput): AddressGQL!
   #Userf
   # Beispiel: User anlegen
   createUser(input: UserInput): UserGQL!
@@ -49,6 +52,8 @@ type Mutation {
   deleteEvent(id: ID!): EventGQL!
   # Beispiel: Event aktualisieren
   updateEvent(id: ID!, input: EventInput): EventGQL!
+  # Blocks a user
+  blockUser(eventId: ID!, userId: ID!): EventGQL!
 }
 
 # Models
@@ -150,7 +155,6 @@ input EventLocationCriteriaInput {
 }
 
 input EventInput {
-  id:ID
   name: String
   description: String
   startDate: String
@@ -158,9 +162,9 @@ input EventInput {
   ticketCount: Int
   ticketsSold: Int
   maxTicketsPerUser: Int
-  artists: [UserInput!]
-  location: EventLocationInput
-  blockList: [UserInput!]
+  artists: [ID!]!
+  location: ID
+  blockList: [ID!]!
   ticketPrice: Int
 }
 
@@ -172,17 +176,22 @@ input EventLocationInput {
 }
 input AddressInput{
   id:ID
-  street: String!
-  no: Int!
-  city: String!
-  zipCode: Int!
-  country: String!
+  street: String
+  no: Int
+  city: String
+  zipCode: Int
+  country: String
 }
 
 input EventCriteriaInput {
   # z.B. Filterkriterien
   description: String
-  location: EventLocationInput
   name: String
-  artists: [UserInput!]
+  location_id: String
+  maxticketsperuser: Int
+  ticketprice: Int
+  ticketcount: Int
+  ticketssold: Int
+  artists_id: String
+  blockList_id: String
 }
