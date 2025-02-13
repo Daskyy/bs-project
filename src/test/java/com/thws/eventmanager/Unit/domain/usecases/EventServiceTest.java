@@ -2,7 +2,7 @@ package com.thws.eventmanager.Unit.domain.usecases;
 
 import com.thws.eventmanager.domain.exceptions.InvalidEventException;
 import com.thws.eventmanager.domain.models.*;
-import com.thws.eventmanager.domain.services.db.EventService;
+import com.thws.eventmanager.domain.services.models.EventService;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
 import org.junit.jupiter.api.Test;

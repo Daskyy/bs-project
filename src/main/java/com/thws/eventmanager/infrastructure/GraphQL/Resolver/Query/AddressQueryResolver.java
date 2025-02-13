@@ -1,6 +1,6 @@
 package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Query;
 
-import com.thws.eventmanager.domain.services.db.AddressService;
+import com.thws.eventmanager.domain.services.models.AddressService;
 import com.thws.eventmanager.infrastructure.GraphQL.InputModels.AddressCriteriaInput;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.AddressGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.AdressMapperGQL;

@@ -1,4 +1,4 @@
-package com.thws.eventmanager.domain.services.usecases;
+package com.thws.eventmanager.domain.services.other;
 
 import com.stripe.model.PaymentIntent;
 import com.stripe.model.Refund;
@@ -6,7 +6,7 @@ import com.thws.eventmanager.domain.port.in.PaymentUseCaseInterface;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.domain.models.Status;
 import com.thws.eventmanager.domain.port.out.StripeServiceInterface;
-import com.thws.eventmanager.domain.services.db.VoucherService;
+import com.thws.eventmanager.domain.services.models.VoucherService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,4 +1,4 @@
-package com.thws.eventmanager.domain.services.db;
+package com.thws.eventmanager.domain.services.models;
 
 import com.thws.eventmanager.domain.port.in.EventSearchServiceInputPort;
 import com.thws.eventmanager.domain.models.Event;

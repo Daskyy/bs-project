@@ -1,7 +1,7 @@
 package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation;
 
 import com.thws.eventmanager.domain.models.User;
-import com.thws.eventmanager.domain.services.db.UserService;
+import com.thws.eventmanager.domain.services.models.UserService;
 import com.thws.eventmanager.infrastructure.GraphQL.InputModels.UserInput;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.UserGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.UserMapperGQL;

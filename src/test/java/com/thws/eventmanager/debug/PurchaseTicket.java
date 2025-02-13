@@ -3,7 +3,7 @@ package com.thws.eventmanager.debug;
 import com.thws.eventmanager.domain.models.Event;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.domain.models.User;
-import com.thws.eventmanager.domain.services.usecases.TicketPurchaseUseCaseService;
+import com.thws.eventmanager.domain.services.other.TicketPurchaseUseCaseService;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.UserHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;

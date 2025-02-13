@@ -14,6 +14,11 @@ type Query {
     # Beispiel: Einzelne Address auslesen
     address(id: ID!): AddressGQL
 
+  # EventLocation
+    # Beispiel: Liste von EventLocations auslesen
+    eventLocations(criteria: EventLocationCriteriaInput): [EventLocationGQL!]!
+    # Beispiel: Einzelne EventLocation auslesen
+    eventLocation(id: ID!): EventLocationGQL
 
 }
 
@@ -135,6 +140,13 @@ input AddressCriteriaInput {
     city: String
     zipCode: Int
     country: String
+}
+
+input EventLocationCriteriaInput {
+  # z.B. Filterkriterien
+  addressentity_id: String
+  name: String
+  capacity: Int
 }
 
 input EventInput {

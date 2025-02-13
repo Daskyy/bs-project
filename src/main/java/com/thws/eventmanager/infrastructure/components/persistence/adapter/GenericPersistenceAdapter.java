@@ -4,6 +4,9 @@ import com.thws.eventmanager.domain.port.out.GenericPersistenceOutport;
 import com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.*;
+import jakarta.persistence.metamodel.Attribute;
+import jakarta.persistence.metamodel.EntityType;
+import org.slf4j.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +16,7 @@ public abstract class GenericPersistenceAdapter<T, ID> implements GenericPersist
     private final PersistenceManager persistenceManager;
     public final EntityManager entityManager;
     private final Class<T> entityClass;
+    private static final Logger logger = LoggerFactory.getLogger(GenericPersistenceAdapter.class);
 
     protected GenericPersistenceAdapter(Class<T> entityClass) {
         this.persistenceManager = PersistenceManager.create();  // Keep it open
@@ -81,23 +85,68 @@ public abstract class GenericPersistenceAdapter<T, ID> implements GenericPersist
 
     @Override
     public List<T> searchByCriteria(List<String> fieldNames, List<Object> values) {
-        System.out.println("Executing searchByCriteria...");
+        logger.info("Executing searchByCriteria...");
 
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> cq = cb.createQuery(entityClass);
         Root<T> root = cq.from(entityClass);
 
+        EntityType<T> entityType = entityManager.getMetamodel().entity(entityClass); // Get Metamodel for entity T
+
         List<Predicate> predicates = new ArrayList<>();
         for (int i = 0; i < fieldNames.size(); i++) {
-            System.out.println("Checking field: " + fieldNames.get(i) + " with value: " + values.get(i));
-            predicates.add(cb.equal(root.get(fieldNames.get(i)), values.get(i)));
+            String fieldName = fieldNames.get(i);
+            Object value = values.get(i);
+
+            logger.info("Checking field: {} with value: {}", fieldName, value);
+
+            /*
+
+                GraphQL being a dummy.
+                This is required to handle related entity fields.
+                Don't touch this.
+
+             */
+
+            if (fieldName.contains("_")) {
+                String[] parts = fieldName.split("_", 2);
+                if (parts.length == 2) {
+                    String relatedEntityNameLower = parts[0].toLowerCase(); // Lowercase for case-insensitive comparison
+                    String relatedField = parts[1];
+                    String actualRelatedEntityFieldName = null;
+
+                    for (Attribute<? super T, ?> attribute : entityType.getAttributes()) {
+                        if (attribute.getName().toLowerCase().equals(relatedEntityNameLower)) {
+                            actualRelatedEntityFieldName = attribute.getName();
+                            break;
+                        }
+                    }
+
+                    if (actualRelatedEntityFieldName != null) {
+                        try {
+                            predicates.add(cb.equal(root.get(actualRelatedEntityFieldName).get(relatedField), value));
+                            logger.info("Detected and handled related entity field (case-insensitive): {} using actual field name: {}", fieldName, actualRelatedEntityFieldName);
+                        } catch (IllegalArgumentException e) {
+                            logger.warn("Related entity field structure detected but invalid field: {}, falling back to direct field.", fieldName);
+                            predicates.add(cb.equal(root.get(fieldName), value)); // Fallback to direct field if related field is invalid
+                        }
+                    } else {
+                        logger.warn("Related entity name not found (case-insensitive): {}, falling back to direct field: {}", parts[0], fieldName);
+                        predicates.add(cb.equal(root.get(fieldName), value)); // Fallback if related entity name not found
+                    }
+                } else {
+                    logger.info("Treating as direct field due to split issue: {}", fieldName);
+                    predicates.add(cb.equal(root.get(fieldName), value));
+                }
+            } else {
+                logger.info("Treating as direct field: {}", fieldName);
+                predicates.add(cb.equal(root.get(fieldName), value));
+            }
         }
 
         cq.where(predicates.toArray(new Predicate[0]));
 
         TypedQuery<T> query = entityManager.createQuery(cq);
-        System.out.println("Generated Query: " + query.unwrap(org.hibernate.query.Query.class).getQueryString());
-
         return query.getResultList();
     }
 

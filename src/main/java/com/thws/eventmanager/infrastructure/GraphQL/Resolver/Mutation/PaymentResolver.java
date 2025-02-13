@@ -4,7 +4,7 @@ import com.thws.eventmanager.domain.models.Event;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.domain.models.Ticket;
 import com.thws.eventmanager.domain.models.User;
-import com.thws.eventmanager.domain.services.usecases.TicketPurchaseUseCaseService;
+import com.thws.eventmanager.domain.services.other.TicketPurchaseUseCaseService;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.TicketGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.EventMapperGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.TicketMapperGQL;
