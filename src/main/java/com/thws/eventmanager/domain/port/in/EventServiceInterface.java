@@ -27,5 +27,7 @@ public interface EventServiceInterface {
 
     EventEntity blockUser(Event event, User user);
 
+    boolean refundEvent(Event event);
+
     void validateEvent(Event event);
 }

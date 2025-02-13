@@ -2,6 +2,7 @@ package com.thws.eventmanager.domain.services.models;
 
 import com.thws.eventmanager.domain.exceptions.InvalidEventException;
 import com.thws.eventmanager.domain.models.Event;
+import com.thws.eventmanager.domain.models.Ticket;
 import com.thws.eventmanager.domain.models.User;
 import com.thws.eventmanager.domain.port.in.EventServiceInterface;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
@@ -100,6 +101,11 @@ public class EventService implements EventServiceInterface {
         } catch (Exception e) {
             throw new InvalidEventException("Failed to block user.");
         }
+    }
+
+    @Override
+    public boolean refundEvent(Event event) {
+        return true;
     }
 
     @Override
