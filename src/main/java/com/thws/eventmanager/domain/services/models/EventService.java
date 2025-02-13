@@ -1,10 +1,8 @@
-package com.thws.eventmanager.domain.usecases;
+package com.thws.eventmanager.domain.services.models;
 
 import com.thws.eventmanager.domain.exceptions.InvalidEventException;
 import com.thws.eventmanager.domain.models.Event;
-import com.thws.eventmanager.domain.models.User;
 import com.thws.eventmanager.domain.port.in.EventServiceInterface;
-import com.thws.eventmanager.domain.port.out.GenericPersistenceOutport;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventMapper;

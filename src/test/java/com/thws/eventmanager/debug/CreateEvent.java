@@ -2,11 +2,7 @@ package com.thws.eventmanager.debug;
 
 import com.github.javafaker.Faker;
 import com.thws.eventmanager.domain.models.*;
-import com.thws.eventmanager.domain.usecases.EventService;
-import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
-import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventLocationHandler;
-import com.thws.eventmanager.infrastructure.components.persistence.entities.EventLocationEntity;
-import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventLocationMapper;
+import com.thws.eventmanager.domain.services.models.EventService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -38,13 +34,6 @@ public class CreateEvent {
         eventLocation.setCapacity(1000);
         eventLocation.setName(faker.company().name());
 
-        // Get event location from db
-        //EventLocationHandler eventLocationHandler = new EventLocationHandler();
-        //EventLocationMapper eventLocationMapper = new EventLocationMapper();
-        //EventLocationEntity eventLocationEntity = eventLocationHandler.findById(1L).get();
-        //EventLocation eventLocation1 = eventLocationMapper.toModel(eventLocationEntity);
-
-
         // EVENT
         event.setName(faker.company().name());
         LocalDateTime startDate = LocalDateTime.now().plusYears(1);
@@ -62,6 +51,5 @@ public class CreateEvent {
 
         EventService eventService = new EventService();
         eventService.createEvent(event);
-
     }
 }

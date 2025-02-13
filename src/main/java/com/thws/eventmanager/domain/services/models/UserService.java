@@ -1,4 +1,4 @@
-package com.thws.eventmanager.domain.usecases;
+package com.thws.eventmanager.domain.services.models;
 
 import com.thws.eventmanager.domain.exceptions.InvalidUserException;
 import com.thws.eventmanager.domain.models.User;
