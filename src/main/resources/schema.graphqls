@@ -13,7 +13,7 @@ type Query {
 # Mutations
 type Mutation {
 
-  purchaseTicket(user: UserInput!, event: EventInput!, ticketamount: Int!,paymentmethodId: String!, voucher:String!): TicketGQL!
+  purchaseTicket(userId: ID!, eventId: ID!, ticketamount: Int!,paymentmethodId: String!, voucher:String): TicketGQL!
 
   #Userf
   # Beispiel: User anlegen
@@ -121,6 +121,7 @@ input UserInput {
   email: String
   password: String
   permission: PermissionGQL
+  id: ID
 }
 
 input EventInput {
