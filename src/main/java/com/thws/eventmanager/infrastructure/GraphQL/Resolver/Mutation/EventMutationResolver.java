@@ -79,12 +79,13 @@ public class EventMutationResolver implements GraphQLMutationResolver {
     public EventGQL blockUser(String userId, String eventId) {
         UserEntity userEntity = userService.getUserById(Long.parseLong(userId));
         EventEntity eventEntity = eventService.getEventById(Long.parseLong(eventId)).orElseThrow();
-        return eventMapperGQL
-                .toModelGQL(eventMapper
-                        .toModel(eventService
-                                .blockUser(eventMapper
-                                        .toModel(eventEntity),
-                                        userMapper.toModel(userEntity))));
+        return eventMapperGQL.toModelGQL(
+                eventMapper.toModel(
+                        eventService.blockUser(
+                                eventMapper.toModel(eventEntity),
+                                        userMapper.toModel(
+                                                userEntity
+                ))));
     }
 
 }
