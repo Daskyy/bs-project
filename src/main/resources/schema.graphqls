@@ -155,7 +155,6 @@ input EventLocationCriteriaInput {
 }
 
 input EventInput {
-  id:ID   #todo unnötig?
   name: String
   description: String
   startDate: String
