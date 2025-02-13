@@ -9,6 +9,9 @@ import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventM
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.PaymentMapper;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.TicketMapper;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.UserMapper;
+import org.jetbrains.annotations.MustBeInvokedByOverriders;
+
+import java.util.List;
 
 public class TicketService implements TicketServiceInterface {
     private final TicketMapper ticketMapper = new TicketMapper();
@@ -32,6 +35,14 @@ public class TicketService implements TicketServiceInterface {
     }
 
     @Override
+    public boolean validateTicket(Ticket ticket) {
+        Status status = ticket.getPayment().getStatus();
+
+        return status == Status.COMPLETED;
+    }
+
+
+    @Override
     public Ticket deleteTicket(Ticket ticket) {
         try (TicketHandler ticketHandler = new TicketHandler()) {
             TicketEntity ticketEntity = ticketMapper.toEntity(ticket);
@@ -53,11 +64,31 @@ public class TicketService implements TicketServiceInterface {
         }
     }
 
-    @Override
-    public boolean validateTicket(Ticket ticket) {
-        Status status = ticket.getPayment().getStatus();
-
-        return status == Status.COMPLETED;
+    public List<TicketEntity> getAllTickets() {
+        try (TicketHandler ticketHandler = new TicketHandler()) {
+            return ticketHandler.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error getting all tickets");
+        }
     }
+    public List<TicketEntity> getAllTickets(List<String> criteria, List<Object> values) {
+        try (TicketHandler ticketHandler = new TicketHandler()) {
+            if (criteria.size() != values.size()) {
+                throw new RuntimeException("Criteria and values lists must have the same size.");
+            } else if (criteria.isEmpty()) {
+                return ticketHandler.findAll();
+            } else {
+                return ticketHandler.searchByCriteria(criteria, values);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error getting filtered tickets");
+        }
+    }
+
 }
+
+
+
 
