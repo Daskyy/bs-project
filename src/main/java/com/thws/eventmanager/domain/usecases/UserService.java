@@ -8,6 +8,7 @@ import com.thws.eventmanager.infrastructure.components.persistence.entities.User
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.UserMapper;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 public class UserService implements UserServiceInterface {
@@ -22,6 +23,15 @@ public class UserService implements UserServiceInterface {
             return userHandler.save(userMapper.toEntity(user));
         } catch (Exception e) {
             throw new InvalidUserException("Failed to create user");
+        }
+    }
+
+    @Override
+    public Optional<UserEntity> deleteUser(User user) {
+        try (UserHandler userHandler = new UserHandler()) {
+            return userHandler.deleteById(user.getId());
+        } catch (Exception e) {
+            throw new InvalidUserException("Failed to delete user from database.");
         }
     }
 
@@ -63,6 +73,24 @@ public class UserService implements UserServiceInterface {
             }
         } catch (Exception e) {
             throw new InvalidUserException("Failed to get filtered users from database.");
+        }
+    }
+
+    @Override
+    public List<UserEntity> getAllUsers() {
+        try (UserHandler userHandler = new UserHandler()) {
+            return userHandler.findAll();
+        } catch (Exception e) {
+            throw new InvalidUserException("Failed to get users from database.");
+        }
+    }
+
+    @Override
+    public UserEntity getUserById(Long id) {
+        try (UserHandler userHandler = new UserHandler()) {
+            return userHandler.findById(id).orElseThrow(() -> new InvalidUserException("User not found"));
+        } catch (Exception e) {
+            throw new InvalidUserException("Failed to get user from database.");
         }
     }
 
