@@ -8,12 +8,25 @@ type Query {
     # Beispiel: Einzelnes Event auslesen
   event(id: ID!): EventGQL
 
+  # Address
+    # Beispiel: Liste von Addressen auslesen
+    addresses(criteria: AddressCriteriaInput): [AddressGQL!]!
+    # Beispiel: Einzelne Address auslesen
+    address(id: ID!): AddressGQL
+
+
 }
 
 # Mutations
 type Mutation {
 
   purchaseTicket(userId: ID!, eventId: ID!, ticketamount: Int!,paymentmethodId: String!, voucher:String): TicketGQL!
+
+  #Address
+  # Beispiel: Address anlegen
+  createAddress(input: AddressInput): AddressGQL!
+  # Beispiel: Address löschen
+  deleteAddress(id: ID!): AddressGQL!
 
   #Userf
   # Beispiel: User anlegen
@@ -115,6 +128,14 @@ input UserInput {
   id: ID
 }
 
+input AddressCriteriaInput {
+    # z.B. Filterkriterien
+    street: String
+    city: String
+    zipCode: Int
+    country: String
+}
+
 input EventInput {
   name: String
   description: String
@@ -123,11 +144,10 @@ input EventInput {
   ticketCount: Int
   ticketsSold: Int
   maxTicketsPerUser: Int
-  artists: [UserInput!]!
+  artists: [UserInput!]
   location: EventLocationInput
-  blockList: [UserInput!]!
+  blockList: [UserInput!]
   ticketPrice: Int
-
 }
 
 input EventLocationInput {

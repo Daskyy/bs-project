@@ -19,4 +19,6 @@ public interface GenericPersistenceOutport<T, ID> {
     void close();
 
     public List<T> searchByCriteria(String fieldName, Object value);
+
+    public List<T> searchByCriteria(List<String> fieldNames, List<Object> values);
 }

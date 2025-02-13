@@ -5,6 +5,7 @@ import com.thws.eventmanager.infrastructure.components.persistence.PersistenceMa
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,6 +78,29 @@ public abstract class GenericPersistenceAdapter<T, ID> implements GenericPersist
         TypedQuery<T> query = entityManager.createQuery(cq);
         return query.getResultList();
     }
+
+    @Override
+    public List<T> searchByCriteria(List<String> fieldNames, List<Object> values) {
+        System.out.println("Executing searchByCriteria...");
+
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> cq = cb.createQuery(entityClass);
+        Root<T> root = cq.from(entityClass);
+
+        List<Predicate> predicates = new ArrayList<>();
+        for (int i = 0; i < fieldNames.size(); i++) {
+            System.out.println("Checking field: " + fieldNames.get(i) + " with value: " + values.get(i));
+            predicates.add(cb.equal(root.get(fieldNames.get(i)), values.get(i)));
+        }
+
+        cq.where(predicates.toArray(new Predicate[0]));
+
+        TypedQuery<T> query = entityManager.createQuery(cq);
+        System.out.println("Generated Query: " + query.unwrap(org.hibernate.query.Query.class).getQueryString());
+
+        return query.getResultList();
+    }
+
 
     @Override
     public void close() {

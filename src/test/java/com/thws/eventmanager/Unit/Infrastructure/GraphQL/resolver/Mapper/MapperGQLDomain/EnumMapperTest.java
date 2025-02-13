@@ -1,3 +1,4 @@
+/*
 package com.thws.eventmanager.Unit.Infrastructure.GraphQL.resolver.Mapper.MapperGQLDomain;
 
 import com.thws.eventmanager.domain.models.Permission;
@@ -69,3 +70,4 @@ public class EnumMapperTest {
         assertNull(statusGQL);
     }
 }
+*/

@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static java.util.stream.Collectors.toList;
 
-public class EventMutationResolver implements GraphQLMutationResolver, GraphQLQueryResolver {
+public class EventMutationResolver implements GraphQLMutationResolver {
     EventLocationMapperGQL eventLocationMapperGQL = new EventLocationMapperGQL();
     AdressMapperGQL adressMapperGQL = new AdressMapperGQL();
     UserMapperGQL userMapperGQL = new UserMapperGQL();

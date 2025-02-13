@@ -39,10 +39,10 @@ public class CreateEvent {
         eventLocation.setName(faker.company().name());
 
         // Get event location from db
-        EventLocationHandler eventLocationHandler = new EventLocationHandler();
-        EventLocationMapper eventLocationMapper = new EventLocationMapper();
-        EventLocationEntity eventLocationEntity = eventLocationHandler.findById(1L).get();
-        EventLocation eventLocation1 = eventLocationMapper.toModel(eventLocationEntity);
+        //EventLocationHandler eventLocationHandler = new EventLocationHandler();
+        //EventLocationMapper eventLocationMapper = new EventLocationMapper();
+        //EventLocationEntity eventLocationEntity = eventLocationHandler.findById(1L).get();
+        //EventLocation eventLocation1 = eventLocationMapper.toModel(eventLocationEntity);
 
 
         // EVENT
@@ -56,7 +56,7 @@ public class CreateEvent {
         event.setTicketCount(faker.number().numberBetween(10, eventLocation.getCapacity()));
         event.setTicketsSold(faker.number().numberBetween(0, (int) event.getTicketCount()));
         event.setArtists(List.of(user)); // Set the user in the artists list
-        event.setLocation(eventLocation1);
+        event.setLocation(eventLocation);
         event.setDescription(faker.lorem().paragraph());
         event.setTicketPrice(140);
 

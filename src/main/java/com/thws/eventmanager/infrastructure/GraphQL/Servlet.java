@@ -38,7 +38,9 @@ public class Servlet extends GraphQLHttpServlet{
                             new EventMutationResolver(),
                             new UserQueryResolver(),
                             new UserMutationResolver(),
-                            new PaymentResolver()
+                            new PaymentResolver(),
+                            new AddressMutationResolver(),
+                            new AddressQueryResolver()
                             // ggf. weitere
                     )
                     .build()
