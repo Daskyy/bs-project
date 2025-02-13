@@ -6,6 +6,7 @@ import com.thws.eventmanager.domain.port.in.TicketPurchaseUseCaseInterface;
 import com.thws.eventmanager.domain.services.models.EventService;
 import com.thws.eventmanager.domain.services.models.PaymentService;
 import com.thws.eventmanager.domain.services.models.TicketService;
+import com.thws.eventmanager.infrastructure.GraphQL.PurchaseException;
 import com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.TicketEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.PaymentMapper;
@@ -25,7 +26,7 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCaseInterf
     @Override
     public Payment makePayment(User user, Event event, int ticketAmount, String paymentMethodId, String voucherCode) {
         Payment payment = new Payment(null, event.getTicketPrice() * ticketAmount);
-
+        EventService eventService = new EventService();
         /*
             boolean createdPayment = stripe.createOpenPayment(payment);
             Pass payment to user via frontend or wherever
