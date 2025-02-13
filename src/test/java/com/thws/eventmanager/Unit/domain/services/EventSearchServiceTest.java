@@ -1,4 +1,4 @@
-package com.thws.eventmanager.Unit.domain.usecases;
+package com.thws.eventmanager.Unit.domain.services;
 
 import com.thws.eventmanager.domain.models.Event;
 import com.thws.eventmanager.domain.models.EventLocation;

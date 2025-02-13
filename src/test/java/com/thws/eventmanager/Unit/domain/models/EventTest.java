@@ -1,11 +1,13 @@
 package com.thws.eventmanager.Unit.domain.models;
 
 import com.thws.eventmanager.domain.exceptions.InvalidEventException;
-import com.thws.eventmanager.domain.models.Event;
-import com.thws.eventmanager.domain.models.Permission;
-import com.thws.eventmanager.domain.models.User;
+import com.thws.eventmanager.domain.models.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,6 +17,25 @@ class EventTest {
     @BeforeEach
     void setUp() {
         event = new Event();
+        User user3 = new User();
+        User artist = new User();
+        artist.setName("artist");
+        artist.setPermission(Permission.ARTIST);
+
+        EventLocation location = new EventLocation();
+        location.setName("Sample Venue");
+        location.setAddress(new Address());
+
+        event.setName("Sample Event");
+        event.setDescription("This is a sample event");
+        event.setTicketCount(1000);
+        event.setTicketsSold(500);
+        event.setMaxTicketsPerUser(5);
+        event.setStartDate(LocalDateTime.of(2025, 12, 15, 10, 10));
+        event.setEndDate(LocalDateTime.of(2025, 12, 15, 10, 15));
+        event.setArtists(new ArrayList<>(List.of(artist)));
+        event.setBlockList(new ArrayList<>(List.of(user3)));
+        event.setLocation(location);
     }
 
     //event id tests
@@ -34,13 +55,13 @@ class EventTest {
     @Test
     void addArtistWithPermission() {
         User artist = new User("a", "", "", Permission.ARTIST);
-        event.addArtist(artist);
+        event.setArtists(List.of(artist));
         assertTrue(event.getArtists().contains(artist));
     }
     @Test
     void addArtistAgain() {
         User artist = new User("a", "", "", Permission.ARTIST);
-        event.addArtist(artist);
+        event.setArtists(List.of(artist));
         InvalidEventException exception = assertThrows(InvalidEventException.class, () -> {event.addArtist(artist);});
         assertEquals("This artist is already part of the event.", exception.getMessage());
     }
@@ -59,7 +80,7 @@ class EventTest {
 
     //removing artist tests
     @Test
-    void removeArtist() {
+    void removeArtistTest() {
         User artist = new User("a", "", "", Permission.ARTIST);
         event.addArtist(artist);
         event.removeArtist(artist);

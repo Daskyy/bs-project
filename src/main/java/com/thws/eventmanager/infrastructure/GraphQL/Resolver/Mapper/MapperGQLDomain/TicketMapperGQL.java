@@ -26,7 +26,6 @@ public class TicketMapperGQL extends Mapper<Ticket, TicketGQL> {
         domain.setUser(userMapperGQL.toModel(gql.getUser()));
         domain.setPayment(paymentMapperGQL.toModel(gql.getPayment()));
         domain.setId(Long.parseLong(gql.getId()));
-        domain.setId(Long.parseLong(gql.getId()));
         return domain;
     }
 

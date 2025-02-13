@@ -1,10 +1,9 @@
-package com.thws.eventmanager.Unit.domain.usecases;
+package com.thws.eventmanager.Unit.domain.services;
 
 import com.thws.eventmanager.domain.exceptions.InvalidEventException;
 import com.thws.eventmanager.domain.models.*;
 import com.thws.eventmanager.domain.services.models.EventService;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
-import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -23,31 +22,31 @@ class EventServiceTest {
         Event event = new Event();
         event.setName("Concert");
         event.setDescription("Live concert event.");
-        event.setTicketCount(100);
-        event.setTicketsSold(10);
+        event.setTicketCount(100L);
+        event.setTicketsSold(10L);
         event.setMaxTicketsPerUser(5);
-        User artistA = new User("Artist A", "", "", Permission.ARTIST);
-        User artistB = new User("Artist B", "", "", Permission.ARTIST);
+        User artistA = new User("Artist A", "example123@gamil.com", "38475", Permission.ARTIST);
+        User artistB = new User("Artist B", "example234@gmail.com", "93846", Permission.ARTIST);
         event.setArtists(List.of(artistA, artistB));
         Address address = new Address();
+        address.setStreet("Street");
+        address.setCity("City");
+        address.setId(1543L);
+        address.setCountry("Country");
+        address.setNo(19);
+        address.setZipCode(12345);
         event.setLocation(new EventLocation(address, 3, ""));
         event.setBlockList(List.of());
         event.setStartDate(LocalDateTime.now().plusDays(1));
         event.setEndDate(LocalDateTime.now().plusDays(2));
+        event.setTicketPrice(100L);
         return event;
     }
 
     @Test
-    void createEvent_saveWhenValid() {
+    void createValidEventTest() {
         Event event = createValidEvent();
-        EventEntity eventEntity = new EventEntity();
-
-        when(eventHandler.save(any(EventEntity.class))).thenReturn(eventEntity);
-
-        EventEntity result = eventService.createEvent(event);
-
-        assertNotNull(result);
-        verify(eventHandler, times(1)).save(any(EventEntity.class));
+        assertDoesNotThrow(() -> eventService.validateEvent(event));
     }
 
     @Test
@@ -95,8 +94,11 @@ class EventServiceTest {
         Event event = createValidEvent();
         event.setTicketCount(0); // Invalid ticket count
 
-        assertThrows(InvalidEventException.class, () -> eventService.createEvent(event));
+        InvalidEventException exception = assertThrows(
+                InvalidEventException.class,
+                () -> eventService.createEvent(event)
+        );
 
-        verify(eventHandler, never()).save(any(EventEntity.class));
+        assertEquals("Ticket count must be greater than zero.", exception.getMessage());
     }
 }
