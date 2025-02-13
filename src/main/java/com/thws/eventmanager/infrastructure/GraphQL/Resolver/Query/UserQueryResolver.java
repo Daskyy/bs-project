@@ -22,24 +22,10 @@ public class UserQueryResolver implements GraphQLQueryResolver {
     UserMapperGQL userMapperGQL = new UserMapperGQL();
 
     public UserGQL user(String id){
-        try(UserHandler uh = new UserHandler())
-        {
-            Optional<UserEntity> optional = uh.findById(Long.parseLong(id));
-            if (optional.isPresent()) {
-                UserEntity userEntity = uh.findById(Long.parseLong(id)).get();
-                User user = new UserMapper().toModel(userEntity);
-                UserGQL userGQL = new UserMapperGQL().toModelGQL(user);
-                return userGQL;
-            }
-            throw new Exception("User with id " + id + " not found");
-//            UserEntity ue =  uh.findById(Long.parseLong(id)).orElse(null);
-//            if(ue==null) return null; //todo 404 not found
-//            User u= userMapper.toModel(ue);
-//            return userMapperGQL.toModelGQL(u);
-        } catch (Exception e) {
-            logger.error("An error occurred: {}", e.getMessage(), e);
-            return null;
-        }
+
+        UserEntity userEntity = userService.getUserById(Long.parseLong(id)).orElse(null);
+        if (userEntity == null) return null;
+        return userMapperGQL.toModelGQL(userMapper.toModel(userEntity));
     }
 
     public List<UserGQL> users(UserCriteriaInput criteria) {
