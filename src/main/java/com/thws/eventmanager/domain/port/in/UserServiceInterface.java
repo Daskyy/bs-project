@@ -16,7 +16,7 @@ public interface UserServiceInterface {
 
     List<UserEntity> getAllUsers();
 
-    UserEntity getUserById(Long id);
+    Optional<UserEntity> getUserById(Long id);
 //    boolean deleteUser(User user);
 //    User updateUser(User user);
 }

@@ -40,18 +40,23 @@ public class AddressService implements AddressServiceInterface {
     }
 
     @Override
-    public List<AddressEntity> getAllAddresses(List<String> criteria, List<Object> values) {
+    public List<AddressEntity> getAllAddresses(List<String> criteria, List<Object> values, Integer page, Integer pageSize) {
         System.out.println("Criteria: " + criteria);
         System.out.println("Values: " + values);
 
         try (AddressHandler addressHandler = new AddressHandler()) {
-            if (criteria.size() != values.size()) {
+            List<String> safeCriteria = (criteria != null) ? criteria : List.of();
+            List<Object> safeValues = (values != null) ? values : List.of();
+
+            if (safeCriteria.size() != safeValues.size()) {
                 throw new InvalidEventException("Criteria and values lists must have the same size.");
-            } else if (criteria.isEmpty()) {
-                return addressHandler.findAll();
-            } else {
-                return addressHandler.searchByCriteria(criteria, values);
             }
+
+            if (page == null || pageSize == null) {
+                return addressHandler.searchByCriteria(safeCriteria, safeValues);
+            }
+
+            return addressHandler.searchByCriteria(safeCriteria, safeValues, page, pageSize);
         } catch (Exception e) {
             throw new InvalidEventException("Failed to get filtered addresses from database.");
         }

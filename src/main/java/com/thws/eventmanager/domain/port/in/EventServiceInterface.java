@@ -17,7 +17,11 @@ public interface EventServiceInterface {
 
     Optional<EventEntity> getEventById(long id);
 
-    List<EventEntity> getAllEvents(List<String> criteria, List<Object> values);
+    //List<EventEntity> getAllEvents(List<String> criteria, List<Object> values);
+
+    //List<EventEntity> getAllEvents(List<String> criteria, List<Object> values, int page, int pageSize);
+
+    List<EventEntity> getAllEvents(List<String> criteria, List<Object> values, Integer page, Integer pageSize);
 
     List<EventEntity> getAllEvents();
 

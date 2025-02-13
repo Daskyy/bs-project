@@ -56,21 +56,27 @@ public class EventService implements EventServiceInterface {
     }
 
     @Override
-    public List<EventEntity> getAllEvents(List<String> criteria, List<Object> values) {
+    public List<EventEntity> getAllEvents(List<String> criteria, List<Object> values, Integer page, Integer pageSize) {
         logger.info("Criteria: " + criteria);
         logger.info("Values: " + values);
 
         try (EventHandler eventHandler = new EventHandler()) {
-            if (criteria.size() != values.size()) {
+            List<String> safeCriteria = (criteria != null) ? criteria : List.of();
+            List<Object> safeValues = (values != null) ? values : List.of();
+
+            if (safeCriteria.size() != safeValues.size()) {
                 throw new InvalidEventException("Criteria and values lists must have the same size.");
-            } else if (criteria.isEmpty()) {
-                return eventHandler.findAll();
-            } else {
-                return eventHandler.searchByCriteria(criteria, values);
             }
+
+            if (page == null || pageSize == null) {
+                return eventHandler.searchByCriteria(safeCriteria, safeValues);
+            }
+
+            return eventHandler.searchByCriteria(safeCriteria, safeValues, page, pageSize);
         } catch (Exception e) {
             throw new InvalidEventException("Failed to get filtered addresses from database.");
         }
+
     }
 
     @Override

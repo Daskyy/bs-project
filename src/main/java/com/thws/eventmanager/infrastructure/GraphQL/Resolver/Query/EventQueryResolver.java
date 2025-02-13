@@ -4,6 +4,7 @@ import com.thws.eventmanager.domain.models.Event;
 import com.thws.eventmanager.domain.services.models.EventSearchService;
 import com.thws.eventmanager.domain.services.models.EventService;
 import com.thws.eventmanager.infrastructure.GraphQL.InputModels.EventCriteriaInput;
+import com.thws.eventmanager.infrastructure.GraphQL.InputModels.PaginationInput;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.EventGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.EventMapperGQL;
 import com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager;
@@ -37,9 +38,12 @@ public class EventQueryResolver implements GraphQLQueryResolver {
         return null; //TODO wie gehen wir mit fehlern um? | lasse laufe wird schon -david
     }
 
-    public List<EventGQL> events(EventCriteriaInput criteria) {
-        if(criteria == null) {
-            return eventService.getAllEvents().stream()
+    public List<EventGQL> events(EventCriteriaInput criteria, PaginationInput page) {
+        int safePage = (page != null && page.getPage() != null) ? page.getPage() : 1;
+        int safePageSize = (page != null && page.getPageSize() != null) ? page.getPageSize() : Integer.MAX_VALUE;
+
+        if (criteria == null || criteria.getCriteria() == null || criteria.getValues() == null) {
+            return eventService.getAllEvents(List.of(), List.of(), safePage, safePageSize).stream()
                     .map(eventMapper::toModel)
                     .map(eventMapperGQL::toModelGQL)
                     .toList();
@@ -47,14 +51,16 @@ public class EventQueryResolver implements GraphQLQueryResolver {
 
         List<String> criteriaList = criteria.getCriteria();
         List<Object> valuesList = criteria.getValues();
-        if(criteriaList.size() != valuesList.size()) {
+
+        if (criteriaList.size() != valuesList.size()) {
             throw new IllegalArgumentException("Criteria and values lists must have the same size");
-        } else {
-            return eventService.getAllEvents(criteriaList, valuesList).stream()
-                    .map(eventMapper::toModel)
-                    .map(eventMapperGQL::toModelGQL)
-                    .toList();
         }
+
+        return eventService.getAllEvents(criteriaList, valuesList, safePage, safePageSize).stream()
+                .map(eventMapper::toModel)
+                .map(eventMapperGQL::toModelGQL)
+                .toList();
+
     }
 
 

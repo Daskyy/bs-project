@@ -86,21 +86,11 @@ public class UserService implements UserServiceInterface {
     }
 
     @Override
-    public UserEntity getUserById(Long id) {
+    public Optional<UserEntity> getUserById(Long id) {
         try (UserHandler userHandler = new UserHandler()) {
-            return userHandler.findById(id).orElseThrow(() -> new InvalidUserException("User not found"));
+            return userHandler.findById(id);//userHandler.findById(id).orElseThrow(() -> new InvalidUserException("User not found"));
         } catch (Exception e) {
             throw new InvalidUserException("Failed to get user from database.");
         }
     }
-
-//    @Override
-//    public boolean deleteUser(User user) {
-//        return false;
-//    }
-//
-//    @Override
-//    public User updateUser(User user) {
-//        return null;
-//    }
 }

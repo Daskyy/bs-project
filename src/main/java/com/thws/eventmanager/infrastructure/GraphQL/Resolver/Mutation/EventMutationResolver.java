@@ -85,7 +85,7 @@ public class EventMutationResolver implements GraphQLMutationResolver {
     }
 
     public EventGQL blockUser(String userId, String eventId) {
-        UserEntity userEntity = userService.getUserById(Long.parseLong(userId));
+        UserEntity userEntity = userService.getUserById(Long.parseLong(userId)).orElseThrow();
         EventEntity eventEntity = eventService.getEventById(Long.parseLong(eventId)).orElseThrow();
         return eventMapperGQL.toModelGQL(
                 eventMapper.toModel(
