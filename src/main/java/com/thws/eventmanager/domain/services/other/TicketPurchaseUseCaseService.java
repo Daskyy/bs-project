@@ -32,7 +32,7 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCaseInterf
          */
         List<String> criteria =List.of("event_id","user_id");
         List<Object> values= List.of(event.getId(),user.getId());
-        if(ticketService.getAllTickets(criteria,values).stream().count()>event.getMaxTicketsPerUser()) {
+        if(ticketService.getAllTickets(criteria,values).stream().count()+ticketAmount>event.getMaxTicketsPerUser()) {
             payment.setStatus(Status.FAILED);
             throw new PurchaseException("User has already bought the maximum amount of tickets for this event", String.valueOf(user.getId()), String.valueOf(event.getId()));
         }
