@@ -50,13 +50,6 @@ public class PaymentResolver implements GraphQLMutationResolver {
             u = userMapper.toModel(loadedUser);
         }
         TicketPurchaseUseCaseService ticketPurchaseUseCaseService = new TicketPurchaseUseCaseService();
-
-        TicketService ticketService = new TicketService();
-        List<String> criteria =List.of("event_id","user_id");
-        List<Object> values= List.of(eventId,userId);
-        if(ticketService.getAllTickets(criteria,values).stream().count()>e.getMaxTicketsPerUser()) throw new RuntimeException("User has already bought the maximum amount of tickets for this event");
-        if(e.isBlocked(u)) throw new RuntimeException("User is blocked from buying tickets for this event");
-
         Payment p= ticketPurchaseUseCaseService.makePayment(u, e, ticketamount, paymentmethodId, voucher);
         TicketEntity t= ticketPurchaseUseCaseService.createTicket(u, e,p);
 

@@ -13,6 +13,8 @@ import com.thws.eventmanager.infrastructure.components.persistence.mapper.Ticket
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 public class TicketPurchaseUseCaseService implements TicketPurchaseUseCaseInterface {
     PaymentUseCaseService stripe = new PaymentUseCaseService(new StripePaymentService());
     private static final Logger log = LoggerFactory.getLogger(TicketPurchaseUseCaseService.class);
@@ -29,7 +31,17 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCaseInterf
             boolean createdPayment = stripe.createOpenPayment(payment);
             Pass payment to user via frontend or wherever
          */
-        if(event.getTicketsSold() + ticketAmount > event.getTicketCount()) {
+        List<String> criteria =List.of("event_id","user_id");
+        List<Object> values= List.of(event.getId(),user.getId());
+        if(ticketService.getAllTickets(criteria,values).stream().count()>event.getMaxTicketsPerUser()) {
+            payment.setStatus(Status.FAILED);
+            throw new IllegalArgumentException("User has already bought the maximum amount of tickets for this event");
+        }
+        else if(event.isBlocked(user)) {
+            payment.setStatus(Status.FAILED);
+            throw new IllegalArgumentException("User is blocked from buying tickets for this event");
+        }
+        else if(event.getTicketsSold() + ticketAmount > event.getTicketCount()) {
             payment.setStatus(Status.FAILED);
             throw new IllegalArgumentException("Not enough tickets left");
 
