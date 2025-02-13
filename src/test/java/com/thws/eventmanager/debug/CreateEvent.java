@@ -34,13 +34,6 @@ public class CreateEvent {
         eventLocation.setCapacity(1000);
         eventLocation.setName(faker.company().name());
 
-        // Get event location from db
-        //EventLocationHandler eventLocationHandler = new EventLocationHandler();
-        //EventLocationMapper eventLocationMapper = new EventLocationMapper();
-        //EventLocationEntity eventLocationEntity = eventLocationHandler.findById(1L).get();
-        //EventLocation eventLocation1 = eventLocationMapper.toModel(eventLocationEntity);
-
-
         // EVENT
         event.setName(faker.company().name());
         LocalDateTime startDate = LocalDateTime.now().plusYears(1);
@@ -58,6 +51,5 @@ public class CreateEvent {
 
         EventService eventService = new EventService();
         eventService.createEvent(event);
-
     }
 }

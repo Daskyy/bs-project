@@ -2,6 +2,7 @@ package com.thws.eventmanager.domain.services.models;
 
 import com.thws.eventmanager.domain.port.in.VoucherServiceInterface;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.VoucherHandler;
+import com.thws.eventmanager.infrastructure.components.persistence.entities.VoucherEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,6 +21,14 @@ public class VoucherService implements VoucherServiceInterface {
                         return discount;
                     })
                     .orElse(0L);
+        }
+    }
+
+    @Override
+    public VoucherEntity createVoucher(String code, long discountAmount, int uses) {
+        try(VoucherHandler voucherHandler = new VoucherHandler()) {
+            VoucherEntity voucherEntity = new VoucherEntity(code, discountAmount, uses);
+            return voucherHandler.save(voucherEntity);
         }
     }
 }
