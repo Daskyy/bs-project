@@ -34,10 +34,10 @@ public class Event implements Model {
         this.startDate = startDate;
         this.endDate = endDate;
         this.ticketPrice = ticketPrice;
+
     }
     public Event(){
-        this.artists= new ArrayList<>();
-        this.blockList= new ArrayList<>();
+
     }
 
     public long getTicketPrice() {
@@ -182,13 +182,6 @@ public class Event implements Model {
         }
 
         this.blockList.remove(user);
-    }
-
-    public boolean isBlocked(User user) {
-        if (user == null) {
-            throw new IllegalArgumentException("User cannot be null.");
-        }
-        return this.blockList.contains(user);
     }
 
     public long getId() {

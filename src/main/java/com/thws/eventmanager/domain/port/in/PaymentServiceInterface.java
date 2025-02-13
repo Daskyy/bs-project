@@ -5,4 +5,6 @@ import com.thws.eventmanager.infrastructure.components.persistence.entities.Paym
 
 public interface PaymentServiceInterface {
     PaymentEntity createPayment(Payment payment);
+
+    PaymentEntity getPaymentById(long id);
 }

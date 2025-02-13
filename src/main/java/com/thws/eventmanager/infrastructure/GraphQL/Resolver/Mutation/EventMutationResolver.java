@@ -2,6 +2,9 @@ package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation;
 
 import com.thws.eventmanager.domain.models.Event;
 import com.thws.eventmanager.domain.services.models.EventService;
+import com.thws.eventmanager.domain.services.models.TicketService;
+import com.thws.eventmanager.domain.services.models.UserService;
+import com.thws.eventmanager.domain.services.other.TicketPurchaseUseCaseService;
 import com.thws.eventmanager.infrastructure.GraphQL.InputModels.EventInput;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.EventGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.AdressMapperGQL;
@@ -14,7 +17,10 @@ import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputG
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.UserHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
+import com.thws.eventmanager.infrastructure.components.persistence.entities.UserEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventMapper;
+import com.thws.eventmanager.infrastructure.components.persistence.mapper.TicketMapper;
+import com.thws.eventmanager.infrastructure.components.persistence.mapper.UserMapper;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 
 public class EventMutationResolver implements GraphQLMutationResolver {
@@ -26,8 +32,12 @@ public class EventMutationResolver implements GraphQLMutationResolver {
     UserInputMapper userInputMapper = new UserInputMapper();
     EventLocationInputMapper EventLocationInputMapper = new EventLocationInputMapper();
     EventInputMapper EventInputMapper = new EventInputMapper();
-
-
+    EventService eventService = new EventService();
+    UserService userService = new UserService();
+    UserMapper userMapper = new UserMapper();
+    TicketMapper ticketMapper = new TicketMapper();
+    TicketPurchaseUseCaseService ticketPurchaseUseCaseService = new TicketPurchaseUseCaseService();
+    TicketService ticketService = new TicketService();
     public EventGQL createEvent(EventInput input){
         Event event= eventMapperGQL.toModel(EventInputMapper.toModelGQL(input));
 
@@ -43,8 +53,7 @@ public class EventMutationResolver implements GraphQLMutationResolver {
 
         try(EventHandler eventHandler = new EventHandler(); UserHandler userHandler = new UserHandler()){
             EventService eventService = new EventService();
-
-            EventEntity loaded= eventHandler.findById(Long.parseLong(id)).orElseThrow(); //todo wie damit umgehen
+            EventEntity loaded= eventService.getEventById(Long.parseLong(id)).orElseThrow(); //todo wie damit umgehen
 
             Event event= eventMapper.toModel(loaded);
             if(input.getName()!=null) event.setName(input.getName());
@@ -62,14 +71,29 @@ public class EventMutationResolver implements GraphQLMutationResolver {
     }
 
     public EventGQL deleteEvent(String id){
-        try(EventHandler eventHandler = new EventHandler()){
-            EventService eventService = new EventService();
-            EventEntity ee= eventHandler.findById(Long.parseLong(id)).orElseThrow(); //todo wie damit umgehen
-            eventHandler.deleteById(Long.parseLong(id));
+        EventService eventService = new EventService();
+        EventEntity ee= eventService.getEventById(Long.parseLong(id)).orElseThrow();
 
-            return eventMapperGQL.toModelGQL(eventMapper.toModel(ee));
+        Event event = eventMapper.toModel(ee);
+        eventService.refundEvent(event);
 
-        }
+        eventService.deleteEvent(eventMapper.toModel(ee));
+
+        return eventMapperGQL.toModelGQL(eventMapper.toModel(ee));
+
+
+    }
+
+    public EventGQL blockUser(String userId, String eventId) {
+        UserEntity userEntity = userService.getUserById(Long.parseLong(userId));
+        EventEntity eventEntity = eventService.getEventById(Long.parseLong(eventId)).orElseThrow();
+        return eventMapperGQL.toModelGQL(
+                eventMapper.toModel(
+                        eventService.blockUser(
+                                eventMapper.toModel(eventEntity),
+                                        userMapper.toModel(
+                                                userEntity
+                ))));
     }
 
 }
