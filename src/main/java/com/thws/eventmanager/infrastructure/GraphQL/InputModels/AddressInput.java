@@ -1,11 +1,11 @@
 package com.thws.eventmanager.infrastructure.GraphQL.InputModels;
 
 public class AddressInput {
-    String id="-1";
+    String id;
     String street;
-    int no;
+    int no=-1;
     String city;
-    int zipCode;
+    int zipCode=-1;
     String country;
 
     public AddressInput() {

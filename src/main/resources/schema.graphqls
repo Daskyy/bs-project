@@ -1,24 +1,24 @@
 
 
 type Query {
-  # Beispiel: Liste von Events auslesen
-  events(criteria: EventCriteriaInput): [EventGQL!]!
-  # Beispiel: Einzelnen User auslesen
-  user(id: ID!): UserGQL
-    # Beispiel: Einzelnes Event auslesen
-  event(id: ID!): EventGQL
+     # Beispiel: Liste von Events auslesen
+     events(criteria: EventCriteriaInput): [EventGQL!]!
+     # Beispiel: Einzelnen User auslesen
+     user(id: ID!): UserGQL
+     # Beispiel: Einzelnes Event auslesen
+     event(id: ID!): EventGQL
 
   # Address
     # Beispiel: Liste von Addressen auslesen
-    addresses(criteria: AddressCriteriaInput): [AddressGQL!]!
+     addresses(criteria: AddressCriteriaInput): [AddressGQL!]!
     # Beispiel: Einzelne Address auslesen
-    address(id: ID!): AddressGQL
+     address(id: ID!): AddressGQL
 
   # EventLocation
     # Beispiel: Liste von EventLocations auslesen
-    eventLocations(criteria: EventLocationCriteriaInput): [EventLocationGQL!]!
+     eventLocations(criteria: EventLocationCriteriaInput): [EventLocationGQL!]!
     # Beispiel: Einzelne EventLocation auslesen
-    eventLocation(id: ID!): EventLocationGQL
+     eventLocation(id: ID!): EventLocationGQL
 
 }
 
@@ -33,7 +33,8 @@ type Mutation {
   createAddress(input: AddressInput): AddressGQL!
   # Beispiel: Address löschen
   deleteAddress(id: ID!): AddressGQL!
-
+    # Beispiel: Address aktualisieren
+  updateAddress(id:ID!, input: AddressInput): AddressGQL!
   #Userf
   # Beispiel: User anlegen
   createUser(input: UserInput): UserGQL!
@@ -172,11 +173,11 @@ input EventLocationInput {
 }
 input AddressInput{
   id:ID
-  street: String!
-  no: Int!
-  city: String!
-  zipCode: Int!
-  country: String!
+  street: String
+  no: Int
+  city: String
+  zipCode: Int
+  country: String
 }
 
 input EventCriteriaInput {

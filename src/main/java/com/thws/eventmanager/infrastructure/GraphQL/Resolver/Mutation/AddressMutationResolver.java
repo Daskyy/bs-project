@@ -29,4 +29,15 @@ public class AddressMutationResolver implements GraphQLMutationResolver {
         Address address = addressMapper.toModel(Objects.requireNonNull(toDelete));
         return adressMapperGQL.toModelGQL(addressMapper.toModel(Objects.requireNonNull(addressService.deleteAddress(address).orElse(null))));
     }
+    public AddressGQL updateAddress(String id, AddressInput input){
+        AddressService addressService = new AddressService();
+        AddressEntity loaded = addressService.getAddressById(Long.parseLong(id)).orElse(null);
+        Address address = addressMapper.toModel(Objects.requireNonNull(loaded));
+        if(input.getStreet()!=null) address.setStreet(input.getStreet());
+        if(input.getCity()!=null) address.setCity(input.getCity());
+        if(input.getZipCode()!=-1) address.setZipCode(input.getZipCode());
+        if(input.getCountry()!=null) address.setCountry(input.getCountry());
+        if(input.getNo()!=-1) address.setNo(input.getNo());
+        return adressMapperGQL.toModelGQL(addressMapper.toModel(Objects.requireNonNull(addressService.saveAddress(address))));
+    }
 }

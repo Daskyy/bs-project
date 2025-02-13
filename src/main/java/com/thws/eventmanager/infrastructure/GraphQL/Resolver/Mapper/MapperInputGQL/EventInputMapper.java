@@ -50,7 +50,7 @@ public class EventInputMapper {
 
             eventGQL.setBlockList(bListGQL);
             eventGQL.setTicketPrice(input.getTicketPrice());
-            eventGQL.setId(input.getId());
+            eventGQL.setId("-1");
             return eventGQL;
         }
     }
