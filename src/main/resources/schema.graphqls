@@ -40,15 +40,6 @@ type TicketGQL{
   payment: PaymentGQL!
 }
 
-type PaymentGQL{
-  paymentMethodId: String!
-  amount: Int!
-  status: StatusGQL!
-  paymentIntentId: String!
-  id: ID!
-}
-
-
 type AddressGQL{
   id: ID!
   street: String!

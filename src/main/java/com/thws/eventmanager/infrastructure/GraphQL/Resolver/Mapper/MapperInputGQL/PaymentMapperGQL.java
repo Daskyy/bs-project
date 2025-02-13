@@ -15,6 +15,8 @@ public class PaymentMapperGQL extends Mapper<Payment, PaymentGQL> {
         payment.setAmount(paymentGQL.getAmount());
         payment.setStatus(enumMapper.toModel(paymentGQL.getStatus()));
         payment.setPaymentIntentId(paymentGQL.getPaymentIntentId());
+        if(Integer.parseInt(paymentGQL.getId())!=-1) payment.setId(Long.parseLong(paymentGQL.getId()));
+
         return payment;
     }
 
@@ -25,6 +27,8 @@ public class PaymentMapperGQL extends Mapper<Payment, PaymentGQL> {
         paymentGQL.setAmount((int)payment.getAmount());
         paymentGQL.setStatus(enumMapper.toModelGQL(payment.getStatus()));
         paymentGQL.setPaymentIntentId(payment.getPaymentIntentId());
+        if(payment.getId()!=-1) paymentGQL.setId(String.valueOf(payment.getId()));
+
         return paymentGQL;
     }
 }

@@ -5,6 +5,7 @@ import com.thws.eventmanager.domain.models.*;
 import com.thws.eventmanager.domain.port.in.TicketPurchaseUseCaseInterface;
 import com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
+import com.thws.eventmanager.infrastructure.components.persistence.entities.TicketEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.PaymentMapper;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.TicketMapper;
 import org.slf4j.Logger;
@@ -48,16 +49,16 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCaseInterf
     }
 
     @Override
-    public Ticket createTicket(User user, Event event, Payment payment) {
+    public TicketEntity createTicket(User user, Event event, Payment payment) {
         Ticket ticket = new Ticket(event, user, payment);
         ticket.setPayment(payment);
         if(payment.getStatus() == Status.COMPLETED) {
             EventService eventService = new EventService();
             event.setTicketsSold(event.getTicketsSold() + 1);
             eventService.createEvent(event);
-            ticketService.createTicket(ticket);
+            return ticketService.createTicket(ticket);
         }
-        return ticket;
+        return null;
     }
 
     public boolean refundTicket(Ticket ticket) {

@@ -17,8 +17,10 @@ import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputG
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.UserHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
+import com.thws.eventmanager.infrastructure.components.persistence.entities.TicketEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.UserEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventMapper;
+import com.thws.eventmanager.infrastructure.components.persistence.mapper.TicketMapper;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.UserMapper;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 
@@ -30,6 +32,7 @@ public class PaymentResolver implements GraphQLMutationResolver {
     TicketMapperGQL ticketMapperGQL = new TicketMapperGQL();
     EventMapper eventMapper = new EventMapper();
     UserMapper userMapper = new UserMapper();
+    TicketMapper ticketMapper = new TicketMapper();
 
 
     public TicketGQL purchaseTicket(String userId, String eventId, int ticketamount, String paymentmethodId, String voucher){
@@ -44,9 +47,10 @@ public class PaymentResolver implements GraphQLMutationResolver {
         }
         TicketPurchaseUseCaseService ticketPurchaseUseCaseService = new TicketPurchaseUseCaseService();
         Payment p= ticketPurchaseUseCaseService.makePayment(u, e, ticketamount, paymentmethodId, voucher);
-        Ticket t= ticketPurchaseUseCaseService.createTicket(u, e,p);
+        TicketEntity t= ticketPurchaseUseCaseService.createTicket(u, e,p);
 
-        TicketGQL tgql= ticketMapperGQL.toModelGQL(t);
+        Ticket ticket = ticketMapper.toModel(t);
+        TicketGQL tgql = ticketMapperGQL.toModelGQL(ticket);
         return tgql;
     }
 }

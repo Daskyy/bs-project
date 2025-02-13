@@ -4,7 +4,7 @@ public class PaymentGQL implements GQLModel {
     private String paymentMethodId;
     private int amount;
     private StatusGQL status;
-    private String id;
+    private String id = "-1";
     private String paymentIntentId;
 
 
