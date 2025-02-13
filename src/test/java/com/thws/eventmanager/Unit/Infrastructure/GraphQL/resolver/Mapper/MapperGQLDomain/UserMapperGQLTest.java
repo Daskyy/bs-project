@@ -19,6 +19,7 @@ class UserMapperGQLTest {
         userGQL.setEmail("johndoe@example.com");
         userGQL.setPassword("password123");
         userGQL.setPermission(PermissionGQL.STAFF);
+        userGQL.setId("123");
 
         User user = mapper.toModel(userGQL);
 
@@ -27,6 +28,7 @@ class UserMapperGQLTest {
         assertEquals("johndoe@example.com", user.getEmail());
         assertEquals("password123", user.getPassword());
         assertEquals(Permission.STAFF, user.getPermission());
+        assertEquals(123L, user.getId());
     }
 
     @Test

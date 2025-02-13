@@ -17,10 +17,12 @@ class AddressInputMapperTest {
         addressInput.setNo(32);
         addressInput.setCountry("country");
         addressInput.setZipCode(19432);
+        addressInput.setId("123");
 
         AddressGQL adressGQL = mapper.toModelGQL(addressInput);
 
         assertNotNull(adressGQL);
+        assertEquals("123", adressGQL.getId());
         assertEquals("street", adressGQL.getStreet());
         assertEquals("city", adressGQL.getCity());
         assertEquals(32, adressGQL.getNo());
