@@ -183,7 +183,11 @@ input AddressInput{
 input EventCriteriaInput {
   # z.B. Filterkriterien
   description: String
-  location: EventLocationInput
   name: String
-  artists: [UserInput!]
+  location_id: String
+  maxticketsperuser: Int
+  ticketprice: Int
+  ticketcount: Int
+  ticketssold: Int
+  artists_id: String
 }
