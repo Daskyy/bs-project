@@ -24,6 +24,7 @@ public class AddressMapperGQLTest {
         Address address = mapper.toModel(addressGQL);
 
         assertNotNull(address);
+        assertEquals(123, address.getId());
         assertEquals(101, address.getNo());
         assertEquals("Main St", address.getStreet());
         assertEquals("Springfield", address.getCity());

@@ -17,6 +17,7 @@ class EventLocationMapperGQLTest {
         EventLocationGQL eventLocationGQL = new EventLocationGQL();
         eventLocationGQL.setId("123");
         AddressGQL addressGQL = new AddressGQL();
+        addressGQL.setId("456");
         addressGQL.setStreet("Main St");
         addressGQL.setNo(101);
         addressGQL.setCity("Springfield");
