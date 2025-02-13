@@ -189,4 +189,5 @@ input EventCriteriaInput {
   ticketcount: Int
   ticketssold: Int
   artists_id: String
+  blockList_id: String
 }

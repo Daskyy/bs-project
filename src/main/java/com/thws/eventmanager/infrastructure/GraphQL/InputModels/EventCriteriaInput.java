@@ -1,5 +1,7 @@
 package com.thws.eventmanager.infrastructure.GraphQL.InputModels;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +14,21 @@ public class EventCriteriaInput {
     private Integer ticketprice;
     private Integer ticketssold;
     private String artists_id;
+    @JsonProperty("blockList_id")
+    private String blockList_id;
 
     public EventCriteriaInput() {}
 
     public int getMaxticketsperuser() {
         return maxticketsperuser;
+    }
+
+    public String getBlockList() {
+        return blockList_id;
+    }
+
+    public void setBlockList(String blockList) {
+        this.blockList_id = blockList;
     }
 
     public void setMaxticketsperuser(Integer maxticketsperuser) {
@@ -121,6 +133,9 @@ public class EventCriteriaInput {
         if (artists_id != null && !artists_id.isBlank()) {
             values.add(artists_id);
         }
+        if (blockList_id != null && !blockList_id.isBlank()) {
+            values.add(blockList_id);
+        }
         return values;
     }
 
@@ -149,6 +164,9 @@ public class EventCriteriaInput {
         }
         if(artists_id != null && !artists_id.isBlank()) {
             criteria.add("artists_id");
+        }
+        if(blockList_id != null && !blockList_id.isBlank()) {
+            criteria.add("blockList_id");
         }
 
         return criteria;
