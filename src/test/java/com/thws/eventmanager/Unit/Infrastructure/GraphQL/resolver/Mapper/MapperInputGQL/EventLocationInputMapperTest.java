@@ -26,6 +26,9 @@
 //        eventLocationInput.setCapacity(5000);
 //        eventLocationInput.setAddress(addressInput);
 //
+//        EventInput eventInput = new EventInput();
+//        eventInput.setLocation(eventLocationInput);
+//
 //        EventLocationGQL eventLocationGQL = mapper.toModelGQL(eventLocationInput);
 //
 //        assertNotNull(eventLocationGQL);
