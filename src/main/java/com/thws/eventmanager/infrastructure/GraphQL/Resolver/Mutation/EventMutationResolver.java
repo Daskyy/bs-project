@@ -71,7 +71,7 @@ public class EventMutationResolver implements GraphQLMutationResolver, GraphQLQu
     public EventGQL deleteEvent(String id){
         try(EventHandler eventHandler = new EventHandler()){
             EventService eventService = new EventService();
-           EventEntity ee= eventHandler.findById(Long.parseLong(id)).orElseThrow(); //todo wie damit umgehen
+            EventEntity ee= eventHandler.findById(Long.parseLong(id)).orElseThrow(); //todo wie damit umgehen
             eventHandler.deleteById(Long.parseLong(id));
 
             return eventMapperGQL.toModelGQL(eventMapper.toModel(ee));

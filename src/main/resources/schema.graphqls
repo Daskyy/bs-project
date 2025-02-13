@@ -17,11 +17,11 @@ type Mutation {
 
   #Userf
   # Beispiel: User anlegen
- # createUser(input: UserInput): UserGQL!
+  createUser(input: UserInput): UserGQL!
   # Beispiel: User löschen
- # deleteUser(id: ID!): Boolean!
+  deleteUser(id: ID!): UserGQL!
   # Beispiel: User aktualisieren
- # updateUser(id: ID!, input: UserInput): UserGQL!
+  updateUser(id: ID!, input: UserInput): UserGQL!
 
   #Event
   # Beispiel: Event anlegen
@@ -31,7 +31,6 @@ type Mutation {
   # Beispiel: Event aktualisieren
   updateEvent(id: ID!, input: EventInput): EventGQL!
 }
-
 
 # Models
 type TicketGQL{
@@ -160,4 +159,3 @@ input EventCriteriaInput {
   name: String
   artists: [UserInput!]
 }
-
