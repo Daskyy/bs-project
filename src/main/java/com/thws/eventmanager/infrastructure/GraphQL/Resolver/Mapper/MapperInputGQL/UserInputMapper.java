@@ -12,6 +12,7 @@ public class UserInputMapper  {
         userGQL.setEmail(input.getEmail());
         userGQL.setPassword(input.getPassword());
         userGQL.setPermission(input.getPermission());
+        userGQL.setId(input.getId());
         return userGQL;
     }
 

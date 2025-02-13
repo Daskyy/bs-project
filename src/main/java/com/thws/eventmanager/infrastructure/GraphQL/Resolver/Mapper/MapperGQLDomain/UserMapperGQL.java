@@ -14,7 +14,7 @@ public class UserMapperGQL extends Mapper<User, UserGQL> {
         u.setEmail(userGQL.getEmail());
         u.setPassword(userGQL.getPassword());
         u.setPermission(userGQL.getPermission().to());
-        if(Integer.parseInt(userGQL.getId())!=-1) u.setId((long)Integer.parseInt(userGQL.getId()));
+        u.setId((long)Integer.parseInt(userGQL.getId()));
 
         return u;
     }

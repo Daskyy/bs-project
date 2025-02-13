@@ -7,7 +7,7 @@ public class UserInput {
     private String email;
     private String password;
     private PermissionGQL permission;
-    private String id;
+    private String id ="-1";
     public UserInput() {}
 
     public String getId() {

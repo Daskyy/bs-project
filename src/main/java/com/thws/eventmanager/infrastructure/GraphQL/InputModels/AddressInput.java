@@ -1,6 +1,7 @@
 package com.thws.eventmanager.infrastructure.GraphQL.InputModels;
 
 public class AddressInput {
+    String id="-1";
     String street;
     int no;
     String city;
@@ -8,6 +9,14 @@ public class AddressInput {
     String country;
 
     public AddressInput() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getStreet() {

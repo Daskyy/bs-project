@@ -13,6 +13,7 @@ type Query {
 # Mutations
 type Mutation {
 
+
   purchaseTicket(userId: ID!, eventId: ID!, ticketamount: Int!,paymentmethodId: String!, voucher:String): TicketGQL!
 
   #Userf
@@ -116,6 +117,7 @@ input UserInput {
 }
 
 input EventInput {
+  id:ID
   name: String
   description: String
   startDate: String
@@ -123,19 +125,21 @@ input EventInput {
   ticketCount: Int
   ticketsSold: Int
   maxTicketsPerUser: Int
-  artists: [UserInput!]!
+  artists: [UserInput!]
   location: EventLocationInput
-  blockList: [UserInput!]!
+  blockList: [UserInput!]
   ticketPrice: Int
 
 }
 
 input EventLocationInput {
+  id:ID
   address: AddressInput!
   name: String!
   capacity: Int!
 }
 input AddressInput{
+  id:ID
   street: String!
   no: Int!
   city: String!

@@ -2,8 +2,6 @@ package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDo
 
 import com.thws.eventmanager.domain.models.Ticket;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.TicketGQL;
-import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL.PaymentMapperGQL;
-import com.thws.eventmanager.infrastructure.components.persistence.mapper.PaymentMapper;
 
 public class TicketMapperGQL extends Mapper<Ticket, TicketGQL> {
     UserMapperGQL userMapperGQL = new UserMapperGQL();
@@ -28,7 +26,7 @@ public class TicketMapperGQL extends Mapper<Ticket, TicketGQL> {
         domain.setUser(userMapperGQL.toModel(gql.getUser()));
         domain.setPayment(paymentMapperGQL.toModel(gql.getPayment()));
         domain.setId(Long.parseLong(gql.getId()));
-        if(Integer.parseInt(gql.getId())!=-1) domain.setId(Long.parseLong(gql.getId()));
+        domain.setId(Long.parseLong(gql.getId()));
         return domain;
     }
 

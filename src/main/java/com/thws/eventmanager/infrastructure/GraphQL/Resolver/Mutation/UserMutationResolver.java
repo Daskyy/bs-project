@@ -13,7 +13,7 @@ import graphql.kickstart.tools.GraphQLMutationResolver;
 import org.jetbrains.annotations.NotNull;
 
 
-public class UserMutationResolver implements GraphQLMutationResolver {
+public class  UserMutationResolver implements GraphQLMutationResolver {
     UserMapper userMapper = new UserMapper();
     UserMapperGQL userMapperGQL = new UserMapperGQL();
     UserInputMapper userInputMapper = new UserInputMapper();

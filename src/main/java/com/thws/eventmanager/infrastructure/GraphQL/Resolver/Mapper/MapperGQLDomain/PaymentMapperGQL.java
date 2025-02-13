@@ -1,9 +1,7 @@
-package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL;
+package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain;
 
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.PaymentGQL;
-import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.EnumMapper;
-import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.Mapper;
 
 public class PaymentMapperGQL extends Mapper<Payment, PaymentGQL> {
     EnumMapper enumMapper = new EnumMapper();
@@ -15,7 +13,7 @@ public class PaymentMapperGQL extends Mapper<Payment, PaymentGQL> {
         payment.setAmount(paymentGQL.getAmount());
         payment.setStatus(enumMapper.toModel(paymentGQL.getStatus()));
         payment.setPaymentIntentId(paymentGQL.getPaymentIntentId());
-        if(Integer.parseInt(paymentGQL.getId())!=-1) payment.setId(Long.parseLong(paymentGQL.getId()));
+         payment.setId(Long.parseLong(paymentGQL.getId()));
 
         return payment;
     }

@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class EventInput {
+    private String id="-1";
     private String name;
     private String description;
     private String startDate;                   //muss dieses Format haben: 2031-02-20T10:00:00
@@ -17,6 +18,14 @@ public class EventInput {
     private long ticketPrice =-1;
 
     public EventInput() {}
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public long getTicketPrice() {
         return ticketPrice;
