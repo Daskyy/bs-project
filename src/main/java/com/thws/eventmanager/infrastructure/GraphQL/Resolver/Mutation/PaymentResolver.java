@@ -51,7 +51,7 @@ public class PaymentResolver implements GraphQLMutationResolver {
         }
         TicketPurchaseUseCaseService ticketPurchaseUseCaseService = new TicketPurchaseUseCaseService();
         Payment p= ticketPurchaseUseCaseService.makePayment(u, e, ticketamount, paymentmethodId, voucher);
-        TicketEntity t= ticketPurchaseUseCaseService.createTicket(u, e,p);
+        TicketEntity t= ticketPurchaseUseCaseService.createTicket(u, e, p, ticketamount);
 
         Ticket ticket = ticketMapper.toModel(t);
         TicketGQL tgql = ticketMapperGQL.toModelGQL(ticket);
