@@ -60,10 +60,20 @@ public class EventQueryResolver implements GraphQLQueryResolver {
                 .map(eventMapper::toModel)
                 .map(eventMapperGQL::toModelGQL)
                 .toList();
-
     }
 
 
+    // Pagination is currently BROKEN. It works without.
+    // TODO: Needs fixing.
+    public List<EventGQL> trendingEvents(PaginationInput page) {
+        int safePage = (page != null && page.getPage() != null) ? page.getPage() : 1;
+        int safePageSize = (page != null && page.getPageSize() != null) ? page.getPageSize() : Integer.MAX_VALUE;
+
+        return eventService.getTrendingsEvents(safePage, safePageSize).stream()
+                .map(eventMapper::toModel)
+                .map(eventMapperGQL::toModelGQL)
+                .toList();
+    }
 
 }
 
