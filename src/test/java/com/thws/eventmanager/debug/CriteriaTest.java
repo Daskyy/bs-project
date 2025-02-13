@@ -8,7 +8,7 @@ import java.util.List;
 public class CriteriaTest {
     public static void main(String[] args) {
         try(EventHandler eventHandler = new EventHandler()) {
-            List<EventEntity> events = eventHandler.searchByCriteria("name", "Stiedemann LLC");
+            List<EventEntity> events = eventHandler.searchByCriteria(List.of("name"), List.of("Stiedemann LLC"));
             events.forEach(System.out::println);
         }
     }
