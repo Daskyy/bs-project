@@ -63,7 +63,7 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCaseInterf
         return null;
     }
 
-    public boolean refundTicket(Ticket ticket) {
+    public Payment refundTicket(Ticket ticket) {
         if (ticket.getPayment().getStatus() != Status.COMPLETED) {
             throw new IllegalStateException("Only completed payments can be refunded.");
         }
@@ -80,9 +80,8 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCaseInterf
             paymentService.createPayment(payment);
             ticketService.deleteTicket(ticket);
             eventService.createEvent(ticket.getEvent());
-            return true;
         }
-        return false;
+        return payment;
     }
 
 }

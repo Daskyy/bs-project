@@ -17,4 +17,14 @@ public class PaymentService implements PaymentServiceInterface {
             throw new RuntimeException("Error creating payment");
         }
     }
+
+    @Override
+    public PaymentEntity getPaymentById(long id) {
+        try(PaymentHandler paymentHandler = new PaymentHandler()){
+            return paymentHandler.findById(id).orElse(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error getting payment");
+        }
+    }
 }

@@ -28,6 +28,8 @@ type Mutation {
 
   purchaseTicket(userId: ID!, eventId: ID!, ticketamount: Int!,paymentmethodId: String!, voucher:String): TicketGQL!
 
+  refundTicket(ticketId: ID!): PaymentGQL!
+
   #Address
   # Beispiel: Address anlegen
   createAddress(input: AddressInput): AddressGQL!
