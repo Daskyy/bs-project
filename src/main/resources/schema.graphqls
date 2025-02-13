@@ -12,13 +12,16 @@ type Query {
 
 # Mutations
 type Mutation {
-  #User
+
+  purchaseTicket(userId: ID!, eventId: ID!, ticketamount: Int!,paymentmethodId: String!, voucher:String): TicketGQL!
+
+  #Userf
   # Beispiel: User anlegen
- # createUser(input: UserInput): UserGQL!
+  createUser(input: UserInput): UserGQL!
   # Beispiel: User löschen
- # deleteUser(id: ID!): Boolean!
+  deleteUser(id: ID!): UserGQL!
   # Beispiel: User aktualisieren
- # updateUser(id: ID!, input: UserInput): UserGQL!
+  updateUser(id: ID!, input: UserInput): UserGQL!
 
   #Event
   # Beispiel: Event anlegen
@@ -30,9 +33,25 @@ type Mutation {
 }
 
 # Models
+type TicketGQL{
+  id: ID!
+  event: EventGQL!
+  user: UserGQL!
+  payment: PaymentGQL!
+}
+
+type PaymentGQL{
+  paymentMethodId: String!
+  amount: Int!
+  status: StatusGQL!
+  paymentIntentId: String!
+  id: ID!
+}
+
+
 type AddressGQL{
   id: ID!
-street: String!
+  street: String!
   no: Int!
   city: String!
   zipCode: Int!
@@ -68,7 +87,7 @@ type PaymentGQL{
     paymentMethodId: ID!
     amount: Int!
     status: StatusGQL!
-    paymentIntentID: String!
+    paymentIntentId: String!
 }
 
 enum StatusGQL{
@@ -85,13 +104,7 @@ enum PermissionGQL{
   CUSTOMER
 }
 
-type TicketGQL{
-  id: ID!
-  event: EventGQL!
-  user: UserGQL!
-  price: Float!
-  payment: PaymentGQL!
-}
+
 
 type UserGQL {
   id: ID!
@@ -108,6 +121,7 @@ input UserInput {
   email: String
   password: String
   permission: PermissionGQL
+  id: ID
 }
 
 input EventInput {
@@ -120,7 +134,7 @@ input EventInput {
   maxTicketsPerUser: Int
   artists: [UserInput!]!
   location: EventLocationInput
-  blockList: [UserInput!]
+  blockList: [UserInput!]!
   ticketPrice: Int
 
 }

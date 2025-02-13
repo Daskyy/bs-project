@@ -5,14 +5,14 @@ import com.thws.eventmanager.infrastructure.GraphQL.InputModels.UserInput;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.UserGQL;
 
 public class UserInputMapper  {
-    public  UserGQL toModelGQL(UserInput user) {
-        if(user == null) return null;
-        UserGQL gql = new UserGQL();
-        gql.setName(user.getName());
-        gql.setEmail(user.getEmail());
-        gql.setPassword(user.getPassword());
-        gql.setPermission(user.getPermission());
-        return gql;
+    public UserGQL toModelGQL(UserInput input) {
+        if(input == null) return null;
+        UserGQL userGQL = new UserGQL();
+        userGQL.setName(input.getName());
+        userGQL.setEmail(input.getEmail());
+        userGQL.setPassword(input.getPassword());
+        userGQL.setPermission(input.getPermission());
+        return userGQL;
     }
 
 
