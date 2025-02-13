@@ -2,11 +2,7 @@ package com.thws.eventmanager.debug;
 
 import com.github.javafaker.Faker;
 import com.thws.eventmanager.domain.models.*;
-import com.thws.eventmanager.domain.usecases.EventService;
-import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
-import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventLocationHandler;
-import com.thws.eventmanager.infrastructure.components.persistence.entities.EventLocationEntity;
-import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventLocationMapper;
+import com.thws.eventmanager.domain.services.db.EventService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

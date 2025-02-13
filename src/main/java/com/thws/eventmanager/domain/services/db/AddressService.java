@@ -1,4 +1,4 @@
-package com.thws.eventmanager.domain.usecases;
+package com.thws.eventmanager.domain.services.db;
 
 import com.thws.eventmanager.domain.exceptions.InvalidEventException;
 import com.thws.eventmanager.domain.models.Address;
@@ -6,9 +6,7 @@ import com.thws.eventmanager.domain.port.in.AddressServiceInterface;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.AddressHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.AddressEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.AddressMapper;
-import org.hibernate.sql.model.jdbc.OptionalTableUpdateOperation;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 

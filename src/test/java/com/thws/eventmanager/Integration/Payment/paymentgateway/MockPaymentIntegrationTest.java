@@ -1,13 +1,12 @@
 package com.thws.eventmanager.Integration.Payment.paymentgateway;
 
 import com.stripe.model.PaymentIntent;
-import com.thws.eventmanager.domain.usecases.PaymentUseCaseService;
+import com.thws.eventmanager.domain.services.usecases.PaymentUseCaseService;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService;
 import com.thws.eventmanager.domain.models.Status;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;

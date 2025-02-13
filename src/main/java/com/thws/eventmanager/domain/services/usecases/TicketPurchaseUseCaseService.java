@@ -1,10 +1,12 @@
-package com.thws.eventmanager.domain.usecases;
+package com.thws.eventmanager.domain.services.usecases;
 
 import com.stripe.model.Refund;
 import com.thws.eventmanager.domain.models.*;
 import com.thws.eventmanager.domain.port.in.TicketPurchaseUseCaseInterface;
+import com.thws.eventmanager.domain.services.db.EventService;
+import com.thws.eventmanager.domain.services.db.PaymentService;
+import com.thws.eventmanager.domain.services.db.TicketService;
 import com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService;
-import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.TicketEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.PaymentMapper;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.TicketMapper;

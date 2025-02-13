@@ -1,12 +1,9 @@
 package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation;
 
 import com.thws.eventmanager.domain.models.Event;
-import com.thws.eventmanager.domain.usecases.EventService;
+import com.thws.eventmanager.domain.services.db.EventService;
 import com.thws.eventmanager.infrastructure.GraphQL.InputModels.EventInput;
-import com.thws.eventmanager.infrastructure.GraphQL.InputModels.EventLocationInput;
-import com.thws.eventmanager.infrastructure.GraphQL.Models.AddressGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.EventGQL;
-import com.thws.eventmanager.infrastructure.GraphQL.Models.EventLocationGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.AdressMapperGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.EventLocationMapperGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.EventMapperGQL;
@@ -14,16 +11,10 @@ import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDom
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL.EventInputMapper;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL.EventLocationInputMapper;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL.UserInputMapper;
-import com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventMapper;
 import graphql.kickstart.tools.GraphQLMutationResolver;
-import graphql.kickstart.tools.GraphQLQueryResolver;
-import jakarta.persistence.EntityManager;
-import org.jetbrains.annotations.NotNull;
-
-import static java.util.stream.Collectors.toList;
 
 public class EventMutationResolver implements GraphQLMutationResolver {
     EventLocationMapperGQL eventLocationMapperGQL = new EventLocationMapperGQL();

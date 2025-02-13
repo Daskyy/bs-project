@@ -1,19 +1,14 @@
-package com.thws.eventmanager.domain.usecases;
+package com.thws.eventmanager.domain.services.db;
 
 import com.thws.eventmanager.domain.models.Status;
 import com.thws.eventmanager.domain.models.Ticket;
 import com.thws.eventmanager.domain.port.in.TicketServiceInterface;
-import com.thws.eventmanager.domain.port.out.GenericPersistenceOutport;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.TicketHandler;
-import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
-import com.thws.eventmanager.infrastructure.components.persistence.entities.PaymentEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.TicketEntity;
-import com.thws.eventmanager.infrastructure.components.persistence.entities.UserEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventMapper;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.PaymentMapper;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.TicketMapper;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.UserMapper;
-import jakarta.persistence.EntityManager;
 
 public class TicketService implements TicketServiceInterface {
     private final TicketMapper ticketMapper = new TicketMapper();

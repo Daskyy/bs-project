@@ -1,17 +1,15 @@
 package com.thws.eventmanager.Unit.domain.usecases;
 
-import com.thws.eventmanager.domain.models.Address;
 import com.thws.eventmanager.domain.models.Event;
 import com.thws.eventmanager.domain.models.EventLocation;
 import com.thws.eventmanager.domain.models.EventSearchCriteria;
 import com.thws.eventmanager.domain.port.in.EventSearchServiceInputPort;
 import com.thws.eventmanager.domain.port.out.GenericPersistenceOutport;
-import com.thws.eventmanager.domain.usecases.EventSearchService;
+import com.thws.eventmanager.domain.services.db.EventSearchService;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.AddressEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventLocationEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventMapper;
-import net.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
