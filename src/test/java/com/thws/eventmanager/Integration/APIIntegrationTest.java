@@ -7,8 +7,8 @@ import com.thws.eventmanager.infrastructure.GraphQL.InputModels.AddressInput;
 import com.thws.eventmanager.infrastructure.GraphQL.InputModels.EventInput;
 import com.github.javafaker.Faker;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.servlet.ServletContextHandler;
-import org.eclipse.jetty.servlet.ServletHolder;
+import org.eclipse.jetty.ee10.servlet.ServletContextHandler;
+import org.eclipse.jetty.ee10.servlet.ServletHolder;
 import org.junit.jupiter.api.*;
 
 import java.net.Socket;
@@ -28,29 +28,23 @@ public class APIIntegrationTest {
     public static void startServer() throws Exception {
         serverThread = new Thread(() -> {
             try {
-                server = new Server(PORT);
-                ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-                context.setContextPath("/");
-                // Verwende das GraphQL-Servlet
-                context.addServlet(new ServletHolder(new com.thws.eventmanager.infrastructure.GraphQL.Servlet()), "/graphql");
-                server.setHandler(context);
-                server.start();
-                // Entferne den blockierenden server.join() Aufruf, damit der Test weiterläuft
-            } catch(Exception e) {
-                throw new RuntimeException("Server start failed: " + e.getMessage(), e);
+                // Starte den zentral konfigurierten GraphQL-Server (analog zu AirlineManagementSystem)
+                com.thws.eventmanager.infrastructure.api.GraphQLServer.main(new String[] {"8081"});
+            } catch (Exception e) {
+                throw new RuntimeException("GraphQLServer start failed: " + e.getMessage(), e);
             }
         });
         serverThread.start();
         waitForServer(PORT);
 
-        // Erstelle persistente Testdaten
+        // Erstelle persistente Testdaten über den GraphQL-Endpunkt
         UserOperation userOp = new UserOperation();
-        UserInput userInput = new UserInput();
-        userInput.setName(faker.name().fullName());
-        userInput.setEmail(faker.internet().emailAddress());
-        userInput.setPassword(faker.internet().password());
-        userInput.setPermission(PermissionGQL.CUSTOMER);
-        persistentUser = userOp.createUser(userInput);
+        UserInput userinput = new UserInput();
+        userinput.setName(faker.name().fullName());
+        userinput.setEmail(faker.internet().emailAddress());
+        userinput.setPassword(faker.internet().password());
+        userinput.setPermission(PermissionGQL.CUSTOMER);
+        persistentUser = userOp.createUser(userinput);
 
         AddressOperation addressOp = new AddressOperation();
         AddressInput addressInput = new AddressInput();
@@ -78,7 +72,6 @@ public class APIIntegrationTest {
     @Order(1)
     void testUserLifecycle() throws Exception {
         UserOperation userOp = new UserOperation();
-        // Erstelle einen neuen Nutzer zur Prüfung (nicht persistent)
         UserInput input = new UserInput();
         input.setName(faker.name().fullName());
         input.setEmail(faker.internet().emailAddress());
@@ -91,8 +84,6 @@ public class APIIntegrationTest {
         input.setName(faker.name().fullName());
         UserGQL updatedUser = userOp.updateUser(createdUser.getId(), input);
         Assertions.assertEquals(input.getName(), updatedUser.getName());
-
-        // Nicht löschen, da persistentUser für weitere Tests genutzt wird
     }
     
     @Test
@@ -114,13 +105,13 @@ public class APIIntegrationTest {
         Assertions.assertEquals(input.getStreet(), updatedAddress.getStreet());
 
         AddressGQL deletedAddress = addressOp.deleteAddress(addr.getId());
-        Assertions.assertNotNull(deletedAddress);
+        Assertions.assertNotNull(deletedAddress.getId());
     }
 
     @Test
     @Order(3)
     void testEventLifecycle() throws Exception {
-         // Verwende persistentUser als Künstler; EventLocation-ID "1" muss existieren
+         // Verwende persistentUser als Künstler; EventLocation-ID "1" muss in der Testdatenbank existieren.
          String eventLocationId = "1";
          EventInput eventInput = new EventInput();
          eventInput.setName(faker.funnyName().name());
@@ -151,7 +142,7 @@ public class APIIntegrationTest {
          Assertions.assertNotNull(queriedEvent);
          
          EventGQL deletedEvent = eventOp.deleteEvent(createdEvent.getId());
-         Assertions.assertNotNull(deletedEvent);
+         Assertions.assertNotNull(deletedEvent.getId());
     }
     
     @Test
@@ -180,10 +171,10 @@ public class APIIntegrationTest {
          Assertions.assertNotNull(purchasedTicket.getId());
          
          PaymentGQL refund = ticketOp.refundTicket(purchasedTicket.getId());
-         Assertions.assertNotNull(refund);
+         Assertions.assertNotNull(refund.getId());
          
          EventGQL deletedEvent = eventOp.deleteEvent(eventCreated.getId());
-         Assertions.assertNotNull(deletedEvent);
+         Assertions.assertNotNull(deletedEvent.getId());
     }
     
     @Test
@@ -191,7 +182,7 @@ public class APIIntegrationTest {
     void testQueryOperations() throws Exception {
          UserOperation userOp = new UserOperation();
          UserGQL queriedUser = userOp.queryUser(persistentUser.getId());
-         Assertions.assertNotNull(queriedUser);
+         Assertions.assertNotNull(queriedUser.getId());
          
          UserGQL[] users = userOp.queryUsers();
          Assertions.assertTrue(users.length > 0);
@@ -207,15 +198,14 @@ public class APIIntegrationTest {
          Assertions.assertNotNull(createdAddr.getId());
          
          AddressGQL queriedAddr = addressOp.getAddress(createdAddr.getId());
-         Assertions.assertNotNull(queriedAddr);
+         Assertions.assertNotNull(queriedAddr.getId());
          
          AddressGQL[] addresses = addressOp.getAddresses();
          Assertions.assertTrue(addresses.length > 0);
          
          EventLocationOperation elo = new EventLocationOperation();
          EventLocationGQL eventLoc = elo.getEventLocation("1");
-         // Optional: Assertions.assertNotNull(eventLoc);
-         
+         // Optional: Falls EventLocation-Daten vorhanden sind, testen.
          EventLocationGQL[] eventLocations = elo.getEventLocations();
          // Optional: Assertions.assertTrue(eventLocations.length > 0);
     }
