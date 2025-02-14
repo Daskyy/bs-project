@@ -7,7 +7,9 @@ type Query {
      
      # Beispiel: Liste von Usern auslesen
      users(criteria: UserCriteriaInput): [UserGQL!]!
-     
+
+  voucher(id: ID!) : VoucherGQL
+  vouchers(criteria: VoucherInputCriteria, page: PaginationInput): [VoucherGQL!]!
 
   #Event
   trendingEvents(page: PaginationInput): [EventGQL!]
@@ -66,6 +68,12 @@ type Mutation {
   updateEvent(id: ID!, input: EventInput): EventGQL!
   # Blocks a user
   blockUser(eventId: ID!, userId: ID!): EventGQL!
+
+  createVoucher(input: VoucherInput!): VoucherGQL!
+  deleteVoucher(id: ID!): VoucherGQL!
+  updateVoucher(id: ID!, input: VoucherInput): VoucherGQL!
+  deactivateVoucher(id: ID!): VoucherGQL!
+  activateVoucher(id: ID!): VoucherGQL!
 }
 
 # Models
@@ -117,6 +125,16 @@ type PaymentGQL{
     paymentIntentId: String!
 }
 
+type VoucherGQL{
+  id: ID!
+  code: String!
+  discountAmount: Int!
+  maxUses: Int!
+  remainingUses: Int!
+  createdAt: String!
+  active: Boolean!
+}
+
 enum StatusGQL{
   OPEN
   COMPLETED
@@ -149,6 +167,20 @@ input UserInput {
   password: String
   permission: PermissionGQL
   id: ID
+}
+
+input VoucherInputCriteria{
+  code: String
+  discountAmount: Int
+  maxUses: Int
+  remainingUses: Int
+  active: Boolean
+}
+
+input VoucherInput{
+  code: String!
+  discountAmount: Int!
+  maxUses: Int!
 }
 
 input AddressCriteriaInput {

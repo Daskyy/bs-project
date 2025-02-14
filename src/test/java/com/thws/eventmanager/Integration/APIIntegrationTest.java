@@ -114,13 +114,7 @@ public class APIIntegrationTest {
     void testEventLifecycle() throws Exception {
 
          EventLocationInput eventLocationInput = new EventLocationInput();
-         AddressInput addressInput = new AddressInput();
-         addressInput.setStreet(faker.address().streetName());
-         addressInput.setNo(faker.number().numberBetween(1, 100));
-         addressInput.setCity(faker.address().city());
-         addressInput.setZipCode(faker.number().numberBetween(10000, 99999));
-         addressInput.setCountry(faker.address().country());
-         eventLocationInput.setAddress(addressInput);
+         eventLocationInput.setAddress(persistentAddress.getId());
          eventLocationInput.setName(faker.company().name());
          eventLocationInput.setCapacity(faker.number().numberBetween(100, 8000));
 

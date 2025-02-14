@@ -4,11 +4,8 @@ import com.github.javafaker.Faker;
 import com.thws.eventmanager.domain.models.*;
 import com.thws.eventmanager.domain.services.models.EventService;
 import com.thws.eventmanager.domain.services.models.UserService;
-import com.thws.eventmanager.domain.services.models.VoucherService;
-import com.thws.eventmanager.infrastructure.components.persistence.adapter.UserHandler;
-import com.thws.eventmanager.infrastructure.components.persistence.adapter.VoucherHandler;
+import com.thws.eventmanager.domain.services.other.VoucherService;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.UserEntity;
-import com.thws.eventmanager.infrastructure.components.persistence.entities.VoucherEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.UserMapper;
 
 import java.time.LocalDateTime;

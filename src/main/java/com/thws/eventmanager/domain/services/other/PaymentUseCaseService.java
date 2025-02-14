@@ -6,7 +6,6 @@ import com.thws.eventmanager.domain.port.in.PaymentUseCaseInterface;
 import com.thws.eventmanager.domain.models.Payment;
 import com.thws.eventmanager.domain.models.Status;
 import com.thws.eventmanager.domain.port.out.StripeServiceInterface;
-import com.thws.eventmanager.domain.services.models.VoucherService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

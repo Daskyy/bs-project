@@ -33,4 +33,5 @@ public class TicketOperation extends AbstractAPIOperation {
             ticketId);
         return executeQuery(mutation, "refundTicket", PaymentGQL.class);
     }
+
 } 
