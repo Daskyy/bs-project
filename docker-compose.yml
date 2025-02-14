@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: eventmanager
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - backend
+
+  db:
+    image: postgres:16
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_DB: eventmanager
+      POSTGRES_USER: javabackend
+      POSTGRES_PASSWORD: 123456789
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+
+networks:
+  backend:
