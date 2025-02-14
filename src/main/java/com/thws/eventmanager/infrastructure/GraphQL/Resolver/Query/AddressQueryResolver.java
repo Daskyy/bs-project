@@ -4,7 +4,7 @@ import com.thws.eventmanager.domain.services.models.AddressService;
 import com.thws.eventmanager.infrastructure.GraphQL.InputModels.AddressCriteriaInput;
 import com.thws.eventmanager.infrastructure.GraphQL.InputModels.PaginationInput;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.AddressGQL;
-import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.AdressMapperGQL;
+import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.AddressMapperGQL;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.AddressEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.AddressMapper;
 import graphql.kickstart.tools.GraphQLQueryResolver;
@@ -13,12 +13,12 @@ import java.util.List;
 
 public class AddressQueryResolver implements GraphQLQueryResolver {
     AddressMapper addressMapper = new AddressMapper();
-    AdressMapperGQL adressMapperGQL = new AdressMapperGQL();
+    AddressMapperGQL addressMapperGQL = new AddressMapperGQL();
     AddressService addressService = new AddressService();
     public AddressGQL address(String id){
         AddressEntity addressEntity = addressService.getAddressById(Long.parseLong(id)).orElse(null);
         assert addressEntity != null;
-        return adressMapperGQL.toModelGQL(addressMapper.toModel(addressEntity));
+        return addressMapperGQL.toModelGQL(addressMapper.toModel(addressEntity));
     }
 
     public List<AddressGQL> addresses(AddressCriteriaInput criteria, PaginationInput page) {
@@ -29,7 +29,7 @@ public class AddressQueryResolver implements GraphQLQueryResolver {
         if (criteria == null) {
             return addressService.getAllAddresses(List.of(), List.of(), safePage, safePageSize).stream()
                     .map(addressMapper::toModel)
-                    .map(adressMapperGQL::toModelGQL)
+                    .map(addressMapperGQL::toModelGQL)
                     .toList();
         }
 
@@ -41,7 +41,7 @@ public class AddressQueryResolver implements GraphQLQueryResolver {
         } else {
             return addressService.getAllAddresses(criteriaList, valuesList, safePage, safePageSize).stream()
                     .map(addressMapper::toModel)
-                    .map(adressMapperGQL::toModelGQL)
+                    .map(addressMapperGQL::toModelGQL)
                     .toList();
         }
     }

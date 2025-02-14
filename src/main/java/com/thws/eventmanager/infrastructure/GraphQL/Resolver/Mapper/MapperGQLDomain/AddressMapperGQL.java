@@ -3,7 +3,7 @@ package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDo
 import com.thws.eventmanager.domain.models.Address;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.AddressGQL;
 
-public class AdressMapperGQL extends Mapper<Address, AddressGQL> {
+public class AddressMapperGQL extends Mapper<Address, AddressGQL> {
 
     @Override
     public Address toModel(AddressGQL addressgql){

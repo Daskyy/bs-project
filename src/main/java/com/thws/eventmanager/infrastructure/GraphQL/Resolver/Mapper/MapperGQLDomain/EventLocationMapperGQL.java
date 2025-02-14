@@ -4,7 +4,7 @@ import com.thws.eventmanager.domain.models.EventLocation;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.EventLocationGQL;
 
 public class EventLocationMapperGQL extends Mapper<EventLocation, EventLocationGQL> {
-    AdressMapperGQL addressMapperGQL = new AdressMapperGQL();
+    AddressMapperGQL addressMapperGQL = new AddressMapperGQL();
     @Override
     public EventLocation toModel(EventLocationGQL eventLocationGQL){
         if (eventLocationGQL == null) return null;

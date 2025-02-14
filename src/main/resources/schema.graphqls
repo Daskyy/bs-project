@@ -37,6 +37,11 @@ type Mutation {
 
   refundTicket(ticketId: ID!): PaymentGQL!
 
+
+  createEventLocation(input: EventLocationInput):EventLocationGQL!
+  deleteEventLocation(id: ID!): EventLocationGQL!
+  updateEventLocation(id: ID!, input: EventLocationInput): EventLocationGQL!
+
   #Address
   # Beispiel: Address anlegen
   createAddress(input: AddressInput): AddressGQL!
@@ -177,7 +182,7 @@ input EventInput {
 
 input EventLocationInput {
   id:ID
-  address: AddressInput!
+  address: ID!
   name: String!
   capacity: Int!
 }

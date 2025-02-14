@@ -7,7 +7,7 @@ import com.thws.eventmanager.domain.services.models.UserService;
 import com.thws.eventmanager.domain.services.other.TicketPurchaseUseCaseService;
 import com.thws.eventmanager.infrastructure.GraphQL.InputModels.EventInput;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.EventGQL;
-import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.AdressMapperGQL;
+import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.AddressMapperGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.EventLocationMapperGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.EventMapperGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.UserMapperGQL;
@@ -25,7 +25,7 @@ import graphql.kickstart.tools.GraphQLMutationResolver;
 
 public class EventMutationResolver implements GraphQLMutationResolver {
     EventLocationMapperGQL eventLocationMapperGQL = new EventLocationMapperGQL();
-    AdressMapperGQL adressMapperGQL = new AdressMapperGQL();
+    AddressMapperGQL addressMapperGQL = new AddressMapperGQL();
     UserMapperGQL userMapperGQL = new UserMapperGQL();
     EventMapper eventMapper = new EventMapper();
     EventMapperGQL eventMapperGQL = new EventMapperGQL();

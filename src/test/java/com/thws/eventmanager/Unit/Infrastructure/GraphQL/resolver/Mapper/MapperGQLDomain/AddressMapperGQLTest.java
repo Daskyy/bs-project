@@ -2,14 +2,13 @@ package com.thws.eventmanager.Unit.Infrastructure.GraphQL.resolver.Mapper.Mapper
 
 import com.thws.eventmanager.domain.models.Address;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.AddressGQL;
-import com.thws.eventmanager.infrastructure.components.persistence.mapper.AddressMapper;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AddressMapperGQLTest {
-    private final AdressMapperGQL mapper = new AdressMapperGQL();
+    private final AddressMapperGQL mapper = new AddressMapperGQL();
 
     @Test
     void toModelTest() {

@@ -8788,3 +8788,603 @@ com.thws.eventmanager.domain.exceptions.InvalidEventException: Failed to block u
 2025-02-14 15:19:21 [pool-23-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
 2025-02-14 15:19:21 [Thread-16] INFO  org.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:postgresql://db.backend.heppify.de:5432/eventmanager]
 2025-02-14 15:19:21 [Thread-16] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManagerFactory closed on application shutdown.
+2025-02-14 15:39:35 [Thread-0] INFO  org.eclipse.jetty.server.Server - jetty-12.0.10; built: 2024-05-30T04:40:36.563Z; git: 26106dfc84a03ddb6216062fe33b047fc332d0ce; jvm 23.0.2+7-58
+2025-02-14 15:39:35 [Thread-0] INFO  org.eclipse.jetty.session.DefaultSessionIdManager - Session workerName=node0
+2025-02-14 15:39:35 [Thread-0] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started oeje10s.ServletContextHandler@20367014{ROOT,/,b=null,a=AVAILABLE,h=oeje10s.SessionHandler@4ade213e{STARTED}}
+2025-02-14 15:39:35 [Thread-0] INFO  org.eclipse.jetty.ee10.servlet.ServletContextHandler - Started oeje10s.ServletContextHandler@20367014{ROOT,/,b=null,a=AVAILABLE,h=oeje10s.SessionHandler@4ade213e{STARTED}}
+2025-02-14 15:39:35 [Thread-0] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@76304b90{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+2025-02-14 15:39:35 [Thread-0] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@54b51184{STARTING}[12.0.10,sto=0] @1046ms
+2025-02-14 15:39:36 [qtp790970547-37] INFO  com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService - Stripe initialized in test mode
+2025-02-14 15:39:36 [qtp790970547-37] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:39:37 [pool-1-thread-1] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: eventmanager]
+2025-02-14 15:39:37 [pool-1-thread-1] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-02-14 15:39:37 [pool-1-thread-1] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-02-14 15:39:37 [pool-1-thread-1] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-02-14 15:39:37 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-02-14 15:39:37 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://db.backend.heppify.de:5432/eventmanager]
+2025-02-14 15:39:37 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=javabackend, password=****}
+2025-02-14 15:39:37 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-02-14 15:39:37 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-02-14 15:39:38 [pool-1-thread-1] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-14 15:39:38 [pool-1-thread-1] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@5d6ba4a2] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-02-14 15:39:40 [pool-1-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:40 [qtp790970547-37] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:39:40 [pool-2-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:40 [qtp790970547-35] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:39:40 [pool-3-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:40 [pool-3-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:40 [pool-3-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:40 [pool-3-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:40 [pool-3-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:40 [pool-3-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:40 [qtp790970547-42] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:39:40 [pool-4-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:41 [pool-4-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:41 [pool-4-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:41 [pool-4-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:41 [pool-4-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:41 [qtp790970547-40] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:39:41 [pool-5-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:41 [pool-5-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:41 [pool-5-thread-1] INFO  com.thws.eventmanager.domain.services.models.EventService - Attempting to block user: 376 from event: 204
+2025-02-14 15:39:41 [pool-5-thread-1] INFO  com.thws.eventmanager.domain.services.models.EventService - User 376 has been successfully added to block list of event 204
+2025-02-14 15:39:41 [pool-5-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:41 [qtp790970547-37] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:39:41 [pool-6-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:41 [qtp790970547-40] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:39:42 [pool-7-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:42 [pool-7-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.adapter.GenericPersistenceAdapter - Executing searchByCriteria...
+2025-02-14 15:39:42 [pool-7-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.adapter.GenericPersistenceAdapter - Checking field: event_id with value: 204
+2025-02-14 15:39:42 [pool-7-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.adapter.GenericPersistenceAdapter - Detected and handled related entity field: event_id using actual field name: event
+2025-02-14 15:39:42 [pool-7-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:42 [pool-7-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:39:42 [Thread-10] INFO  org.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:postgresql://db.backend.heppify.de:5432/eventmanager]
+2025-02-14 15:39:42 [Thread-10] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManagerFactory closed on application shutdown.
+2025-02-14 15:39:59 [Thread-0] INFO  org.eclipse.jetty.server.Server - jetty-12.0.10; built: 2024-05-30T04:40:36.563Z; git: 26106dfc84a03ddb6216062fe33b047fc332d0ce; jvm 23.0.2+7-58
+2025-02-14 15:39:59 [Thread-0] INFO  org.eclipse.jetty.session.DefaultSessionIdManager - Session workerName=node0
+2025-02-14 15:39:59 [Thread-0] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started oeje10s.ServletContextHandler@15009557{ROOT,/,b=null,a=AVAILABLE,h=oeje10s.SessionHandler@69deec89{STARTED}}
+2025-02-14 15:39:59 [Thread-0] INFO  org.eclipse.jetty.ee10.servlet.ServletContextHandler - Started oeje10s.ServletContextHandler@15009557{ROOT,/,b=null,a=AVAILABLE,h=oeje10s.SessionHandler@69deec89{STARTED}}
+2025-02-14 15:39:59 [Thread-0] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@1897aa30{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+2025-02-14 15:39:59 [Thread-0] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@43d03d83{STARTING}[12.0.10,sto=0] @695ms
+2025-02-14 15:40:00 [qtp1239601644-37] INFO  com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService - Stripe initialized in test mode
+2025-02-14 15:40:00 [qtp1239601644-37] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:00 [pool-1-thread-1] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: eventmanager]
+2025-02-14 15:40:00 [pool-1-thread-1] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-02-14 15:40:00 [pool-1-thread-1] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-02-14 15:40:01 [pool-1-thread-1] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-02-14 15:40:01 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-02-14 15:40:01 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://db.backend.heppify.de:5432/eventmanager]
+2025-02-14 15:40:01 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=javabackend, password=****}
+2025-02-14 15:40:01 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-02-14 15:40:01 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-02-14 15:40:02 [pool-1-thread-1] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-14 15:40:02 [pool-1-thread-1] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@79bb03be] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-02-14 15:40:03 [pool-1-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:03 [qtp1239601644-37] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:03 [pool-2-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:03 [qtp1239601644-35] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:03 [pool-3-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:03 [qtp1239601644-42] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:04 [pool-4-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:04 [pool-4-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:04 [qtp1239601644-42] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:04 [pool-5-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:04 [qtp1239601644-36] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:04 [pool-6-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:04 [pool-6-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:04 [qtp1239601644-42] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:04 [pool-7-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:04 [pool-7-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:04 [qtp1239601644-41] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:04 [pool-8-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:04 [pool-8-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:04 [pool-8-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:04 [pool-8-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:04 [pool-8-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:05 [pool-8-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:05 [qtp1239601644-41] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:05 [pool-9-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:05 [pool-9-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:05 [pool-9-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:05 [pool-9-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:05 [pool-9-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:05 [qtp1239601644-73] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:05 [pool-10-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:05 [pool-10-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:05 [pool-10-thread-1] INFO  com.thws.eventmanager.domain.services.models.EventService - Attempting to block user: 377 from event: 205
+2025-02-14 15:40:05 [pool-10-thread-1] INFO  com.thws.eventmanager.domain.services.models.EventService - User 377 has been successfully added to block list of event 205
+2025-02-14 15:40:05 [pool-10-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:05 [qtp1239601644-41] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:06 [pool-11-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:06 [qtp1239601644-73] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:06 [pool-12-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:06 [pool-12-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.adapter.GenericPersistenceAdapter - Executing searchByCriteria...
+2025-02-14 15:40:06 [pool-12-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.adapter.GenericPersistenceAdapter - Checking field: event_id with value: 205
+2025-02-14 15:40:06 [pool-12-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.adapter.GenericPersistenceAdapter - Detected and handled related entity field: event_id using actual field name: event
+2025-02-14 15:40:06 [pool-12-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:06 [pool-12-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:06 [qtp1239601644-37] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:06 [pool-13-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:06 [pool-13-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:06 [pool-13-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:06 [pool-13-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:06 [pool-13-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:06 [pool-13-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:06 [qtp1239601644-40] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:07 [pool-14-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:07 [pool-14-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:07 [pool-14-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.adapter.GenericPersistenceAdapter - Executing searchByCriteria...
+2025-02-14 15:40:07 [pool-14-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.adapter.GenericPersistenceAdapter - Checking field: event_id with value: 206
+2025-02-14 15:40:07 [pool-14-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.adapter.GenericPersistenceAdapter - Detected and handled related entity field: event_id using actual field name: event
+2025-02-14 15:40:07 [pool-14-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.adapter.GenericPersistenceAdapter - Checking field: user_id with value: 377
+2025-02-14 15:40:07 [pool-14-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.adapter.GenericPersistenceAdapter - Detected and handled related entity field: user_id using actual field name: user
+2025-02-14 15:40:07 [pool-14-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:07 [pool-14-thread-1] INFO  com.thws.eventmanager.domain.services.other.PaymentUseCaseService - Processing payment with voucher code: voucher123
+2025-02-14 15:40:07 [pool-14-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:07 [pool-14-thread-1] INFO  com.thws.eventmanager.domain.services.other.PaymentUseCaseService - Discount applied: 0, final amount: 100
+2025-02-14 15:40:07 [pool-14-thread-1] INFO  com.thws.eventmanager.domain.services.other.PaymentUseCaseService - Final amount sent to Stripe: 100
+2025-02-14 15:40:07 [pool-14-thread-1] INFO  com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService - Processing payment for amount: 1.0 EUR
+2025-02-14 15:40:08 [pool-14-thread-1] INFO  com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService - Payment processed. PaymentIntent ID: pi_3QsQ3oIvSTC1lnOW1GmLdcHM
+2025-02-14 15:40:08 [pool-14-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:09 [pool-14-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:09 [pool-14-thread-1] WARN  com.itextpdf.layout.renderer.TableWidths - Table width is more than expected due to min width of cell(s).
+2025-02-14 15:40:09 [pool-14-thread-1] INFO  com.thws.eventmanager.domain.services.other.TicketPurchaseUseCaseService - Ticket for event Laura Norder created successfully
+2025-02-14 15:40:09 [qtp1239601644-42] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:09 [pool-15-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:09 [pool-15-thread-1] INFO  com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService - Processing refund for PaymentIntent ID: pi_3QsQ3oIvSTC1lnOW1GmLdcHM with amount: 1.0 EUR
+2025-02-14 15:40:10 [pool-15-thread-1] INFO  com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService - Refund successful. Refund ID: re_3QsQ3oIvSTC1lnOW1zmAojKV, Status: succeeded
+2025-02-14 15:40:10 [pool-15-thread-1] INFO  com.thws.eventmanager.domain.services.other.PaymentUseCaseService - Payment pi_3QsQ3oIvSTC1lnOW1GmLdcHM successfully refunded
+2025-02-14 15:40:10 [pool-15-thread-1] INFO  com.thws.eventmanager.domain.services.other.TicketPurchaseUseCaseService - Ticket for event Laura Norder refunded successfully
+2025-02-14 15:40:10 [pool-15-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:11 [pool-15-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:11 [pool-15-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:11 [qtp1239601644-73] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:11 [pool-16-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:11 [pool-16-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.adapter.GenericPersistenceAdapter - Executing searchByCriteria...
+2025-02-14 15:40:11 [pool-16-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.adapter.GenericPersistenceAdapter - Checking field: event_id with value: 206
+2025-02-14 15:40:11 [pool-16-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.adapter.GenericPersistenceAdapter - Detected and handled related entity field: event_id using actual field name: event
+2025-02-14 15:40:11 [pool-16-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:11 [pool-16-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:11 [qtp1239601644-38] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:11 [pool-17-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:11 [qtp1239601644-40] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:11 [pool-18-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:11 [qtp1239601644-41] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:12 [pool-19-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:12 [qtp1239601644-37] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:12 [pool-20-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:12 [qtp1239601644-38] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:12 [pool-21-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.adapter.GenericPersistenceAdapter - Executing searchByCriteria... Page: 1, Size: 2147483647
+2025-02-14 15:40:12 [pool-21-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:12 [qtp1239601644-37] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:12 [pool-22-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:12 [qtp1239601644-41] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:40:16 [pool-23-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:40:16 [Thread-10] INFO  org.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:postgresql://db.backend.heppify.de:5432/eventmanager]
+2025-02-14 15:40:16 [Thread-10] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManagerFactory closed on application shutdown.
+2025-02-14 15:52:55 [Thread-0] INFO  org.eclipse.jetty.server.Server - jetty-12.0.10; built: 2024-05-30T04:40:36.563Z; git: 26106dfc84a03ddb6216062fe33b047fc332d0ce; jvm 23.0.2+7-58
+2025-02-14 15:52:55 [Thread-0] INFO  org.eclipse.jetty.session.DefaultSessionIdManager - Session workerName=node0
+2025-02-14 15:52:55 [Thread-0] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started oeje10s.ServletContextHandler@3ece27b7{ROOT,/,b=null,a=AVAILABLE,h=oeje10s.SessionHandler@7cd0ce22{STARTED}}
+2025-02-14 15:52:55 [Thread-0] INFO  org.eclipse.jetty.ee10.servlet.ServletContextHandler - Started oeje10s.ServletContextHandler@3ece27b7{ROOT,/,b=null,a=AVAILABLE,h=oeje10s.SessionHandler@7cd0ce22{STARTED}}
+2025-02-14 15:52:55 [Thread-0] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@7e2ae799{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+2025-02-14 15:52:55 [Thread-0] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@5b7866e4{STARTING}[12.0.10,sto=0] @797ms
+2025-02-14 15:52:56 [qtp593477675-37] INFO  com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService - Stripe initialized in test mode
+2025-02-14 15:52:57 [qtp593477675-37] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:52:57 [pool-1-thread-1] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: eventmanager]
+2025-02-14 15:52:57 [pool-1-thread-1] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-02-14 15:52:57 [pool-1-thread-1] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-02-14 15:52:57 [pool-1-thread-1] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-02-14 15:52:57 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-02-14 15:52:57 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://db.backend.heppify.de:5432/eventmanager]
+2025-02-14 15:52:57 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=javabackend, password=****}
+2025-02-14 15:52:57 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-02-14 15:52:57 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-02-14 15:52:58 [pool-1-thread-1] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-14 15:52:58 [pool-1-thread-1] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3eafdd3a] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-02-14 15:53:00 [pool-1-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:00 [qtp593477675-37] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:00 [pool-2-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:00 [qtp593477675-35] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:00 [pool-3-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:00 [qtp593477675-42] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:00 [pool-4-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:00 [pool-4-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:00 [qtp593477675-36] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:00 [pool-5-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:00 [qtp593477675-37] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:01 [pool-6-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:01 [pool-6-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:01 [qtp593477675-40] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:01 [pool-7-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:01 [pool-7-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:01 [qtp593477675-41] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:01 [pool-8-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:01 [pool-8-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:01 [pool-8-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:01 [pool-8-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:01 [pool-8-thread-1] WARN  notprivacysafe.graphql.execution.SimpleDataFetcherExceptionHandler - Exception while fetching data (/createEvent) : No value present
+java.util.NoSuchElementException: No value present
+	at java.base/java.util.Optional.get(Optional.java:143)
+	at com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL.EventInputMapper.toModelGQL(EventInputMapper.java:46)
+	at com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.EventMutationResolver.createEvent(EventMutationResolver.java:42)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at graphql.kickstart.tools.resolver.MethodFieldResolverKt.invoke(MethodFieldResolver.kt:257)
+	at graphql.kickstart.tools.resolver.MethodFieldResolverKt.access$invoke(MethodFieldResolver.kt:1)
+	at graphql.kickstart.tools.resolver.MethodFieldResolverDataFetcher.get(MethodFieldResolver.kt:218)
+	at graphql.execution.instrumentation.dataloader.DataLoaderDispatcherInstrumentation.lambda$instrumentDataFetcher$0(DataLoaderDispatcherInstrumentation.java:90)
+	at graphql.execution.ExecutionStrategy.invokeDataFetcher(ExecutionStrategy.java:329)
+	at graphql.execution.ExecutionStrategy.fetchField(ExecutionStrategy.java:305)
+	at graphql.execution.ExecutionStrategy.fetchField(ExecutionStrategy.java:243)
+	at graphql.execution.ExecutionStrategy.resolveFieldWithInfo(ExecutionStrategy.java:214)
+	at graphql.execution.ExecutionStrategy.resolveField(ExecutionStrategy.java:186)
+	at graphql.execution.AsyncSerialExecutionStrategy.lambda$execute$1(AsyncSerialExecutionStrategy.java:56)
+	at graphql.execution.Async.eachSequentiallyImpl(Async.java:162)
+	at graphql.execution.Async.eachSequentially(Async.java:151)
+	at graphql.execution.AsyncSerialExecutionStrategy.execute(AsyncSerialExecutionStrategy.java:51)
+	at graphql.execution.Execution.executeOperation(Execution.java:162)
+	at graphql.execution.Execution.execute(Execution.java:104)
+	at graphql.GraphQL.execute(GraphQL.java:568)
+	at graphql.GraphQL.lambda$parseValidateAndExecute$13(GraphQL.java:487)
+	at java.base/java.util.concurrent.CompletableFuture.uniComposeStage(CompletableFuture.java:1231)
+	at java.base/java.util.concurrent.CompletableFuture.thenCompose(CompletableFuture.java:2385)
+	at graphql.GraphQL.parseValidateAndExecute(GraphQL.java:482)
+	at graphql.GraphQL.lambda$executeAsync$9(GraphQL.java:440)
+	at java.base/java.util.concurrent.CompletableFuture.uniComposeStage(CompletableFuture.java:1231)
+	at java.base/java.util.concurrent.CompletableFuture.thenCompose(CompletableFuture.java:2385)
+	at graphql.GraphQL.executeAsync(GraphQL.java:428)
+	at graphql.kickstart.execution.GraphQLInvoker.executeAsync(GraphQLInvoker.java:37)
+	at graphql.kickstart.execution.GraphQLInvoker.execute(GraphQLInvoker.java:28)
+	at graphql.kickstart.servlet.HttpRequestInvokerImpl.invoke(HttpRequestInvokerImpl.java:203)
+	at graphql.kickstart.servlet.HttpRequestInvokerImpl.lambda$invokeAndHandleAsync$2(HttpRequestInvokerImpl.java:84)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-02-14 15:53:01 [pool-8-thread-1] ERROR graphql.kickstart.execution.error.DefaultGraphQLErrorHandler - Error executing query Exception while fetching data (/createEvent) : No value present
+java.util.NoSuchElementException: No value present
+	at java.base/java.util.Optional.get(Optional.java:143)
+	at com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL.EventInputMapper.toModelGQL(EventInputMapper.java:46)
+	at com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.EventMutationResolver.createEvent(EventMutationResolver.java:42)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at graphql.kickstart.tools.resolver.MethodFieldResolverKt.invoke(MethodFieldResolver.kt:257)
+	at graphql.kickstart.tools.resolver.MethodFieldResolverKt.access$invoke(MethodFieldResolver.kt:1)
+	at graphql.kickstart.tools.resolver.MethodFieldResolverDataFetcher.get(MethodFieldResolver.kt:218)
+	at graphql.execution.instrumentation.dataloader.DataLoaderDispatcherInstrumentation.lambda$instrumentDataFetcher$0(DataLoaderDispatcherInstrumentation.java:90)
+	at graphql.execution.ExecutionStrategy.invokeDataFetcher(ExecutionStrategy.java:329)
+	at graphql.execution.ExecutionStrategy.fetchField(ExecutionStrategy.java:305)
+	at graphql.execution.ExecutionStrategy.fetchField(ExecutionStrategy.java:243)
+	at graphql.execution.ExecutionStrategy.resolveFieldWithInfo(ExecutionStrategy.java:214)
+	at graphql.execution.ExecutionStrategy.resolveField(ExecutionStrategy.java:186)
+	at graphql.execution.AsyncSerialExecutionStrategy.lambda$execute$1(AsyncSerialExecutionStrategy.java:56)
+	at graphql.execution.Async.eachSequentiallyImpl(Async.java:162)
+	at graphql.execution.Async.eachSequentially(Async.java:151)
+	at graphql.execution.AsyncSerialExecutionStrategy.execute(AsyncSerialExecutionStrategy.java:51)
+	at graphql.execution.Execution.executeOperation(Execution.java:162)
+	at graphql.execution.Execution.execute(Execution.java:104)
+	at graphql.GraphQL.execute(GraphQL.java:568)
+	at graphql.GraphQL.lambda$parseValidateAndExecute$13(GraphQL.java:487)
+	at java.base/java.util.concurrent.CompletableFuture.uniComposeStage(CompletableFuture.java:1231)
+	at java.base/java.util.concurrent.CompletableFuture.thenCompose(CompletableFuture.java:2385)
+	at graphql.GraphQL.parseValidateAndExecute(GraphQL.java:482)
+	at graphql.GraphQL.lambda$executeAsync$9(GraphQL.java:440)
+	at java.base/java.util.concurrent.CompletableFuture.uniComposeStage(CompletableFuture.java:1231)
+	at java.base/java.util.concurrent.CompletableFuture.thenCompose(CompletableFuture.java:2385)
+	at graphql.GraphQL.executeAsync(GraphQL.java:428)
+	at graphql.kickstart.execution.GraphQLInvoker.executeAsync(GraphQLInvoker.java:37)
+	at graphql.kickstart.execution.GraphQLInvoker.execute(GraphQLInvoker.java:28)
+	at graphql.kickstart.servlet.HttpRequestInvokerImpl.invoke(HttpRequestInvokerImpl.java:203)
+	at graphql.kickstart.servlet.HttpRequestInvokerImpl.lambda$invokeAndHandleAsync$2(HttpRequestInvokerImpl.java:84)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-02-14 15:53:01 [qtp593477675-38] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:01 [pool-9-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:01 [pool-9-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:01 [pool-9-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:01 [pool-9-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:01 [pool-9-thread-1] WARN  notprivacysafe.graphql.execution.SimpleDataFetcherExceptionHandler - Exception while fetching data (/createEvent) : No value present
+java.util.NoSuchElementException: No value present
+	at java.base/java.util.Optional.get(Optional.java:143)
+	at com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL.EventInputMapper.toModelGQL(EventInputMapper.java:46)
+	at com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.EventMutationResolver.createEvent(EventMutationResolver.java:42)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at graphql.kickstart.tools.resolver.MethodFieldResolverKt.invoke(MethodFieldResolver.kt:257)
+	at graphql.kickstart.tools.resolver.MethodFieldResolverKt.access$invoke(MethodFieldResolver.kt:1)
+	at graphql.kickstart.tools.resolver.MethodFieldResolverDataFetcher.get(MethodFieldResolver.kt:218)
+	at graphql.execution.instrumentation.dataloader.DataLoaderDispatcherInstrumentation.lambda$instrumentDataFetcher$0(DataLoaderDispatcherInstrumentation.java:90)
+	at graphql.execution.ExecutionStrategy.invokeDataFetcher(ExecutionStrategy.java:329)
+	at graphql.execution.ExecutionStrategy.fetchField(ExecutionStrategy.java:305)
+	at graphql.execution.ExecutionStrategy.fetchField(ExecutionStrategy.java:243)
+	at graphql.execution.ExecutionStrategy.resolveFieldWithInfo(ExecutionStrategy.java:214)
+	at graphql.execution.ExecutionStrategy.resolveField(ExecutionStrategy.java:186)
+	at graphql.execution.AsyncSerialExecutionStrategy.lambda$execute$1(AsyncSerialExecutionStrategy.java:56)
+	at graphql.execution.Async.eachSequentiallyImpl(Async.java:162)
+	at graphql.execution.Async.eachSequentially(Async.java:151)
+	at graphql.execution.AsyncSerialExecutionStrategy.execute(AsyncSerialExecutionStrategy.java:51)
+	at graphql.execution.Execution.executeOperation(Execution.java:162)
+	at graphql.execution.Execution.execute(Execution.java:104)
+	at graphql.GraphQL.execute(GraphQL.java:568)
+	at graphql.GraphQL.lambda$parseValidateAndExecute$13(GraphQL.java:487)
+	at java.base/java.util.concurrent.CompletableFuture.uniComposeStage(CompletableFuture.java:1231)
+	at java.base/java.util.concurrent.CompletableFuture.thenCompose(CompletableFuture.java:2385)
+	at graphql.GraphQL.parseValidateAndExecute(GraphQL.java:482)
+	at graphql.GraphQL.lambda$executeAsync$9(GraphQL.java:440)
+	at java.base/java.util.concurrent.CompletableFuture.uniComposeStage(CompletableFuture.java:1231)
+	at java.base/java.util.concurrent.CompletableFuture.thenCompose(CompletableFuture.java:2385)
+	at graphql.GraphQL.executeAsync(GraphQL.java:428)
+	at graphql.kickstart.execution.GraphQLInvoker.executeAsync(GraphQLInvoker.java:37)
+	at graphql.kickstart.execution.GraphQLInvoker.execute(GraphQLInvoker.java:28)
+	at graphql.kickstart.servlet.HttpRequestInvokerImpl.invoke(HttpRequestInvokerImpl.java:203)
+	at graphql.kickstart.servlet.HttpRequestInvokerImpl.lambda$invokeAndHandleAsync$2(HttpRequestInvokerImpl.java:84)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-02-14 15:53:01 [pool-9-thread-1] ERROR graphql.kickstart.execution.error.DefaultGraphQLErrorHandler - Error executing query Exception while fetching data (/createEvent) : No value present
+java.util.NoSuchElementException: No value present
+	at java.base/java.util.Optional.get(Optional.java:143)
+	at com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL.EventInputMapper.toModelGQL(EventInputMapper.java:46)
+	at com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.EventMutationResolver.createEvent(EventMutationResolver.java:42)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at graphql.kickstart.tools.resolver.MethodFieldResolverKt.invoke(MethodFieldResolver.kt:257)
+	at graphql.kickstart.tools.resolver.MethodFieldResolverKt.access$invoke(MethodFieldResolver.kt:1)
+	at graphql.kickstart.tools.resolver.MethodFieldResolverDataFetcher.get(MethodFieldResolver.kt:218)
+	at graphql.execution.instrumentation.dataloader.DataLoaderDispatcherInstrumentation.lambda$instrumentDataFetcher$0(DataLoaderDispatcherInstrumentation.java:90)
+	at graphql.execution.ExecutionStrategy.invokeDataFetcher(ExecutionStrategy.java:329)
+	at graphql.execution.ExecutionStrategy.fetchField(ExecutionStrategy.java:305)
+	at graphql.execution.ExecutionStrategy.fetchField(ExecutionStrategy.java:243)
+	at graphql.execution.ExecutionStrategy.resolveFieldWithInfo(ExecutionStrategy.java:214)
+	at graphql.execution.ExecutionStrategy.resolveField(ExecutionStrategy.java:186)
+	at graphql.execution.AsyncSerialExecutionStrategy.lambda$execute$1(AsyncSerialExecutionStrategy.java:56)
+	at graphql.execution.Async.eachSequentiallyImpl(Async.java:162)
+	at graphql.execution.Async.eachSequentially(Async.java:151)
+	at graphql.execution.AsyncSerialExecutionStrategy.execute(AsyncSerialExecutionStrategy.java:51)
+	at graphql.execution.Execution.executeOperation(Execution.java:162)
+	at graphql.execution.Execution.execute(Execution.java:104)
+	at graphql.GraphQL.execute(GraphQL.java:568)
+	at graphql.GraphQL.lambda$parseValidateAndExecute$13(GraphQL.java:487)
+	at java.base/java.util.concurrent.CompletableFuture.uniComposeStage(CompletableFuture.java:1231)
+	at java.base/java.util.concurrent.CompletableFuture.thenCompose(CompletableFuture.java:2385)
+	at graphql.GraphQL.parseValidateAndExecute(GraphQL.java:482)
+	at graphql.GraphQL.lambda$executeAsync$9(GraphQL.java:440)
+	at java.base/java.util.concurrent.CompletableFuture.uniComposeStage(CompletableFuture.java:1231)
+	at java.base/java.util.concurrent.CompletableFuture.thenCompose(CompletableFuture.java:2385)
+	at graphql.GraphQL.executeAsync(GraphQL.java:428)
+	at graphql.kickstart.execution.GraphQLInvoker.executeAsync(GraphQLInvoker.java:37)
+	at graphql.kickstart.execution.GraphQLInvoker.execute(GraphQLInvoker.java:28)
+	at graphql.kickstart.servlet.HttpRequestInvokerImpl.invoke(HttpRequestInvokerImpl.java:203)
+	at graphql.kickstart.servlet.HttpRequestInvokerImpl.lambda$invokeAndHandleAsync$2(HttpRequestInvokerImpl.java:84)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-02-14 15:53:01 [qtp593477675-42] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:01 [pool-10-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:01 [qtp593477675-35] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:02 [pool-11-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:02 [qtp593477675-37] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:02 [pool-12-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:02 [qtp593477675-42] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:02 [pool-13-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:02 [qtp593477675-35] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:02 [pool-14-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.adapter.GenericPersistenceAdapter - Executing searchByCriteria... Page: 1, Size: 2147483647
+2025-02-14 15:53:02 [pool-14-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:02 [qtp593477675-40] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:02 [pool-15-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:02 [Thread-10] INFO  org.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:postgresql://db.backend.heppify.de:5432/eventmanager]
+2025-02-14 15:53:02 [Thread-10] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManagerFactory closed on application shutdown.
+2025-02-14 15:53:23 [Thread-1] INFO  org.eclipse.jetty.server.Server - jetty-12.0.10; built: 2024-05-30T04:40:36.563Z; git: 26106dfc84a03ddb6216062fe33b047fc332d0ce; jvm 23.0.2+7-58
+2025-02-14 15:53:23 [Thread-1] INFO  org.eclipse.jetty.session.DefaultSessionIdManager - Session workerName=node0
+2025-02-14 15:53:23 [Thread-1] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started oeje10s.ServletContextHandler@28556aa6{ROOT,/,b=null,a=AVAILABLE,h=oeje10s.SessionHandler@6f302c22{STARTED}}
+2025-02-14 15:53:23 [Thread-1] INFO  org.eclipse.jetty.ee10.servlet.ServletContextHandler - Started oeje10s.ServletContextHandler@28556aa6{ROOT,/,b=null,a=AVAILABLE,h=oeje10s.SessionHandler@6f302c22{STARTED}}
+2025-02-14 15:53:23 [Thread-1] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@177894f8{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+2025-02-14 15:53:23 [Thread-1] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@6744503a{STARTING}[12.0.10,sto=0] @1983ms
+2025-02-14 15:53:24 [qtp1546123152-35] INFO  com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService - Stripe initialized in test mode
+2025-02-14 15:53:24 [qtp1546123152-35] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:25 [pool-1-thread-1] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: eventmanager]
+2025-02-14 15:53:25 [pool-1-thread-1] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-02-14 15:53:25 [pool-1-thread-1] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-02-14 15:53:25 [pool-1-thread-1] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-02-14 15:53:25 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-02-14 15:53:25 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://db.backend.heppify.de:5432/eventmanager]
+2025-02-14 15:53:25 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=javabackend, password=****}
+2025-02-14 15:53:25 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-02-14 15:53:25 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-02-14 15:53:26 [pool-1-thread-1] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-14 15:53:26 [pool-1-thread-1] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@35fe1454] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-02-14 15:53:28 [pool-1-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:28 [qtp1546123152-35] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:28 [pool-2-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:28 [qtp1546123152-33] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:28 [pool-3-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:28 [qtp1546123152-40] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:28 [pool-4-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:28 [pool-4-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:28 [qtp1546123152-34] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:28 [pool-5-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:28 [qtp1546123152-33] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:28 [pool-6-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:28 [pool-6-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:28 [qtp1546123152-40] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:28 [pool-7-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:29 [pool-7-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:53:29 [qtp1546123152-35] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 15:53:29 [pool-8-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:58:11 [pool-8-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:58:11 [pool-8-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:58:11 [pool-8-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 15:58:11 [qtp1546123152-38] WARN  graphql.kickstart.servlet.HttpRequestInvokerImpl - GraphQL execution canceled because timeout of 30000 millis was reached. The following query was being executed when this happened:
+mutation createEvent {   createEvent(input: {name: "Dan Deline", description: "Perspiciatis sint ut quia quia voluptatum aut.", startDate: "2031-02-20T10:00:00", endDate: "2041-02-20T10:00:00", ticketCount: 698, ticketsSold: 0, maxTicketsPerUser: 2, artists: ["9"], location: "1", blockList: [], ticketPrice: 120}) {     id name description startDate endDate ticketCount ticketsSold maxTicketsPerUser ticketPrice   }}
+2025-02-14 15:58:11 [pool-8-thread-1] WARN  notprivacysafe.graphql.execution.SimpleDataFetcherExceptionHandler - Exception while fetching data (/createEvent) : No value present
+java.util.NoSuchElementException: No value present
+	at java.base/java.util.Optional.get(Optional.java:143)
+	at com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL.EventInputMapper.toModelGQL(EventInputMapper.java:46)
+	at com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.EventMutationResolver.createEvent(EventMutationResolver.java:42)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at graphql.kickstart.tools.resolver.MethodFieldResolverKt.invoke(MethodFieldResolver.kt:257)
+	at graphql.kickstart.tools.resolver.MethodFieldResolverKt.access$invoke(MethodFieldResolver.kt:1)
+	at graphql.kickstart.tools.resolver.MethodFieldResolverDataFetcher.get(MethodFieldResolver.kt:218)
+	at graphql.execution.instrumentation.dataloader.DataLoaderDispatcherInstrumentation.lambda$instrumentDataFetcher$0(DataLoaderDispatcherInstrumentation.java:90)
+	at graphql.execution.ExecutionStrategy.invokeDataFetcher(ExecutionStrategy.java:329)
+	at graphql.execution.ExecutionStrategy.fetchField(ExecutionStrategy.java:305)
+	at graphql.execution.ExecutionStrategy.fetchField(ExecutionStrategy.java:243)
+	at graphql.execution.ExecutionStrategy.resolveFieldWithInfo(ExecutionStrategy.java:214)
+	at graphql.execution.ExecutionStrategy.resolveField(ExecutionStrategy.java:186)
+	at graphql.execution.AsyncSerialExecutionStrategy.lambda$execute$1(AsyncSerialExecutionStrategy.java:56)
+	at graphql.execution.Async.eachSequentiallyImpl(Async.java:162)
+	at graphql.execution.Async.eachSequentially(Async.java:151)
+	at graphql.execution.AsyncSerialExecutionStrategy.execute(AsyncSerialExecutionStrategy.java:51)
+	at graphql.execution.Execution.executeOperation(Execution.java:162)
+	at graphql.execution.Execution.execute(Execution.java:104)
+	at graphql.GraphQL.execute(GraphQL.java:568)
+	at graphql.GraphQL.lambda$parseValidateAndExecute$13(GraphQL.java:487)
+	at java.base/java.util.concurrent.CompletableFuture.uniComposeStage(CompletableFuture.java:1231)
+	at java.base/java.util.concurrent.CompletableFuture.thenCompose(CompletableFuture.java:2385)
+	at graphql.GraphQL.parseValidateAndExecute(GraphQL.java:482)
+	at graphql.GraphQL.lambda$executeAsync$9(GraphQL.java:440)
+	at java.base/java.util.concurrent.CompletableFuture.uniComposeStage(CompletableFuture.java:1231)
+	at java.base/java.util.concurrent.CompletableFuture.thenCompose(CompletableFuture.java:2385)
+	at graphql.GraphQL.executeAsync(GraphQL.java:428)
+	at graphql.kickstart.execution.GraphQLInvoker.executeAsync(GraphQLInvoker.java:37)
+	at graphql.kickstart.execution.GraphQLInvoker.execute(GraphQLInvoker.java:28)
+	at graphql.kickstart.servlet.HttpRequestInvokerImpl.invoke(HttpRequestInvokerImpl.java:203)
+	at graphql.kickstart.servlet.HttpRequestInvokerImpl.lambda$invokeAndHandleAsync$2(HttpRequestInvokerImpl.java:84)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-02-14 15:58:11 [Thread-11] INFO  org.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:postgresql://db.backend.heppify.de:5432/eventmanager]
+2025-02-14 15:58:11 [Thread-11] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManagerFactory closed on application shutdown.
+2025-02-14 16:05:15 [Thread-0] INFO  org.eclipse.jetty.server.Server - jetty-12.0.10; built: 2024-05-30T04:40:36.563Z; git: 26106dfc84a03ddb6216062fe33b047fc332d0ce; jvm 23.0.2+7-58
+2025-02-14 16:05:15 [Thread-0] INFO  org.eclipse.jetty.session.DefaultSessionIdManager - Session workerName=node0
+2025-02-14 16:05:15 [Thread-0] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started oeje10s.ServletContextHandler@41d75c0f{ROOT,/,b=null,a=AVAILABLE,h=oeje10s.SessionHandler@20cfeac{STARTED}}
+2025-02-14 16:05:15 [Thread-0] INFO  org.eclipse.jetty.ee10.servlet.ServletContextHandler - Started oeje10s.ServletContextHandler@41d75c0f{ROOT,/,b=null,a=AVAILABLE,h=oeje10s.SessionHandler@20cfeac{STARTED}}
+2025-02-14 16:05:15 [Thread-0] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@3dd29e1b{HTTP/1.1, (http/1.1)}{0.0.0.0:8081}
+2025-02-14 16:05:15 [Thread-0] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@5fcfa4d9{STARTING}[12.0.10,sto=0] @878ms
+2025-02-14 16:05:17 [qtp1422618858-37] INFO  com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService - Stripe initialized in test mode
+2025-02-14 16:05:17 [qtp1422618858-37] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 16:05:17 [pool-1-thread-1] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: eventmanager]
+2025-02-14 16:05:17 [pool-1-thread-1] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-02-14 16:05:17 [pool-1-thread-1] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-02-14 16:05:18 [pool-1-thread-1] WARN  org.hibernate.orm.connections.pooling - HHH10001002: Using built-in connection pool (not intended for production use)
+2025-02-14 16:05:18 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Loaded JDBC driver class: org.postgresql.Driver
+2025-02-14 16:05:18 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001012: Connecting with JDBC URL [jdbc:postgresql://db.backend.heppify.de:5432/eventmanager]
+2025-02-14 16:05:18 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {user=javabackend, password=****}
+2025-02-14 16:05:18 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+2025-02-14 16:05:18 [pool-1-thread-1] INFO  org.hibernate.orm.connections.pooling - HHH10001115: Connection pool size: 20 (min=1)
+2025-02-14 16:05:19 [pool-1-thread-1] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-14 16:05:19 [pool-1-thread-1] INFO  org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@13c5eaf7] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2025-02-14 16:05:21 [pool-1-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 16:05:21 [qtp1422618858-37] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 16:05:21 [pool-2-thread-1] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManager closed successfully.
+2025-02-14 16:05:21 [qtp1422618858-35] WARN  graphql.kickstart.tools.SchemaClassScanner - Schema type was defined but can never be accessed, and can be safely deleted: EventLocationInput
+2025-02-14 16:05:21 [pool-3-thread-1] WARN  notprivacysafe.graphql.GraphQL - Query did not validate : 'mutation createEventLocation {   createEventLocation(input: {name: "Hyatt-Hilll", capacity: 2791, address: {street: "Beahan Courts", no: 17, city: "East Lottiestad", zipCode: 27027, country: "Zimbabwe"}}) {     id name capacity   }}'
+2025-02-14 16:05:21 [Thread-10] INFO  org.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:postgresql://db.backend.heppify.de:5432/eventmanager]
+2025-02-14 16:05:21 [Thread-10] INFO  com.thws.eventmanager.infrastructure.components.persistence.PersistenceManager - EntityManagerFactory closed on application shutdown.
+2025-02-14 16:37:33 [main] INFO  org.eclipse.jetty.server.Server - jetty-12.0.10; built: 2024-05-30T04:40:36.563Z; git: 26106dfc84a03ddb6216062fe33b047fc332d0ce; jvm 23.0.2+7-58
+2025-02-14 16:37:33 [main] INFO  org.eclipse.jetty.session.DefaultSessionIdManager - Session workerName=node0
+2025-02-14 16:37:33 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started oeje10s.ServletContextHandler@159f197{ROOT,/,b=null,a=AVAILABLE,h=oeje10s.SessionHandler@78aab498{STARTED}}
+2025-02-14 16:37:33 [main] INFO  org.eclipse.jetty.ee10.servlet.ServletContextHandler - Started oeje10s.ServletContextHandler@159f197{ROOT,/,b=null,a=AVAILABLE,h=oeje10s.SessionHandler@78aab498{STARTED}}
+2025-02-14 16:37:33 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@67cc0af0{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2025-02-14 16:37:33 [main] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@491666ad{STARTING}[12.0.10,sto=0] @719ms
+2025-02-14 16:37:37 [qtp1924582348-37] INFO  com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService - Stripe initialized in test mode
+2025-02-14 16:37:38 [qtp1924582348-37] ERROR graphql.kickstart.servlet.AbstractGraphQLHttpServlet - Error executing GraphQL request!
+graphql.kickstart.tools.resolver.FieldResolverError: No method found as defined in schema <unknown>:41 with any of the following signatures (with or without one of [interface graphql.schema.DataFetchingEnvironment, class graphql.GraphQLContext] as the last argument), in priority order:
+
+  com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.EventMutationResolver.createEventLocation(~input)
+  com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.EventMutationResolver.getCreateEventLocation(~input)
+  com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.UserMutationResolver.createEventLocation(~input)
+  com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.UserMutationResolver.getCreateEventLocation(~input)
+  com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.PaymentResolver.createEventLocation(~input)
+  com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.PaymentResolver.getCreateEventLocation(~input)
+  com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.AddressMutationResolver.createEventLocation(~input)
+  com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.AddressMutationResolver.getCreateEventLocation(~input)
+  com.thws.eventmanager.infrastructure.GraphQL.auth.AuthMutationResolver.createEventLocation(~input)
+  com.thws.eventmanager.infrastructure.GraphQL.auth.AuthMutationResolver.getCreateEventLocation(~input)
+	at graphql.kickstart.tools.resolver.FieldResolverScanner.missingFieldResolver(FieldResolverScanner.kt:87)
+	at graphql.kickstart.tools.resolver.FieldResolverScanner.findFieldResolver(FieldResolverScanner.kt:45)
+	at graphql.kickstart.tools.SchemaClassScanner.scanResolverInfoForPotentialMatches(SchemaClassScanner.kt:300)
+	at graphql.kickstart.tools.SchemaClassScanner.handleRootType(SchemaClassScanner.kt:133)
+	at graphql.kickstart.tools.SchemaClassScanner.scanForClasses(SchemaClassScanner.kt:73)
+	at graphql.kickstart.tools.SchemaParserBuilder.scan(SchemaParserBuilder.kt:162)
+	at graphql.kickstart.tools.SchemaParserBuilder.build(SchemaParserBuilder.kt:211)
+	at com.thws.eventmanager.infrastructure.GraphQL.Servlet.createSchema(Servlet.java:49)
+	at com.thws.eventmanager.infrastructure.GraphQL.Servlet.getConfiguration(Servlet.java:22)
+	at graphql.kickstart.servlet.AbstractGraphQLHttpServlet.doRequest(AbstractGraphQLHttpServlet.java:84)
+	at graphql.kickstart.servlet.AbstractGraphQLHttpServlet.doPost(AbstractGraphQLHttpServlet.java:79)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:547)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:614)
+	at org.eclipse.jetty.ee10.servlet.ServletHolder.handle(ServletHolder.java:736)
+	at org.eclipse.jetty.ee10.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1614)
+	at org.eclipse.jetty.ee10.servlet.ServletHandler$MappedServlet.handle(ServletHandler.java:1547)
+	at org.eclipse.jetty.ee10.servlet.ServletChannel.dispatch(ServletChannel.java:824)
+	at org.eclipse.jetty.ee10.servlet.ServletChannel.handle(ServletChannel.java:436)
+	at org.eclipse.jetty.ee10.servlet.ServletHandler.handle(ServletHandler.java:464)
+	at org.eclipse.jetty.ee10.servlet.SessionHandler.handle(SessionHandler.java:703)
+	at org.eclipse.jetty.server.handler.ContextHandler.handle(ContextHandler.java:851)
+	at org.eclipse.jetty.server.Server.handle(Server.java:181)
+	at org.eclipse.jetty.server.internal.HttpChannelState$HandlerInvoker.run(HttpChannelState.java:635)
+	at org.eclipse.jetty.server.internal.HttpConnection.onFillable(HttpConnection.java:403)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:322)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:99)
+	at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:979)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1209)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1164)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-02-14 16:37:39 [qtp1924582348-31] ERROR graphql.kickstart.servlet.AbstractGraphQLHttpServlet - Error executing GraphQL request!
+graphql.kickstart.tools.resolver.FieldResolverError: No method found as defined in schema <unknown>:41 with any of the following signatures (with or without one of [interface graphql.schema.DataFetchingEnvironment, class graphql.GraphQLContext] as the last argument), in priority order:
+
+  com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.EventMutationResolver.createEventLocation(~input)
+  com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.EventMutationResolver.getCreateEventLocation(~input)
+  com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.UserMutationResolver.createEventLocation(~input)
+  com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.UserMutationResolver.getCreateEventLocation(~input)
+  com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.PaymentResolver.createEventLocation(~input)
+  com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.PaymentResolver.getCreateEventLocation(~input)
+  com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.AddressMutationResolver.createEventLocation(~input)
+  com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.AddressMutationResolver.getCreateEventLocation(~input)
+  com.thws.eventmanager.infrastructure.GraphQL.auth.AuthMutationResolver.createEventLocation(~input)
+  com.thws.eventmanager.infrastructure.GraphQL.auth.AuthMutationResolver.getCreateEventLocation(~input)
+	at graphql.kickstart.tools.resolver.FieldResolverScanner.missingFieldResolver(FieldResolverScanner.kt:87)
+	at graphql.kickstart.tools.resolver.FieldResolverScanner.findFieldResolver(FieldResolverScanner.kt:45)
+	at graphql.kickstart.tools.SchemaClassScanner.scanResolverInfoForPotentialMatches(SchemaClassScanner.kt:300)
+	at graphql.kickstart.tools.SchemaClassScanner.handleRootType(SchemaClassScanner.kt:133)
+	at graphql.kickstart.tools.SchemaClassScanner.scanForClasses(SchemaClassScanner.kt:73)
+	at graphql.kickstart.tools.SchemaParserBuilder.scan(SchemaParserBuilder.kt:162)
+	at graphql.kickstart.tools.SchemaParserBuilder.build(SchemaParserBuilder.kt:211)
+	at com.thws.eventmanager.infrastructure.GraphQL.Servlet.createSchema(Servlet.java:49)
+	at com.thws.eventmanager.infrastructure.GraphQL.Servlet.getConfiguration(Servlet.java:22)
+	at graphql.kickstart.servlet.AbstractGraphQLHttpServlet.doRequest(AbstractGraphQLHttpServlet.java:84)
+	at graphql.kickstart.servlet.AbstractGraphQLHttpServlet.doPost(AbstractGraphQLHttpServlet.java:79)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:547)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:614)
+	at org.eclipse.jetty.ee10.servlet.ServletHolder.handle(ServletHolder.java:736)
+	at org.eclipse.jetty.ee10.servlet.ServletHandler$ChainEnd.doFilter(ServletHandler.java:1614)
+	at org.eclipse.jetty.ee10.servlet.ServletHandler$MappedServlet.handle(ServletHandler.java:1547)
+	at org.eclipse.jetty.ee10.servlet.ServletChannel.dispatch(ServletChannel.java:824)
+	at org.eclipse.jetty.ee10.servlet.ServletChannel.handle(ServletChannel.java:436)
+	at org.eclipse.jetty.ee10.servlet.ServletHandler.handle(ServletHandler.java:464)
+	at org.eclipse.jetty.ee10.servlet.SessionHandler.handle(SessionHandler.java:703)
+	at org.eclipse.jetty.server.handler.ContextHandler.handle(ContextHandler.java:851)
+	at org.eclipse.jetty.server.Server.handle(Server.java:181)
+	at org.eclipse.jetty.server.internal.HttpChannelState$HandlerInvoker.run(HttpChannelState.java:635)
+	at org.eclipse.jetty.server.internal.HttpConnection.onFillable(HttpConnection.java:403)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:322)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:99)
+	at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.runTask(AdaptiveExecutionStrategy.java:478)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.consumeTask(AdaptiveExecutionStrategy.java:441)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.tryProduce(AdaptiveExecutionStrategy.java:293)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.produce(AdaptiveExecutionStrategy.java:195)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:979)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1209)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1164)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-02-14 16:39:57 [main] INFO  org.eclipse.jetty.server.Server - jetty-12.0.10; built: 2024-05-30T04:40:36.563Z; git: 26106dfc84a03ddb6216062fe33b047fc332d0ce; jvm 23.0.2+7-58
+2025-02-14 16:39:57 [main] INFO  org.eclipse.jetty.session.DefaultSessionIdManager - Session workerName=node0
+2025-02-14 16:39:57 [main] INFO  org.eclipse.jetty.server.handler.ContextHandler - Started oeje10s.ServletContextHandler@3c72f59f{ROOT,/,b=null,a=AVAILABLE,h=oeje10s.SessionHandler@60dcc9fe{STARTED}}
+2025-02-14 16:39:57 [main] INFO  org.eclipse.jetty.ee10.servlet.ServletContextHandler - Started oeje10s.ServletContextHandler@3c72f59f{ROOT,/,b=null,a=AVAILABLE,h=oeje10s.SessionHandler@60dcc9fe{STARTED}}
+2025-02-14 16:39:57 [main] INFO  org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@5af7a521{HTTP/1.1, (http/1.1)}{0.0.0.0:8080}
+2025-02-14 16:39:57 [main] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@4d339552{STARTING}[12.0.10,sto=0] @551ms
+2025-02-14 16:39:59 [qtp523691575-38] INFO  com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService - Stripe initialized in test mode
