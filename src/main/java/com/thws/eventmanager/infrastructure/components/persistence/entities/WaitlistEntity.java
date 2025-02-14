@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-// TODO: create a table for this entity
 public class WaitlistEntity implements PersistenceEntity {
     private final String eventId;
     private final List<UserEntity> userEntities;
-
 
     public WaitlistEntity(String eventId) {
         this.eventId = eventId;

@@ -18,11 +18,6 @@ public class EventSearchService implements EventSearchServiceInputPort {
         this.eventMapper = new EventMapper();
     }
 
-    // persistenceOutport.findAll() -> List<EventEntity>
-    // eventMapper.toModel() -> List<Event>
-    // filter -> List<Event>
-    // return List<Event> ergebnisse
-
     @Override
     public List<Event> searchEvents(EventSearchCriteria criteria) {
         return persistenceOutport.findAll().stream()

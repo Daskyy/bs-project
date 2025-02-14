@@ -36,7 +36,6 @@ public class UserCriteriaInput {
         return permissionGQL;
     }
 
-
     public List<Object> getValues() {
         List<Object> values = new ArrayList<>();
         if (name != null && !name.isBlank()) {

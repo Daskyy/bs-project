@@ -14,13 +14,6 @@ public class EventLocationQueryResolver implements GraphQLQueryResolver {
     EventLocationMapper mapper = new EventLocationMapper();
     EventLocationMapperGQL mapperGQL = new EventLocationMapperGQL();
     EventLocationService eventLocationService = new EventLocationService();
-    /*
-        String id="-1";
-    AddressInput address;
-    String name;
-    int capacity;
-
-     */
 
     public EventLocationGQL eventLocation(String id){
         EventLocationEntity eventLocationEntity = eventLocationService.getLocationById(Long.parseLong(id)).orElse(null);

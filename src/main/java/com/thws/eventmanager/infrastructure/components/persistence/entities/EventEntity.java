@@ -1,9 +1,7 @@
 package com.thws.eventmanager.infrastructure.components.persistence.entities;
 
-
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -41,7 +39,7 @@ public class EventEntity implements PersistenceEntity {
     @JoinColumn(name = "location_id", nullable = false)
     private EventLocationEntity location;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "event_artists",
             joinColumns = @JoinColumn(name = "event_id"),
@@ -49,7 +47,7 @@ public class EventEntity implements PersistenceEntity {
     )
     private List<UserEntity> artists;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
     @JoinTable(
             name = "event_blocked_users",
             joinColumns = @JoinColumn(name = "event_id"),
@@ -175,56 +173,4 @@ public class EventEntity implements PersistenceEntity {
     public long getId() {
         return id;
     }
-
-    /*public void setArtists(User[] artists) {
-    public void setArtists(List<Long> artists) {
-        this.artists = artists;
-    }*/
-
-    /*public void addArtists(User artist){
-        //if artist is not an artist, throw exception
-    public void addArtists(User artist){
-        if(artist.getPermission()!=Permission.ARTIST){
-            throw new RuntimeException("Only artists can be added to an event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
-        }
-        else {
-            artists.add(artist.getId());
-        }
-    }*/
-  /*  public void removeArtists(User artist){
-        if(artist.getPermission()!=Permission.ARTIST){
-            throw new RuntimeException("Only artists can be removed from an event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
-        }
-        else if(artists.contains(artist.getId())){
-            artists.remove(artist.getId());
-        }
-        else{
-            throw new RuntimeException("Artist not found in event");  //hier vielleicht eher eine neue Exception-Klasse erstellen?!
-        }
-
-            public void addBlockedUser(UserEntity userEntity){
-        if(blockList==null){
-            blockList=List.of(userEntity);
-        }
-        else{
-            blockList.add(userEntity);
-        }
-    }
-    public boolean removeBlockedUser(UserEntity userEntity){
-        if(blockList==null){
-            return false;
-        }
-        else{
-            return blockList.remove(userEntity.getId());
-        }
-    }
-    public boolean isBlocked(UserEntity userEntity){
-        if(blockList==null){
-            return false;
-        }
-        else{
-            return blockList.contains(userEntity.getId());
-        }
-    }
-    }*/
 }

@@ -10,8 +10,8 @@ import java.util.Map;
 
 public class PurchaseException extends RuntimeException implements GraphQLError {
     private final String message;
-    private final String userId; // Optional: Store user info
-    private final String eventId; // Optional: Store event info
+    private final String userId;
+    private final String eventId;
 
     public PurchaseException(String message, String userId, String eventId) {
         super(message);
@@ -37,12 +37,12 @@ public class PurchaseException extends RuntimeException implements GraphQLError 
 
     @Override
     public List<SourceLocation> getLocations() {
-        return List.of(); // No specific location in query
+        return List.of();
     }
 
     @Override
     public ErrorClassification getErrorType() {
-        return ErrorType.PURCHASE_ERROR; // Custom error type (defined below)
+        return ErrorType.PURCHASE_ERROR;
     }
 
     public enum ErrorType implements ErrorClassification {

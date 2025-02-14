@@ -9,7 +9,6 @@ public class Waitlist implements Model {
     private final String eventId;
     private final List<User> users;
 
-
     public Waitlist(String eventId) {
         this.eventId = eventId;
         this.users = new ArrayList<>();

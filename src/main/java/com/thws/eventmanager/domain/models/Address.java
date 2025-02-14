@@ -1,6 +1,5 @@
 package com.thws.eventmanager.domain.models;
 
-
 import java.util.Objects;
 
 public class Address implements Model {

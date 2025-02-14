@@ -55,7 +55,7 @@ public class AddressCriteriaInput {
         if (street != null && !street.isBlank()) {
             criteria.add("street");
         }
-        if (zipCode > 0) { // Assuming zipCode is positive
+        if (zipCode > 0) {
             criteria.add("zipCode");
         }
         return criteria;
@@ -73,7 +73,7 @@ public class AddressCriteriaInput {
         if (street != null && !street.isBlank()) {
             values.add(street);
         }
-        if (zipCode > 0) { // Assuming zipCode is positive
+        if (zipCode > 0) {
             values.add(zipCode);
         }
 

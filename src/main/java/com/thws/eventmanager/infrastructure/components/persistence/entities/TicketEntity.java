@@ -1,8 +1,5 @@
 package com.thws.eventmanager.infrastructure.components.persistence.entities;
 
-import com.thws.eventmanager.domain.models.Event;
-import com.thws.eventmanager.domain.models.Status;
-import com.thws.eventmanager.domain.models.Ticket;
 import jakarta.persistence.*;
 
 @Entity

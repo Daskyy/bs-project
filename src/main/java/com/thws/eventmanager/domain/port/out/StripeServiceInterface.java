@@ -8,6 +8,5 @@ public interface StripeServiceInterface {
     PaymentIntent processPayment(Payment payment);
     PaymentIntent createOpenPayment(Payment payment);
     PaymentIntent createFailedPayment(Payment payment);
-
     Refund processRefund(String paymentIntentId, long refundAmount);
 }
