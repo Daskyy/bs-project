@@ -8,7 +8,7 @@ public class TicketOperation extends AbstractAPIOperation {
     public TicketGQL purchaseTicket(String userId, String eventId, int ticketAmount, String paymentMethodId, String voucher) throws Exception {
         String mutation = String.format(
             "mutation purchaseTicket { " +
-            "  purchaseTicket(userId: \\\"%s\\\", eventId: \\\"%s\\\", ticketamount: %d, paymentmethodId: \\\"%s\\\", voucher: \\\"%s\\\") { " +
+            "  purchaseTicket(userId: \"%s\", eventId: \"%s\", ticketamount: %d, paymentmethodId: \"%s\", voucher: \"%s\") { " +
             "    id " +
             "    event { id } " +
             "    user { id } " +
@@ -22,7 +22,7 @@ public class TicketOperation extends AbstractAPIOperation {
     public PaymentGQL refundTicket(String ticketId) throws Exception {
         String mutation = String.format(
             "mutation refundTicket { " +
-            "  refundTicket(ticketId: \\\"%s\\\") { " +
+            "  refundTicket(ticketId: \"%s\") { " +
             "    id " +
             "    paymentMethodId " +
             "    amount " +

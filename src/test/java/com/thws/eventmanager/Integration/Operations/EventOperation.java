@@ -8,7 +8,7 @@ public class EventOperation extends AbstractAPIOperation {
     public EventGQL createEvent(EventInput input) throws Exception {
         String mutation = String.format(
             "mutation createEvent { " +
-            "  createEvent(input: {name: \\\"%s\\\", description: \\\"%s\\\", startDate: \\\"%s\\\", endDate: \\\"%s\\\", ticketCount: %d, ticketsSold: %d, maxTicketsPerUser: %d, artists: [%s], location: \\\"%s\\\", blockList: [%s], ticketPrice: %d}) { " +
+            "  createEvent(input: {name: \"%s\", description: \"%s\", startDate: \"%s\", endDate: \"%s\", ticketCount: %d, ticketsSold: %d, maxTicketsPerUser: %d, artists: [%s], location: \"%s\", blockList: [%s], ticketPrice: %d}) { " +
             "    id name description startDate endDate ticketCount ticketsSold maxTicketsPerUser ticketPrice " +
             "  }" +
             "}",
@@ -25,7 +25,7 @@ public class EventOperation extends AbstractAPIOperation {
             if (sb.length() > 0) {
                 sb.append(",");
             }
-            sb.append("\\\"").append(artist).append("\\\"");
+            sb.append("\"").append(artist).append("\"");
         }
         return sb.toString();
     }
@@ -38,7 +38,7 @@ public class EventOperation extends AbstractAPIOperation {
             if (sb.length() > 0) {
                 sb.append(",");
             }
-            sb.append("\\\"").append(userId).append("\\\"");
+            sb.append("\"").append(userId).append("\"");
         }
         return sb.toString();
     }
@@ -46,7 +46,7 @@ public class EventOperation extends AbstractAPIOperation {
     public EventGQL updateEvent(String id, EventInput input) throws Exception {
         String mutation = String.format(
             "mutation updateEvent { " +
-            "  updateEvent(id: \\\"%s\\\", input: {name: \\\"%s\\\", description: \\\"%s\\\", startDate: \\\"%s\\\", endDate: \\\"%s\\\", ticketCount: %d, ticketsSold: %d, maxTicketsPerUser: %d, ticketPrice: %d}) { " +
+            "  updateEvent(id: \"%s\", input: {name: \"%s\", description: \"%s\", startDate: \"%s\", endDate: \"%s\", ticketCount: %d, ticketsSold: %d, maxTicketsPerUser: %d, ticketPrice: %d}) { " +
             "    id name description " +
             "  }" +
             "}",
@@ -59,7 +59,7 @@ public class EventOperation extends AbstractAPIOperation {
     public EventGQL deleteEvent(String id) throws Exception {
         String mutation = String.format(
             "mutation deleteEvent { " +
-            "  deleteEvent(id: \\\"%s\\\") { " +
+            "  deleteEvent(id: \"%s\") { " +
             "    id " +
             "  }" +
             "}",
@@ -70,7 +70,7 @@ public class EventOperation extends AbstractAPIOperation {
     public EventGQL blockUser(String eventId, String userId) throws Exception {
         String mutation = String.format(
             "mutation blockUser { " +
-            "  blockUser(eventId: \\\"%s\\\", userId: \\\"%s\\\") { " +
+            "  blockUser(eventId: \"%s\", userId: \"%s\") { " +
             "    id " +
             "    blockList { id } " +
             "  }" +
@@ -82,7 +82,7 @@ public class EventOperation extends AbstractAPIOperation {
     public EventGQL getEvent(String id) throws Exception {
         String query = String.format(
             "query getEvent { " +
-            "  event(id: \\\"%s\\\") { id name description }" +
+            "  event(id: \"%s\") { id name description }" +
             "}",
             id);
         return executeQuery(query, "event", EventGQL.class);

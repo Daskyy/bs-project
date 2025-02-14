@@ -7,12 +7,13 @@ public class AddressOperation extends AbstractAPIOperation {
 
     public AddressGQL createAddress(AddressInput input) throws Exception {
         String mutation = String.format(
-            "mutation createAddress { " +
-            "  createAddress(input: {street: \\\"%s\\\", no: %d, city: \\\"%s\\\", zipCode: %d, country: \\\"%s\\\"}) { " +
-            "    id street no city zipCode country " +
-            "  }" +
-            "}",
-            input.getStreet(), input.getNo(), input.getCity(), input.getZipCode(), input.getCountry());
+                "mutation createAddress { " +
+                        "  createAddress(input: {street: \"%s\", no: %d, city: \"%s\", zipCode: %d, country: \"%s\"}) { " +
+                        "    id street no city zipCode country " +
+                        "  }" +
+                        "}",
+                input.getStreet(), input.getNo(), input.getCity(), input.getZipCode(), input.getCountry());
+
 
         return executeQuery(mutation, "createAddress", AddressGQL.class);
     }
@@ -20,7 +21,7 @@ public class AddressOperation extends AbstractAPIOperation {
     public AddressGQL updateAddress(String id, AddressInput input) throws Exception {
         String mutation = String.format(
             "mutation updateAddress { " +
-            "  updateAddress(id: \\\"%s\\\", input: {street: \\\"%s\\\", no: %d}) { " +
+            "  updateAddress(id: \"%s\", input: {street: \"%s\", no: %d}) { " +
             "    id street no " +
             "  }" +
             "}",
@@ -32,7 +33,7 @@ public class AddressOperation extends AbstractAPIOperation {
     public AddressGQL deleteAddress(String id) throws Exception {
         String mutation = String.format(
             "mutation deleteAddress { " +
-            "  deleteAddress(id: \\\"%s\\\") { " +
+            "  deleteAddress(id: \"%s\") { " +
             "    id " +
             "  }" +
             "}", 
@@ -46,7 +47,7 @@ public class AddressOperation extends AbstractAPIOperation {
     public AddressGQL getAddress(String id) throws Exception {
         String query = String.format(
             "query getAddress { " +
-            "  address(id: \\\"%s\\\") { id street no city zipCode country }" +
+            "  address(id: \"%s\") { id street no city zipCode country }" +
             "}", id);
         return executeQuery(query, "address", AddressGQL.class);
     }
