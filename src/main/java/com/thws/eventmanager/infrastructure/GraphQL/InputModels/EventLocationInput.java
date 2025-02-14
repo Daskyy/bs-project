@@ -2,7 +2,7 @@ package com.thws.eventmanager.infrastructure.GraphQL.InputModels;
 
 public class EventLocationInput {
     String id="-1";
-    AddressInput address;
+    String address;     //id von address
     String name;
     int capacity;
 
@@ -17,11 +17,11 @@ public class EventLocationInput {
         this.id = id;
     }
 
-    public AddressInput getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(AddressInput address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

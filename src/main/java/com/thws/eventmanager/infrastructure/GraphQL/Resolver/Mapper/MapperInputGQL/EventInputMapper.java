@@ -30,6 +30,7 @@ public class EventInputMapper {
             eventGQL.setTicketsSold(input.getTicketsSold());
             eventGQL.setMaxTicketsPerUser(input.getMaxTicketsPerUser());
 
+
             List<String> aList= input.getArtists();
             List<UserGQL> aListGQL = userMapperGQL.toUserGQLList(aList);
 

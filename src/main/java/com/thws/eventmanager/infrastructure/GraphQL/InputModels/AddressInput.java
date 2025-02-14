@@ -11,6 +11,7 @@ public class AddressInput {
     public AddressInput() {
     }
 
+
     public String getId() {
         return id;
     }

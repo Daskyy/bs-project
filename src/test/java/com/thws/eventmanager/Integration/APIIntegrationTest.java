@@ -1,6 +1,7 @@
 package com.thws.eventmanager.Integration;
 
 import com.thws.eventmanager.Integration.Operations.*;
+import com.thws.eventmanager.infrastructure.GraphQL.InputModels.EventLocationInput;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.*;
 import com.thws.eventmanager.infrastructure.GraphQL.InputModels.UserInput;
 import com.thws.eventmanager.infrastructure.GraphQL.InputModels.AddressInput;
@@ -28,6 +29,7 @@ public class APIIntegrationTest {
     public static void startServer() throws Exception {
         serverThread = new Thread(() -> {
             try {
+                // Starte den zentral konfigurierten GraphQL-Server (analog zu AirlineManagementSystem)
                 com.thws.eventmanager.infrastructure.api.GraphQLServer.main(new String[] {"8081"});
             } catch (Exception e) {
                 throw new RuntimeException("GraphQLServer start failed: " + e.getMessage(), e);
@@ -110,8 +112,16 @@ public class APIIntegrationTest {
     @Test
     @Order(3)
     void testEventLifecycle() throws Exception {
-         // Verwende persistentUser als Künstler; EventLocation-ID "1" muss in der Testdatenbank existieren.
-         String eventLocationId = "1";
+
+         EventLocationInput eventLocationInput = new EventLocationInput();
+         eventLocationInput.setAddress(persistentAddress.getId());
+         eventLocationInput.setName(faker.company().name());
+         eventLocationInput.setCapacity(faker.number().numberBetween(100, 8000));
+
+
+         EventLocationOperation eventLocationOp = new EventLocationOperation();
+         EventLocationGQL eventLocationGQL=eventLocationOp.createEventLocation(eventLocationInput);
+
          EventInput eventInput = new EventInput();
          eventInput.setName(faker.funnyName().name());
          eventInput.setDescription(faker.lorem().sentence());
@@ -121,9 +131,10 @@ public class APIIntegrationTest {
          eventInput.setTicketsSold(0);
          eventInput.setMaxTicketsPerUser(faker.number().numberBetween(1, 10));
          eventInput.setArtists(java.util.List.of(persistentUser.getId()));
-         eventInput.setLocation(eventLocationId);
+
          eventInput.setBlockList(java.util.Collections.emptyList());
-         eventInput.setTicketPrice(faker.number().numberBetween(200, 2000));
+         eventInput.setTicketPrice(faker.number().numberBetween(20, 200));
+         eventInput.setLocation(eventLocationGQL.getId());
          
          EventOperation eventOp = new EventOperation();
          EventGQL createdEvent = eventOp.createEvent(eventInput);
