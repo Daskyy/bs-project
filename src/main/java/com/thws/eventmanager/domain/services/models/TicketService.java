@@ -9,7 +9,6 @@ import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventM
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.PaymentMapper;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.TicketMapper;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.UserMapper;
-import org.jetbrains.annotations.MustBeInvokedByOverriders;
 
 import java.util.List;
 

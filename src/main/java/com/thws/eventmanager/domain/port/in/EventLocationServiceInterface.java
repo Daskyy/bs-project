@@ -8,12 +8,8 @@ import java.util.Optional;
 
 public interface EventLocationServiceInterface {
     EventLocationEntity saveLocation(EventLocation location);
-
     Optional<EventLocationEntity> deleteLocation(EventLocation location);
-
     Optional<EventLocationEntity> getLocationById(long id);
-
     List<EventLocationEntity> getAllEventLocations();
-
     List<EventLocationEntity> getAllEventLocations(List<String> criteria, List<Object> values);
 }

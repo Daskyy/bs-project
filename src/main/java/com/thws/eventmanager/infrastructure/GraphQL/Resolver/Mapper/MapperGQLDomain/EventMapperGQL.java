@@ -45,7 +45,7 @@ public class EventMapperGQL extends Mapper<Event, EventGQL> {
         gql.setId(String.valueOf(event.getId()));
         gql.setName(event.getName());
         gql.setDescription(event.getDescription());
-        gql.setTicketCount((int)event.getTicketCount()); //TODO unschön dass hier gecastet werden muss
+        gql.setTicketCount((int)event.getTicketCount());
         gql.setTicketsSold((int)event.getTicketsSold());
         gql.setMaxTicketsPerUser(event.getMaxTicketsPerUser());
 

@@ -12,28 +12,14 @@ import java.util.Optional;
 
 public interface EventServiceInterface {
     EventEntity createEvent(Event event);
-
     Optional<EventEntity> deleteEvent(Event event);
-
     Optional<EventEntity> getEventById(long id);
-
-    //List<EventEntity> getAllEvents(List<String> criteria, List<Object> values);
-
-    //List<EventEntity> getAllEvents(List<String> criteria, List<Object> values, int page, int pageSize);
-
     List<EventEntity> getAllEvents(List<String> criteria, List<Object> values, Integer page, Integer pageSize);
-
     List<EventEntity> getAllEvents();
-
     boolean isBlocked(Event event, User user);
-
     boolean isArtist(Event event, User user);
-
     EventEntity blockUser(Event event, User user);
-
     List<EventEntity> getTrendingsEvents(int page, int pageSize);
-
     boolean refundEvent(Event event);
-
     void validateEvent(Event event);
 }

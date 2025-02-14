@@ -19,7 +19,7 @@ public abstract class GenericPersistenceAdapter<T, ID> implements GenericPersist
     private static final Logger logger = LoggerFactory.getLogger(GenericPersistenceAdapter.class);
 
     protected GenericPersistenceAdapter(Class<T> entityClass) {
-        this.persistenceManager = PersistenceManager.create();  // Keep it open
+        this.persistenceManager = PersistenceManager.create();
         this.entityManager = persistenceManager.getEntityManager();
         this.entityClass = entityClass;
     }
@@ -101,8 +101,6 @@ public abstract class GenericPersistenceAdapter<T, ID> implements GenericPersist
 //
 //        return query.getResultList();
 //    }
-
-
 
     @Override
     public List<T> searchByCriteria(List<String> fieldNames, List<Object> values) {
@@ -248,7 +246,4 @@ public abstract class GenericPersistenceAdapter<T, ID> implements GenericPersist
             persistenceManager.close();
         }
     }
-
-
-
 }

@@ -44,7 +44,6 @@ public class EventLocationEntity implements PersistenceEntity {
         this.addressEntity = entity;
     }
 
-
     @Override
     public String toString() {
         return "EventLocationEntity{" +

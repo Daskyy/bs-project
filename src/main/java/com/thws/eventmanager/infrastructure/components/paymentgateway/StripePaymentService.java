@@ -56,7 +56,6 @@ public class StripePaymentService implements StripeServiceInterface {
                 log.error("Card payment failed. Code: {}, Message: {}, Decline Code: {}",
                         e.getCode(), e.getMessage(), e.getDeclineCode());
 
-                // 🔹 Simulate a failed PaymentIntent with a fake ID
                 PaymentIntent failedIntent = new PaymentIntent();
                 failedIntent.setStatus("failed");
                 failedIntent.setId("pi_fake_declined");
@@ -113,7 +112,7 @@ public class StripePaymentService implements StripeServiceInterface {
             log.error("Invalid request to Stripe API: {}", e.getMessage());
 
             PaymentIntent failedIntent = new PaymentIntent();
-            failedIntent.setStatus("failed");  // Simulate failure
+            failedIntent.setStatus("failed");
             return failedIntent;
         } catch (StripeException e) {
             log.error("Stripe error occurred: {}", e.getMessage());
@@ -132,8 +131,8 @@ public class StripePaymentService implements StripeServiceInterface {
 
         return executeStripeOperation(() -> {
             RefundCreateParams params = RefundCreateParams.builder()
-                    .setPaymentIntent(paymentIntentId) // Attach the original payment
-                    .setAmount(refundAmount) // Refund full or partial amount
+                    .setPaymentIntent(paymentIntentId)
+                    .setAmount(refundAmount)
                     .build();
 
             Refund refund = Refund.create(params);
@@ -149,7 +148,6 @@ public class StripePaymentService implements StripeServiceInterface {
             log.error("Card payment failed. Code: {}, Message: {}, Decline Code: {}",
                     e.getCode(), e.getMessage(), e.getDeclineCode());
 
-            // 🔹 Return a failed PaymentIntent instead of null
             PaymentIntent failedPaymentIntent = new PaymentIntent();
             failedPaymentIntent.setStatus("failed"); // Simulate Stripe's failed payment
             return (T) failedPaymentIntent;
@@ -160,7 +158,7 @@ public class StripePaymentService implements StripeServiceInterface {
         } catch (Exception e) {
             log.error("Unexpected error during Stripe operation", e);
         }
-        return null; // If a different error occurs, return null
+        return null;
     }
 
 

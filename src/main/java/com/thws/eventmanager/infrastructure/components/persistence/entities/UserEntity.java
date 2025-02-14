@@ -68,7 +68,6 @@ public class UserEntity implements PersistenceEntity {
                 '}';
     }
 
-
     public void setId(long id) {
         this.id = id;
     }

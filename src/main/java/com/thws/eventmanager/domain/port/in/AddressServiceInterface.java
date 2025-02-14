@@ -12,5 +12,4 @@ public interface AddressServiceInterface {
     public Optional<AddressEntity> getAddressById(long id);
     public List<AddressEntity> getAllAddresses(List<String> criteria, List<Object> values, Integer page, Integer pageSize);
     public List<AddressEntity> getAllAddresses();
-
 }

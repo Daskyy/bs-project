@@ -18,7 +18,6 @@ public class EnumMapper {
 //        return PermissionGQL.valueOf(permission.name());
 //    }
 
-    //Status
     public Status toModel(StatusGQL statusGQL){
         if(statusGQL == null) return null;
         return Status.valueOf(statusGQL.name());

@@ -7,22 +7,11 @@ import java.util.Optional;
 
 public interface GenericPersistenceOutport<T, ID> {
     T save(T entity);
-
     EntityManager getEntityManager();
-
     Optional<T> findById(ID id);
-
     List<T> findAll();
-
     Optional<T> deleteById(ID id);
-
     List<T> searchByCriteria(List<String> fieldNames, List<Object> values, int page, int size);
-
     void close();
-
-    //public List<T> searchByCriteria(String fieldName, Object value);
-
-    //List<T> searchByCriteria(String fieldName, Object value, int page, int size);
-
     public List<T> searchByCriteria(List<String> fieldNames, List<Object> values);
 }

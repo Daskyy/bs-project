@@ -28,7 +28,6 @@ public class  UserMutationResolver implements GraphQLMutationResolver {
     }
 
     public UserGQL updateUser(String id, UserInput input) {
-
         try (UserHandler userHandler = new UserHandler()) {
             UserService userService = new UserService();
 

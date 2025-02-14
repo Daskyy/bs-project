@@ -11,8 +11,6 @@ public class EventSearchCriteria implements Model {
     private String name;
     private List<User> artists;
 
-
-
     public EventSearchCriteria(LocalDateTime startDate, LocalDateTime endDate, String description, EventLocation location, String name, List<User> artists) {
         this.startDate = startDate;
         this.endDate = endDate;
@@ -40,9 +38,11 @@ public class EventSearchCriteria implements Model {
     public EventLocation getLocation() {
         return location;
     }
+
     public String getName(){
         return this.name;
     }
+
     public List<User> getArtists(){
         return this.artists;
     }

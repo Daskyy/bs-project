@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class ConfigurationLoader {
     private static final Properties properties = new Properties();
-    private static final String SWIPER_NO_SWIPING = "BS2024eventManagerjfuri4eventMan"; // Same key as Encrypt class
+    private static final String SWIPER_NO_SWIPING = "BS2024eventManagerjfuri4eventMan";
 
     static {
         try (InputStream input = ConfigurationLoader.class.getClassLoader().getResourceAsStream("application.properties")) {

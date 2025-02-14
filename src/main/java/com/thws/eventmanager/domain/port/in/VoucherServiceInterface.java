@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface VoucherServiceInterface {
     public long applyVoucher(String code, long orderTotal);
-
     VoucherEntity createVoucher(String code, long discountAmount, int uses);
 
     VoucherEntity deactivateVoucher(VoucherEntity voucher);
