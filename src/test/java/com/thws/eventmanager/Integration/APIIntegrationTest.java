@@ -123,7 +123,7 @@ public class APIIntegrationTest {
          eventInput.setArtists(java.util.List.of(persistentUser.getId()));
          eventInput.setLocation(eventLocationId);
          eventInput.setBlockList(java.util.Collections.emptyList());
-         eventInput.setTicketPrice(faker.number().numberBetween(20, 200));
+         eventInput.setTicketPrice(faker.number().numberBetween(200, 2000));
          
          EventOperation eventOp = new EventOperation();
          EventGQL createdEvent = eventOp.createEvent(eventInput);
