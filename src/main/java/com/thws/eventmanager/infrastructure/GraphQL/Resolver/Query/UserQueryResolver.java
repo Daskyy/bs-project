@@ -1,18 +1,15 @@
 package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Query;
 
-import com.thws.eventmanager.domain.models.User;
 import com.thws.eventmanager.domain.services.models.UserService;
 import com.thws.eventmanager.infrastructure.GraphQL.InputModels.UserCriteriaInput;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.UserGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.UserMapperGQL;
-import com.thws.eventmanager.infrastructure.components.persistence.adapter.UserHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.UserMapper;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.UserEntity;
 import org.slf4j.*;
 
 import java.util.List;
-import java.util.Optional;
 
 public class UserQueryResolver implements GraphQLQueryResolver {
     private static final Logger logger = LoggerFactory.getLogger(UserQueryResolver.class);

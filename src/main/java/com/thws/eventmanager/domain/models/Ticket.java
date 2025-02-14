@@ -49,5 +49,4 @@ public class Ticket implements Model {
             this.id = id;
         }
     }
-
 }

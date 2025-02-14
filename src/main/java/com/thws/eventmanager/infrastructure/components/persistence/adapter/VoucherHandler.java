@@ -26,7 +26,6 @@ public class VoucherHandler extends GenericPersistenceAdapter<VoucherEntity, Lon
         return voucher;
     }
 
-
     public void updateVoucherUsage(VoucherEntity voucher) {
         entityManager.getTransaction().begin();
         voucher.setRemainingUses(voucher.getRemainingUses() - 1);

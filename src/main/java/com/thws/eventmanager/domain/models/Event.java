@@ -1,11 +1,8 @@
 package com.thws.eventmanager.domain.models;
 import com.thws.eventmanager.domain.exceptions.InvalidEventException;
-import jakarta.persistence.*;
 
-import java.util.Arrays;
 import java.util.List;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 
 public class Event implements Model {
@@ -19,7 +16,7 @@ public class Event implements Model {
     private int maxTicketsPerUser;
     private List<User> artists;
     private EventLocation location;
-    private List<User> blockList; // List of User IDs that are blocked from buying tickets for this event
+    private List<User> blockList;
     private long ticketPrice;
 
     public Event(String name, String description, long ticketCount, long ticketsSold, int maxTicketsPerUser, List<User> artists, EventLocation location,List<User> blockList, LocalDateTime startDate, LocalDateTime endDate, int ticketPrice) {

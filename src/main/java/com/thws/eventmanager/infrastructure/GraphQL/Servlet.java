@@ -25,13 +25,10 @@ public class Servlet extends GraphQLHttpServlet{
 
     private GraphQLSchema createSchema() {
         try {
-            // Lies dein schema.graphqls aus resources
             String schemaString = IOUtils.toString(
                     this.getClass().getResourceAsStream("/schema.graphqls")
             );
 
-
-            // Registriere sämtliche Resolver, die du hast
             return SchemaParser.newParser()
                     .schemaString(schemaString)
                     .resolvers(

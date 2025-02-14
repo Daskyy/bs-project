@@ -1,7 +1,5 @@
 package com.thws.eventmanager.domain.models;
 
-import jakarta.persistence.*;
-
 public class User implements Model {
     private String name;
     private String email;
@@ -21,7 +19,7 @@ public class User implements Model {
 
     public String getEmail() {
             return email;
-        }
+    }
 
     public String getName() {
         return name;

@@ -1,8 +1,6 @@
 package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL;
 
-import com.thws.eventmanager.infrastructure.GraphQL.InputModels.EventInput;
 import com.thws.eventmanager.infrastructure.GraphQL.InputModels.EventLocationInput;
-import com.thws.eventmanager.infrastructure.GraphQL.Models.AddressGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.EventLocationGQL;
 
 

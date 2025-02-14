@@ -12,7 +12,6 @@ public class ServerGQL {
             context.setContextPath("/");
             server.setHandler(context);
 
-            // Dein GraphQL-Servlet
             context.addServlet(new ServletHolder(new Servlet()), "/graphql");
 
             server.start();

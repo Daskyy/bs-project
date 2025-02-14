@@ -28,7 +28,6 @@ public class APIIntegrationTest {
     public static void startServer() throws Exception {
         serverThread = new Thread(() -> {
             try {
-                // Starte den zentral konfigurierten GraphQL-Server (analog zu AirlineManagementSystem)
                 com.thws.eventmanager.infrastructure.api.GraphQLServer.main(new String[] {"8081"});
             } catch (Exception e) {
                 throw new RuntimeException("GraphQLServer start failed: " + e.getMessage(), e);

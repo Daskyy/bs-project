@@ -7,16 +7,9 @@ import java.util.Optional;
 
 public interface UserServiceInterface {
     UserEntity createUser(User user);
-
     Optional<UserEntity> deleteUser(User user);
-
     void validateUser(User user);
-
     List<UserEntity> getAllUsers(List<String> criteria, List<Object> values);
-
     List<UserEntity> getAllUsers();
-
     Optional<UserEntity> getUserById(Long id);
-//    boolean deleteUser(User user);
-//    User updateUser(User user);
 }

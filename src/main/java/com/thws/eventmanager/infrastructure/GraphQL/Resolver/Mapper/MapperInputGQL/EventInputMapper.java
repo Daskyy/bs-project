@@ -1,7 +1,6 @@
 package com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperInputGQL;
 
 import com.thws.eventmanager.infrastructure.GraphQL.InputModels.EventInput;
-import com.thws.eventmanager.infrastructure.GraphQL.InputModels.UserInput;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.EventGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Models.UserGQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mapper.MapperGQLDomain.EventLocationMapperGQL;
@@ -10,20 +9,14 @@ import com.thws.eventmanager.infrastructure.components.persistence.adapter.Event
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.EventLocationHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.adapter.UserHandler;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventLocationMapper;
-import com.thws.eventmanager.infrastructure.components.persistence.mapper.UserMapper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EventInputMapper {
-    UserInputMapper userInputMapper = new UserInputMapper();
-    UserMapper  userMapper = new UserMapper();
     UserMapperGQL userMapperGQL = new UserMapperGQL();
     EventLocationInputMapper EventLocationInputMapper = new EventLocationInputMapper();
     EventLocationMapperGQL eventLocationMapperGQL = new EventLocationMapperGQL();
     EventLocationMapper eventLocationMapper = new EventLocationMapper();
-
-
 
 
     public EventGQL toModelGQL(EventInput input) {

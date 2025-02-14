@@ -24,20 +24,14 @@ import com.thws.eventmanager.infrastructure.components.persistence.mapper.UserMa
 import graphql.kickstart.tools.GraphQLMutationResolver;
 
 public class EventMutationResolver implements GraphQLMutationResolver {
-    EventLocationMapperGQL eventLocationMapperGQL = new EventLocationMapperGQL();
-    AdressMapperGQL adressMapperGQL = new AdressMapperGQL();
     UserMapperGQL userMapperGQL = new UserMapperGQL();
     EventMapper eventMapper = new EventMapper();
     EventMapperGQL eventMapperGQL = new EventMapperGQL();
-    UserInputMapper userInputMapper = new UserInputMapper();
-    EventLocationInputMapper EventLocationInputMapper = new EventLocationInputMapper();
     EventInputMapper EventInputMapper = new EventInputMapper();
     EventService eventService = new EventService();
     UserService userService = new UserService();
     UserMapper userMapper = new UserMapper();
-    TicketMapper ticketMapper = new TicketMapper();
-    TicketPurchaseUseCaseService ticketPurchaseUseCaseService = new TicketPurchaseUseCaseService();
-    TicketService ticketService = new TicketService();
+
     public EventGQL createEvent(EventInput input){
         Event event= eventMapperGQL.toModel(EventInputMapper.toModelGQL(input));
 
@@ -51,23 +45,21 @@ public class EventMutationResolver implements GraphQLMutationResolver {
 
     public EventGQL updateEvent(String id, EventInput input){
 
-        try(EventHandler eventHandler = new EventHandler(); UserHandler userHandler = new UserHandler()){
-            EventService eventService = new EventService();
-            EventEntity loaded= eventService.getEventById(Long.parseLong(id)).orElseThrow(); //todo wie damit umgehen
+        EventService eventService = new EventService();
+        EventEntity loaded= eventService.getEventById(Long.parseLong(id)).orElseThrow(); //todo wie damit umgehen
 
-            Event event= eventMapper.toModel(loaded);
-            if(input.getName()!=null) event.setName(input.getName());
-            if(input.getDescription()!=null) event.setDescription(input.getDescription());
-            if(input.getTicketCount()!=-1) event.setTicketCount(input.getTicketCount());
-            if(input.getTicketsSold()!=-1) event.setTicketsSold(input.getTicketsSold());
-            if(input.getMaxTicketsPerUser()!=-1) event.setMaxTicketsPerUser(input.getMaxTicketsPerUser());
+        Event event= eventMapper.toModel(loaded);
+        if(input.getName()!=null) event.setName(input.getName());
+        if(input.getDescription()!=null) event.setDescription(input.getDescription());
+        if(input.getTicketCount()!=-1) event.setTicketCount(input.getTicketCount());
+        if(input.getTicketsSold()!=-1) event.setTicketsSold(input.getTicketsSold());
+        if(input.getMaxTicketsPerUser()!=-1) event.setMaxTicketsPerUser(input.getMaxTicketsPerUser());
 
-            if(input.getArtists()!=null) event.setArtists(userMapperGQL.toUserGQLList(input.getArtists()).stream().map(userMapperGQL::toModel).toList());
+        if(input.getArtists()!=null) event.setArtists(userMapperGQL.toUserGQLList(input.getArtists()).stream().map(userMapperGQL::toModel).toList());
 
-            EventEntity eventEnity= eventService.createEvent(event);
-            event= eventMapper.toModel(eventEnity);
-            return eventMapperGQL.toModelGQL(event);
-        }
+        EventEntity eventEnity= eventService.createEvent(event);
+        event= eventMapper.toModel(eventEnity);
+        return eventMapperGQL.toModelGQL(event);
     }
 
     public EventGQL deleteEvent(String id){
@@ -80,8 +72,6 @@ public class EventMutationResolver implements GraphQLMutationResolver {
         eventService.deleteEvent(eventMapper.toModel(ee));
 
         return eventMapperGQL.toModelGQL(eventMapper.toModel(ee));
-
-
     }
 
     public EventGQL blockUser(String eventId, String userId) {

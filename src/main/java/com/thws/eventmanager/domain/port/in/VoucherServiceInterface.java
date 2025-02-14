@@ -4,6 +4,5 @@ import com.thws.eventmanager.infrastructure.components.persistence.entities.Vouc
 
 public interface VoucherServiceInterface {
     public long applyVoucher(String code, long orderTotal);
-
     VoucherEntity createVoucher(String code, long discountAmount, int uses);
 }

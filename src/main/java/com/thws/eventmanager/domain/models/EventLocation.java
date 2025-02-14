@@ -1,7 +1,5 @@
 package com.thws.eventmanager.domain.models;
 
-import jakarta.persistence.*;
-
 import java.util.Objects;
 
 public class EventLocation implements Model {
@@ -15,7 +13,7 @@ public class EventLocation implements Model {
         this.capacity = capacity;
         this.name = name;
     }
-    public EventLocation(){}; // default constructor
+    public EventLocation(){};
 
     public Address getAddress() {
         return address;
@@ -58,7 +56,6 @@ public class EventLocation implements Model {
         if (o == null || getClass() != o.getClass()) return false;
         EventLocation other = (EventLocation) o;
 
-        // If both IDs are assigned, compare them directly
         if (this.id != -1 && other.id != -1) {
             return this.id == other.id;
         }
@@ -71,7 +68,6 @@ public class EventLocation implements Model {
 
     @Override
     public int hashCode() {
-        // Include id in hashCode if it is not -1
         return Objects.hash(id == -1 ? 0 : id, name, capacity, address);
     }
 }

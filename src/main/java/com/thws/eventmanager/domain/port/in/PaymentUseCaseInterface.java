@@ -9,6 +9,5 @@ public interface PaymentUseCaseInterface {
     PaymentIntent processPayment(Payment payment, String voucherCode);
     PaymentIntent createOpenPayment(Payment payment);
     PaymentIntent createFailedPayment(Payment payment);
-
     Refund refundPayment(Payment payment, long refundAmount);
 }
