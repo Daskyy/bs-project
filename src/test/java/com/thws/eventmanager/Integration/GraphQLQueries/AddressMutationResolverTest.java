@@ -3,6 +3,13 @@ package com.thws.eventmanager.Integration.GraphQLQueries;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thws.eventmanager.infrastructure.GraphQL.InputModels.AddressInput;
+import com.thws.eventmanager.infrastructure.GraphQL.ServerGQL;
+import com.thws.eventmanager.infrastructure.GraphQL.Servlet;
+import org.eclipse.jetty.ee10.servlet.ServletContextHandler;
+import org.eclipse.jetty.ee10.servlet.ServletHolder;
+import org.eclipse.jetty.server.Server;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
@@ -17,11 +24,33 @@ import static org.junit.jupiter.api.Assertions.*;
 class AddressMutationResolverTest {
     //ServerGQL should be started first
     private final String endpoint = "http://localhost:8080/graphql";
+    private static Thread serverThread;
 
     private String extractIdFromResponse(String jsonResponse) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode rootNode = objectMapper.readTree(jsonResponse);
         return rootNode.path("data").path("createAddress").path("id").asText();
+    }
+    @BeforeAll
+    static void startServer() throws Exception {
+        serverThread = new Thread(() -> {
+            try {
+                ServerGQL.main(new String[]{});
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        serverThread.start();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            System.out.println("Waiting for server to start...");
+        }
+    }
+    @AfterAll
+    static void stopServer() {
+       serverThread.interrupt();
+       System.out.println("Jetty stopped");
     }
 
     @Test
