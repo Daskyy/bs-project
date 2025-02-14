@@ -21,8 +21,8 @@ public class StripePaymentService implements StripeServiceInterface {
         try {
             String stripeMode = ConfigurationLoader.getProperty("stripe.mode");
             Stripe.apiKey = "test".equalsIgnoreCase(stripeMode)
-                    ? ConfigurationLoader.getProperty("stripe.api-key-test")
-                    : ConfigurationLoader.getProperty("stripe.api-key-live");
+                    ? ConfigurationLoader.getStripeApiKey("stripe.api-key-test")
+                    : ConfigurationLoader.getStripeApiKey("stripe.api-key-live");
 
             log.info("Stripe initialized in {} mode", stripeMode);
         } catch (Exception ex) {

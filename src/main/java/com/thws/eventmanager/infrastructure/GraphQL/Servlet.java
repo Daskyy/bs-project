@@ -1,6 +1,7 @@
 package com.thws.eventmanager.infrastructure.GraphQL;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Mutation.*;
 import com.thws.eventmanager.infrastructure.GraphQL.Resolver.Query.*;
+import com.thws.eventmanager.infrastructure.GraphQL.auth.AuthMutationResolver;
 import graphql.kickstart.servlet.GraphQLConfiguration;
 import graphql.kickstart.servlet.GraphQLHttpServlet;
 import graphql.kickstart.tools.SchemaParser;
@@ -41,7 +42,8 @@ public class Servlet extends GraphQLHttpServlet{
                             new PaymentResolver(),
                             new AddressMutationResolver(),
                             new AddressQueryResolver(),
-                            new EventLocationQueryResolver()
+                            new EventLocationQueryResolver(),
+                            new AuthMutationResolver()
                             // ggf. weitere
                     )
                     .build()

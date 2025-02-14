@@ -6,7 +6,7 @@ import com.thws.eventmanager.domain.port.in.TicketPurchaseUseCaseInterface;
 import com.thws.eventmanager.domain.services.models.EventService;
 import com.thws.eventmanager.domain.services.models.PaymentService;
 import com.thws.eventmanager.domain.services.models.TicketService;
-import com.thws.eventmanager.infrastructure.GraphQL.PurchaseException;
+import com.thws.eventmanager.domain.exceptions.PurchaseException;
 import com.thws.eventmanager.infrastructure.components.paymentgateway.StripePaymentService;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.TicketEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.PaymentMapper;

@@ -1,38 +1,22 @@
 package com.thws.eventmanager.infrastructure.configuration;
 
-import io.github.cdimascio.dotenv.Dotenv;
-
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Base64;
 import java.util.Properties;
 
 public class ConfigurationLoader {
     private static final Properties properties = new Properties();
+    private static final String SWIPER_NO_SWIPING = "BS2024eventManagerjfuri4eventMan"; // Same key as Encrypt class
 
     static {
-        Dotenv dotenv = Dotenv.configure()
-                .directory("./")  // Hauptverzeichnis
-                .ignoreIfMalformed()  // Ignoriere Fehler
-                .ignoreIfMissing()    // Ignoriere fehlende .env
-                .load();
-
         try (InputStream input = ConfigurationLoader.class.getClassLoader().getResourceAsStream("application.properties")) {
             if (input == null) {
                 throw new IOException("application.properties not found");
             }
             properties.load(input);
-
-            // Ersetze Platzhalter (${...}) mit Werten aus der .env
-            for (String key : properties.stringPropertyNames()) {
-                String value = properties.getProperty(key);
-                if (value != null && value.startsWith("${") && value.endsWith("}")) {
-                    String envKey = value.substring(2, value.length() - 1); // Extrahiere den Namen z. B. STRIPE_API_KEY_TEST
-                    String envValue = dotenv.get(envKey); // Hole den Wert aus der .env-Datei
-                    if (envValue != null) {
-                        properties.setProperty(key, envValue); // Setze den aufgelösten Wert
-                    }
-                }
-            }
         } catch (IOException e) {
             throw new RuntimeException("Failed to load configuration", e);
         }
@@ -41,4 +25,29 @@ public class ConfigurationLoader {
     public static String getProperty(String key) {
         return properties.getProperty(key);
     }
+
+    public static String getStripeApiKey(String key) {
+        String hashedKey = SwiperNoSwiping.hash(key);
+        String encryptedValue = properties.getProperty(hashedKey);
+
+        if (encryptedValue != null && encryptedValue.startsWith("ENC(") && encryptedValue.endsWith(")")) {
+            encryptedValue = encryptedValue.substring(4, encryptedValue.length() - 1);
+            return decrypt(encryptedValue);
+        }
+        return null;
+    }
+
+    private static String decrypt(String encryptedText) {
+        try {
+            SecretKeySpec secretKey = new SecretKeySpec(SWIPER_NO_SWIPING.getBytes(), "AES");
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+            byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(encryptedText));
+            return new String(decryptedBytes);
+        } catch (Exception e) {
+            throw new RuntimeException("Error decrypting", e);
+        }
+    }
 }
+
+
