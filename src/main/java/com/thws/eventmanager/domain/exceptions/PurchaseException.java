@@ -1,4 +1,4 @@
-package com.thws.eventmanager.infrastructure.GraphQL;
+package com.thws.eventmanager.domain.exceptions;
 
 import graphql.ErrorClassification;
 import graphql.GraphQLError;

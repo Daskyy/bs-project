@@ -1,5 +1,3 @@
-
-
 type Query {
      # Beispiel: Liste von Events auslesen
      events(criteria: EventCriteriaInput, page: PaginationInput): [EventGQL!]!
@@ -31,6 +29,8 @@ type Query {
 
 # Mutations
 type Mutation {
+
+  authenticate(username: String!, password: String!): String!
 
 
   purchaseTicket(userId: ID!, eventId: ID!, ticketamount: Int!,paymentmethodId: String!, voucher:String): TicketGQL!
