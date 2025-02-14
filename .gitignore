@@ -44,3 +44,6 @@ build/
 
 ### persistence.xml ###
 src/main/resources/META-INF/persistence.xml
+
+## app.log ##
+logs/app.log
