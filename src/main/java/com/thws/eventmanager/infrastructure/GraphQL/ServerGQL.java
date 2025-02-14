@@ -18,7 +18,13 @@ public class ServerGQL {
             server.start();
             System.out.println("Jetty started on port 8080 -> http://localhost:8080/graphql");
 
-            server.join();
+            try {
+                server.join();
+            } catch (InterruptedException e) {
+                System.out.println("Server was interrupted, shutting down...");
+                server.stop();
+                Thread.currentThread().interrupt();
+            };
         }
 
 }
