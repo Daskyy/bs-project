@@ -38,14 +38,14 @@ public class UserOperation extends AbstractAPIOperation {
 
     public UserGQL queryUser(String id) throws Exception {
         String query = String.format(
-            "query getUser { " +
+            "query user { " +
             "  user(id: \"%s\") { id name email permission } " +
             "}", id);
         return executeQuery(query, "user", UserGQL.class);
     }
     
     public UserGQL[] queryUsers() throws Exception {
-        String query = "query getUsers { " +
+        String query = "query users { " +
                        "  users { id name email permission } " +
                        "}";
         return executeQuery(query, "users", UserGQL[].class);

@@ -46,14 +46,14 @@ public class AddressOperation extends AbstractAPIOperation {
 
     public AddressGQL getAddress(String id) throws Exception {
         String query = String.format(
-            "query getAddress { " +
+            "query address { " +
             "  address(id: \"%s\") { id street no city zipCode country }" +
             "}", id);
         return executeQuery(query, "address", AddressGQL.class);
     }
     
     public AddressGQL[] getAddresses() throws Exception {
-        String query = "query getAddresses { " +
+        String query = "query addresses { " +
                        "  addresses(criteria: {}, page: {}) { id street no city zipCode country }" +
                        "}";
         return executeQuery(query, "addresses", AddressGQL[].class);

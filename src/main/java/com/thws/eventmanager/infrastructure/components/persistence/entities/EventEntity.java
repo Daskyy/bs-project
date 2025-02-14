@@ -41,7 +41,7 @@ public class EventEntity implements PersistenceEntity {
     @JoinColumn(name = "location_id", nullable = false)
     private EventLocationEntity location;
 
-    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "event_artists",
             joinColumns = @JoinColumn(name = "event_id"),
@@ -49,7 +49,7 @@ public class EventEntity implements PersistenceEntity {
     )
     private List<UserEntity> artists;
 
-    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "event_blocked_users",
             joinColumns = @JoinColumn(name = "event_id"),

@@ -42,19 +42,22 @@ public class EventOperation extends AbstractAPIOperation {
         }
         return sb.toString();
     }
-    
+
     public EventGQL updateEvent(String id, EventInput input) throws Exception {
         String mutation = String.format(
-            "mutation updateEvent { " +
-            "  updateEvent(id: \"%s\", input: {name: \"%s\", description: \"%s\", startDate: \"%s\", endDate: \"%s\", ticketCount: %d, ticketsSold: %d, maxTicketsPerUser: %d, ticketPrice: %d}) { " +
-            "    id name description " +
-            "  }" +
-            "}",
-            id, input.getName(), input.getDescription(), input.getStartDate(), input.getEndDate(), input.getTicketCount(), input.getTicketsSold(),
-            input.getMaxTicketsPerUser(), (int)input.getTicketPrice());
-            
+                "mutation updateEvent { " +
+                        "  updateEvent(id: \"%s\", input: {name: \"%s\", description: \"%s\", startDate: \"%s\", endDate: \"%s\", ticketCount: %d, ticketsSold: %d, maxTicketsPerUser: %d, artists: [%s], location: \"%s\", blockList: [%s], ticketPrice: %d}) { " +
+                        "    id name description " +
+                        "  }" +
+                        "}",
+                id, input.getName(), input.getDescription(), input.getStartDate(), input.getEndDate(),
+                input.getTicketCount(), input.getTicketsSold(), input.getMaxTicketsPerUser(),
+                formatArtists(input), input.getLocation(), formatBlockList(input),
+                (int) input.getTicketPrice());
+
         return executeQuery(mutation, "updateEvent", EventGQL.class);
     }
+
     
     public EventGQL deleteEvent(String id) throws Exception {
         String mutation = String.format(
@@ -66,22 +69,32 @@ public class EventOperation extends AbstractAPIOperation {
             id);
         return executeQuery(mutation, "deleteEvent", EventGQL.class);
     }
-    
+
     public EventGQL blockUser(String eventId, String userId) throws Exception {
         String mutation = String.format(
-            "mutation blockUser { " +
-            "  blockUser(eventId: \"%s\", userId: \"%s\") { " +
-            "    id " +
-            "    blockList { id } " +
-            "  }" +
-            "}",
-            eventId, userId);
-        return executeQuery(mutation, "blockUser", EventGQL.class);
+                "mutation blockUser { " +
+                        "  blockUser(eventId: \"%s\", userId: \"%s\") { " +
+                        "    id " +
+                        "    blockList { id } " +
+                        "  }" +
+                        "} ",
+                eventId, userId);
+
+        try {
+            return executeQuery(mutation, "blockUser", EventGQL.class);
+        } catch (RuntimeException e) {
+            if (e.getMessage().contains("No value present")) {
+                throw new RuntimeException("Error: Event with ID " + eventId + " or User ID " + userId + " not found.");
+            }
+            throw e;
+        }
     }
+
+
     
     public EventGQL getEvent(String id) throws Exception {
         String query = String.format(
-            "query getEvent { " +
+            "query event { " +
             "  event(id: \"%s\") { id name description }" +
             "}",
             id);
@@ -89,7 +102,7 @@ public class EventOperation extends AbstractAPIOperation {
     }
     
     public EventGQL[] getEvents() throws Exception {
-        String query = "query getEvents { " +
+        String query = "query events { " +
                        "  events(criteria: {}, page: {}) { id name description startDate endDate ticketCount ticketsSold maxTicketsPerUser ticketPrice }" +
                        "}";
         return executeQuery(query, "events", EventGQL[].class);
