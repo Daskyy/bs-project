@@ -101,15 +101,24 @@ public class EventService implements EventServiceInterface {
     @Override
     public EventEntity blockUser(Event inputevent, User user) {
         try(EventHandler eventHandler = new EventHandler()) {
-            Event event = eventMapper.toModel(eventHandler.findById(inputevent.getId()).orElseThrow());
+            logger.info("Attempting to block user: {} from event: {}", user.getId(), inputevent.getId());
+
+            Event event = eventMapper.toModel(eventHandler.findById(inputevent.getId())
+                    .orElseThrow(() -> new InvalidEventException("Event with ID " + inputevent.getId() + " not found.")));
             if (isArtist(event, user)) {
                 throw new InvalidEventException("Artists cannot be blocked.");
             } else if (isBlocked(event, user)) {
                 throw new InvalidEventException("User is already blocked.");
             }
             event.getBlockList().add(user);
+            logger.info("User {} has been successfully added to block list of event {}", user.getId(), inputevent.getId());
+
             return eventHandler.save(eventMapper.toEntity(event));
+        } catch (InvalidEventException e) {
+            logger.error("Validation error while blocking user: {}", e.getMessage());
+            throw e;
         } catch (Exception e) {
+            logger.error("Unexpected error while blocking user: {}", e.getMessage(), e);
             throw new InvalidEventException("Failed to block user.");
         }
     }

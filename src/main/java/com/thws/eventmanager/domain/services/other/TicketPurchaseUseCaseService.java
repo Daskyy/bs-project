@@ -73,14 +73,16 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCaseInterf
             event.setTicketsSold(event.getTicketsSold() + 1);
             eventService.createEvent(event);
 
-            try {
-                String pdfPath = TicketPdfGenerator.generateTicket(ticket, ticketAmount, payment);
-                logger.info("Ticket for event {} created successfully", ticket.getEvent().getName());
-            } catch (Exception e) {
-                logger.error("Failed to generate ticket for event {}", ticket.getEvent().getName());
-            }
 
-            return ticketService.createTicket(ticket);
+            TicketEntity ticketEntity = ticketService.createTicket(ticket);
+            Ticket ticketModel = ticketMapper.toModel(ticketEntity);
+            try {
+                String pdfPath = TicketPdfGenerator.generateTicket(ticketModel, ticketAmount, payment);
+                logger.info("Ticket for event {} created successfully", ticketModel.getEvent().getName());
+            } catch (Exception e) {
+                logger.error("Failed to generate ticket for event {}", ticketModel.getEvent().getName());
+            }
+            return ticketEntity;
         }
         return null;
     }

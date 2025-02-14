@@ -16,7 +16,7 @@ public class TicketEntity implements PersistenceEntity {
     @JoinColumn(name = "event_id", nullable = false)
     private EventEntity event;
 
-    @ManyToOne(optional = false, cascade = CascadeType.MERGE)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 

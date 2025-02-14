@@ -84,16 +84,21 @@ public class EventMutationResolver implements GraphQLMutationResolver {
 
     }
 
-    public EventGQL blockUser(String userId, String eventId) {
-        UserEntity userEntity = userService.getUserById(Long.parseLong(userId)).orElseThrow();
-        EventEntity eventEntity = eventService.getEventById(Long.parseLong(eventId)).orElseThrow();
+    public EventGQL blockUser(String eventId, String userId) {
+        UserEntity userEntity = userService.getUserById(Long.parseLong(userId))
+                .orElseThrow(() -> new IllegalArgumentException("User with ID " + userId + " not found."));
+        EventEntity eventEntity = eventService.getEventById(Long.parseLong(eventId))
+                .orElseThrow(() -> new IllegalArgumentException("Event with ID " + eventId + " not found."));
+
         return eventMapperGQL.toModelGQL(
                 eventMapper.toModel(
                         eventService.blockUser(
                                 eventMapper.toModel(eventEntity),
-                                        userMapper.toModel(
-                                                userEntity
-                ))));
+                                userMapper.toModel(userEntity)
+                        )
+                )
+        );
     }
+
 
 }

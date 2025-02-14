@@ -31,7 +31,8 @@ public abstract class GenericPersistenceAdapter<T, ID> implements GenericPersist
             if (!transaction.isActive()) {
                 transaction.begin();
             }
-            entity = entityManager.merge(entity); // 🔹 Merge ensures new and existing entities are handled properly
+            entity = entityManager.merge(entity);
+            entityManager.flush();
             transaction.commit();
             return entity;
         } catch (Exception e) {
