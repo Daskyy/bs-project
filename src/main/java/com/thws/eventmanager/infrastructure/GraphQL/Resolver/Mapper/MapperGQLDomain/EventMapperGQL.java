@@ -32,7 +32,7 @@ public class EventMapperGQL extends Mapper<Event, EventGQL> {
         event.setStartDate(LocalDateTime.from(FORMATTER.parse(eventGQL.getStartDate())));
         event.setEndDate(LocalDateTime.from(FORMATTER.parse(eventGQL.getEndDate())));
 
-         event.setId(Long.parseLong(eventGQL.getId()));
+        if(eventGQL.getId()!=null) event.setId(Long.parseLong(eventGQL.getId()));
 
 
         return event;

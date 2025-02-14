@@ -13,7 +13,7 @@ public class PaymentMapperGQL extends Mapper<Payment, PaymentGQL> {
         payment.setAmount(paymentGQL.getAmount());
         payment.setStatus(enumMapper.toModel(paymentGQL.getStatus()));
         payment.setPaymentIntentId(paymentGQL.getPaymentIntentId());
-         payment.setId(Long.parseLong(paymentGQL.getId()));
+        if(paymentGQL.getId()!=null) payment.setId(Long.parseLong(paymentGQL.getId()));
 
         return payment;
     }

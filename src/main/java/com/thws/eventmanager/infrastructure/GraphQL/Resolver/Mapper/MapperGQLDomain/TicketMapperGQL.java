@@ -8,6 +8,16 @@ public class TicketMapperGQL extends Mapper<Ticket, TicketGQL> {
     EventMapperGQL eventMapperGQL = new EventMapperGQL();
     PaymentMapperGQL paymentMapperGQL = new PaymentMapperGQL();
 
+    public Ticket toModel(TicketGQL gql){
+        if (gql == null) return null;
+        Ticket domain = new Ticket();
+        domain.setEvent(eventMapperGQL.toModel(gql.getEvent()));
+        domain.setUser(userMapperGQL.toModel(gql.getUser()));
+        domain.setPayment(paymentMapperGQL.toModel(gql.getPayment()));
+        if(gql.getId()!=null) domain.setId(Long.parseLong(gql.getId()));
+        return domain;
+    }
+
     public TicketGQL toModelGQL(Ticket domain){
         if (domain == null) return null;
         TicketGQL gql = new TicketGQL();
@@ -19,14 +29,6 @@ public class TicketMapperGQL extends Mapper<Ticket, TicketGQL> {
         return gql;
     }
 
-    public Ticket toModel(TicketGQL gql){
-        if (gql == null) return null;
-        Ticket domain = new Ticket();
-        domain.setEvent(eventMapperGQL.toModel(gql.getEvent()));
-        domain.setUser(userMapperGQL.toModel(gql.getUser()));
-        domain.setPayment(paymentMapperGQL.toModel(gql.getPayment()));
-        domain.setId(Long.parseLong(gql.getId()));
-        return domain;
-    }
+
 
 }

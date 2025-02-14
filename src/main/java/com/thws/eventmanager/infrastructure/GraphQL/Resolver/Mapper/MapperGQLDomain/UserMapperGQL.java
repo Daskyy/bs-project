@@ -22,7 +22,7 @@ public class UserMapperGQL extends Mapper<User, UserGQL> {
         u.setEmail(userGQL.getEmail());
         u.setPassword(userGQL.getPassword());
         u.setPermission(userGQL.getPermission().to());
-        u.setId((long)Integer.parseInt(userGQL.getId()));
+       if(userGQL.getId()!=null) u.setId((long)Integer.parseInt(userGQL.getId()));
 
         return u;
     }
