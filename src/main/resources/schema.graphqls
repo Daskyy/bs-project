@@ -10,8 +10,10 @@ type Query {
      # Beispiel: Liste von Usern auslesen
      users(criteria: UserCriteriaInput): [UserGQL!]!
      
-     # Beispiel: Einzelnes Event auslesen
-     event(id: ID!): EventGQL
+
+  #Event
+  trendingEvents(page: PaginationInput): [EventGQL!]
+  event(id: ID!): EventGQL
 
   # Address
     # Beispiel: Liste von Addressen auslesen

@@ -23,6 +23,8 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCaseInterf
     private final PaymentMapper paymentMapper = new PaymentMapper();
     private final TicketMapper ticketMapper = new TicketMapper();
     private final PaymentService paymentService = new PaymentService();
+    private static final Logger logger = LoggerFactory.getLogger(TicketPurchaseUseCaseService.class);
+
     @Override
     public Payment makePayment(User user, Event event, int ticketAmount, String paymentMethodId, String voucherCode) {
         Payment payment = new Payment(null, event.getTicketPrice() * ticketAmount);
@@ -63,13 +65,21 @@ public class TicketPurchaseUseCaseService implements TicketPurchaseUseCaseInterf
     }
 
     @Override
-    public TicketEntity createTicket(User user, Event event, Payment payment) {
+    public TicketEntity createTicket(User user, Event event, Payment payment, int ticketAmount) {
         Ticket ticket = new Ticket(event, user, payment);
         ticket.setPayment(payment);
         if(payment.getStatus() == Status.COMPLETED) {
             EventService eventService = new EventService();
             event.setTicketsSold(event.getTicketsSold() + 1);
             eventService.createEvent(event);
+
+            try {
+                String pdfPath = TicketPdfGenerator.generateTicket(ticket, ticketAmount, payment);
+                logger.info("Ticket for event {} created successfully", ticket.getEvent().getName());
+            } catch (Exception e) {
+                logger.error("Failed to generate ticket for event {}", ticket.getEvent().getName());
+            }
+
             return ticketService.createTicket(ticket);
         }
         return null;

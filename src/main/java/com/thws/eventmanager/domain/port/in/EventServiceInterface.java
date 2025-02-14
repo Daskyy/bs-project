@@ -31,6 +31,8 @@ public interface EventServiceInterface {
 
     EventEntity blockUser(Event event, User user);
 
+    List<EventEntity> getTrendingsEvents(int page, int pageSize);
+
     boolean refundEvent(Event event);
 
     void validateEvent(Event event);

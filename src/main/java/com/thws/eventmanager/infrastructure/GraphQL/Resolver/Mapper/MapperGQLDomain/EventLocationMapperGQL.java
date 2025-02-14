@@ -13,7 +13,7 @@ public class EventLocationMapperGQL extends Mapper<EventLocation, EventLocationG
         el.setAddress(addressMapperGQL.toModel(eventLocationGQL.getAddress()));
         el.setName(eventLocationGQL.getName());
         el.setCapacity(eventLocationGQL.getCapacity());
-         el.setId((long)Integer.parseInt(eventLocationGQL.getId()));
+        if(eventLocationGQL.getId()!=null) el.setId((long)Integer.parseInt(eventLocationGQL.getId()));
         return el;
     }
 

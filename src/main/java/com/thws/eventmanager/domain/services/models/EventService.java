@@ -115,6 +115,17 @@ public class EventService implements EventServiceInterface {
     }
 
     @Override
+    public List<EventEntity> getTrendingsEvents(int page, int pageSize) {
+        try(EventHandler eventHandler = new EventHandler()) {
+            List<EventEntity> eventEntityList = eventHandler.searchByCriteria(List.of(), List.of(), page, pageSize);
+            eventEntityList.sort((event1, event2) -> Math.toIntExact(event2.getTicketsSold() - event1.getTicketsSold()));
+            return eventEntityList;
+        } catch (Exception e) {
+            throw new InvalidEventException("Failed to get trending events.");
+        }
+    }
+
+    @Override
     public boolean refundEvent(Event event) {
         List<TicketEntity> ticketEntityList = ticketService.getAllTickets(List.of("event_id"), List.of(event.getId()));
         List<Ticket> ticketList = ticketEntityList.stream().map(ticketMapper::toModel).toList();
