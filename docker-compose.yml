@@ -1,0 +1,12 @@
+services:
+  app:
+    build: .
+    container_name: eventmanager
+    ports:
+      - "8080:8080"
+    networks:
+      - eventmanager_network
+
+networks:
+  eventmanager_network:
+    external: true

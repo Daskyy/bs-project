@@ -25,7 +25,7 @@ The project requirements include:
 - **Programming Language**: Java
 - **Database**: PostgreSQL
 - **API Technology**: GraphQL
-- **Containerization**: Docker
+- **Containerization**: Docker, Docker Compose
 - **Testing Frameworks**: JUnit
 
 ## Architecture
@@ -37,33 +37,86 @@ This project follows a hexagonal (or "ports and adapters") architecture. The pri
 
 ## Database Design
 The database structure includes entities with multiple types of relationships.
-This relationship will be represented using JPA annotations and mapped to tables in the database. Entity details and relationships are documented in `/docs/database-design.md`.
+This relationship will be represented using JPA annotations and mapped to tables in the database. 
 
 ## API Endpoints
 The API provides endpoints to manage the entities with basic aswell as more advanced CRUD operations, such as refunding all users in case of a cancellation, discounts and more.
-Endpoint details will be specified in `/docs/api-documentation.md`.
 
 ## Testing
 Testing is essential to ensure the stability and reliability of the application. The project includes:
 1. **Unit Tests**: Validate individual components, especially business logic.
 2. **Integration Tests**: Check the complete flow, including database interactions and API responses.
 
-The `/tests` directory contains all test cases with documentation on running them.
-
 ## Getting Started
-### Prerequisites
+### Prerequisites for one-click deployment:
 - Docker
+- Docker Compose
 
-### One-Click Deployment
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/daskyy/bs-project.git
-    ```
-2. Build and start the Docker container:
-    ```bash
-    docker-compose up --build
-    ```
-3. The application will be accessible on `http://localhost:<Port>`. Adjust configuration in `docker-compose.yml` as needed.
+# 🚀 One-Click Deployment
+
+## 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/daskyy/bs-project.git
+cd bs-project
+```
+
+## 2️⃣ Build and Start the Database and Docker Container
+```bash
+docker-compose -f docker-compose.db.yml up -d
+docker-compose up --build -d
+```
+
+### 🛠 Application Access
+- Once started, the application will be available at:  
+  **`http://localhost:8080/graphql`**
+and you should see two new containers running when you run `docker ps`.
+- Configuration (e.g., database credentials) can be adjusted in `docker-compose.yml` and `docker-compose.db.yml`.
+
+---
+
+## 🧪 Testing
+- **Tests can be ran inside the container with the following command:** 
+  ```bash
+  docker exec -it eventmanager mvn test
+  ```
+- **You will then see the console output of the tests.** If you later want to access them, you can find the test reports in the `target/surefire-reports` directory.
+- Note: Tests **cannot** be run within the IDE due to the containerized environment.
+---
+
+## 🔴 Stopping the Application
+If you need to stop the application:
+
+```bash
+docker-compose down
+```
+This will **stop and remove** the eventmanager container **but keep the database volumes and container**.
+
+### 🧹 Full Cleanup (Including Database)
+If you want to **completely reset** the environment, including database data:
+
+```bash
+docker-compose down -v --remove-orphans
+```
+You will then have to rebuild and restart the database and application. (see steps above)
+
+---
+
+## ▶️ Restarting the Application After Stopping
+If you've previously stopped the application container or the database container and want to restart it:
+
+```bash
+docker-compose up
+```
+
+If you made changes and need to **rebuild before restarting**, use:
+
+```bash
+# Application
+docker-compose build --no-cache -d
+# Database
+docker-compose -f docker-compose.db.yml up -d
+```
+---
 
 ## Contributors
 - [@Daskyy](https://github.com/Daskyy)

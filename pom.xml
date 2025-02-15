@@ -129,7 +129,6 @@
 			<artifactId>graphql-java</artifactId>
 			<version>21.4</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -137,6 +136,17 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.thws.eventmanager.infrastructure.GraphQL.ServerGQL</mainClass>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.2.5</version>
+				<configuration>
+					<reportsDirectory>target/surefire-reports</reportsDirectory>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
