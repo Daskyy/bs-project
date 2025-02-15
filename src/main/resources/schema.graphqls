@@ -1,31 +1,30 @@
 type Query {
-     # Beispiel: Liste von Events auslesen
-     events(criteria: EventCriteriaInput, page: PaginationInput): [EventGQL!]!
-     
-     # Beispiel: Einzelnen User auslesen
-     user(id: ID!): UserGQL
-     
-     # Beispiel: Liste von Usern auslesen
-     users(criteria: UserCriteriaInput): [UserGQL!]!
+    # User
 
-  voucher(id: ID!) : VoucherGQL
-  vouchers(criteria: VoucherInputCriteria, page: PaginationInput): [VoucherGQL!]!
+    user(id: ID!): UserGQL
+    users(criteria: UserCriteriaInput): [UserGQL!]!
 
-  #Event
-  trendingEvents(page: PaginationInput): [EventGQL!]
-  event(id: ID!): EventGQL
+    # Voucher
 
-  # Address
-    # Beispiel: Liste von Addressen auslesen
-     addresses(criteria: AddressCriteriaInput, page: PaginationInput): [AddressGQL!]!
-    # Beispiel: Einzelne Address auslesen
-     address(id: ID!): AddressGQL
+    voucher(id: ID!) : VoucherGQL
+    vouchers(criteria: VoucherInputCriteria, page: PaginationInput): [VoucherGQL!]!
 
-  # EventLocation
-    # Beispiel: Liste von EventLocations auslesen
-     eventLocations(criteria: EventLocationCriteriaInput): [EventLocationGQL!]!
-    # Beispiel: Einzelne EventLocation auslesen
-     eventLocation(id: ID!): EventLocationGQL
+    #Event
+
+    trendingEvents(page: PaginationInput): [EventGQL!]
+    event(id: ID!): EventGQL
+    events(criteria: EventCriteriaInput, page: PaginationInput): [EventGQL!]!
+
+    # Address
+
+    addresses(criteria: AddressCriteriaInput, page: PaginationInput): [AddressGQL!]!
+    address(id: ID!): AddressGQL
+
+
+    # EventLocation
+
+    eventLocations(criteria: EventLocationCriteriaInput): [EventLocationGQL!]!
+    eventLocation(id: ID!): EventLocationGQL
 
 }
 
@@ -34,41 +33,38 @@ type Mutation {
 
   authenticate(username: String!, password: String!): String!
 
+  # Ticket
 
   purchaseTicket(userId: ID!, eventId: ID!, ticketamount: Int!,paymentmethodId: String!, voucher:String): TicketGQL!
-
   refundTicket(ticketId: ID!): PaymentGQL!
 
+
+  # EventLocation
 
   createEventLocation(input: EventLocationInput):EventLocationGQL!
   deleteEventLocation(id: ID!): EventLocationGQL!
   updateEventLocation(id: ID!, input: EventLocationInput): EventLocationGQL!
 
   #Address
-  # Beispiel: Address anlegen
+
   createAddress(input: AddressInput): AddressGQL!
-  # Beispiel: Address löschen
   deleteAddress(id: ID!): AddressGQL!
-    # Beispiel: Address aktualisieren
   updateAddress(id:ID!, input: AddressInput): AddressGQL!
-  #Userf
-  # Beispiel: User anlegen
+
+  # User
+
   createUser(input: UserInput): UserGQL!
-  # Beispiel: User löschen
   deleteUser(id: ID!): UserGQL!
-  # Beispiel: User aktualisieren
   updateUser(id: ID!, input: UserInput): UserGQL!
 
-  #Event
-  # Beispiel: Event anlegen
+  # Event
+
   createEvent(input: EventInput): EventGQL!
-  # Beispiel: Event löschen
   deleteEvent(id: ID!): EventGQL!
-  # Beispiel: Event aktualisieren
   updateEvent(id: ID!, input: EventInput): EventGQL!
-  # Blocks a user
   blockUser(eventId: ID!, userId: ID!): EventGQL!
 
+  # Voucher
   createVoucher(input: VoucherInput!): VoucherGQL!
   deleteVoucher(id: ID!): VoucherGQL!
   updateVoucher(id: ID!, input: VoucherInput): VoucherGQL!
@@ -99,14 +95,13 @@ type EventGQL {
   description: String
   startDate: String!
   endDate: String!
-  ticketCount: Int!   #todo ticketcount und sold in event in domain anpassen
-  ticketsSold: Int!  #todo
+  ticketCount: Int!
+  ticketsSold: Int!
   maxTicketsPerUser: Int!
   artists: [UserGQL!]!
   location: EventLocationGQL
   blockList: [UserGQL!]  #
   ticketPrice: Int!
-  # usw.
 }
 
 type EventLocationGQL {
@@ -115,7 +110,6 @@ type EventLocationGQL {
   name: String!
   capacity: Int!
 }
-#EventCriteria als type nicht notwendig, da es nur für die Query-Methode verwendet wird
 
 type PaymentGQL{
     id: ID!
@@ -148,8 +142,6 @@ enum PermissionGQL{
   ARTIST
   CUSTOMER
 }
-
-
 
 type UserGQL {
   id: ID!
@@ -184,7 +176,6 @@ input VoucherInput{
 }
 
 input AddressCriteriaInput {
-    # z.B. Filterkriterien
     street: String
     city: String
     zipCode: Int
@@ -192,7 +183,6 @@ input AddressCriteriaInput {
 }
 
 input EventLocationCriteriaInput {
-  # z.B. Filterkriterien
   addressentity_id: String
   name: String
   capacity: Int
@@ -234,14 +224,12 @@ input AddressInput{
 }
 
 input UserCriteriaInput {
-  # z.B. Filterkriterien
   name: String
   email: String
   permissionGQL: PermissionGQL
 }
 
 input EventCriteriaInput {
-  # z.B. Filterkriterien
   description: String
   name: String
   location_id: String
