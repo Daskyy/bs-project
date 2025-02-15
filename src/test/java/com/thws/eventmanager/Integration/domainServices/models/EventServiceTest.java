@@ -3,6 +3,7 @@ package com.thws.eventmanager.Integration.domainServices.models;
 import com.github.javafaker.Faker;
 import com.thws.eventmanager.domain.models.*;
 import com.thws.eventmanager.domain.services.models.EventService;
+import com.thws.eventmanager.domain.services.models.UserService;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.EventEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.entities.UserEntity;
 import com.thws.eventmanager.infrastructure.components.persistence.mapper.EventMapper;
@@ -21,6 +22,7 @@ class EventServiceTest {
     private final EventService eventService = new EventService();
     private final EventMapper EventMapper = new EventMapper();
     private final UserMapper userMapper = new UserMapper();
+    private final UserService userService = new UserService();
     private final Faker faker = new Faker();
     private User userToBlock;
 
@@ -63,7 +65,10 @@ class EventServiceTest {
         event.setLocation(eventLocation);
         event.setTicketPrice(faker.number().numberBetween(1, 500));
 
+        //persist user
         this.userToBlock = user;
+        UserEntity savedUser = userService.createUser(userToBlock);
+        userToBlock.setId(savedUser.getId());
         return event;
     }
 

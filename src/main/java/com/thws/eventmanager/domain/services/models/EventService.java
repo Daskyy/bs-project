@@ -2,6 +2,7 @@ package com.thws.eventmanager.domain.services.models;
 
 import com.thws.eventmanager.domain.exceptions.InvalidEventException;
 import com.thws.eventmanager.domain.models.Event;
+import com.thws.eventmanager.domain.models.Permission;
 import com.thws.eventmanager.domain.models.Ticket;
 import com.thws.eventmanager.domain.models.User;
 import com.thws.eventmanager.domain.port.in.EventServiceInterface;
@@ -173,7 +174,11 @@ public class EventService implements EventServiceInterface {
         if (event.getArtists() == null || event.getArtists().isEmpty()) {
             throw new InvalidEventException("Event must have at least one artist.");
         }
-
+        for(User artist: event.getArtists()){
+            if(artist.getPermission()!= Permission.ARTIST){
+                throw new InvalidEventException("Artist must have ARTIST permission.");
+            }
+        }
         if (event.getLocation() == null) {
             throw new InvalidEventException("Event location cannot be null.");
         }
@@ -197,5 +202,6 @@ public class EventService implements EventServiceInterface {
         if (event.getStartDate().isBefore(LocalDateTime.now())) {
             throw new InvalidEventException("Start date cannot be in the past.");
         }
+
     }
 }
