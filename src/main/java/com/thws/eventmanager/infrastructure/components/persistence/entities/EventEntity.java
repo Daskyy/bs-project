@@ -47,7 +47,7 @@ public class EventEntity implements PersistenceEntity {
     )
     private List<UserEntity> artists;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "event_blocked_users",
             joinColumns = @JoinColumn(name = "event_id"),

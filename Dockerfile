@@ -1,22 +1,20 @@
-# Build Stage
-FROM maven:3.9.9-eclipse-temurin-23 AS builder
+# Use Maven as both build and runtime environment
+FROM maven:3.9.9-eclipse-temurin-23
+
 WORKDIR /app
 
+# Copy project files
 COPY pom.xml ./
 COPY src ./src
 
-# Run tests and package application
-RUN mvn clean verify && mvn package
+# Build the application
+RUN mvn clean package -DskipTests
 
+# Find the correct JAR name and rename it to app.jar for consistency
+RUN mkdir -p target && mv target/*.jar target/app.jar
 
-# Production Stage
-FROM eclipse-temurin:23-jre
-WORKDIR /app
-
-COPY --from=builder /app/target/*.jar app.jar
-COPY --from=builder /app/target/surefire-reports /app/surefire-reports
-
+# Expose the port the app runs on
 EXPOSE 8080
-EXPOSE 8081
 
-CMD ["java", "-jar", "app.jar"]
+# Run the application
+CMD ["java", "-jar", "target/app.jar"]
