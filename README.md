@@ -62,7 +62,6 @@ cd bs-project
 
 ## 2️⃣ Build and Start the Database and Docker Container
 ```bash
-docker-compose -f docker-compose.db.yml up -d
 docker-compose up --build -d
 ```
 
@@ -76,9 +75,9 @@ and you should see two new containers running when you run `docker ps`.
 
 ## 🧪 Testing
 - **Tests can be ran inside the container with the following command:** 
-  ```bash
-  docker exec -it eventmanager mvn test
-  ```
+```bash
+docker exec -it eventmanager mvn test
+```
 - **You will then see the console output of the tests.** If you later want to access them, you can find the test reports in the `target/surefire-reports` directory.
 - Note: Tests **cannot** be run within the IDE due to the containerized environment.
 ---
@@ -111,10 +110,7 @@ docker-compose up
 If you made changes and need to **rebuild before restarting**, use:
 
 ```bash
-# Application
 docker-compose build --no-cache -d
-# Database
-docker-compose -f docker-compose.db.yml up -d
 ```
 ---
 
