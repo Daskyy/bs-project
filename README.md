@@ -60,39 +60,27 @@ git clone https://github.com/daskyy/bs-project.git
 cd bs-project
 ```
 
-## 2️⃣ Build and Start the Docker Container
+## 2️⃣ Build and Start the Database and Docker Container
 ```bash
-docker-compose up --build
+docker-compose -f docker-compose.db.yml up -d
+docker-compose up --build -d
 ```
 
 ### 🛠 Application Access
 - Once started, the application will be available at:  
   **`http://localhost:8080/graphql`**
-- Configuration (e.g., database credentials) can be adjusted in `docker-compose.yml`.
+and you should see two new containers running when you run `docker ps`.
+- Configuration (e.g., database credentials) can be adjusted in `docker-compose.yml` and `docker-compose.db.yml`.
 
 ---
 
-## 🧪 Viewing Test Results
-- **Test results are generated during the build process** and stored inside the container at:  
-  `/app/surefire-reports`
-- **You cannot rerun tests inside the container** because they are executed as part of the build process (`mvn verify`).
-- To access the reports:
-  `docker exec -it eventmanager ls /app/surefire-reports`
-
----
-
-## 🔄 Rerunning Tests
-If you want to **rerun tests outside of an IDE**, you must **fully rebuild the container**, because tests run **during the build phase**:
-```bash
-docker-compose build --no-cache
-docker-compose up --force-recreate --remove-orphans
-```
-### 🛠 Why is this necessary?
-- **Tests only run during `mvn verify`**, which happens at **build time**.
-- **Docker caches previous builds**, meaning **tests won't rerun unless you force a rebuild**.
-- **`--no-cache` ensures fresh execution**, preventing Docker from reusing old layers.
-- **`--force-recreate` starts a new instance**, ensuring that test results are freshly generated.
-
+## 🧪 Testing
+- **Tests can be ran inside the container with the following command:** 
+  ```bash
+  docker exec -it eventmanager mvn test
+  ```
+- **You will then see the console output of the tests.** If you later want to access them, you can find the test reports in the `target/surefire-reports` directory.
+- Note: Tests **cannot** be run within the IDE due to the containerized environment.
 ---
 
 ## 🔴 Stopping the Application
@@ -101,7 +89,7 @@ If you need to stop the application:
 ```bash
 docker-compose down
 ```
-This will **stop and remove** all running containers **but keep the database volumes**.
+This will **stop and remove** the eventmanager container **but keep the database volumes and container**.
 
 ### 🧹 Full Cleanup (Including Database)
 If you want to **completely reset** the environment, including database data:
@@ -109,10 +97,12 @@ If you want to **completely reset** the environment, including database data:
 ```bash
 docker-compose down -v --remove-orphans
 ```
+You will then have to rebuild and restart the database and application. (see steps above)
+
 ---
 
 ## ▶️ Restarting the Application After Stopping
-If you've previously stopped the container and want to restart it:
+If you've previously stopped the application container or the database container and want to restart it:
 
 ```bash
 docker-compose up
@@ -121,7 +111,10 @@ docker-compose up
 If you made changes and need to **rebuild before restarting**, use:
 
 ```bash
-docker-compose up --build
+# Application
+docker-compose build --no-cache -d
+# Database
+docker-compose -f docker-compose.db.yml up -d
 ```
 ---
 
