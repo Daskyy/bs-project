@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_DB: eventmanager
+      POSTGRES_USER: javabackend
+      POSTGRES_PASSWORD: 123456789
+    networks:
+      - backend
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U javabackend -d eventmanager"]
+      interval: 10s
+      retries: 5
+
+networks:
+  backend:
+    name: eventmanager_network

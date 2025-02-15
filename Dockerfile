@@ -17,5 +17,6 @@ COPY --from=builder /app/target/*.jar app.jar
 COPY --from=builder /app/target/surefire-reports /app/surefire-reports
 
 EXPOSE 8080
+EXPOSE 8081
 
 CMD ["java", "-jar", "app.jar"]
