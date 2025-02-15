@@ -206,9 +206,9 @@ input EventInput {
   ticketCount: Int
   ticketsSold: Int
   maxTicketsPerUser: Int
-  artists: [ID!]!
+  artists: [ID!]
   location: ID
-  blockList: [ID!]!
+  blockList: [ID!]
   ticketPrice: Int
 }
 
