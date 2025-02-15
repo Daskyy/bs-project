@@ -25,7 +25,7 @@ The project requirements include:
 - **Programming Language**: Java
 - **Database**: PostgreSQL
 - **API Technology**: GraphQL
-- **Containerization**: Docker
+- **Containerization**: Docker, Docker Compose
 - **Testing Frameworks**: JUnit
 
 ## Architecture
@@ -37,33 +37,93 @@ This project follows a hexagonal (or "ports and adapters") architecture. The pri
 
 ## Database Design
 The database structure includes entities with multiple types of relationships.
-This relationship will be represented using JPA annotations and mapped to tables in the database. Entity details and relationships are documented in `/docs/database-design.md`.
+This relationship will be represented using JPA annotations and mapped to tables in the database. 
 
 ## API Endpoints
 The API provides endpoints to manage the entities with basic aswell as more advanced CRUD operations, such as refunding all users in case of a cancellation, discounts and more.
-Endpoint details will be specified in `/docs/api-documentation.md`.
 
 ## Testing
 Testing is essential to ensure the stability and reliability of the application. The project includes:
 1. **Unit Tests**: Validate individual components, especially business logic.
 2. **Integration Tests**: Check the complete flow, including database interactions and API responses.
 
-The `/tests` directory contains all test cases with documentation on running them.
-
 ## Getting Started
-### Prerequisites
+### Prerequisites for one-click deployment:
 - Docker
+- Docker Compose
 
-### One-Click Deployment
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/daskyy/bs-project.git
-    ```
-2. Build and start the Docker container:
-    ```bash
-    docker-compose up --build
-    ```
-3. The application will be accessible on `http://localhost:<Port>`. Adjust configuration in `docker-compose.yml` as needed.
+# 🚀 One-Click Deployment
+
+## 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/daskyy/bs-project.git
+cd bs-project
+```
+
+## 2️⃣ Build and Start the Docker Container
+```bash
+docker-compose up --build
+```
+
+### 🛠 Application Access
+- Once started, the application will be available at:  
+  **`http://localhost:8080/graphql`**
+- Configuration (e.g., database credentials) can be adjusted in `docker-compose.yml`.
+
+---
+
+## 🧪 Viewing Test Results
+- **Test results are generated during the build process** and stored inside the container at:  
+  `/app/surefire-reports`
+- **You cannot rerun tests inside the container** because they are executed as part of the build process (`mvn verify`).
+- To access the reports:
+  `docker exec -it eventmanager ls /app/surefire-reports`
+
+---
+
+## 🔄 Rerunning Tests
+If you want to **rerun tests outside of an IDE**, you must **fully rebuild the container**, because tests run **during the build phase**:
+```bash
+docker-compose build --no-cache
+docker-compose up --force-recreate --remove-orphans
+```
+### 🛠 Why is this necessary?
+- **Tests only run during `mvn verify`**, which happens at **build time**.
+- **Docker caches previous builds**, meaning **tests won't rerun unless you force a rebuild**.
+- **`--no-cache` ensures fresh execution**, preventing Docker from reusing old layers.
+- **`--force-recreate` starts a new instance**, ensuring that test results are freshly generated.
+
+---
+
+## 🔴 Stopping the Application
+If you need to stop the application:
+
+```bash
+docker-compose down
+```
+This will **stop and remove** all running containers **but keep the database volumes**.
+
+### 🧹 Full Cleanup (Including Database)
+If you want to **completely reset** the environment, including database data:
+
+```bash
+docker-compose down -v --remove-orphans
+```
+---
+
+## ▶️ Restarting the Application After Stopping
+If you've previously stopped the container and want to restart it:
+
+```bash
+docker-compose up
+```
+
+If you made changes and need to **rebuild before restarting**, use:
+
+```bash
+docker-compose up --build
+```
+---
 
 ## Contributors
 - [@Daskyy](https://github.com/Daskyy)
