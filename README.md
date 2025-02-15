@@ -51,7 +51,7 @@ Testing is essential to ensure the stability and reliability of the application.
 ### Prerequisites for one-click deployment:
 - Docker
 - Docker Compose
-
+- No processes running on port 5432 and 8080 (+ 8081 for integration tests)
 # 🚀 One-Click Deployment
 
 ## 1️⃣ Clone the Repository
