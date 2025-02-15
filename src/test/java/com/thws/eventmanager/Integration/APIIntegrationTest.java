@@ -23,13 +23,14 @@ public class APIIntegrationTest {
     private static final Faker faker = new Faker();
     // Persistente Testdaten, um in späteren Tests verwendet zu werden
     private static UserGQL persistentUser;
+    private static UserGQL persistentArtist;
     private static AddressGQL persistentAddress;
 
     @BeforeAll
     public static void startServer() throws Exception {
         serverThread = new Thread(() -> {
             try {
-                // Starte den zentral konfigurierten GraphQL-Server (analog zu AirlineManagementSystem)
+
                 com.thws.eventmanager.infrastructure.api.GraphQLServer.main(new String[] {"8081"});
             } catch (Exception e) {
                 throw new RuntimeException("GraphQLServer start failed: " + e.getMessage(), e);
@@ -46,6 +47,13 @@ public class APIIntegrationTest {
         userinput.setPassword(faker.internet().password());
         userinput.setPermission(PermissionGQL.CUSTOMER);
         persistentUser = userOp.createUser(userinput);
+
+        UserInput ArtistInput = new UserInput();
+        ArtistInput.setName(faker.name().fullName());
+        ArtistInput.setEmail(faker.internet().emailAddress());
+        ArtistInput.setPassword(faker.internet().password());
+        ArtistInput.setPermission(PermissionGQL.ARTIST);
+        persistentArtist = userOp.createUser(ArtistInput);
 
         AddressOperation addressOp = new AddressOperation();
         AddressInput addressInput = new AddressInput();
@@ -130,7 +138,7 @@ public class APIIntegrationTest {
          eventInput.setTicketCount(faker.number().numberBetween(50, 1000));
          eventInput.setTicketsSold(0);
          eventInput.setMaxTicketsPerUser(faker.number().numberBetween(1, 10));
-         eventInput.setArtists(java.util.List.of(persistentUser.getId()));
+         eventInput.setArtists(java.util.List.of(persistentArtist.getId()));
 
          eventInput.setBlockList(java.util.Collections.emptyList());
          eventInput.setTicketPrice(faker.number().numberBetween(20, 200));
@@ -167,7 +175,7 @@ public class APIIntegrationTest {
          eventInput.setTicketCount(100);
          eventInput.setTicketsSold(0);
          eventInput.setMaxTicketsPerUser(5);
-         eventInput.setArtists(java.util.List.of(persistentUser.getId()));
+         eventInput.setArtists(java.util.List.of(persistentArtist.getId()));
          eventInput.setLocation(eventLocationId);
          eventInput.setBlockList(java.util.Collections.emptyList());
          eventInput.setTicketPrice(50);
@@ -186,6 +194,8 @@ public class APIIntegrationTest {
          EventGQL deletedEvent = eventOp.deleteEvent(eventCreated.getId());
          Assertions.assertNotNull(deletedEvent.getId());
     }
+
+
     
     @Test
     @Order(5)
